@@ -94,14 +94,13 @@ main { flex: 1; min-height: 0; display: flex; align-items: center; justify-conte
 .role { border-top: 1px solid var(--line); padding: 24px 24px 20px; background: #171d1f; position: relative; }
 .role-number { font: 16px var(--mono); color: var(--muted); }
 .role h3 { font-size: 32px; margin-top: 20px; }
-.ai-label { font: 14px var(--mono); color: var(--cyan); margin: 14px 0 24px; }
-.role-output { display: grid; gap: 9px; }
+.role-output { display: grid; gap: 9px; margin-top: 24px; }
 .role-output span { padding: 12px 16px; border: 1px solid var(--line); border-radius: 4px; font-size: 21px; color: var(--muted); transition: transform .4s, border-color .4s, color .4s; }
 .role.generated { border-top-color: var(--cyan); }
 .role.generated .role-output span { color: var(--text); border-color: #5a9e9e; transform: translateX(4px); }
 .role.generated .role-output span:nth-child(2) { transition-delay: .12s; }
 .role.generated .role-output span:nth-child(3) { transition-delay: .24s; }
-.causal-chain { list-style: none; display: grid; grid-template-columns: repeat(5, 1fr); gap: 30px; padding: 0; margin: 40px 0 10px; }
+.causal-chain { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; padding: 0; margin: 40px 0 10px; }
 .causal-chain li { border-top: 2px solid var(--line); padding-top: 20px; font-size: 23px; color: var(--muted); position: relative; }
 .causal-chain li:not(:last-child)::after { content: "→"; position: absolute; right: -25px; color: var(--muted); }
 .causal-chain li.current { border-color: var(--coral); color: var(--text); }
@@ -233,7 +232,6 @@ main { flex: 1; min-height: 0; display: flex; align-items: center; justify-conte
 .prototype-result.success { color: var(--lime); }
 .prototype-result.error { color: var(--coral); }
 #slide-6 > .eyebrow { margin-bottom: 22px; }
-#slide-6 > .eyebrow > span { font-size: 23px; letter-spacing: 0; }
 #slide-6 h2.compact-title { font-size: 52px; }
 .prototype-scene[data-step="4"] { background: #1b2927; }
 .prototype-scene[data-step="5"] { background: #1b2927; }
@@ -421,9 +419,10 @@ dialog::backdrop { background: #05090dea; }
   .stage-mode .slide button:not([data-action="align"], [data-action="pair"], [data-action="pair-reset"], [type="submit"], [data-life]) { display: none; }
   .stage-mode .slide-footer { left: 64px; right: 64px; bottom: 18px; padding-top: 10px; justify-content: flex-end; }
   .stage-mode .eyebrow { margin-bottom: 32px; }
+  .stage-mode #slide-6 > .eyebrow > span { font-size: 23px; letter-spacing: 0; }
   .stage-mode .slide button { font-size: 23px; }
   .stage-mode #slide-4 button[data-action="align"] { font-size: 23px; padding: 14px 22px; }
-  .stage-mode :is(.subtitle, .role-output span, .ai-label, .causal-chain li, .source-node,
+  .stage-mode :is(.subtitle, .role-output span, .causal-chain li, .source-node,
     .branch-outputs span, .alignment-band, .journey p, .workflow-track span,
     .output-pile > span, .output-pile p, .rubric h3, .rubric > div, .rubric p,
     .human-gate p, .stack-layer p, .metric-comparison dt, .metric-unit,
@@ -437,7 +436,6 @@ dialog::backdrop { background: #05090dea; }
   .stage-mode .role-output span { color: var(--text); border-color: #5a9e9e; transform: none; }
   .stage-mode .role { border-top-color: var(--cyan); }
   .stage-mode .role h3 { margin-top: 0; }
-  .stage-mode .ai-label { font: 23px/1.4 sans-serif; }
   .stage-mode .causal-chain li { color: var(--text); border-color: var(--coral); }
   .stage-mode .branch-lines path { stroke: var(--coral); stroke-dasharray: none; }
   .stage-mode .fragmentation.aligned .branch-lines path { stroke: var(--lime); }
@@ -512,7 +510,6 @@ dialog::backdrop { background: #05090dea; }
   .reading #stage .slide a { display: inline-flex; align-items: center; min-height: 44px; }
   .reading #stage .eyebrow { font-size: 16px; gap: 15px; flex-wrap: wrap; margin-bottom: 30px; letter-spacing: 1px; }
   .reading #stage .eyebrow > span { font-size: 14px; }
-  .reading #stage #slide-6 > .eyebrow > span { font-size: 16px; }
   .reading #stage .eyebrow a { margin-left: 0; margin-right: 18px; }
   .reading #stage :is(.opening-layout, .shift-layout, .network-layout, .stack-layout, .pair-layout, .loop-layout, .qa-layout, .standards-layout, .system-readiness) { display: grid; grid-template-columns: 1fr; gap: 30px; margin-top: 30px; }
   .reading #stage .decision-evidence dd { font-size: 18px; }

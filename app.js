@@ -30,8 +30,8 @@ const notes = [
     seconds: 60,
     takeaway: "Shared context and evaluation govern variation without eliminating useful exploration.",
     visual: "A causal chain sits above diverging output branches; a shared standards band aligns their treatment.",
-    interaction: "Stage moment 1: the complete chain starts fragmented. Right advances to shared standards, then to the next slide; Left reverses it. Review retains the five-stage trace and alignment toggle.",
-    body: "Read the chain deliberately: more AI, more output, more variation, more decisions, more opportunities for inconsistency. This is a conceptual mechanism, not a statistical forecast. Variation is useful during exploration; unmanaged variation becomes expensive at system boundaries. Examples include conflicting terminology, duplicated research, inaccessible patterns, undocumented AI decisions, and design-system drift. The source's '17 versions of a pattern' is rhetorical, not a measured statistic, so we do not chart it. Apply shared context and evaluation: options can remain different while obeying common constraints. A green state is an explanatory metaphor, not a claim that standards automatically eliminate defects.",
+    interaction: "Stage moment 1: the complete chain starts fragmented. Right advances to shared standards, then to the next slide; Left reverses it. Review retains the four-stage trace and alignment toggle.",
+    body: "Read the chain deliberately: more output, more variation, more decisions, more opportunities for inconsistency. This is a conceptual mechanism, not a statistical forecast. Variation is useful during exploration; unmanaged variation becomes expensive at system boundaries. Examples include conflicting terminology, duplicated research, inaccessible patterns, undocumented AI decisions, and design-system drift. The source's '17 versions of a pattern' is rhetorical, not a measured statistic, so we do not chart it. Apply shared context and evaluation: options can remain different while obeying common constraints. A green state is an explanatory metaphor, not a claim that standards automatically eliminate defects.",
     transition: "Three questions help us govern that variation. Then we will apply them to one workspace-setup example."
   },
   {
@@ -618,14 +618,16 @@ const actions = {
     $("#generation-status").textContent = state.generation === 0 ? "Generation reset. No roles active." : `${state.generation} of 4 roles generating. Latest: ${document.querySelectorAll(".role h3")[state.generation - 1].textContent}.`;
   },
   cause(button) {
-    state.cause = (state.cause + 1) % 5;
-    document.querySelectorAll("#causal-chain li").forEach((item, i) => item.classList.toggle("current", i <= state.cause));
+    const steps = [...document.querySelectorAll("#causal-chain li")];
+    state.cause = (state.cause + 1) % steps.length;
+    const complete = state.cause === steps.length - 1;
+    steps.forEach((item, i) => item.classList.toggle("current", i <= state.cause));
     for (const selector of [".branch-lines path", ".branch-outputs span"]) {
-      document.querySelectorAll(selector).forEach((item, i) => item.classList.toggle("lit", i <= state.cause));
+      document.querySelectorAll(selector).forEach((item, i) => item.classList.toggle("lit", complete || i <= state.cause));
     }
-    button.textContent = state.cause === 4 ? "Restart the chain" : "Trace the chain";
+    button.textContent = complete ? "Restart the chain" : "Trace the chain";
     markCurrent("#causal-chain li", state.cause);
-    $("#cause-status").textContent = `Stage ${state.cause + 1} of 5: ${document.querySelectorAll("#causal-chain li")[state.cause].textContent}.`;
+    $("#cause-status").textContent = `Stage ${state.cause + 1} of ${steps.length}: ${steps[state.cause].textContent}.`;
   },
   align() {
     setAligned(!$("#fragmentation").classList.contains("aligned"));

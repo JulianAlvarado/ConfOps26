@@ -51,6 +51,11 @@ const { mkdirSync } = require("node:fs");
       assert.equal(label.trim(), "EARLY EXPERIMENTATION · APPROXIMATE VALUES");
     }
     await go(2);
+    assert.equal(await page.locator(".ai-label").count(), 0);
+    assert.equal(await page.locator("#title-2").innerText(), "The AI production floor\nis everywhere.");
+    assert.deepEqual(await page.locator("#roles h3").allTextContents(), ["Product", "Research", "Design", "Engineering"]);
+    assert.deepEqual(await page.locator(".role-output").evaluateAll(groups => groups.map(group => [...group.children].map(item => item.textContent))),
+      [["Brief", "Requirements", "Hypotheses"], ["Synthesis", "Insights", "Questions"], ["Concepts", "Prototypes", "Patterns"], ["Components", "Code", "Tests"]]);
     await page.locator("#presentation").focus();
     await page.keyboard.press("ArrowRight");
     await page.waitForFunction(() => !document.getElementById("slide-3").hidden);
@@ -86,6 +91,7 @@ const { mkdirSync } = require("node:fs");
       }), ["16px", "9px", "14px"], `${action} retains compact sizing after relocation`);
     }
     const failures = [];
+    assert.equal(await page.locator("#slide-6 > .eyebrow > span").evaluate(node => getComputedStyle(node).fontSize), "14px", "Demo caption uses shared review eyebrow sizing");
     const checkLayout = async (reading, label) => {
       const issues = await page.evaluate(reading => {
         const slide = document.querySelector(".slide:not([hidden])");
@@ -246,9 +252,19 @@ const { mkdirSync } = require("node:fs");
     await click('[data-action="generate"]');
     assert.equal(await page.locator(".role.generated").count(), 0);
     await go(4);
-    for (let i = 0; i < 4; i++) await click('[data-action="cause"]');
-    assert.equal(await page.locator("#causal-chain .current").count(), 5);
-    assert.equal(await page.locator("#causal-chain [aria-current='step']").count(), 1);
+    const causes = ["More output", "More variation", "More decisions", "More inconsistency"];
+    assert.deepEqual(await page.locator("#causal-chain li").allTextContents(), causes);
+    for (let i = 0; i < 8; i++) {
+      if (i) await click('[data-action="cause"]');
+      const step = i % 4;
+      assert.equal(await page.locator("#causal-chain .current").count(), step + 1);
+      assert.equal(await page.locator("#causal-chain [aria-current='step']").count(), 1);
+      assert.equal(await page.locator("#causal-chain [aria-current='step']").innerText(), causes[step]);
+      assert.equal(await page.locator("#cause-status").innerText(), `Stage ${step + 1} of 4: ${causes[step]}.`);
+      assert.equal(await page.locator(".branch-outputs .lit").count(), step === 3 ? 5 : step + 1);
+      assert.equal(await page.locator(".branch-lines .lit").count(), step === 3 ? 5 : step + 1);
+      assert.equal(await page.locator('[data-action="cause"]').innerText(), step === 3 ? "Restart the chain" : "Trace the chain");
+    }
     await click('[data-action="align"]');
     assert.equal(await page.locator('[data-action="align"]').getAttribute("aria-pressed"), "true");
     await checkLayout(false, "aligned");
@@ -564,6 +580,7 @@ const { mkdirSync } = require("node:fs");
     for (const size of [{ width: 900, height: 900 }, { width: 390, height: 844 }, { width: 320, height: 700 }, { width: 844, height: 390 }]) {
       await page.setViewportSize(size);
       await page.waitForFunction(() => document.body.classList.contains("reading"));
+      assert.equal(await page.locator("#slide-6 > .eyebrow > span").evaluate(node => getComputedStyle(node).fontSize), "14px", "Demo caption uses shared Reading eyebrow sizing");
       for (let i = 1; i <= 23; i++) {
         await go(i);
         await checkLayout(true, `${size.width}/slide-${i}`);
