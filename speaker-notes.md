@@ -2,7 +2,7 @@
 
 Governance, systems, and the new role of DesignOps in product teams
 
-Presentation review prototype 0.1. Primary source: the supplied **DesignOps as AI Infrastructure Presentation Outline ConfOps 2026**, including the original brief, frameworks, review notes, and FAQ. The approved conference revision brings an illustrative operational conflict forward, keeps Govern / Context / Evaluate central, and moves the detailed stack and lifecycle to backups. There are 15 keynote slides, Q&A, and 7 backups (23 slides total).
+Presentation review prototype 0.1. Primary source: the supplied **DesignOps as AI Infrastructure Presentation Outline ConfOps 2026**, including the original brief, frameworks, review notes, and FAQ. The approved conference revision keeps the interactive onboarding demo instead of a redundant conflict overview, keeps Govern / Context / Evaluate central, and moves the detailed stack and lifecycle to backups. There are 14 keynote slides, Q&A, and 7 backups (22 slides total).
 
 Generated from the presenter-note data in app.js. To update this document after editing those notes: `node check.mjs --write-notes`.
 
@@ -10,13 +10,15 @@ Generated from the presenter-note data in app.js. To update this document after 
 
 | Act | Slides | Window | Duration |
 | --- | --- | --- | --- |
-| I: From acceleration to conflict | 1–4 | 0:00–4:00 | 4 minutes |
-| II: The decision and its reusable rule | 5–8 | 4:00–10:10 | 6 minutes 10 seconds |
-| III: Make the operating model repeatable | 9–14 | 10:10–18:00 | 7 minutes 50 seconds |
-| IV: Closing | 15 | 18:00–20:00 | 2 minutes |
-| Q&A | 16, with optional 17–23 | 20:00–30:00 | 10 minutes |
+| I: The acceleration paradox | 1–3 | 0:00–2:30 | 2 minutes 30 seconds |
+| II: The decision and its reusable rule | 4–7 | 2:30–10:10 | 7 minutes 40 seconds |
+| III: Make the operating model repeatable | 8–13 | 10:10–18:00 | 7 minutes 50 seconds |
+| IV: Closing | 14 | 18:00–20:00 | 2 minutes |
+| Q&A | 15, with optional 16–22 | 20:00–30:00 | 10 minutes |
 
 The timing is a rehearsal guide, not an auto-advance schedule. Keep on-screen examples short enough to preserve discussion time. Read the full notes before presenting; the slides intentionally omit nuance that belongs in the spoken narrative.
+
+Slide 5's retained six-step demo runs from **3:30–8:00**, for **270 seconds**. The removed overview's 90 seconds are reassigned to explanation and interaction pauses: 30 seconds for the audience to absorb the blocked need, 30 seconds for form validation/keyboard feedback, and 30 seconds to review the saved lesson's owner and review trigger. No steps or exercises were added. The keynote remains exactly 1,200 seconds; Q&A remains 600 seconds.
 
 ## Illustrative decision trail
 
@@ -68,29 +70,13 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 **Speaker notes:** Read the chain deliberately: more AI, more output, more variation, more decisions, more opportunities for inconsistency. This is a conceptual mechanism, not a statistical forecast. Variation is useful during exploration; unmanaged variation becomes expensive at system boundaries. Examples include conflicting terminology, duplicated research, inaccessible patterns, undocumented AI decisions, and design-system drift. The source's '17 versions of a pattern' is rhetorical, not a measured statistic, so we do not chart it. Apply shared context and evaluation: options can remain different while obeying common constraints. A green state is an explanatory metaphor, not a claim that standards automatically eliminate defects.
 
-**Transition:** Here is that variation at one concrete boundary: a teammate trying to create a workspace.
+**Transition:** Three questions help us govern that variation. Then we will apply them to one workspace-setup example.
 
 ---
 
-## 4. The form works. But the user can't finish.
+## 4. Govern. Context. Evaluate.
 
-**Timing:** 2:30–4:00 (90 seconds)
-
-**Takeaway:** A form can work technically and still block the user. Make the user requirement part of the review.
-
-**Visual concept:** What the user needs—start alone—contrasts with what AI produced—invite someone first.
-
-**Interaction / reveal:** Static comparison. Point to the required teammate email and explain why the person cannot continue.
-
-**Speaker notes:** Imagine someone creating a workspace on their own. They want to name it and start working; they do not have a teammate to invite yet. The generated form requires a teammate email. Nothing crashes, and the form may look polished, but this person cannot complete setup. The problem is not broken code: it is the wrong requirement built into the flow. The correction is to allow workspace creation first and invitations later. DesignOps helps make that requirement available to the team and AI, includes it in the review criteria, and preserves the reason for the correction. Designers, engineers, and the product owner retain judgment. This is a fictional, pre-authored example—not observed research or a measured outcome.
-
-**Transition:** Three operating questions turn this disagreement into a reviewable decision.
-
----
-
-## 5. Govern. Context. Evaluate.
-
-**Timing:** 4:00–5:00 (60 seconds)
+**Timing:** 2:30–3:30 (60 seconds)
 
 **Takeaway:** GOVERN: what can AI do? CONTEXT: what does it know? EVALUATE: what does good look like?
 
@@ -98,15 +84,15 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 **Interaction / reveal:** Static anchor slide. Return to these three questions throughout the talk.
 
-**Speaker notes:** Use one model throughout. Govern asks what AI may do and who can accept it: in this illustrative case, no real contact data enters the demo, a designer and engineer review, and a product lead owns the scoped rule. Context carries the solo-setup brief, the requirement to make invitations optional, and the supported form pattern together. Evaluate asks whether setup completes without email, while checking labels, errors, focus, and feasibility. Meeting that requirement alone cannot establish user value. These concrete checks sit within broader tool, data, privacy, risk, and release boundaries. Stewardship grounds governance; systems carry context; enablement puts all three into practice through workflows, prompts, rubrics, and training. This is the core model, not another framework to memorize.
+**Speaker notes:** Use one model throughout. The next demo follows someone starting a workspace alone; use that need to ground the three questions. Govern asks what AI may do and who can accept it: in this illustrative case, no real contact data enters the demo, a designer and engineer review, and a product lead owns the scoped rule. Context carries the solo-setup brief, the requirement to make invitations optional, and the supported form pattern together. Evaluate asks whether setup completes without email, while checking labels, errors, focus, and feasibility. Meeting that requirement alone cannot establish user value. These concrete checks sit within broader tool, data, privacy, risk, and release boundaries. Stewardship grounds governance; systems carry context; enablement puts all three into practice through workflows, prompts, rubrics, and training. This is the core model, not another framework to memorize.
 
 **Transition:** Now follow those three responsibilities through the actual decision.
 
 ---
 
-## 6. Fix the form. Keep the lesson.
+## 5. Fix the form. Keep the lesson.
 
-**Timing:** 5:00–8:00 (180 seconds)
+**Timing:** 3:30–8:00 (270 seconds)
 
 **Takeaway:** The team fixes the form. DesignOps makes the lesson available to the next team and its AI tools.
 
@@ -114,13 +100,13 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 **Interaction / reveal:** Advance six steps. At step 4, try creating a workspace with a name only. Reset clears the form and returns to the user's need.
 
-**Speaker notes:** Continue the same fictional example from slide 4. First: the person wants to start a workspace alone. Second: the AI-produced form requires someone else's email, so the person gets stuck. Third: the designer and engineer move invitations after workspace creation. Fourth: try the revised local form with just a workspace name; show validation and keyboard feedback if useful. Nothing is saved or sent. Fifth: explain why fixing one screen is not enough. DesignOps records the lesson with the original solo-setup assumption, the team's reason, a product lead owner, and a review date after the pilot. Put that guidance where the next team and its AI tools can use it. Sixth: the next proposed form allows setup without inviting anyone. A reviewer verifies that behavior and still checks accessibility and user outcomes. Do not claim the rule guarantees future results or that this is a real user study. Every state is pre-authored and illustrative. The distinction is simple: product experts decide what the experience should do; DesignOps helps that decision survive beyond this one screen.
+**Speaker notes:** Introduce the fictional example here: someone wants to start a workspace alone. Allow 270 seconds (4 minutes 30 seconds) for the six existing steps. The 90 seconds recovered from the removed overview slide are explanation and interaction pauses, not extra UI or an exercise: 30 seconds to let the audience absorb the blocked user need, 30 seconds for the form's validation and keyboard feedback, and 30 seconds to review why the saved lesson needs an owner and a review trigger. First: the person wants to start a workspace alone. Second: the AI-produced form requires someone else's email, so the person gets stuck. Third: the designer and engineer move invitations after workspace creation. Fourth: try the revised local form with just a workspace name; show validation and keyboard feedback if useful. Nothing is saved or sent. Fifth: explain why fixing one screen is not enough. DesignOps records the lesson with the original solo-setup assumption, the team's reason, a product lead owner, and a review date after the pilot. Put that guidance where the next team and its AI tools can use it. Sixth: the next proposed form allows setup without inviting anyone. A reviewer verifies that behavior and still checks accessibility and user outcomes. Do not claim the rule guarantees future results or that this is a real user study. Every state is pre-authored and illustrative. The distinction is simple: product experts decide what the experience should do; DesignOps helps that decision survive beyond this one screen.
 
 **Transition:** One criterion passed. What else must a reviewer still judge?
 
 ---
 
-## 7. When generation is cheap, evaluation is strategic
+## 6. When generation is cheap, evaluation is strategic
 
 **Timing:** 8:00–9:00 (60 seconds)
 
@@ -136,7 +122,7 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 ---
 
-## 8. The organizational learning loop
+## 7. The organizational learning loop
 
 **Timing:** 9:00–10:10 (70 seconds)
 
@@ -152,7 +138,7 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 ---
 
-## 9. The role expands; the fundamentals remain
+## 8. The role expands; the fundamentals remain
 
 **Timing:** 10:10–11:00 (50 seconds)
 
@@ -168,7 +154,7 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 ---
 
-## 10. DesignOps as the control plane
+## 9. DesignOps as the control plane
 
 **Timing:** 11:00–11:50 (50 seconds)
 
@@ -184,7 +170,7 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 ---
 
-## 11. Before AI / a proposed AI-enabled journey
+## 10. Before AI / a proposed AI-enabled journey
 
 **Timing:** 11:50–12:50 (60 seconds)
 
@@ -200,7 +186,7 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 ---
 
-## 12. From documentation to executable standards
+## 11. From documentation to executable standards
 
 **Timing:** 12:50–14:05 (75 seconds)
 
@@ -216,7 +202,7 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 ---
 
-## 13. Measure speed and coherence
+## 12. Measure speed and coherence
 
 **Timing:** 14:05–15:45 (100 seconds)
 
@@ -232,7 +218,7 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 ---
 
-## 14. Your first 30 days
+## 13. Your first 30 days
 
 **Timing:** 15:45–18:00 (135 seconds)
 
@@ -248,7 +234,7 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 ---
 
-## 15. Who designs the system?
+## 14. Who designs the system?
 
 **Timing:** 18:00–20:00 (120 seconds)
 
@@ -264,7 +250,7 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 ---
 
-## 16. Let's talk — Q&A
+## 15. Let's talk — Q&A
 
 **Timing:** 10-minute Q&A, outside keynote timing
 
@@ -280,7 +266,7 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 ---
 
-## 17. Backup: shared governance ownership
+## 16. Backup: shared governance ownership
 
 **Timing:** Optional backup, outside keynote timing
 
@@ -296,7 +282,7 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 ---
 
-## 18. Backup: operating-environment architect, not AI factory
+## 17. Backup: operating-environment architect, not AI factory
 
 **Timing:** Optional backup, outside keynote timing
 
@@ -312,7 +298,7 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 ---
 
-## 19. Backup: an AI-ready design system
+## 18. Backup: an AI-ready design system
 
 **Timing:** Optional backup, outside keynote timing
 
@@ -328,7 +314,7 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 ---
 
-## 20. Backup: model-agnostic workflows and canonical prompts
+## 19. Backup: model-agnostic workflows and canonical prompts
 
 **Timing:** Optional backup, outside keynote timing
 
@@ -344,7 +330,7 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 ---
 
-## 21. Backup: metric definitions and measurement plan
+## 20. Backup: metric definitions and measurement plan
 
 **Timing:** Optional backup, outside keynote timing
 
@@ -352,7 +338,7 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 **Visual concept:** Definitions, units, and collection methods beside a concise pilot protocol.
 
-**Interaction / reveal:** Dashboard returns to slide 13 with baseline and pilot visible together. Q&A returns to the topic menu.
+**Interaction / reveal:** Dashboard returns to slide 12 with baseline and pilot visible together. Q&A returns to the topic menu.
 
 **Speaker notes:** Define 'validated concept' before collecting time: reviewer acceptance plus the agreed user-evidence threshold. Count accepted artifacts, not raw generations. Separate elapsed days from person-hours, production from review, and quality defects from severity. Define denominators for compliance, rework, reuse, and divergence. Complete experiments include a recorded learning decision, not just a release. Compare similar tasks and staffing; document sample size, spread, exclusions, and complexity. Use approved data collection with appropriate privacy controls. Review effort may increase while total effort falls, but a small observational pilot cannot establish causality. Set decision thresholds in advance and track customer task success or other relevant product outcomes. All dashboard numbers are explicitly synthetic.
 
@@ -360,7 +346,7 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 ---
 
-## 22. Backup: Organizational memory is the advantage
+## 21. Backup: Organizational memory is the advantage
 
 **Timing:** Optional backup, outside keynote timing
 
@@ -376,7 +362,7 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 ---
 
-## 23. Backup: DesignOps across the product lifecycle
+## 22. Backup: DesignOps across the product lifecycle
 
 **Timing:** Optional backup, outside keynote timing
 
@@ -428,26 +414,26 @@ Record sample size, spread, staffing, complexity, exclusions, and data-collectio
 
 | Source idea / review request | Where preserved |
 | --- | --- |
-| Core thesis, central question, capacity versus coherence | 1–3, 15 |
-| Early illustrative onboarding conflict and criterion | 4 |
-| Product/customer journey before and after AI; Mission, Milestones, Metrics | 11 |
-| DesignOps fundamentals and expanding responsibilities | 9, 14, 18 |
-| AI control plane; domain ownership | 10, 17 |
-| Stewardship × Systems × Enablement reconciled with Govern / Context / Evaluate | 5 and its notes |
-| Organizational memory and five-layer AI design stack | 8, 19, 22 (backup) |
-| Evaluation scarcity and six-part quality rubric | 7 |
-| Discover → Define → Design → Build → Measure | 23 (backup) and its notes |
-| Designer–engineer pairing; context → conflict → decision → rule, with local HTML/CSS | 6 |
-| Learning captured into context and standards | 8, 12 |
-| Production time, rate, review, rework, consistency, and measurement | 13, 21 |
-| Canonical prompts and seven artifact transformations | 12, 20 |
-| Team, product-area, and enterprise altitudes | 14 |
-| Evolving role and work archetypes | 18 |
-| Risks if infrastructure is absent | 3–4 and their notes |
-| Shared governance, AI-team concern, AI-ready systems, model change, prompt ownership | 16–23 |
-| Tomorrow's actions: map, identify, codify, standardize, measure | 14, 16 |
+| Core thesis, central question, capacity versus coherence | 1–3, 14 |
+| Illustrative onboarding conflict and criterion, within the interactive demo | 5 |
+| Product/customer journey before and after AI; Mission, Milestones, Metrics | 10 |
+| DesignOps fundamentals and expanding responsibilities | 8, 13, 17 |
+| AI control plane; domain ownership | 9, 16 |
+| Stewardship × Systems × Enablement reconciled with Govern / Context / Evaluate | 4 and its notes |
+| Organizational memory and five-layer AI design stack | 7, 18, 21 (backup) |
+| Evaluation scarcity and six-part quality rubric | 6 |
+| Discover → Define → Design → Build → Measure | 22 (backup) and its notes |
+| Designer–engineer pairing; context → conflict → decision → rule, with local HTML/CSS | 5 |
+| Learning captured into context and standards | 7, 11 |
+| Production time, rate, review, rework, consistency, and measurement | 12, 20 |
+| Canonical prompts and seven artifact transformations | 11, 19 |
+| Team, product-area, and enterprise altitudes | 13 |
+| Evolving role and work archetypes | 17 |
+| Risks if infrastructure is absent | 3, 5 and their notes |
+| Shared governance, AI-team concern, AI-ready systems, model change, prompt ownership | 15–22 |
+| Tomorrow's actions: map, identify, codify, standardize, measure | 13, 15 |
 
-The Spanish review notes are implemented in English. Traditional DesignOps work is expanded, not erased. The proposed workflow is explicitly a hypothesis to validate. The source's tool mentions do not imply integrations; the demonstration uses local HTML/CSS. The source's unverified external archetype attribution is not reproduced as a factual attribution. Rhetorical counts are not converted into statistical claims. The stack and lifecycle walkthroughs are preserved in backups to avoid competing with the central operating model. The keynote now has 15 slides; the added conflict and expanded demo use time recovered from those supporting walkthroughs.
+The Spanish review notes are implemented in English. Traditional DesignOps work is expanded, not erased. The proposed workflow is explicitly a hypothesis to validate. The source's tool mentions do not imply integrations; the demonstration uses local HTML/CSS. The source's unverified external archetype attribution is not reproduced as a factual attribution. Rhetorical counts are not converted into statistical claims. The stack and lifecycle walkthroughs are preserved in backups to avoid competing with the central operating model. The keynote now has 14 slides. The standalone conflict overview was removed at the user's request; its 90 seconds now support explanation and interaction pauses within the retained demo, without changing the six-step behavior or plain-language copy.
 
 ## Conversion and delivery notes
 

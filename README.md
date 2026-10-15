@@ -1,19 +1,19 @@
 # DesignOps as AI Infrastructure
 
-**Presentation review prototype, version 0.1.** A local, dependency-free HTML/CSS/JavaScript keynote: 15 main slides (20 minutes), a Q&A menu (10 minutes), and seven optional backups.
+**Presentation review prototype, version 0.1.** A local, dependency-free HTML/CSS/JavaScript keynote: 14 main slides (20 minutes), a Q&A menu (10 minutes), and seven optional backups.
 
 ## Conference story
 
-The onboarding conflict follows the acceleration paradox at **2:30**. Govern / Context / Evaluate provides the central model at **4:00**, followed by a three-minute operational demonstration at **5:00**. The detailed stack and lifecycle remain available in backups rather than competing with the keynote.
+Govern / Context / Evaluate follows the acceleration paradox at **2:30**. The retained interactive demonstration, **“Fix the form. Keep the lesson.”**, is now slide **5**, beginning at **3:30**. Its **270 seconds (4 minutes 30 seconds)** include the removed overview slide's 90 seconds as explanation, audience-reading, form-interaction, and review pauses—not new steps or an extra exercise. The keynote remains exactly **1,200 seconds**. The detailed stack and lifecycle remain available in backups.
 
 | Slides | Story | Timing |
 | --- | --- | --- |
-| 1–4 | Opening → distributed generation → acceleration paradox → onboarding conflict | 0:00–4:00 |
-| 5–8 | Govern / Context / Evaluate → decision demo → accountable evaluation → learning loop | 4:00–10:10 |
-| 9–14 | Expanded role → control plane → collaborative journey → reusable standards → measures → 30-day pilot | 10:10–18:00 |
-| 15 | Who designs the system? | 18:00–20:00 |
-| 16 | Q&A and contact links | 20:00–30:00 |
-| 17–23 | Ownership, role, AI-ready system, model changes, measurement, context stack, lifecycle | Optional backups |
+| 1–3 | Opening → distributed generation → acceleration paradox | 0:00–2:30 |
+| 4–7 | Govern / Context / Evaluate → decision demo → accountable evaluation → learning loop | 2:30–10:10 |
+| 8–13 | Expanded role → control plane → collaborative journey → reusable standards → measures → 30-day pilot | 10:10–18:00 |
+| 14 | Who designs the system? | 18:00–20:00 |
+| 15 | Q&A and contact links | 20:00–30:00 |
+| 16–22 | Ownership, role, AI-ready system, model changes, measurement, context stack, lifecycle | Optional backups |
 
 The six demo steps tell one story: **user need → AI mistake → team decision → working fix → saved lesson → next result**. Someone needs to start alone, but the first form requires an invitation. The team moves invitations after setup; DesignOps keeps the reason in shared guidance for the next team and its AI tools. The lesson retains a source, scope, version, owner, and review trigger without document codes on the slide. All examples are pre-authored and illustrative; no actual research, organizational policy, or measured improvement is implied.
 
@@ -48,7 +48,7 @@ Open `http://127.0.0.1:8080`. Stop the server with Ctrl+C.
 | Topic links on Q&A | Open the relevant backup |
 | `#13`, for example | Link directly to a slide |
 
-All animations are finite and respect `prefers-reduced-motion`. Slides never advance automatically. In-slide buttons are intentionally separate from slide navigation; press Tab and Enter/Space to operate them. Reveal steps expose their current state and announce updates. Interaction state is preserved while navigating within the page and resets on reload. Keynote progress reaches 100% at slide 15; Q&A and backups have separate labels and no keynote progress bar.
+All animations are finite and respect `prefers-reduced-motion`. Slides never advance automatically. In-slide buttons are intentionally separate from slide navigation; press Tab and Enter/Space to operate them. Reveal steps expose their current state and announce updates. Interaction state is preserved while navigating within the page and resets on reload. Keynote progress reaches 100% at slide 14; Q&A and backups have separate labels and no keynote progress bar.
 
 Opening Notes focuses its scrollable panel. Arrow, Page Up/Down, Home/End, and Space keys operate the panel instead of advancing slides; N or Escape closes it. Text-input controls retain their native keyboard behavior. The notes panel is part of the same display, **not a private presenter window**; close it before audience screen sharing.
 
@@ -56,15 +56,15 @@ Opening Notes focuses its scrollable panel. Arrow, Page Up/Down, Home/End, and S
 
 - **2:** distribute generation across four roles.
 - **3:** trace the acceleration chain and toggle shared standards.
-- **6:** inspect shared context, conflicting choice, human decision, revised form, reusable rule, and next candidate. The form is interactive at step 4; Reset clears it and restarts the trace.
-- **8:** follow the closed organizational learning loop.
-- **10:** connect/disconnect the shared control plane.
-- **11:** replay sequential handoffs versus collaborative production.
-- **13:** compare four illustrative baseline/pilot measures side by side; open all ten in a detail dialog or jump to operational definitions.
-- **14:** compare team, product-area, and enterprise ownership.
-- **15:** pause, then reveal the answer.
-- **22 (backup):** build the organizational-memory stack.
-- **23 (backup):** inspect AI assistance, infrastructure, and review at each lifecycle stage.
+- **5:** inspect shared context, conflicting choice, human decision, revised form, reusable rule, and next candidate. The form is interactive at step 4; Reset clears it and restarts the trace.
+- **7:** follow the closed organizational learning loop.
+- **9:** connect/disconnect the shared control plane.
+- **10:** replay sequential handoffs versus collaborative production.
+- **12:** compare four illustrative baseline/pilot measures side by side; open all ten in a detail dialog or jump to operational definitions.
+- **13:** compare team, product-area, and enterprise ownership.
+- **14:** pause, then reveal the answer.
+- **21 (backup):** build the organizational-memory stack.
+- **22 (backup):** inspect AI assistance, infrastructure, and review at each lifecycle stage.
 
 ## Files and editing
 
@@ -100,4 +100,4 @@ This is the HTML deliverable, not a `.pptx`. The content uses fixed-ratio sectio
 - **Lifecycle/altitude selectors:** use static summary layouts or duplicate slides for each state.
 - **Closing:** retain the question and answer as two builds. Speaker notes remain separate editable text.
 
-Print CSS provides a browser handout of all 23 slides, including the closing answer. Use landscape, background graphics on, no browser headers/footers, and 100% scale; PDF print behavior varies by browser. Printing is not a PowerPoint conversion. A printout uses current interaction states; prepare those before printing if a particular state is desired.
+Print CSS provides a browser handout of all 22 slides, including the closing answer. Use landscape, background graphics on, no browser headers/footers, and 100% scale; PDF print behavior varies by browser. Printing is not a PowerPoint conversion. A printout uses current interaction states; prepare those before printing if a particular state is desired.

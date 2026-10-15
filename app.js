@@ -1,6 +1,6 @@
 "use strict";
 
-const keynoteCount = 15;
+const keynoteCount = 14;
 const notes = [
   {
     seconds: 45,
@@ -24,30 +24,22 @@ const notes = [
     visual: "A causal chain sits above diverging output branches; a shared standards band aligns their treatment.",
     interaction: "Trace the chain progresses through five stages, activating more branches and divergent patterns. Apply shared standards toggles fragmentation versus coherence.",
     body: "Read the chain deliberately: more AI, more output, more variation, more decisions, more opportunities for inconsistency. This is a conceptual mechanism, not a statistical forecast. Variation is useful during exploration; unmanaged variation becomes expensive at system boundaries. Examples include conflicting terminology, duplicated research, inaccessible patterns, undocumented AI decisions, and design-system drift. The source's '17 versions of a pattern' is rhetorical, not a measured statistic, so we do not chart it. Apply shared context and evaluation: options can remain different while obeying common constraints. A green state is an explanatory metaphor, not a claim that standards automatically eliminate defects.",
-    transition: "Here is that variation at one concrete boundary: a teammate trying to create a workspace."
-  },
-  {
-    seconds: 90,
-    takeaway: "A form can work technically and still block the user. Make the user requirement part of the review.",
-    visual: "What the user needs—start alone—contrasts with what AI produced—invite someone first.",
-    interaction: "Static comparison. Point to the required teammate email and explain why the person cannot continue.",
-    body: "Imagine someone creating a workspace on their own. They want to name it and start working; they do not have a teammate to invite yet. The generated form requires a teammate email. Nothing crashes, and the form may look polished, but this person cannot complete setup. The problem is not broken code: it is the wrong requirement built into the flow. The correction is to allow workspace creation first and invitations later. DesignOps helps make that requirement available to the team and AI, includes it in the review criteria, and preserves the reason for the correction. Designers, engineers, and the product owner retain judgment. This is a fictional, pre-authored example—not observed research or a measured outcome.",
-    transition: "Three operating questions turn this disagreement into a reviewable decision."
+    transition: "Three questions help us govern that variation. Then we will apply them to one workspace-setup example."
   },
   {
     seconds: 60,
     takeaway: "GOVERN: what can AI do? CONTEXT: what does it know? EVALUATE: what does good look like?",
     visual: "Three pillars apply Govern / Context / Evaluate directly to the solo-setup conflict.",
     interaction: "Static anchor slide. Return to these three questions throughout the talk.",
-    body: "Use one model throughout. Govern asks what AI may do and who can accept it: in this illustrative case, no real contact data enters the demo, a designer and engineer review, and a product lead owns the scoped rule. Context carries the solo-setup brief, the requirement to make invitations optional, and the supported form pattern together. Evaluate asks whether setup completes without email, while checking labels, errors, focus, and feasibility. Meeting that requirement alone cannot establish user value. These concrete checks sit within broader tool, data, privacy, risk, and release boundaries. Stewardship grounds governance; systems carry context; enablement puts all three into practice through workflows, prompts, rubrics, and training. This is the core model, not another framework to memorize.",
+    body: "Use one model throughout. The next demo follows someone starting a workspace alone; use that need to ground the three questions. Govern asks what AI may do and who can accept it: in this illustrative case, no real contact data enters the demo, a designer and engineer review, and a product lead owns the scoped rule. Context carries the solo-setup brief, the requirement to make invitations optional, and the supported form pattern together. Evaluate asks whether setup completes without email, while checking labels, errors, focus, and feasibility. Meeting that requirement alone cannot establish user value. These concrete checks sit within broader tool, data, privacy, risk, and release boundaries. Stewardship grounds governance; systems carry context; enablement puts all three into practice through workflows, prompts, rubrics, and training. This is the core model, not another framework to memorize.",
     transition: "Now follow those three responsibilities through the actual decision."
   },
   {
-    seconds: 180,
+    seconds: 270,
     takeaway: "The team fixes the form. DesignOps makes the lesson available to the next team and its AI tools.",
     visual: "Six plain-language steps follow one problem from the user's need to a corrected form and a reusable lesson.",
     interaction: "Advance six steps. At step 4, try creating a workspace with a name only. Reset clears the form and returns to the user's need.",
-    body: "Continue the same fictional example from slide 4. First: the person wants to start a workspace alone. Second: the AI-produced form requires someone else's email, so the person gets stuck. Third: the designer and engineer move invitations after workspace creation. Fourth: try the revised local form with just a workspace name; show validation and keyboard feedback if useful. Nothing is saved or sent. Fifth: explain why fixing one screen is not enough. DesignOps records the lesson with the original solo-setup assumption, the team's reason, a product lead owner, and a review date after the pilot. Put that guidance where the next team and its AI tools can use it. Sixth: the next proposed form allows setup without inviting anyone. A reviewer verifies that behavior and still checks accessibility and user outcomes. Do not claim the rule guarantees future results or that this is a real user study. Every state is pre-authored and illustrative. The distinction is simple: product experts decide what the experience should do; DesignOps helps that decision survive beyond this one screen.",
+    body: "Introduce the fictional example here: someone wants to start a workspace alone. Allow 270 seconds (4 minutes 30 seconds) for the six existing steps. The 90 seconds recovered from the removed overview slide are explanation and interaction pauses, not extra UI or an exercise: 30 seconds to let the audience absorb the blocked user need, 30 seconds for the form's validation and keyboard feedback, and 30 seconds to review why the saved lesson needs an owner and a review trigger. First: the person wants to start a workspace alone. Second: the AI-produced form requires someone else's email, so the person gets stuck. Third: the designer and engineer move invitations after workspace creation. Fourth: try the revised local form with just a workspace name; show validation and keyboard feedback if useful. Nothing is saved or sent. Fifth: explain why fixing one screen is not enough. DesignOps records the lesson with the original solo-setup assumption, the team's reason, a product lead owner, and a review date after the pilot. Put that guidance where the next team and its AI tools can use it. Sixth: the next proposed form allows setup without inviting anyone. A reviewer verifies that behavior and still checks accessibility and user outcomes. Do not claim the rule guarantees future results or that this is a real user study. Every state is pre-authored and illustrative. The distinction is simple: product experts decide what the experience should do; DesignOps helps that decision survive beyond this one screen.",
     transition: "One criterion passed. What else must a reviewer still judge?"
   },
   {
@@ -166,7 +158,7 @@ const notes = [
     seconds: 0,
     takeaway: "Operational definitions, comparable work, and evidence qualifications matter more than dashboard polish.",
     visual: "Definitions, units, and collection methods beside a concise pilot protocol.",
-    interaction: "Dashboard returns to slide 13 with baseline and pilot visible together. Q&A returns to the topic menu.",
+    interaction: "Dashboard returns to slide 12 with baseline and pilot visible together. Q&A returns to the topic menu.",
     body: "Define 'validated concept' before collecting time: reviewer acceptance plus the agreed user-evidence threshold. Count accepted artifacts, not raw generations. Separate elapsed days from person-hours, production from review, and quality defects from severity. Define denominators for compliance, rework, reuse, and divergence. Complete experiments include a recorded learning decision, not just a release. Compare similar tasks and staffing; document sample size, spread, exclusions, and complexity. Use approved data collection with appropriate privacy controls. Review effort may increase while total effort falls, but a small observational pilot cannot establish causality. Set decision thresholds in advance and track customer task success or other relevant product outcomes. All dashboard numbers are explicitly synthetic.",
     transition: "Return to the dashboard or Q&A."
   },
