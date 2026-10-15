@@ -28,10 +28,10 @@ const notes = [
   },
   {
     seconds: 90,
-    takeaway: "A working interface can still violate the agreed user need. The decision needs a source and an owner.",
-    visual: "An illustrative solo-setup brief faces a generated flow that requires a teammate email.",
-    interaction: "Static conflict. Point to AC-01 before asking who can accept the generated choice.",
-    body: "Introduce the case now, before another framework. Everything in this case is pre-authored and illustrative: BRIEF-01 is an assumed scenario, not a research finding. A new teammate is setting up alone and may not know whom to invite. The team has agreed AC-01: create a workspace without requiring an invitation or email address. A plausible generated flow instead makes teammate email mandatory. It can compile and look polished while failing the agreed criterion. Do not claim that users were observed or that conversion improved. The question is not whether AI can draw a form. It is who can reject the gate, on what basis, and how another team can reuse that decision. DesignOps makes the brief, criterion, review owner, and decision record available together; domain experts retain judgment.",
+    takeaway: "A form can work technically and still block the user. Make the user requirement part of the review.",
+    visual: "What the user needs—start alone—contrasts with what AI produced—invite someone first.",
+    interaction: "Static comparison. Point to the required teammate email and explain why the person cannot continue.",
+    body: "Imagine someone creating a workspace on their own. They want to name it and start working; they do not have a teammate to invite yet. The generated form requires a teammate email. Nothing crashes, and the form may look polished, but this person cannot complete setup. The problem is not broken code: it is the wrong requirement built into the flow. The correction is to allow workspace creation first and invitations later. DesignOps helps make that requirement available to the team and AI, includes it in the review criteria, and preserves the reason for the correction. Designers, engineers, and the product owner retain judgment. This is a fictional, pre-authored example—not observed research or a measured outcome.",
     transition: "Three operating questions turn this disagreement into a reviewable decision."
   },
   {
@@ -39,15 +39,15 @@ const notes = [
     takeaway: "GOVERN: what can AI do? CONTEXT: what does it know? EVALUATE: what does good look like?",
     visual: "Three pillars apply Govern / Context / Evaluate directly to the solo-setup conflict.",
     interaction: "Static anchor slide. Return to these three questions throughout the talk.",
-    body: "Use one model throughout. Govern asks what AI may do and who can accept it: in this illustrative case, no real contact data enters the demo, a designer and engineer review, and a product lead owns the scoped rule. Context carries BRIEF-01, AC-01, and the supported form pattern together. Evaluate asks whether setup completes without email, while checking labels, errors, focus, and feasibility. Passing AC-01 alone cannot establish user value. These concrete checks sit within broader tool, data, privacy, risk, and release boundaries. Stewardship grounds governance; systems carry context; enablement puts all three into practice through workflows, prompts, rubrics, and training. This is the core model, not another framework to memorize.",
+    body: "Use one model throughout. Govern asks what AI may do and who can accept it: in this illustrative case, no real contact data enters the demo, a designer and engineer review, and a product lead owns the scoped rule. Context carries the solo-setup brief, the requirement to make invitations optional, and the supported form pattern together. Evaluate asks whether setup completes without email, while checking labels, errors, focus, and feasibility. Meeting that requirement alone cannot establish user value. These concrete checks sit within broader tool, data, privacy, risk, and release boundaries. Stewardship grounds governance; systems carry context; enablement puts all three into practice through workflows, prompts, rubrics, and training. This is the core model, not another framework to memorize.",
     transition: "Now follow those three responsibilities through the actual decision."
   },
   {
     seconds: 180,
-    takeaway: "DesignOps makes the source, criterion, reviewer decision, and reusable rule travel together.",
-    visual: "Six states trace BRIEF-01 → AC-01 → DEC-01 → RULE-01, with a working local form between decision and reuse.",
-    interaction: "Advance six states. At step 4, try the name-only form, including invalid input. Reset clears the form and returns to shared context.",
-    body: "Spend three minutes here, roughly 30 seconds per state. First show the shared package: BRIEF-01 assumes a teammate setting up alone; AC-01 requires completion without email. These are illustrative assumptions and an agreed teaching criterion, not sourced research. Second inspect Candidate A: its mandatory teammate email violates AC-01 despite working code. Third show DEC-01: designer and engineer reject that gate, retaining the name field; DesignOps records the source and reason without replacing expert judgment. Fourth try the revised semantic HTML/CSS form. It uses shared tokens, a label, bounded input, keyboard focus, and safe text feedback. No account is created and nothing is saved or sent. Fifth record RULE-01 v1: invitations follow creation in this solo-setup scenario. Its provenance is explicit, the illustrative product lead owns it, and review is due after the pilot or a source change. Sixth inspect Candidate B: optional invitations after setup pass AC-01, but accessibility and user-outcome evaluation remain necessary. All candidates, decisions, owners, and rules are pre-authored teaching artifacts—not live generation, actual research, or organizational policy. The DesignOps contribution is the maintained contract and review path. The next team can reuse the reason, not just copy a screen.",
+    takeaway: "The team fixes the form. DesignOps makes the lesson available to the next team and its AI tools.",
+    visual: "Six plain-language steps follow one problem from the user's need to a corrected form and a reusable lesson.",
+    interaction: "Advance six steps. At step 4, try creating a workspace with a name only. Reset clears the form and returns to the user's need.",
+    body: "Continue the same fictional example from slide 4. First: the person wants to start a workspace alone. Second: the AI-produced form requires someone else's email, so the person gets stuck. Third: the designer and engineer move invitations after workspace creation. Fourth: try the revised local form with just a workspace name; show validation and keyboard feedback if useful. Nothing is saved or sent. Fifth: explain why fixing one screen is not enough. DesignOps records the lesson with the original solo-setup assumption, the team's reason, a product lead owner, and a review date after the pilot. Put that guidance where the next team and its AI tools can use it. Sixth: the next proposed form allows setup without inviting anyone. A reviewer verifies that behavior and still checks accessibility and user outcomes. Do not claim the rule guarantees future results or that this is a real user study. Every state is pre-authored and illustrative. The distinction is simple: product experts decide what the experience should do; DesignOps helps that decision survive beyond this one screen.",
     transition: "One criterion passed. What else must a reviewer still judge?"
   },
   {
@@ -63,7 +63,7 @@ const notes = [
     takeaway: "Learning compounds only when decisions feed back into maintained context and standards.",
     visual: "A closed five-stage loop surrounds organizational memory.",
     interaction: "Follow one learning cycle highlights a stage per click, wrapping back to generation.",
-    body: "Return to DEC-01 and RULE-01. The useful artifact is not merely the revised form: it is the criterion, reason, owner, and review trigger attached to it. AI generates using current context; humans evaluate; the decision is recorded; a reviewed rule updates context; the next candidate is checked again. The example proves neither that one field is always best nor that context automatically prevents future violations. Its scenario is assumed and user validation is pending. If the solo-setup assumption changes, the product lead revisits the rule; DesignOps keeps provenance, access, version, and review cadence usable across teams. Retire stale rules rather than making every observation universal policy.",
+    body: "Return to the decision to offer invitations after setup and the saved lesson. The useful artifact is not merely the revised form: it is the requirement, reason, owner, and review trigger attached to it. AI generates using current context; humans evaluate; the decision is recorded; reviewed guidance updates context; the next result is checked again. The example proves neither that one field is always best nor that context automatically prevents future violations. Its scenario is assumed and user validation is pending. If the solo-setup assumption changes, the product lead revisits the rule; DesignOps keeps the source, access, version, and review cadence usable across teams. Retire stale rules rather than making every observation universal policy.",
     transition: "That maintenance is recognizable DesignOps work—with a wider scope."
   },
   {
@@ -93,9 +93,9 @@ const notes = [
   {
     seconds: 75,
     takeaway: "Turn domain knowledge into versioned, reusable context and verifiable standards.",
-    visual: "Seven artifact transformations sit beside the illustrative RULE-01 contract, including provenance, owner, and review trigger.",
+    visual: "Seven artifact transformations sit beside the illustrative solo-setup rule, including its source, owner, and review trigger.",
     interaction: "Static transformation; readable text remains editable for future PowerPoint recreation.",
-    body: "Use RULE-01 as the concrete artifact rather than narrating seven new frameworks. Its source is explicitly assumed, its criterion and decision have IDs, its scope is solo setup, and its owner and review trigger are visible. User evidence remains pending. The seven transformations preserve the broader source material: guidelines to machine-readable rules, design systems to consumable systems, templates to canonical prompts, documentation to context packages, critique to rubrics, SOPs to human–AI workflows, efficiency measures to speed plus quality and outcomes. A YAML-like package does not enforce itself. Integration, permissions, validation, and human review are still required. DesignOps maintains the package; domain experts author, approve, and revisit its validity.",
+    body: "Use the saved solo-setup lesson as the concrete artifact rather than narrating seven new frameworks. Its source is explicitly assumed, the requirement and decision are readable, its scope is solo setup, and its owner and review trigger are visible. User evidence remains pending. The seven transformations preserve the broader source material: guidelines to machine-readable rules, design systems to consumable systems, templates to canonical prompts, documentation to context packages, critique to rubrics, SOPs to human–AI workflows, efficiency measures to speed plus quality and outcomes. A YAML-like package does not enforce itself. Integration, permissions, validation, and human review are still required. DesignOps maintains the package; domain experts author, approve, and revisit its validity.",
     transition: "Maintaining this contract costs time. How would we know the workflow is worth adopting?"
   },
   {
@@ -210,49 +210,46 @@ const metrics = [
 ];
 
 const pairDescriptions = [
-  "DesignOps packages the brief, acceptance criterion, and supported form pattern. This is illustrative context—not observed user evidence.",
-  "The pre-authored generated choice adds a required invitation. The screen works, but it fails the shared criterion. A prompt alone is not a control.",
-  "Designer + engineer reject the invitation gate against AC-01. Product ownership stays with the team; DesignOps makes the decision traceable.",
+  "The person wants to start alone. DesignOps makes that need clear in the brief the team and AI use.",
+  "AI adds a required teammate email. The person has nobody to invite yet, so they cannot finish.",
+  "The designer and engineer move invitations after setup. The person can start now and invite others later.",
   "Try a workspace name without any email. Check empty input, keyboard focus, and feedback. This local prototype sends and saves nothing.",
-  "DesignOps links source → criterion → decision → rule. The product lead owns this scoped example rule; review it after the pilot or a source change.",
-  "A new candidate uses an optional invitation after setup. It passes AC-01—not every quality test. A reviewer must still assess accessibility and user value."
+  "DesignOps adds the decision and its reason to shared guidance, so the next team does not start from scratch.",
+  "The next proposed form lets the person start alone. A reviewer checks it again; saved guidance does not replace judgment."
 ];
 const pairCode = [
-  "BRIEF-01 → AC-01 · DesignOps maintains the context package.",
-  "Candidate A × AC-01: teammate email blocks workspace creation.",
-  "DEC-01 → revise A · Reason: BRIEF-01 / AC-01.",
-  "AC-01 check: workspace name only · label + validation + feedback.",
-  "RULE-01 v1 ← DEC-01 ← AC-01 ← BRIEF-01",
-  "Candidate B + RULE-01 → AC-01 passes · user validation still pending."
+  "The requirement: let someone create a workspace alone.",
+  "The mismatch: setup requires an invitation.",
+  "The decision: create first, invite later.",
+  "The check: can you finish with only a workspace name?",
+  "The lesson: allow solo setup. Keep the reason and owner.",
+  "The next review: verify the behavior, not just the appearance."
 ];
-const pairLabels = ["SHARED CONTEXT / 01", "CONFLICT / 02", "HUMAN DECISION / 03", "REVISED HTML + CSS / 04", "REUSABLE RULE / 05", "REUSE CHECK / 06"];
+const pairLabels = ["THE USER'S NEED / 01", "THE PROBLEM / 02", "THE TEAM'S DECISION / 03", "TRY THE FIX / 04", "THE SAVED LESSON / 05", "THE NEXT RESULT / 06"];
 const pairEvidence = [
-  { title: "The context travels with the task.", entries: [
-    ["BRIEF-01 · assumed scenario", "A teammate is setting up alone."],
-    ["AC-01 · acceptance criterion", "Create a workspace without an email address."],
-    ["Supported pattern", "Shared tokens, a labeled field, and inline feedback."]
-  ], verdict: "A named criterion—not “make it simple.”" },
-  { title: "Candidate A: polished, but blocked.", entries: [
-    ["Workspace name", "Required · consistent with the brief"],
-    ["Teammate email", "Required before continuing · conflicts with AC-01"],
-    ["Why reject it?", "Solo setup cannot finish without someone else's email."]
-  ], verdict: "Fails AC-01. Running code is not acceptance." },
-  { title: "DEC-01: defer invitations.", entries: [
-    ["Reviewer · designer + engineer", "Reject the gate; retain workspace name only."],
-    ["Reason · BRIEF-01 / AC-01", "The first task must work for a teammate acting alone."],
-    ["Boundary", "An illustrative design decision—not proof of user success."]
-  ], verdict: "Revise the choice. Keep human accountability." },
+  { title: "Let me start on my own.", entries: [
+    ["The situation", "I do not have a teammate to invite yet."],
+    ["What I need", "Name my workspace and start working."]
+  ], verdict: "Inviting people should come later." },
+  { title: "The form asks for someone else.", entries: [
+    ["Workspace name", "Required"],
+    ["Teammate email", "Also required before I can continue."]
+  ], verdict: "I have no one to invite. I am stuck." },
+  { title: "Create first. Invite later.", entries: [
+    ["Designer + engineer decide", "Remove the required invitation from setup."],
+    ["Why", "Someone starting alone must be able to finish."]
+  ], verdict: "The team changes the flow—not the user's goal." },
   null,
-  { title: "RULE-01 v1: no invitation gate.", entries: [
-    ["Scope · solo workspace setup", "Ask for a name. Offer invitations after creation."],
-    ["Provenance", "BRIEF-01 → AC-01 → DEC-01 → RULE-01"],
-    ["Owner · product lead", "Review after pilot or source change; validate with users."]
-  ], verdict: "DesignOps maintains the contract, not every screen." },
-  { title: "Candidate B: check reuse, not trust.", entries: [
-    ["New generated choice", "Workspace name first; optional invitation afterward."],
-    ["Check · RULE-01 / AC-01", "No email required to create a workspace: passes."],
-    ["Still needs human evaluation", "Accessibility, feasibility, and actual user outcomes."]
-  ], verdict: "Reuse the reason. Re-evaluate the output." }
+  { title: "Do not fix this twice.", entries: [
+    ["Shared guidance · version 1", "For solo setup, offer invitations after creation."],
+    ["Reason · from the brief", "The person may have no one to invite yet."],
+    ["Owner · product lead", "Review after the pilot; check with users."]
+  ], verdict: "DesignOps keeps this lesson available for reuse." },
+  { title: "Can the next person start alone?", entries: [
+    ["The next proposed form", "Workspace name first. Invitations optional."],
+    ["The review", "Setup works without a teammate email."],
+    ["Still to check", "Accessibility and whether it works for real users."]
+  ], verdict: "This requirement is met. The review is not over." }
 ];
 const altitudes = {
   team: "Design + engineering leads own one workflow; DesignOps facilitates.",
@@ -500,7 +497,7 @@ function setPair(step) {
   });
   markCurrent("#pair-steps li", step);
   const next = $('[data-action="pair"]');
-  next.textContent = ["Inspect generated choice →", "Review against AC-01 →", "Try the revised form →", "Capture the rule →", "Check a new candidate →", "Decision trail complete ✓"][step];
+  next.textContent = ["See the problem →", "See the team's decision →", "Try the fix →", "Save the lesson →", "Check the next result →", "Example complete ✓"][step];
   next.disabled = step === 5;
   if (step === 0) {
     $("#prototype-form").reset();

@@ -76,7 +76,7 @@ const { mkdirSync } = require("node:fs");
     const exerciseDemo = async (reading, label) => {
       await go(6);
       await click('[data-action="pair-reset"]');
-      const expected = [/context travels/, /Candidate A/, /DEC-01/, null, /RULE-01 v1/, /Candidate B/];
+      const expected = [/start on my own/, /asks for someone else/, /Create first/, null, /Do not fix this twice/, /next person start alone/];
       for (let i = 0; i < 6; i++) {
         if (i) await click('[data-action="pair"]');
         assert.equal(await page.locator("#prototype-scene").getAttribute("data-step"), String(i));
@@ -84,16 +84,16 @@ const { mkdirSync } = require("node:fs");
         assert.equal(await page.locator("#pair-steps li").nth(i).getAttribute("aria-current"), "step");
         assert.equal(await page.locator("#prototype-form").isVisible(), i === 3);
         if (expected[i]) assert.match(await page.locator("#evidence-title").innerText(), expected[i]);
-        if (i === 0) assert.match(await page.locator("#evidence-details").innerText(), /BRIEF-01[\s\S]*AC-01/);
-        if (i === 1) assert.match(await page.locator("#evidence-verdict").innerText(), /Fails AC-01/);
+        if (i === 0) assert.match(await page.locator("#evidence-details").innerText(), /do not have a teammate[\s\S]*start working/);
+        if (i === 1) assert.match(await page.locator("#evidence-verdict").innerText(), /I am stuck/);
         if (i === 2) {
-          assert.match(await page.locator("#evidence-details").innerText(), /designer \+ engineer/);
+          assert.match(await page.locator("#evidence-details").innerText(), /Designer \+ engineer/);
           await go(7);
           await go(6);
           assert.equal(await page.locator("#prototype-scene").getAttribute("data-step"), "2", "Navigating preserves demo state");
         }
         if (i === 3) {
-          assert.equal(await page.locator("#prototype-form input").count(), 1, "AC-01: no invitation field");
+          assert.equal(await page.locator("#prototype-form input").count(), 1, "Solo setup: no invitation field");
           await page.locator("#workspace-name").fill("");
           await click("#prototype-form button");
           assert(await page.locator("#workspace-name").evaluate(node => node.matches(":invalid")), "Empty name remains required");
@@ -111,11 +111,11 @@ const { mkdirSync } = require("node:fs");
           assert.equal(await slideNumber(), "slide-6");
         }
         if (i === 4) {
-          assert.match(await page.locator("#prototype-code").innerText(), /RULE-01 v1 ← DEC-01 ← AC-01 ← BRIEF-01/);
-          assert.match(await page.locator("#evidence-details").innerText(), /product lead[\s\S]*after pilot or source change/);
+          assert.match(await page.locator("#prototype-code").innerText(), /allow solo setup.*reason and owner/);
+          assert.match(await page.locator("#evidence-details").innerText(), /from the brief[\s\S]*product lead[\s\S]*after the pilot/);
         }
         if (i === 5) {
-          assert.match(await page.locator("#evidence-details").innerText(), /passes[\s\S]*actual user outcomes/);
+          assert.match(await page.locator("#evidence-details").innerText(), /without a teammate email[\s\S]*real users/);
           assert(await page.locator('[data-action="pair"]').isDisabled());
         }
         await checkLayout(reading, `${label}/pair-${i}`);

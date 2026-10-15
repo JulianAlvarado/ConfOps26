@@ -20,7 +20,7 @@ The timing is a rehearsal guide, not an auto-advance schedule. Keep on-screen ex
 
 ## Illustrative decision trail
 
-BRIEF-01 assumes a teammate setting up alone. AC-01 requires workspace creation without an email address. Candidate A violates AC-01 by requiring a teammate email. Designer and engineer record DEC-01: defer invitations. RULE-01 v1 carries that reason into the next candidate, scoped to solo workspace setup, with a product lead owner and review after the pilot or a source change. Candidate B passes that criterion, not every quality check.
+The assumed user needs to start a workspace alone. The first generated form requires a teammate email and blocks that task. Designer and engineer move invitations after setup. DesignOps saves the lesson and its reason in shared guidance, scoped to solo workspace setup, with a product lead owner and review after the pilot or a source change. The next proposed form meets that requirement, but still needs accessibility and user-outcome review.
 
 All scenario artifacts, generated choices, reviewer decisions, and ownership examples are pre-authored and illustrative. They are not research findings, actual organizational policy, live model output, or measured improvements. User validation is pending. DesignOps maintains the source/criterion/decision/rule contract and the review path; domain experts retain product judgment.
 
@@ -72,17 +72,17 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 ---
 
-## 4. One onboarding task. Two conflicting choices.
+## 4. The form works. But the user can't finish.
 
 **Timing:** 2:30–4:00 (90 seconds)
 
-**Takeaway:** A working interface can still violate the agreed user need. The decision needs a source and an owner.
+**Takeaway:** A form can work technically and still block the user. Make the user requirement part of the review.
 
-**Visual concept:** An illustrative solo-setup brief faces a generated flow that requires a teammate email.
+**Visual concept:** What the user needs—start alone—contrasts with what AI produced—invite someone first.
 
-**Interaction / reveal:** Static conflict. Point to AC-01 before asking who can accept the generated choice.
+**Interaction / reveal:** Static comparison. Point to the required teammate email and explain why the person cannot continue.
 
-**Speaker notes:** Introduce the case now, before another framework. Everything in this case is pre-authored and illustrative: BRIEF-01 is an assumed scenario, not a research finding. A new teammate is setting up alone and may not know whom to invite. The team has agreed AC-01: create a workspace without requiring an invitation or email address. A plausible generated flow instead makes teammate email mandatory. It can compile and look polished while failing the agreed criterion. Do not claim that users were observed or that conversion improved. The question is not whether AI can draw a form. It is who can reject the gate, on what basis, and how another team can reuse that decision. DesignOps makes the brief, criterion, review owner, and decision record available together; domain experts retain judgment.
+**Speaker notes:** Imagine someone creating a workspace on their own. They want to name it and start working; they do not have a teammate to invite yet. The generated form requires a teammate email. Nothing crashes, and the form may look polished, but this person cannot complete setup. The problem is not broken code: it is the wrong requirement built into the flow. The correction is to allow workspace creation first and invitations later. DesignOps helps make that requirement available to the team and AI, includes it in the review criteria, and preserves the reason for the correction. Designers, engineers, and the product owner retain judgment. This is a fictional, pre-authored example—not observed research or a measured outcome.
 
 **Transition:** Three operating questions turn this disagreement into a reviewable decision.
 
@@ -98,23 +98,23 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 **Interaction / reveal:** Static anchor slide. Return to these three questions throughout the talk.
 
-**Speaker notes:** Use one model throughout. Govern asks what AI may do and who can accept it: in this illustrative case, no real contact data enters the demo, a designer and engineer review, and a product lead owns the scoped rule. Context carries BRIEF-01, AC-01, and the supported form pattern together. Evaluate asks whether setup completes without email, while checking labels, errors, focus, and feasibility. Passing AC-01 alone cannot establish user value. These concrete checks sit within broader tool, data, privacy, risk, and release boundaries. Stewardship grounds governance; systems carry context; enablement puts all three into practice through workflows, prompts, rubrics, and training. This is the core model, not another framework to memorize.
+**Speaker notes:** Use one model throughout. Govern asks what AI may do and who can accept it: in this illustrative case, no real contact data enters the demo, a designer and engineer review, and a product lead owns the scoped rule. Context carries the solo-setup brief, the requirement to make invitations optional, and the supported form pattern together. Evaluate asks whether setup completes without email, while checking labels, errors, focus, and feasibility. Meeting that requirement alone cannot establish user value. These concrete checks sit within broader tool, data, privacy, risk, and release boundaries. Stewardship grounds governance; systems carry context; enablement puts all three into practice through workflows, prompts, rubrics, and training. This is the core model, not another framework to memorize.
 
 **Transition:** Now follow those three responsibilities through the actual decision.
 
 ---
 
-## 6. Context → conflict → decision → reusable rule
+## 6. Fix the form. Keep the lesson.
 
 **Timing:** 5:00–8:00 (180 seconds)
 
-**Takeaway:** DesignOps makes the source, criterion, reviewer decision, and reusable rule travel together.
+**Takeaway:** The team fixes the form. DesignOps makes the lesson available to the next team and its AI tools.
 
-**Visual concept:** Six states trace BRIEF-01 → AC-01 → DEC-01 → RULE-01, with a working local form between decision and reuse.
+**Visual concept:** Six plain-language steps follow one problem from the user's need to a corrected form and a reusable lesson.
 
-**Interaction / reveal:** Advance six states. At step 4, try the name-only form, including invalid input. Reset clears the form and returns to shared context.
+**Interaction / reveal:** Advance six steps. At step 4, try creating a workspace with a name only. Reset clears the form and returns to the user's need.
 
-**Speaker notes:** Spend three minutes here, roughly 30 seconds per state. First show the shared package: BRIEF-01 assumes a teammate setting up alone; AC-01 requires completion without email. These are illustrative assumptions and an agreed teaching criterion, not sourced research. Second inspect Candidate A: its mandatory teammate email violates AC-01 despite working code. Third show DEC-01: designer and engineer reject that gate, retaining the name field; DesignOps records the source and reason without replacing expert judgment. Fourth try the revised semantic HTML/CSS form. It uses shared tokens, a label, bounded input, keyboard focus, and safe text feedback. No account is created and nothing is saved or sent. Fifth record RULE-01 v1: invitations follow creation in this solo-setup scenario. Its provenance is explicit, the illustrative product lead owns it, and review is due after the pilot or a source change. Sixth inspect Candidate B: optional invitations after setup pass AC-01, but accessibility and user-outcome evaluation remain necessary. All candidates, decisions, owners, and rules are pre-authored teaching artifacts—not live generation, actual research, or organizational policy. The DesignOps contribution is the maintained contract and review path. The next team can reuse the reason, not just copy a screen.
+**Speaker notes:** Continue the same fictional example from slide 4. First: the person wants to start a workspace alone. Second: the AI-produced form requires someone else's email, so the person gets stuck. Third: the designer and engineer move invitations after workspace creation. Fourth: try the revised local form with just a workspace name; show validation and keyboard feedback if useful. Nothing is saved or sent. Fifth: explain why fixing one screen is not enough. DesignOps records the lesson with the original solo-setup assumption, the team's reason, a product lead owner, and a review date after the pilot. Put that guidance where the next team and its AI tools can use it. Sixth: the next proposed form allows setup without inviting anyone. A reviewer verifies that behavior and still checks accessibility and user outcomes. Do not claim the rule guarantees future results or that this is a real user study. Every state is pre-authored and illustrative. The distinction is simple: product experts decide what the experience should do; DesignOps helps that decision survive beyond this one screen.
 
 **Transition:** One criterion passed. What else must a reviewer still judge?
 
@@ -146,7 +146,7 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 **Interaction / reveal:** Follow one learning cycle highlights a stage per click, wrapping back to generation.
 
-**Speaker notes:** Return to DEC-01 and RULE-01. The useful artifact is not merely the revised form: it is the criterion, reason, owner, and review trigger attached to it. AI generates using current context; humans evaluate; the decision is recorded; a reviewed rule updates context; the next candidate is checked again. The example proves neither that one field is always best nor that context automatically prevents future violations. Its scenario is assumed and user validation is pending. If the solo-setup assumption changes, the product lead revisits the rule; DesignOps keeps provenance, access, version, and review cadence usable across teams. Retire stale rules rather than making every observation universal policy.
+**Speaker notes:** Return to the decision to offer invitations after setup and the saved lesson. The useful artifact is not merely the revised form: it is the requirement, reason, owner, and review trigger attached to it. AI generates using current context; humans evaluate; the decision is recorded; reviewed guidance updates context; the next result is checked again. The example proves neither that one field is always best nor that context automatically prevents future violations. Its scenario is assumed and user validation is pending. If the solo-setup assumption changes, the product lead revisits the rule; DesignOps keeps the source, access, version, and review cadence usable across teams. Retire stale rules rather than making every observation universal policy.
 
 **Transition:** That maintenance is recognizable DesignOps work—with a wider scope.
 
@@ -206,11 +206,11 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 **Takeaway:** Turn domain knowledge into versioned, reusable context and verifiable standards.
 
-**Visual concept:** Seven artifact transformations sit beside the illustrative RULE-01 contract, including provenance, owner, and review trigger.
+**Visual concept:** Seven artifact transformations sit beside the illustrative solo-setup rule, including its source, owner, and review trigger.
 
 **Interaction / reveal:** Static transformation; readable text remains editable for future PowerPoint recreation.
 
-**Speaker notes:** Use RULE-01 as the concrete artifact rather than narrating seven new frameworks. Its source is explicitly assumed, its criterion and decision have IDs, its scope is solo setup, and its owner and review trigger are visible. User evidence remains pending. The seven transformations preserve the broader source material: guidelines to machine-readable rules, design systems to consumable systems, templates to canonical prompts, documentation to context packages, critique to rubrics, SOPs to human–AI workflows, efficiency measures to speed plus quality and outcomes. A YAML-like package does not enforce itself. Integration, permissions, validation, and human review are still required. DesignOps maintains the package; domain experts author, approve, and revisit its validity.
+**Speaker notes:** Use the saved solo-setup lesson as the concrete artifact rather than narrating seven new frameworks. Its source is explicitly assumed, the requirement and decision are readable, its scope is solo setup, and its owner and review trigger are visible. User evidence remains pending. The seven transformations preserve the broader source material: guidelines to machine-readable rules, design systems to consumable systems, templates to canonical prompts, documentation to context packages, critique to rubrics, SOPs to human–AI workflows, efficiency measures to speed plus quality and outcomes. A YAML-like package does not enforce itself. Integration, permissions, validation, and human review are still required. DesignOps maintains the package; domain experts author, approve, and revisit its validity.
 
 **Transition:** Maintaining this contract costs time. How would we know the workflow is worth adopting?
 

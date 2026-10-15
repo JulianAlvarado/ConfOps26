@@ -92,14 +92,14 @@
           <footer class="slide-footer"><span>CONCEPTUAL SYSTEM</span><span>03 / 15</span></footer>
         </section>
 
-        <section class="slide conflict-slide" id="slide-4" aria-labelledby="title-4" data-act="ACT I" data-title="One onboarding task. Two conflicting choices." hidden>
+        <section class="slide conflict-slide" id="slide-4" aria-labelledby="title-4" data-act="ACT I" data-title="The form works. But the user can't finish." hidden>
           <div class="eyebrow">ACT I <span>AN ILLUSTRATIVE ONBOARDING CONFLICT</span></div>
-          <h2 id="title-4">The screen works.<br><em class="coral-text">The choice breaks the brief.</em></h2>
+          <h2 id="title-4">The form works.<br><em class="coral-text">But the user can't finish.</em></h2>
           <div class="conflict-layout">
-            <article><h3>The shared brief</h3><p>A teammate is setting up alone.<br>They may not know whom to invite.</p><dl><dt>BRIEF-01 · illustrative assumption</dt><dd>Create a workspace before inviting anyone.</dd><dt>AC-01 · agreed criterion</dt><dd>No email address required to continue.</dd></dl></article>
-            <article class="conflicting-choice"><h3>The generated choice</h3><p>A polished setup flow asks for<br>a teammate's email before continuing.</p><div class="conflict-field">Workspace name</div><div class="conflict-field">Teammate email <strong>Required</strong></div><p class="conflict-verdict">Runs correctly. Fails AC-01.</p></article>
+            <article><h3>What the user needs</h3><p>Start a workspace on their own.<br>They don't have a teammate to invite yet.</p><dl><dt>The first task</dt><dd>Name the workspace and start working.</dd><dt>Invitations can wait</dt><dd>Add teammates later—not during setup.</dd></dl></article>
+            <article class="conflicting-choice"><h3>What AI produced</h3><p>A setup form that makes<br>inviting someone mandatory.</p><div class="conflict-field">Workspace name</div><div class="conflict-field">Teammate email <strong>Required</strong></div><p class="conflict-verdict">No teammate email? You cannot continue.</p></article>
           </div>
-          <p class="conflict-question">Who decides—and how does the next team inherit that decision?</p>
+          <p class="conflict-question">DesignOps makes the user requirement explicit—and part of the review.</p>
           <footer class="slide-footer"><span>PRE-AUTHORED SCENARIO · NOT RESEARCH FINDINGS OR MEASURED RESULTS</span><span>04 / 15</span></footer>
         </section>
 
@@ -108,29 +108,29 @@
           <h2 id="title-5">Three questions.<br><em>One coherent system.</em></h2>
           <div class="framework">
             <article><span class="pillar-number">01 / PERMISSION</span><h3>GOVERN</h3><p>Who can accept the choice?</p><ul><li>Designer + engineer review</li><li>No real contact data in this demo</li><li>Product owner approves the rule</li></ul></article>
-            <article><span class="pillar-number">02 / KNOWLEDGE</span><h3>CONTEXT</h3><p>What must the choice respect?</p><ul><li>BRIEF-01: solo setup</li><li>AC-01: no invitation gate</li><li>Supported form + shared tokens</li></ul></article>
+            <article><span class="pillar-number">02 / KNOWLEDGE</span><h3>CONTEXT</h3><p>What must the choice respect?</p><ul><li>The user is starting alone</li><li>Invitations must be optional</li><li>Supported form + shared tokens</li></ul></article>
             <article><span class="pillar-number">03 / JUDGMENT</span><h3>EVALUATE</h3><p>What makes it acceptable?</p><ul><li>Complete setup without email</li><li>Check labels + errors + focus</li><li>Record decision and rationale</li></ul></article>
           </div>
           <div class="framework-foundation"><span>STEWARDSHIP grounds governance</span><span>SYSTEMS carry context</span><span>ENABLEMENT puts all three into practice</span></div>
           <footer class="slide-footer"><span>CANONICAL PROMPTS · PLAYBOOKS · TRAINING · SHARED QUALITY RUBRICS</span><span>05 / 15</span></footer>
         </section>
 
-        <section class="slide" id="slide-6" aria-labelledby="title-6" data-act="ACT II" data-title="Context → conflict → decision → reusable rule" hidden>
+        <section class="slide" id="slide-6" aria-labelledby="title-6" data-act="ACT II" data-title="Fix the form. Keep the lesson." hidden>
           <div class="eyebrow">ACT II <span>ILLUSTRATIVE CASE · PRE-AUTHORED, NOT LIVE AI</span></div>
-          <h2 class="compact-title" id="title-6">A working form. <em>A reusable decision.</em></h2>
+          <h2 class="compact-title" id="title-6">Fix the form. <em>Keep the lesson.</em></h2>
           <div class="pair-layout">
             <div class="pair-process">
               <div class="pair-people"><span>DESIGNER</span><b>+</b><span>ENGINEER</span><b>+</b><span>AI</span></div>
               <ol class="pair-steps" id="pair-steps">
-                <li class="current">Read shared context</li><li>Inspect the conflicting choice</li><li>Make the human decision</li><li>Try the revised prototype</li><li>Record a reusable rule</li><li>Check the next candidate</li>
+                <li class="current">What the user needs</li><li>What AI got wrong</li><li>What the team changes</li><li>Try the fix</li><li>Save the lesson</li><li>Check the next result</li>
               </ol>
               <p id="pair-explanation" aria-live="polite"></p>
-              <div class="button-group"><button data-action="pair">Inspect generated choice →</button><button data-action="pair-reset" aria-label="Restart decision demonstration">Reset</button></div>
+              <div class="button-group"><button data-action="pair">See the problem →</button><button data-action="pair-reset" aria-label="Restart decision demonstration">Reset</button></div>
             </div>
             <div class="prototype-window">
-              <div class="window-chrome"><span class="window-dots" aria-hidden="true">● ● ●</span><span id="prototype-label">SHARED CONTEXT / 01</span><span>ILLUSTRATIVE</span></div>
+              <div class="window-chrome"><span class="window-dots" aria-hidden="true">● ● ●</span><span id="prototype-label">THE USER'S NEED / 01</span><span>ILLUSTRATIVE</span></div>
               <div class="prototype-scene" id="prototype-scene" data-step="0">
-                <div class="decision-evidence" id="decision-evidence" role="group" aria-label="Current decision artifact">
+                <div class="decision-evidence" id="decision-evidence" role="group" aria-label="Current example step">
                   <h3 id="evidence-title"></h3>
                   <dl id="evidence-details"></dl>
                   <p id="evidence-verdict"></p>
@@ -258,13 +258,13 @@
               <div><span>SOPs</span><b>→</b><strong>Human–AI workflows</strong></div>
               <div><span>Efficiency metrics</span><b>→</b><strong>Speed + quality + outcomes</strong></div>
             </div>
-            <aside class="context-package"><div class="code-label">ILLUSTRATIVE CONTRACT / RULE-01</div><pre><code><span>source:</span> BRIEF-01 (assumed)
-<span>criterion:</span> AC-01, no email gate
-<span>decision:</span> DEC-01, defer invites
+            <aside class="context-package"><div class="code-label">ILLUSTRATIVE RULE / SOLO SETUP</div><pre><code><span>source:</span> solo-setup brief (assumed)
+<span>criterion:</span> finish without an invite
+<span>decision:</span> defer invitations
 <span>scope:</span> solo workspace setup
 <span>rule:</span> invitations after setup
 <span>owner:</span> product lead
-<span>version:</span> RULE-01 v1
+<span>version:</span> 1, reviewed by the team
 <span>review:</span> after pilot / change
 <span>evidence:</span> user test pending</code></pre><p>DesignOps maintains the package.<br>Domain experts own its validity.</p></aside>
           </div>

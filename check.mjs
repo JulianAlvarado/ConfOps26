@@ -50,7 +50,7 @@ The timing is a rehearsal guide, not an auto-advance schedule. Keep on-screen ex
 
 ## Illustrative decision trail
 
-BRIEF-01 assumes a teammate setting up alone. AC-01 requires workspace creation without an email address. Candidate A violates AC-01 by requiring a teammate email. Designer and engineer record DEC-01: defer invitations. RULE-01 v1 carries that reason into the next candidate, scoped to solo workspace setup, with a product lead owner and review after the pilot or a source change. Candidate B passes that criterion, not every quality check.
+The assumed user needs to start a workspace alone. The first generated form requires a teammate email and blocks that task. Designer and engineer move invitations after setup. DesignOps saves the lesson and its reason in shared guidance, scoped to solo workspace setup, with a product lead owner and review after the pilot or a source change. The next proposed form meets that requirement, but still needs accessibility and user-outcome review.
 
 All scenario artifacts, generated choices, reviewer decisions, and ownership examples are pre-authored and illustrative. They are not research findings, actual organizational policy, live model output, or measured improvements. User validation is pending. DesignOps maintains the source/criterion/decision/rule contract and the review path; domain experts retain product judgment.
 
@@ -117,9 +117,9 @@ assert.equal(data.keynoteCount, 15);
 assert.equal(titles.length, 23, "15 keynote slides + Q&A + 7 backups");
 assert.deepEqual(titles.map(match => Number(match[1])), Array.from({ length: 23 }, (_, i) => i + 1), "Contiguous IDs match DOM order");
 assert.equal((html.match(/class="slide backup/g) || []).length, 7);
-assert.match(titles[3][2], /conflicting choices/);
+assert.equal(titles[3][2], "The form works. But the user can't finish.");
 assert.match(titles[4][2], /Govern/);
-assert.match(titles[5][2], /reusable rule/);
+assert.equal(titles[5][2], "Fix the form. Keep the lesson.");
 assert.match(titles[15][2], /Q&A/);
 assert.match(titles[21][2], /Organizational memory/);
 assert.match(titles[22][2], /product lifecycle/);
@@ -163,11 +163,12 @@ assert.equal(data.pairCode.length, 6);
 assert.equal(data.pairEvidence.length, 6);
 assert.equal(data.pairEvidence[3], null, "Step 4 is the interactive revised form");
 for (const step of [0, 1, 2, 4, 5]) {
-  assert.equal(data.pairEvidence[step].entries.length, 3);
+  assert.equal(data.pairEvidence[step].entries.length, step < 3 ? 2 : 3);
   assert(data.pairEvidence[step].title && data.pairEvidence[step].verdict);
 }
-assert.match(data.pairCode[4], /RULE-01 v1 ← DEC-01 ← AC-01 ← BRIEF-01/, "Rule keeps explicit provenance");
-assert.match(data.pairEvidence[5].verdict, /Re-evaluate/, "Reuse never replaces evaluation");
+assert.match(JSON.stringify(data.pairEvidence[4]), /version 1.*from the brief.*product lead.*after the pilot/, "Saved lesson retains version, source, owner, and review trigger");
+assert.match(data.pairEvidence[5].verdict, /review is not over/, "Reuse never replaces evaluation");
+assert(!/BRIEF-01|AC-01|DEC-01|RULE-01/.test(JSON.stringify([data.pairDescriptions, data.pairCode, data.pairLabels, data.pairEvidence])), "Demo explains the example without document codes");
 assert(css.includes("prefers-reduced-motion"));
 assert(html.includes("ILLUSTRATIVE SCENARIO — NOT MEASURED RESULTS"));
 assert(!/\b(?:src|href)="https?:\/\//.test(html.replace(/<a\b[^>]*>/gi, "")), "No remote assets; outbound links are allowed");
