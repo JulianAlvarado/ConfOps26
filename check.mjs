@@ -142,7 +142,7 @@ assert.equal(data.pairLabels.length, 6);
 assert.equal(data.pairCode.length, 6);
 assert(css.includes("prefers-reduced-motion"));
 assert(html.includes("ILLUSTRATIVE SCENARIO — NOT MEASURED RESULTS"));
-assert(!/\b(?:src|href)="https?:\/\//.test(html), "No remote assets");
+assert(!/\b(?:src|href)="https?:\/\//.test(html.replace(/<a\b[^>]*>/gi, "")), "No remote assets; outbound links are allowed");
 assert(!/\b(?:fetch|XMLHttpRequest|WebSocket|setInterval)\s*\(/.test(js), "No network or repeating timers");
 new vm.Script(js, { filename: "app.js" });
 console.log("PASS: 22 slides, 20-minute keynote + 10-minute Q&A, synchronized notes, metrics, links, offline and motion contracts.");

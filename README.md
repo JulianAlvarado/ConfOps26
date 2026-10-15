@@ -6,6 +6,8 @@
 
 Open `index.html` directly in a modern desktop browser. No build, installation, external fonts, API keys, network access, or AI service is required.
 
+The Q&A slide includes LinkedIn and personal GitHub links. They open in a new tab and require internet access only when followed.
+
 Alternatively, from this folder:
 
 ```sh

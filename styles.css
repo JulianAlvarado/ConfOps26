@@ -314,6 +314,9 @@ main { flex: 1; min-height: 0; display: flex; align-items: center; justify-conte
 .qa-links a { display: flex; align-items: center; gap: 22px; padding: 25px 0; border-bottom: 1px solid var(--line); color: var(--cyan); font: 17px var(--mono); }
 .qa-links a span { flex: 1; font: 24px sans-serif; color: var(--text); }
 .qa-links a:hover span { color: var(--cyan); }
+.contact-links { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; margin-top: 28px; }
+.contact-links a { display: inline-flex; align-items: center; gap: 14px; min-height: 44px; color: var(--cyan); font-size: 22px; }
+.contact-links a:hover { text-decoration: underline; text-underline-offset: 5px; }
 .ownership-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 27px; margin-top: 43px; }
 .ownership-grid article { border-top: 1px solid var(--line); padding-top: 20px; }
 .ownership-grid article > span { color: var(--cyan); font: 14px var(--mono); }
@@ -492,6 +495,7 @@ dialog::backdrop { background: #05090dea; }
   .reading #stage .closing-triad { position: static; margin-top: 35px; }
   .reading #stage .qa-links { padding-top: 0; }
   .reading #stage .qa-links a { display: flex; font-size: 18px; gap: 14px; }
+  .reading #stage .contact-links a { font-size: 18px; }
   .reading #stage .model-swap span { padding: 16px; }
   .reading #stage .model-swap p { margin-left: 0; }
   .reading #stage .definitions { display: block; }
