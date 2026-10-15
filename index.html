@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="dark">
   <meta name="theme-color" content="#111516">
-  <title>DesignOps as AI Infrastructure — Review prototype 0.1</title>
+  <title>DesignOps as AI Infrastructure — Keynote v2</title>
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
 </head>
@@ -13,7 +13,7 @@
   <header class="toolbar">
     <a class="wordmark" href="#1" aria-label="Go to opening slide"><span class="brand-mark" aria-hidden="true">◈</span> DESIGNOPS <span class="toolbar-muted">/ AI INFRASTRUCTURE</span></a>
     <div class="toolbar-actions">
-      <span class="version">REVIEW 0.1</span>
+      <span class="version">KEYNOTE V2</span>
       <button id="stage-toggle" aria-pressed="false" aria-describedby="stage-help">Stage <kbd>S</kbd></button>
       <button id="reading-toggle" aria-pressed="false" aria-controls="presentation">Reading view</button>
       <button id="overview-toggle" aria-haspopup="dialog">Slides <kbd>G</kbd></button>
@@ -114,12 +114,11 @@
           <div class="eyebrow">ACT II <span>04 — THE CORE OPERATING MODEL</span></div>
           <h2 id="title-5">Three questions.<br><em>One coherent system.</em></h2>
           <div class="framework">
-            <article><span class="pillar-number">01 / PERMISSION</span><h3>GOVERN</h3><p>Who can accept the choice?</p><ul><li>Designer + engineer review</li><li class="review-detail">No real contact data in this demo</li><li>Product owner approves the rule</li></ul></article>
-            <article><span class="pillar-number">02 / KNOWLEDGE</span><h3>CONTEXT</h3><p>What must the choice respect?</p><ul><li>The user is starting alone</li><li>Invitations must be optional</li><li class="review-detail">Supported form + shared tokens</li></ul></article>
-            <article><span class="pillar-number">03 / JUDGMENT</span><h3>EVALUATE</h3><p>What makes it acceptable?</p><ul><li>Complete setup without email</li><li>Check labels + errors + focus</li><li class="review-detail">Record decision and rationale</li></ul></article>
+            <article><h3>GOVERN</h3><p>Who can accept the choice?</p></article>
+            <article><h3>CONTEXT</h3><p>What must the choice respect?</p></article>
+            <article><h3>EVALUATE</h3><p>What makes it acceptable?</p></article>
           </div>
-          <div class="framework-foundation"><span>STEWARDSHIP grounds governance</span><span>SYSTEMS carry context</span><span>ENABLEMENT puts all three into practice</span></div>
-          <footer class="slide-footer"><span>CANONICAL PROMPTS · PLAYBOOKS · TRAINING · SHARED QUALITY RUBRICS</span><span>05 / 15</span></footer>
+          <footer class="slide-footer"><span>05 / 15</span></footer>
         </section>
 
         <section class="slide" id="slide-6" aria-labelledby="title-6" data-act="ACT II" data-title="Fix the form. Keep the lesson." hidden>
@@ -127,15 +126,10 @@
           <h2 class="compact-title" id="title-6">Fix the form. <em>Keep the lesson.</em></h2>
           <div class="pair-layout">
             <div class="pair-process">
-              <div class="pair-people"><span>DESIGNER</span><b>+</b><span>ENGINEER</span><b>+</b><span>AI</span></div>
-              <ol class="pair-steps" id="pair-steps">
-                <li class="current">What the user needs</li><li>What AI got wrong</li><li>What the team changes</li><li>Try the fix</li><li>Save the lesson</li><li>Check the next result</li>
-              </ol>
-              <p id="pair-explanation" aria-live="polite"></p>
+              <div id="pair-step" role="status" aria-live="polite" aria-atomic="true"><p id="pair-count"></p><h3 id="pair-label"></h3></div>
               <div class="button-group"><button data-action="pair">See the problem →</button><button data-action="pair-reset" aria-label="Restart decision demonstration">Reset</button></div>
             </div>
             <div class="prototype-window">
-              <div class="window-chrome"><span class="window-dots" aria-hidden="true">● ● ●</span><span id="prototype-label">THE USER'S NEED / 01</span><span>ILLUSTRATIVE</span></div>
               <div class="prototype-scene" id="prototype-scene" data-step="0">
                 <div class="decision-evidence" id="decision-evidence" role="group" aria-label="Current example step">
                   <h3 id="evidence-title"></h3>
@@ -143,16 +137,15 @@
                   <p id="evidence-verdict"></p>
                 </div>
                 <form class="prototype-form" id="prototype-form" hidden>
-                  <span class="product-logo">◈ STUDIO</span><h3>Create your workspace.</h3><p>Invite teammates later.</p>
+                  <h3>Create your workspace.</h3><p>Invite teammates later.</p>
                   <label for="workspace-name">Workspace name</label><input id="workspace-name" name="workspace" maxlength="48" placeholder="e.g. Product experience" required autocomplete="off">
                   <p class="field-hint" id="workspace-hint">2–48 characters. You can rename it later.</p>
                   <button type="submit">Create workspace <span aria-hidden="true">→</span></button><p id="prototype-result" class="prototype-result" role="status">Prototype only. No account or network request.</p>
                 </form>
               </div>
-              <div class="prototype-code" id="prototype-code"><code></code></div>
             </div>
           </div>
-          <footer class="slide-footer"><span>SELF-CONTAINED DEMO · NO LIVE MODEL · NOT PRODUCTION CODE GENERATION</span><span>06 / 15</span></footer>
+          <footer class="slide-footer"><span>06 / 15</span></footer>
         </section>
 
         <section class="slide" id="slide-7" aria-labelledby="title-7" data-act="ACT II" data-title="When generation is cheap, evaluation is strategic" hidden>
@@ -292,14 +285,13 @@
           <div class="eyebrow">ACT III <span>13 — START AT THE ALTITUDE YOU CAN INFLUENCE</span></div>
           <h2 id="title-14">One workflow.<br><em>Thirty days. A measurable pilot.</em></h2>
           <div class="thirty-days">
-            <article><span>DAYS 01–07</span><h3>Map + identify</h3><p>Find current AI use.<br>Locate inconsistency,<br>quality gaps, and risk.</p><b>01 / 02</b></article>
-            <article><span>DAYS 08–14</span><h3>Select + package</h3><p>Choose one workflow.<br>Package the relevant<br>organizational knowledge.</p><b>03 / 04</b></article>
-            <article><span>DAYS 15–21</span><h3>Define + baseline</h3><p>Name decision owners.<br>Set human checkpoints,<br>criteria, and baseline.</p><b>05 / 06</b></article>
-            <article><span>DAYS 22–30</span><h3>Pilot + compare</h3><p>Run equivalent work.<br>Review speed, quality,<br>and customer evidence.</p><b>LEARN / DECIDE</b></article>
+            <article><span>DAYS 01–07</span><h3>Map</h3><p>A map of AI use, gaps, and risk.</p></article>
+            <article><span>DAYS 08–14</span><h3>Select</h3><p>One workflow with shared context.</p></article>
+            <article><span>DAYS 15–21</span><h3>Define</h3><p>A review plan: owner, criteria, baseline.</p></article>
+            <article><span>DAYS 22–30</span><h3>Pilot</h3><p>Comparable work, reviewed evidence.</p></article>
           </div>
-          <div class="altitude-bar" role="group" aria-label="Select organizational altitude"><span>START AT</span><button data-altitude="team" aria-pressed="true">Team</button><button data-altitude="product" aria-pressed="false">Product area</button><button data-altitude="enterprise" aria-pressed="false">Enterprise</button><p id="altitude-detail" aria-live="polite">Design + engineering leads own one workflow; DesignOps facilitates.</p></div>
-          <p class="stage-only stage-altitude">Start with one team: design + engineering own the workflow; DesignOps facilitates.</p>
-          <footer class="slide-footer"><span>DON'T WAIT FOR AN ENTERPRISE TRANSFORMATION TO START LEARNING</span><span>14 / 15</span></footer>
+          <p class="pilot-decision"><span>THEN DECIDE</span> <strong>Adopt</strong> / <strong>Revise</strong> / <strong>Stop</strong></p>
+          <footer class="slide-footer"><span>14 / 15</span></footer>
         </section>
 
         <section class="slide closing" id="slide-15" aria-labelledby="title-15" data-act="ACT IV" data-title="Who designs the system?" hidden>

@@ -37,15 +37,15 @@ const notes = [
   {
     seconds: 60,
     takeaway: "GOVERN: what can AI do? CONTEXT: what does it know? EVALUATE: what does good look like?",
-    visual: "Three pillars apply Govern / Context / Evaluate directly to the solo-setup conflict.",
-    interaction: "Static anchor slide. Stage emphasizes two supporting points per question; the full lists and foundation remain in review and these notes.",
+    visual: "Three strong words and three questions, with space to absorb each distinction.",
+    interaction: "Static in Stage and review. The solo-setup examples and operating foundations are spoken from these notes, not competing lists on screen.",
     body: "Use one model throughout. The next demo follows someone starting a workspace alone; use that need to ground the three questions. Govern asks what AI may do and who can accept it: in this illustrative case, no real contact data enters the demo, a designer and engineer review, and a product lead owns the scoped rule. Context carries the solo-setup brief, the requirement to make invitations optional, and the supported form pattern together. Evaluate asks whether setup completes without email, while checking labels, errors, focus, and feasibility. Meeting that requirement alone cannot establish user value. These concrete checks sit within broader tool, data, privacy, risk, and release boundaries. Stewardship grounds governance; systems carry context; enablement puts all three into practice through workflows, prompts, rubrics, and training. This is the core model, not another framework to memorize.",
     transition: "Now follow those three responsibilities through the actual decision."
   },
   {
     seconds: 270,
     takeaway: "The team fixes the form. DesignOps makes the lesson available to the next team and its AI tools.",
-    visual: "Six plain-language steps follow one problem from the user's need to a corrected form and a reusable lesson.",
+    visual: "One current-step label and one large example surface. Six states follow the user's need, AI mistake, team decision, working form, saved lesson, and next review.",
     interaction: "Stage moment 2: Right advances the six steps, then the slide; Left reverses them. At step 4, Tab into the name-only form; native field and submit keys never advance the deck. Tab out to resume. Review keeps its buttons; Reset clears the form in either mode.",
     body: "Introduce the fictional example here: someone wants to start a workspace alone. Allow 270 seconds (4 minutes 30 seconds) for the six existing steps. The 90 seconds recovered from the removed overview slide are explanation and interaction pauses, not extra UI or an exercise: 30 seconds to let the audience absorb the blocked user need, 30 seconds for the form's validation and keyboard feedback, and 30 seconds to review why the saved lesson needs an owner and a review trigger. First: the person wants to start a workspace alone. Second: the AI-produced form requires someone else's email, so the person gets stuck. Third: the designer and engineer move invitations after workspace creation. Fourth: try the revised local form with just a workspace name; show validation and keyboard feedback if useful. Nothing is saved or sent. Fifth: explain why fixing one screen is not enough. DesignOps records the lesson with the original solo-setup assumption, the team's reason, a product lead owner, and a review date after the pilot. Put that guidance where the next team and its AI tools can use it. Sixth: the next proposed form allows setup without inviting anyone. A reviewer verifies that behavior and still checks accessibility and user outcomes. Do not claim the rule guarantees future results or that this is a real user study. Every state is pre-authored and illustrative. The distinction is simple: product experts decide what the experience should do; DesignOps helps that decision survive beyond this one screen.",
     transition: "The person can now finish setup alone. What else must the team check?"
@@ -109,8 +109,8 @@ const notes = [
   {
     seconds: 135,
     takeaway: "A 30-day pilot can begin at team, product-area, or enterprise level with clear ownership.",
-    visual: "Four weekly phases with a team-level starting point on stage and an organizational-altitude selector in review.",
-    interaction: "Stage: a static team-level pilot. Review: choose Team, Product area, or Enterprise to inspect ownership and governance; all three are covered in these notes.",
+    visual: "Four verbs on a timeline, one concrete output per week, and an explicit adopt / revise / stop decision.",
+    interaction: "Static in Stage and review, with no extra presenter clicks. Team, product-area, and enterprise ownership guidance remains in these notes.",
     body: "Days 1–7: map actual AI use and identify inconsistency, quality gaps, and risk. Days 8–14: select one useful, bounded workflow and package relevant organizational knowledge. Days 15–21: name decision owners, define human checkpoints and evaluation criteria, and establish a baseline before the pilot. Days 22–30: run comparable work and decide whether to adopt, revise, or stop. Avoid sensitive or high-risk first pilots unless the appropriate governance is already in place. At team level, design and engineering leads can own a single workflow with DesignOps facilitation. At product-area level, PM, research, design, engineering, and a system owner coordinate shared patterns and cross-team outcomes. At enterprise level, federated product ownership works within Security, Legal, IT, and platform guardrails. DesignOps connects the altitudes; it does not unilaterally own policy or product decisions. Calendar windows are a suggested starting plan, not promised delivery dates.",
     transition: "Return to the central question: if AI participates in design, who designs its operating environment?"
   },
@@ -209,23 +209,7 @@ const metrics = [
   { name: "Design-to-code divergence", group: 1, baseline: 28, pilot: 18, max: 100, unit: "% audited UI instances divergent", short: "%", better: "lower", scale: "0–100%" }
 ];
 
-const pairDescriptions = [
-  "The person wants to start alone. DesignOps makes that need clear in the brief the team and AI use.",
-  "AI adds a required teammate email. The person has nobody to invite yet, so they cannot finish.",
-  "The designer and engineer move invitations after setup. The person can start now and invite others later.",
-  "Try a workspace name without any email. Check empty input, keyboard focus, and feedback. This local prototype sends and saves nothing.",
-  "DesignOps adds the decision and its reason to shared guidance, so the next team does not start from scratch.",
-  "The next proposed form lets the person start alone. A reviewer checks it again; saved guidance does not replace judgment."
-];
-const pairCode = [
-  "The requirement: let someone create a workspace alone.",
-  "The mismatch: setup requires an invitation.",
-  "The decision: create first, invite later.",
-  "The check: can you finish with only a workspace name?",
-  "The lesson: allow solo setup. Keep the reason and owner.",
-  "The next review: verify the behavior, not just the appearance."
-];
-const pairLabels = ["THE USER'S NEED / 01", "THE PROBLEM / 02", "THE TEAM'S DECISION / 03", "TRY THE FIX / 04", "THE SAVED LESSON / 05", "THE NEXT RESULT / 06"];
+const pairLabels = ["What the user needs", "What AI got wrong", "What the team changes", "Try the fix", "Save the lesson", "Check the next result"];
 const pairEvidence = [
   { title: "Let me start on my own.", entries: [
     ["The situation", "I do not have a teammate to invite yet."],
@@ -243,19 +227,14 @@ const pairEvidence = [
   { title: "Do not fix this twice.", entries: [
     ["Shared guidance · version 1", "For solo setup, offer invitations after creation."],
     ["Reason · from the brief", "The person may have no one to invite yet."],
-    ["Owner · product lead", "Review after the pilot; check with users."]
-  ], verdict: "DesignOps keeps this lesson available for reuse." },
+    ["Owner · product lead", "Review after the pilot or if the brief changes."]
+  ], verdict: "Saved by DesignOps · user validation pending." },
   { title: "Can the next person start alone?", entries: [
     ["The next proposed form", "Workspace name first. Invitations optional."],
     ["The review", "Setup works without a teammate email."],
     ["Still to check", "Accessibility and whether it works for real users."]
   ], verdict: "This requirement is met. The review is not over." }
 ];
-const altitudes = {
-  team: "Design + engineering leads own one workflow; DesignOps facilitates.",
-  product: "Cross-functional leads + a system owner coordinate shared patterns and measures.",
-  enterprise: "Federated product owners operate within Security, Legal, IT, and platform guardrails."
-};
 
 function metricValue(metric, scenario) {
   const value = metric[scenario];
@@ -596,14 +575,8 @@ function setPair(step) {
     }
     $("#evidence-verdict").textContent = evidence.verdict;
   }
-  $("#pair-explanation").textContent = pairDescriptions[step];
-  $("#prototype-code").firstElementChild.textContent = pairCode[step];
-  $("#prototype-label").textContent = pairLabels[step];
-  document.querySelectorAll("#pair-steps li").forEach((item, i) => {
-    item.classList.toggle("current", i === step);
-    item.classList.toggle("done", i < step);
-  });
-  markCurrent("#pair-steps li", step);
+  $("#pair-count").textContent = `STEP ${step + 1} OF 6`;
+  $("#pair-label").textContent = pairLabels[step];
   const next = $('[data-action="pair"]');
   next.textContent = ["See the problem →", "See the team's decision →", "Try the fix →", "Save the lesson →", "Check the next result →", "Example complete ✓"][step];
   next.disabled = step === 5;
@@ -683,10 +656,6 @@ document.addEventListener("click", (event) => {
   if (!button) return;
   if (button.dataset.action) actions[button.dataset.action](button);
   if (button.dataset.life !== undefined) selectLife(Number(button.dataset.life));
-  if (button.dataset.altitude) {
-    document.querySelectorAll("[data-altitude]").forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
-    $("#altitude-detail").textContent = altitudes[button.dataset.altitude];
-  }
 });
 
 $("#prototype-form").addEventListener("submit", (event) => {
@@ -816,7 +785,6 @@ document.querySelectorAll(".definitions tbody tr").forEach((row) => {
   });
 });
 markCurrent("#causal-chain li", 0);
-markCurrent("#pair-steps li", 0);
 renderStack();
 setPair(0);
 setReadingView(smallScreen.matches);

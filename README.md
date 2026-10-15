@@ -1,6 +1,10 @@
 # DesignOps as AI Infrastructure
 
-**Presentation review prototype, version 0.1.** A local, dependency-free HTML/CSS/JavaScript keynote: 15 main slides (20 minutes), a Q&A menu (10 minutes), and seven optional backups.
+**Keynote v2.** A local, dependency-free HTML/CSS/JavaScript keynote: 15 main slides (20 minutes), a Q&A menu (10 minutes), and seven optional backups.
+
+V2 reduces competing content in both review and Stage. Slide **05** has three strong words and three questions; slide **06** has a current-step indicator and one large example surface instead of a permanent checklist, badges, repeated explanation, and window/code chrome; slide **14** has four timeline outputs and an explicit **adopt / revise / stop** decision. Framework examples, stewardship/systems/enablement, and team/product-area/enterprise ownership remain in speaker notes. The six demo states, local form, approved metrics, biography, slide count, timing, and three Stage build moments are unchanged.
+
+The original `ConfOps26_Julian-Alvarado_DesignOps-as-AI-Infrastructure_v1.pdf` is preserved unchanged. The new static conference export is `ConfOps26_Julian-Alvarado_DesignOps-as-AI-Infrastructure_v2.pdf` (23 widescreen pages).
 
 ## Conference story
 
@@ -61,13 +65,13 @@ The demo's buttons and form remain keyboard accessible. **Tab** reaches its labe
 
 Entering Stage starts its three build sequences afresh but snapshots the review builds and form. Exiting restores those states, diagram selections, and the manual Reading view preference. Notes and dialogs stay closed on exit; **N/G are inactive on stage**, so they cannot accidentally appear to the audience. Fullscreen permission failures are announced and leave windowed Stage usable.
 
-Other diagrams are resolved and static: all roles generating; the complete learning loop; the original control-plane hub-and-spoke diagram with every connection visible; both journey paths; all stack layers; the lifecycle overview; and a team-level pilot. Slide 10 keeps its diagram in Stage and desktop review, with larger stage labels and no stage connection toggle; Reading view retains the text equivalent. All detailed interactions, lifecycle/altitude choices, and the ten-measure dialog remain available in review.
+Other diagrams are resolved and static: all roles generating; the complete learning loop; the original control-plane hub-and-spoke diagram with every connection visible; both journey paths; all stack layers; the lifecycle overview; and the four-part pilot timeline. Slide 10 keeps its diagram in Stage and desktop review, with larger stage labels and no stage connection toggle; Reading view retains the text equivalent. Lifecycle choices and the ten-measure dialog remain available in review. Organizational-altitude guidance is in slide 14's notes rather than a competing selector.
 
 ### Projection typography
 
-Stage uses the full available 16:9 area, not the smaller review viewport. The established system sans and semantic monospace stay unchanged. Decision-bearing body/diagram text uses a minimum **23px design-space size**: measured **18.4px at 1280×720** and **24.15px at 1680×1080** after the actual stage transform. Framework questions/list items are 32/28px; documentation mappings and rule content are 29/27px. The framework shows two supporting points per question; the documentation model shows four mappings and a concise rule summary. Complete lists, provenance, and the other three mappings remain in review and notes.
+Stage uses the full available 16:9 area, not the smaller review viewport. The established system sans and semantic monospace stay unchanged. Decision-bearing body/diagram text uses a minimum **23px design-space size**: measured **18.4px at 1280×720** and **24.15px at 1680×1080** after the actual stage transform. Framework words/questions are 62/34px; demo headings/details are 42/29px; documentation mappings and rule content remain 29/27px. The framework now shows only its three questions, with examples in notes. The documentation model still shows four mappings and a concise rule summary; full provenance and the other three mappings remain in review and notes.
 
-Small reference-only text remains in act/topic eyebrows, slide numbers, decorative output labels, role/step ordinals, and demo window chrome. The dense measurement appendix remains a reference table (18.4px cells at 1280×720); its captions/column labels and some backup category labels are smaller, not the primary spoken argument. Approximate-value and rule-scope qualifications remain visible. Use Reading view for reference reading or smaller displays; Stage is intended for projection at 1280×720 or larger, not phone-scale delivery.
+Small reference-only text remains in act/topic eyebrows, slide numbers, decorative output labels, and role ordinals. The dense measurement appendix remains a reference table (18.4px cells at 1280×720); its captions/column labels and some backup category labels are smaller, not the primary spoken argument. Approximate-value and rule-scope qualifications remain visible. Use Reading view for reference reading or smaller displays; Stage is intended for projection at 1280×720 or larger, not phone-scale delivery.
 
 ## Review controls
 
@@ -98,7 +102,7 @@ Opening Notes focuses its scrollable panel. Arrow, Page Up/Down, Home/End, and S
 - **10:** connect/disconnect the shared control plane.
 - **11:** replay sequential handoffs versus collaborative production.
 - **13:** compare four approximate baseline/pilot measures informed by early experimentation; open all ten in a detail dialog or jump to operational definitions.
-- **14:** compare team, product-area, and enterprise ownership.
+- **14:** static four-week pilot timeline; open Notes for team, product-area, and enterprise ownership.
 - **15:** pause, then reveal the answer.
 - **22 (backup):** build the organizational-memory stack.
 - **23 (backup):** inspect AI assistance, infrastructure, and review at each lifecycle stage.
@@ -134,7 +138,42 @@ This is the HTML deliverable, not a `.pptx`. The content uses fixed-ratio sectio
 - **Interactions:** export initial and resolved states as separate slides or use native Appear/Fade builds. Preserve the labels and explicit human checkpoints.
 - **Metrics:** recreate native comparison cards/tables from `metrics`; retain both scenarios, units, percentage-point changes, and the increased review effort. Use the full ten-measure comparison as a backup.
 - **Decision demo:** preserve user need → AI mistake → team decision → working fix → saved lesson → next result as six frames and link to the HTML prototype. Keep the reason, source, owner, and illustrative qualification visible. PowerPoint cannot reproduce the live form as editable slide content.
-- **Lifecycle/altitude selectors:** use static summary layouts or duplicate slides for each state.
+- **Lifecycle selector:** use a static summary layout or duplicate slides for each state. Pilot ownership guidance remains in notes.
 - **Closing:** retain the question and answer as two builds. Speaker notes remain separate editable text.
 
 Print CSS provides a browser handout of all 23 slides, including the closing answer. Use landscape, background graphics on, no browser headers/footers, and 100% scale; PDF print behavior varies by browser. Printing is not a PowerPoint conversion. A printout uses current interaction states; prepare those before printing if a particular state is desired.
+
+### Reproduce the v2 PDF
+
+Use the existing Playwright installation (the deck has no runtime dependencies). This export-only stylesheet reuses Stage typography without altering screen or Reading behavior. It resolves diagrams and uses the demo's final, explicitly reviewed example; the interactive HTML and notes retain all six steps.
+
+```sh
+PLAYWRIGHT_MODULE=/path/to/playwright node --input-type=commonjs <<'NODE'
+const { chromium } = require(process.env.PLAYWRIGHT_MODULE);
+const { readFileSync } = require("node:fs");
+const { pathToFileURL } = require("node:url");
+const path = require("node:path");
+(async () => {
+  const browser = await chromium.launch();
+  try {
+    const page = await browser.newPage({ viewport: { width: 1600, height: 900 }, reducedMotion: "reduce" });
+    await page.goto(pathToFileURL(path.resolve("index.html")).href);
+    await page.evaluate(() => {
+      setStageMode(true);
+      setAligned(true);
+      setPair(5);
+      setClosing(true);
+      document.querySelector("#network").classList.add("connected");
+    });
+    await page.addStyleTag({ content: readFileSync("styles.css", "utf8").replaceAll("@media screen {", "@media all {") });
+    await page.addStyleTag({ content: "@media print { @page { size: 1600px 900px; margin: 0; } .slide, .slide[hidden] { zoom: 1 !important; } }" });
+    await page.pdf({
+      path: "ConfOps26_Julian-Alvarado_DesignOps-as-AI-Infrastructure_v2.pdf",
+      preferCSSPageSize: true, printBackground: true, displayHeaderFooter: false
+    });
+  } finally {
+    await browser.close();
+  }
+})().catch(error => { console.error(error); process.exitCode = 1; });
+NODE
+```

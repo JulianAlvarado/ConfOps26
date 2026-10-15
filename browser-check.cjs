@@ -117,7 +117,7 @@ const { mkdirSync } = require("node:fs");
           if (reading && node.matches("p:not(.kicker), li, td, input") && parseFloat(getComputedStyle(node).fontSize) < 16) issues.push(`${node.className || node.tagName}: text under 16px`);
           if (node.matches(".prototype-form, .decision-evidence")) {
             const scene = node.closest(".prototype-scene").getBoundingClientRect();
-            if (rect.top < scene.top - 1 || rect.bottom > scene.bottom + 1) issues.push("Demo content overlaps prototype chrome/code");
+            if (rect.top < scene.top - 1 || rect.bottom > scene.bottom + 1) issues.push("Demo content exceeds its focal surface");
           }
         }
         const main = document.getElementById("presentation");
@@ -134,8 +134,9 @@ const { mkdirSync } = require("node:fs");
       for (let i = 0; i < 6; i++) {
         if (i) await click('[data-action="pair"]');
         assert.equal(await page.locator("#prototype-scene").getAttribute("data-step"), String(i));
-        assert.equal(await page.locator("#pair-steps [aria-current='step']").count(), 1);
-        assert.equal(await page.locator("#pair-steps li").nth(i).getAttribute("aria-current"), "step");
+        assert.equal(await page.locator("#pair-count").innerText(), `STEP ${i + 1} OF 6`);
+        assert.equal(await page.locator("#pair-label").innerText(), await page.evaluate(i => pairLabels[i], i));
+        assert.equal(await page.locator("#pair-step").getAttribute("aria-atomic"), "true");
         assert.equal(await page.locator("#prototype-form").isVisible(), i === 3);
         if (expected[i]) assert.match(await page.locator("#evidence-title").innerText(), expected[i]);
         if (i === 0) assert.match(await page.locator("#evidence-details").innerText(), /do not have a teammate[\s\S]*start working/);
@@ -165,8 +166,8 @@ const { mkdirSync } = require("node:fs");
           assert.equal(await slideNumber(), "slide-6");
         }
         if (i === 4) {
-          assert.match(await page.locator("#prototype-code").innerText(), /allow solo setup.*reason and owner/);
           assert.match(await page.locator("#evidence-details").innerText(), /from the brief[\s\S]*product lead[\s\S]*after the pilot/);
+          assert.match(await page.locator("#evidence-verdict").innerText(), /user validation pending/);
         }
         if (i === 5) {
           assert.match(await page.locator("#evidence-details").innerText(), /without a teammate email[\s\S]*real users/);
@@ -195,7 +196,7 @@ const { mkdirSync } = require("node:fs");
           assert.match(await page.locator(`#slide-${i} .slide-footer span:last-child`).innerText(), new RegExp(`^${String(i).padStart(2, "0")} / 15`));
           assert.equal(await page.locator("#counter").innerText(), `${String(i).padStart(2, "0")} / 15`);
         }
-        if (width === 1200 && [3, 5, 8, 12, 13, 16, 22, 23].includes(i)) await capture(`1200-slide-${i}`);
+        if (width === 1200 && [3, 5, 8, 12, 13, 14, 16, 22, 23].includes(i)) await capture(`1200-slide-${i}`);
       }
       await exerciseDemo(false, String(width));
     }
@@ -301,8 +302,10 @@ const { mkdirSync } = require("node:fs");
     assert.equal(await page.locator(".loop-node.current").count(), 1);
     assert.equal(await page.locator("#loop-reading [aria-current='step']").count(), 1);
     await go(14);
-    await click('[data-altitude="enterprise"]');
-    assert.match(await page.locator("#altitude-detail").innerText(), /Security, Legal/);
+    assert.deepEqual(await page.locator(".thirty-days h3").allTextContents(), ["Map", "Select", "Define", "Pilot"]);
+    assert.deepEqual(await page.locator(".pilot-decision strong").allTextContents(), ["Adopt", "Revise", "Stop"]);
+    assert.equal(await page.locator("#slide-14 button, .thirty-days b").count(), 0);
+    assert.match(await page.locator("#notes-content").innerText(), /At team level[\s\S]*At product-area level[\s\S]*At enterprise level/);
     await go(15);
     assert.equal(await page.locator("#progress").evaluate(node => node.value / node.max), 1);
     await click('[data-action="closing"]');
@@ -338,8 +341,7 @@ const { mkdirSync } = require("node:fs");
       invalid: document.querySelector("#workspace-name").getAttribute("aria-invalid"),
       result: document.querySelector("#prototype-result").textContent,
       resultClass: document.querySelector("#prototype-result").className,
-      life: document.querySelector("[data-life][aria-pressed='true']").dataset.life,
-      altitude: document.querySelector("[data-altitude][aria-pressed='true']").dataset.altitude
+      life: document.querySelector("[data-life][aria-pressed='true']").dataset.life
     }));
     const stageFonts = [];
     for (const size of [{ width: 1280, height: 720 }, { width: 1680, height: 1080 }]) {
@@ -361,14 +363,14 @@ const { mkdirSync } = require("node:fs");
       const fontResults = await page.evaluate(() => {
         const selectors = [
           ".about-role", ".about-bio p",
-          ".framework p", ".framework li", ".standards-table > div", ".stage-rule dt", ".stage-rule dd",
+          ".framework h3", ".framework p", ".standards-table > div", ".stage-rule dt", ".stage-rule dd",
           ".role-output span", ".causal-chain li", ".branch-outputs span", ".source-node", ".alignment-band",
-          ".pair-steps li", "#pair-explanation", ".decision-evidence dt", ".decision-evidence dd",
-          "#evidence-verdict", ".prototype-code", ".prototype-form label", ".prototype-form input",
+          "#slide-6 > .eyebrow > span", "#pair-count", "#pair-label", ".decision-evidence h3", ".decision-evidence dt", ".decision-evidence dd",
+          "#evidence-verdict", ".prototype-form label", ".prototype-form input",
           ".prototype-form button", ".field-hint", ".prototype-result", ".rubric > div", ".rubric p",
           "#loop-reading li", ".workflow-track span",
           ".journey p", ".metric-unit", ".metric-estimate", ".metric-comparison dt", ".slide .scenario-label", ".thirty-days p",
-          ".stage-altitude", ".stack-layer p", ".lifecycle button > span"
+          ".thirty-days article > span", ".thirty-days h3", ".pilot-decision", ".pilot-decision > span", ".stack-layer p", ".lifecycle button > span"
         ];
         const scale = document.getElementById("stage").getBoundingClientRect().width / 1600;
         // Hidden slides still inherit stage type; omit deliberately reduced review-only details.
@@ -378,7 +380,7 @@ const { mkdirSync } = require("node:fs");
         }));
       });
       stageFonts.push({ viewport: size, minimum: Math.min(...fontResults.map(item => item.pixels)) });
-      for (const result of fontResults) assert(result.pixels >= 18, `${size.width}: ${result.selector} projects at ${result.pixels}px`);
+      for (const result of fontResults) assert(result.pixels >= 18.4 - 0.001, `${size.width}: ${result.selector} projects at ${result.pixels}px`);
       for (let i = 1; i <= 23; i++) {
         await go(i);
         await checkLayout(false, `stage-${size.width}/slide-${i}`);
@@ -405,7 +407,7 @@ const { mkdirSync } = require("node:fs");
           });
           assert.deepEqual(diagramIssues, [], `Stage diagram labels at ${size.width}`);
         }
-        if ([3, 4, 5, 8, 10, 12, 13, 22, 23].includes(i)) await capture(`stage-${size.width}-slide-${i}`);
+        if ([3, 4, 5, 8, 10, 12, 13, 14, 22, 23].includes(i)) await capture(`stage-${size.width}-slide-${i}`);
       }
       await go(2);
       await page.locator("#presentation").focus();
@@ -525,7 +527,7 @@ const { mkdirSync } = require("node:fs");
       for (let i = 1; i <= 23; i++) {
         await go(i);
         await checkLayout(true, `${size.width}/slide-${i}`);
-        if (size.width === 390 && [3, 5, 12, 13, 16].includes(i)) {
+        if (size.width === 390 && [3, 5, 12, 13, 14, 16].includes(i)) {
           if (i === 13) await page.locator('.metric-card[data-metric="6"]').scrollIntoViewIfNeeded();
           await capture(`390-slide-${i}`);
         }

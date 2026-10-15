@@ -5,7 +5,7 @@ import vm from "node:vm";
 const html = readFileSync(new URL("./index.html", import.meta.url), "utf8");
 const css = readFileSync(new URL("./styles.css", import.meta.url), "utf8");
 const js = readFileSync(new URL("./app.js", import.meta.url), "utf8");
-const data = vm.runInNewContext(`${js.slice(0, js.indexOf("const slides ="))}; ({ keynoteCount, notes, metrics, lifecycle, pairDescriptions, pairCode, pairLabels, pairEvidence, metricValue, metricDelta, metricChange });`);
+const data = vm.runInNewContext(`${js.slice(0, js.indexOf("const slides ="))}; ({ keynoteCount, notes, metrics, lifecycle, pairLabels, pairEvidence, metricValue, metricDelta, metricChange });`);
 const titles = [...html.matchAll(/<section class="slide[^"]*" id="slide-(\d+)"[^>]*data-title="([^"]+)"/g)];
 if (process.argv.includes("--write-notes")) {
   let elapsed = 0;
@@ -32,7 +32,7 @@ if (process.argv.includes("--write-notes")) {
 
 Governance, systems, and the new role of DesignOps in product teams
 
-Presentation review prototype 0.1. Primary source: the supplied **DesignOps as AI Infrastructure Presentation Outline ConfOps 2026**, including the original brief, frameworks, review notes, and FAQ. The approved conference revision keeps the interactive onboarding demo instead of a redundant conflict overview, keeps Govern / Context / Evaluate central, and moves the detailed stack and lifecycle to backups. There are 15 keynote slides, Q&A, and 7 backups (23 slides total).
+Keynote v2. Primary source: the supplied **DesignOps as AI Infrastructure Presentation Outline ConfOps 2026**, including the original brief, frameworks, review notes, and FAQ. The conference revision keeps the interactive onboarding demo instead of a redundant conflict overview, keeps Govern / Context / Evaluate central, and moves the detailed stack and lifecycle to backups. V2 simplifies slides 5, 6, and 14 in both Stage and review: three questions, one demo surface per step, and a four-part pilot timeline. Supporting operational detail remains in these notes. There are 15 keynote slides, Q&A, and 7 backups (23 slides total).
 
 Generated from the presenter-note data in app.js. To update this document after editing those notes: \`node check.mjs --write-notes\`.
 
@@ -60,7 +60,7 @@ Choose **Stage** or press **S** before sharing. Stage closes notes and dialogs a
 
 Review's build states, form value/feedback, diagram selections, and manual Reading preference are restored on exit; notes and dialogs remain closed. Entering Stage again starts a new rehearsal of the three build moments. Use the form only for fictional input: it sends and saves nothing.
 
-Stage prioritizes projected labels: the tested decision-bearing body and diagram text is at least 18.4px effective at 1280×720, and 24.15px at 1680×1080. The framework shows two points per question; the documentation model shows four mappings and a concise scoped rule. Full lists, seven transformations, detailed rule provenance, lifecycle panels, altitude options, and all ten measures remain in review and these notes. Act/topic labels, counters, decorative ordinals, window chrome, and reference-appendix metadata remain smaller. Reading view remains the appropriate reference-reading surface on small screens.
+Stage prioritizes projected labels: the tested decision-bearing body and diagram text is at least 18.4px effective at 1280×720, and 24.15px at 1680×1080. The framework shows only its three questions; the documentation model shows four mappings and a concise scoped rule. Framework examples and team/product-area/enterprise operating guidance remain in these notes. Seven transformations, detailed rule provenance, lifecycle panels, and all ten measures remain in review and these notes. Act/topic labels, counters, decorative ordinals, and reference-appendix metadata remain smaller. Reading view remains the appropriate reference-reading surface on small screens.
 
 ## Illustrative decision trail
 
@@ -115,7 +115,7 @@ Record sample size, spread, staffing, complexity, exclusions, and data-collectio
 | Learning captured into context and standards | 8, 12 |
 | Production time, rate, review, rework, consistency, and measurement | 13, 21 |
 | Canonical prompts and seven artifact transformations | 12 (four on stage; all seven in review and notes), 20 |
-| Team, product-area, and enterprise altitudes | 14 (team on stage; all three in review and notes) |
+| Team, product-area, and enterprise altitudes | 14 speaker notes (all three); the timeline stays static in Stage and review |
 | Evolving role and work archetypes | 18 |
 | Risks if infrastructure is absent | 4, 6 and their notes |
 | Shared governance, AI-team concern, AI-ready systems, model change, prompt ownership | 16–23 |
@@ -199,9 +199,7 @@ assert.equal(production.unit, "accepted artifacts / in a team with 8w E2E Cycle"
 assert(markdown.includes("≈−2/wk (midpoint estimate)"), "Exported comparison qualifies midpoint arithmetic");
 assert.equal(data.lifecycle.length, 5);
 for (const stage of data.lifecycle) assert.equal(stage.length, 6);
-assert.equal(data.pairDescriptions.length, 6);
 assert.equal(data.pairLabels.length, 6);
-assert.equal(data.pairCode.length, 6);
 assert.equal(data.pairEvidence.length, 6);
 assert.equal(data.pairEvidence[3], null, "Step 4 is the interactive revised form");
 for (const step of [0, 1, 2, 4, 5]) {
@@ -209,6 +207,20 @@ for (const step of [0, 1, 2, 4, 5]) {
   assert(data.pairEvidence[step].title && data.pairEvidence[step].verdict);
 }
 assert.match(JSON.stringify(data.pairEvidence[4]), /version 1.*from the brief.*product lead.*after the pilot/, "Saved lesson retains version, source, owner, and review trigger");
+assert.match(data.pairEvidence[4].verdict, /user validation pending/, "Saved lesson stays provisional at point of use");
+const framework = html.match(/<section class="slide framework-slide"[\s\S]*?<\/section>/)[0];
+assert.equal((framework.match(/<h3>/g) || []).length, 3);
+assert.equal((framework.match(/<p>/g) || []).length, 3);
+assert(!/<ul|pillar-number|framework-foundation/.test(framework), "Three questions, without competing lists");
+assert(!/pair-steps|pair-people|pair-explanation|prototype-code|window-chrome/.test(html), "One demo surface, no permanent checklist or duplicate captions");
+assert.match(html, /id="pair-step" role="status" aria-live="polite" aria-atomic="true"/, "Current step is announced atomically");
+const pilot = html.match(/<section class="slide" id="slide-14"[\s\S]*?<\/section>/)[0];
+assert.equal((pilot.match(/<article>/g) || []).length, 4);
+assert.match(pilot, /<strong>Adopt<\/strong>.*<strong>Revise<\/strong>.*<strong>Stop<\/strong>/);
+assert(!/<button|<b>|altitude-bar/.test(pilot), "Pilot timeline has no extra clicks or decorative counters");
+for (const phrase of ["At team level", "At product-area level", "At enterprise level", "human checkpoints", "before the pilot"]) {
+  assert(data.notes[13].body.includes(phrase), `Pilot operating guidance retained: ${phrase}`);
+}
 assert.match(data.pairEvidence[5].verdict, /review is not over/, "Reuse never replaces evaluation");
 for (const id of ["stage-toggle", "stage-exit", "stage-help"]) assert(ids.includes(id), `Stage control ${id} exists`);
 assert.equal(data.notes.filter(note => /Stage moment [123]:/.test(note.interaction)).length, 3, "Only three intentional stage build moments");

@@ -2,7 +2,7 @@
 
 Governance, systems, and the new role of DesignOps in product teams
 
-Presentation review prototype 0.1. Primary source: the supplied **DesignOps as AI Infrastructure Presentation Outline ConfOps 2026**, including the original brief, frameworks, review notes, and FAQ. The approved conference revision keeps the interactive onboarding demo instead of a redundant conflict overview, keeps Govern / Context / Evaluate central, and moves the detailed stack and lifecycle to backups. There are 15 keynote slides, Q&A, and 7 backups (23 slides total).
+Keynote v2. Primary source: the supplied **DesignOps as AI Infrastructure Presentation Outline ConfOps 2026**, including the original brief, frameworks, review notes, and FAQ. The conference revision keeps the interactive onboarding demo instead of a redundant conflict overview, keeps Govern / Context / Evaluate central, and moves the detailed stack and lifecycle to backups. V2 simplifies slides 5, 6, and 14 in both Stage and review: three questions, one demo surface per step, and a four-part pilot timeline. Supporting operational detail remains in these notes. There are 15 keynote slides, Q&A, and 7 backups (23 slides total).
 
 Generated from the presenter-note data in app.js. To update this document after editing those notes: `node check.mjs --write-notes`.
 
@@ -30,7 +30,7 @@ Choose **Stage** or press **S** before sharing. Stage closes notes and dialogs a
 
 Review's build states, form value/feedback, diagram selections, and manual Reading preference are restored on exit; notes and dialogs remain closed. Entering Stage again starts a new rehearsal of the three build moments. Use the form only for fictional input: it sends and saves nothing.
 
-Stage prioritizes projected labels: the tested decision-bearing body and diagram text is at least 18.4px effective at 1280×720, and 24.15px at 1680×1080. The framework shows two points per question; the documentation model shows four mappings and a concise scoped rule. Full lists, seven transformations, detailed rule provenance, lifecycle panels, altitude options, and all ten measures remain in review and these notes. Act/topic labels, counters, decorative ordinals, window chrome, and reference-appendix metadata remain smaller. Reading view remains the appropriate reference-reading surface on small screens.
+Stage prioritizes projected labels: the tested decision-bearing body and diagram text is at least 18.4px effective at 1280×720, and 24.15px at 1680×1080. The framework shows only its three questions; the documentation model shows four mappings and a concise scoped rule. Framework examples and team/product-area/enterprise operating guidance remain in these notes. Seven transformations, detailed rule provenance, lifecycle panels, and all ten measures remain in review and these notes. Act/topic labels, counters, decorative ordinals, and reference-appendix metadata remain smaller. Reading view remains the appropriate reference-reading surface on small screens.
 
 ## Illustrative decision trail
 
@@ -108,9 +108,9 @@ The example, AI-produced forms, team decisions, and ownership are all pre-author
 
 **Takeaway:** GOVERN: what can AI do? CONTEXT: what does it know? EVALUATE: what does good look like?
 
-**Visual concept:** Three pillars apply Govern / Context / Evaluate directly to the solo-setup conflict.
+**Visual concept:** Three strong words and three questions, with space to absorb each distinction.
 
-**Interaction / reveal:** Static anchor slide. Stage emphasizes two supporting points per question; the full lists and foundation remain in review and these notes.
+**Interaction / reveal:** Static in Stage and review. The solo-setup examples and operating foundations are spoken from these notes, not competing lists on screen.
 
 **Speaker notes:** Use one model throughout. The next demo follows someone starting a workspace alone; use that need to ground the three questions. Govern asks what AI may do and who can accept it: in this illustrative case, no real contact data enters the demo, a designer and engineer review, and a product lead owns the scoped rule. Context carries the solo-setup brief, the requirement to make invitations optional, and the supported form pattern together. Evaluate asks whether setup completes without email, while checking labels, errors, focus, and feasibility. Meeting that requirement alone cannot establish user value. These concrete checks sit within broader tool, data, privacy, risk, and release boundaries. Stewardship grounds governance; systems carry context; enablement puts all three into practice through workflows, prompts, rubrics, and training. This is the core model, not another framework to memorize.
 
@@ -124,7 +124,7 @@ The example, AI-produced forms, team decisions, and ownership are all pre-author
 
 **Takeaway:** The team fixes the form. DesignOps makes the lesson available to the next team and its AI tools.
 
-**Visual concept:** Six plain-language steps follow one problem from the user's need to a corrected form and a reusable lesson.
+**Visual concept:** One current-step label and one large example surface. Six states follow the user's need, AI mistake, team decision, working form, saved lesson, and next review.
 
 **Interaction / reveal:** Stage moment 2: Right advances the six steps, then the slide; Left reverses them. At step 4, Tab into the name-only form; native field and submit keys never advance the deck. Tab out to resume. Review keeps its buttons; Reset clears the form in either mode.
 
@@ -252,9 +252,9 @@ The example, AI-produced forms, team decisions, and ownership are all pre-author
 
 **Takeaway:** A 30-day pilot can begin at team, product-area, or enterprise level with clear ownership.
 
-**Visual concept:** Four weekly phases with a team-level starting point on stage and an organizational-altitude selector in review.
+**Visual concept:** Four verbs on a timeline, one concrete output per week, and an explicit adopt / revise / stop decision.
 
-**Interaction / reveal:** Stage: a static team-level pilot. Review: choose Team, Product area, or Enterprise to inspect ownership and governance; all three are covered in these notes.
+**Interaction / reveal:** Static in Stage and review, with no extra presenter clicks. Team, product-area, and enterprise ownership guidance remains in these notes.
 
 **Speaker notes:** Days 1–7: map actual AI use and identify inconsistency, quality gaps, and risk. Days 8–14: select one useful, bounded workflow and package relevant organizational knowledge. Days 15–21: name decision owners, define human checkpoints and evaluation criteria, and establish a baseline before the pilot. Days 22–30: run comparable work and decide whether to adopt, revise, or stop. Avoid sensitive or high-risk first pilots unless the appropriate governance is already in place. At team level, design and engineering leads can own a single workflow with DesignOps facilitation. At product-area level, PM, research, design, engineering, and a system owner coordinate shared patterns and cross-team outcomes. At enterprise level, federated product ownership works within Security, Legal, IT, and platform guardrails. DesignOps connects the altitudes; it does not unilaterally own policy or product decisions. Calendar windows are a suggested starting plan, not promised delivery dates.
 
@@ -458,7 +458,7 @@ Record sample size, spread, staffing, complexity, exclusions, and data-collectio
 | Learning captured into context and standards | 8, 12 |
 | Production time, rate, review, rework, consistency, and measurement | 13, 21 |
 | Canonical prompts and seven artifact transformations | 12 (four on stage; all seven in review and notes), 20 |
-| Team, product-area, and enterprise altitudes | 14 (team on stage; all three in review and notes) |
+| Team, product-area, and enterprise altitudes | 14 speaker notes (all three); the timeline stays static in Stage and review |
 | Evolving role and work archetypes | 18 |
 | Risks if infrastructure is absent | 4, 6 and their notes |
 | Shared governance, AI-team concern, AI-ready systems, model change, prompt ownership | 16–23 |
