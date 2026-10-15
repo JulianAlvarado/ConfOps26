@@ -110,6 +110,18 @@ const { mkdirSync } = require("node:fs");
           const coherence = document.createRange();
           coherence.selectNodeContents(slide.querySelector(".opening-labels span:last-child"));
           if (Math.abs(coherence.getBoundingClientRect().right - art.right) > 1) issues.push("Coherence text must align to animation's right edge");
+          const textBounds = node => {
+            const range = document.createRange();
+            range.selectNodeContents([...node.childNodes].find(child => child.nodeType === Node.TEXT_NODE && child.textContent.trim()));
+            return range.getBoundingClientRect();
+          };
+          const capacity = textBounds(slide.querySelector(".opening-labels span:first-child"));
+          const possibility = textBounds(slide.querySelector(".caption-item:first-child"));
+          const responsibility = textBounds(slide.querySelector(".caption-item:last-child"));
+          if (Math.abs(possibility.left - capacity.left) > 1) issues.push("Possibility text must align with Capacity text");
+          if (Math.abs(responsibility.right - coherence.getBoundingClientRect().right) > 1) issues.push("Responsibility text must align with Coherence text");
+          const responsibilityDot = slide.querySelector(".caption-item:last-child .dot").getBoundingClientRect();
+          if (possibility.right + 8 * scale > responsibilityDot.left) issues.push("Opening caption columns overlap");
           if (Math.abs(labels.top - title.top) > 1) issues.push("Opening label row must align with title top");
           if (art.top - labels.bottom < 24 * scale - 1) issues.push("Opening labels need 24px of space above artwork");
         }
