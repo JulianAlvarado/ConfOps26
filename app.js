@@ -21,9 +21,9 @@ const notes = [
   {
     seconds: 30,
     takeaway: "Introduce yourself and the perspective you bring to DesignOps and AI.",
-    visual: "A static speaker template with a name, role and organization, two short bio paragraphs, and a portrait placeholder.",
-    interaction: "No builds or controls. Replace the bracketed text and local photo placeholder before presenting.",
-    body: "This slide is a template, not a biography. Replace [Your name] and [Role · Organization] with your confirmed details. Use the first short paragraph for your work and experience, and the second for why DesignOps and AI matter to your practice. Replace the placeholder with a local portrait and meaningful alt text; no image or biographical claims have been invented. Keep the introduction to 30 seconds. This time comes from shortening the closing from 120 to 90 seconds; the keynote remains 1,200 seconds, the demo remains 270 seconds, and Q&A remains 600 seconds.",
+    visual: "Julian Alvarado, Xbox Design Ops, with his supplied biography translated into English and a portrait placeholder.",
+    interaction: "No builds or controls. The supplied biography is translated into English; replace the local photo placeholder when a portrait is available.",
+    body: "Julian Alvarado is a Senior Program Manager and Design Operations leader at Microsoft, where he supports the Xbox Design organization in strategy, operations, and the adoption of emerging technologies. His work focuses on scaling creative teams through better systems, clearer processes, and the thoughtful use of artificial intelligence in design workflows. Julian collaborates with multidisciplinary teams and across studios to improve how design teams plan, learn, and deliver work, balancing operational rigor with creativity and care for people. His main interests include the future of design operations, responsible AI, and building resilient, people-centered creative organizations. This is an English translation of the speaker's supplied biography. The portrait is still a placeholder. Keep the spoken introduction to 30 seconds by summarizing your role and its connection to this talk rather than reading the full biography aloud. The keynote remains 1,200 seconds, the demo remains 270 seconds, closing remains 90 seconds, and Q&A remains 600 seconds.",
     transition: "Now return to the shared challenge: without common conditions, more output can create more variation."
   },
   {

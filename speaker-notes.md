@@ -18,7 +18,7 @@ Generated from the presenter-note data in app.js. To update this document after 
 
 The timing is a rehearsal guide, not an auto-advance schedule. Keep on-screen examples short enough to preserve discussion time. Read the full notes before presenting; the slides intentionally omit nuance that belongs in the spoken narrative.
 
-Slide 3's **About me** template occupies **1:30–2:00 (30 seconds)**. Replace its bracketed name, role/organization, two short bio prompts, and local portrait placeholder before presenting. No biography or portrait has been invented. The closing on slide 15 is shortened from 120 to **90 seconds**, preserving the 20-minute slot. The README explains how to substitute a local portrait without upload controls.
+Slide 3's **About me** introduction occupies **1:30–2:00 (30 seconds)**. It presents Julian Alvarado's supplied biography in English, with Xbox Design Ops as the role line. Only the local portrait placeholder remains. Summarize the role and connection to the talk instead of reading the full biography aloud. The closing on slide 15 is shortened from 120 to **90 seconds**, preserving the 20-minute slot. The README explains how to substitute a local portrait without upload controls.
 
 Slide 6's retained six-step demo runs from **4:00–8:30**, for **270 seconds**. The removed overview's 90 seconds are reassigned to explanation and interaction pauses: 30 seconds for the audience to absorb the blocked need, 30 seconds for form validation/keyboard feedback, and 30 seconds to review the saved lesson's owner and review trigger. No steps or exercises were added. The keynote remains exactly 1,200 seconds; Q&A remains 600 seconds.
 
@@ -76,11 +76,11 @@ The example, AI-produced forms, team decisions, and ownership are all pre-author
 
 **Takeaway:** Introduce yourself and the perspective you bring to DesignOps and AI.
 
-**Visual concept:** A static speaker template with a name, role and organization, two short bio paragraphs, and a portrait placeholder.
+**Visual concept:** Julian Alvarado, Xbox Design Ops, with his supplied biography translated into English and a portrait placeholder.
 
-**Interaction / reveal:** No builds or controls. Replace the bracketed text and local photo placeholder before presenting.
+**Interaction / reveal:** No builds or controls. The supplied biography is translated into English; replace the local photo placeholder when a portrait is available.
 
-**Speaker notes:** This slide is a template, not a biography. Replace [Your name] and [Role · Organization] with your confirmed details. Use the first short paragraph for your work and experience, and the second for why DesignOps and AI matter to your practice. Replace the placeholder with a local portrait and meaningful alt text; no image or biographical claims have been invented. Keep the introduction to 30 seconds. This time comes from shortening the closing from 120 to 90 seconds; the keynote remains 1,200 seconds, the demo remains 270 seconds, and Q&A remains 600 seconds.
+**Speaker notes:** Julian Alvarado is a Senior Program Manager and Design Operations leader at Microsoft, where he supports the Xbox Design organization in strategy, operations, and the adoption of emerging technologies. His work focuses on scaling creative teams through better systems, clearer processes, and the thoughtful use of artificial intelligence in design workflows. Julian collaborates with multidisciplinary teams and across studios to improve how design teams plan, learn, and deliver work, balancing operational rigor with creativity and care for people. His main interests include the future of design operations, responsible AI, and building resilient, people-centered creative organizations. This is an English translation of the speaker's supplied biography. The portrait is still a placeholder. Keep the spoken introduction to 30 seconds by summarizing your role and its connection to this talk rather than reading the full biography aloud. The keynote remains 1,200 seconds, the demo remains 270 seconds, closing remains 90 seconds, and Q&A remains 600 seconds.
 
 **Transition:** Now return to the shared challenge: without common conditions, more output can create more variation.
 
@@ -445,7 +445,7 @@ Record sample size, spread, staffing, complexity, exclusions, and data-collectio
 | Source idea / review request | Where preserved |
 | --- | --- |
 | Core thesis, central question, capacity versus coherence | 1–2, 4, 15 |
-| User-requested speaker template: name, role, portrait, two short bio paragraphs | 3 |
+| Speaker introduction: supplied name, role, translated biography, portrait placeholder | 3 |
 | Illustrative onboarding problem and user requirement, within the interactive demo | 6 |
 | Product/customer journey before and after AI; Mission, Milestones, Metrics | 11 |
 | DesignOps fundamentals and expanding responsibilities | 9, 14, 18 |

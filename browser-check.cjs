@@ -54,12 +54,11 @@ const { mkdirSync } = require("node:fs");
     await page.locator("#presentation").focus();
     await page.keyboard.press("ArrowRight");
     await page.waitForFunction(() => !document.getElementById("slide-3").hidden);
-    assert.equal(await page.locator("#title-3").innerText(), "[Your name]");
-    assert.equal(await page.locator(".about-role").innerText(), "[Role · Organization]");
-    assert.deepEqual(await page.locator(".about-bio p").allTextContents(), [
-      "[A short introduction to your work and experience.]",
-      "[Why DesignOps and AI matter to your practice.]"
-    ]);
+    assert.equal(await page.locator("#title-3").innerText(), "Julian Alvarado");
+    assert.equal(await page.locator(".about-role").innerText(), "Xbox Design Ops");
+    assert.equal(await page.locator(".about-bio p").count(), 2);
+    assert.match(await page.locator(".about-bio").innerText(), /Senior Program Manager and Design Operations leader at Microsoft/);
+    assert.match(await page.locator(".about-bio").innerText(), /responsible AI, and building resilient, people-centered creative organizations/);
     assert.equal(await page.locator(".about-slide button, .about-slide input, .about-slide img").count(), 0);
     assert.match(await page.locator(".photo-placeholder").getAttribute("aria-label"), /Photo placeholder/);
     assert.match(await page.locator(".note-time").innerText(), /1:30–2:00 · 30 seconds/);

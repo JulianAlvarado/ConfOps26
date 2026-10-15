@@ -19,11 +19,11 @@ The six demo steps tell one story: **user need → AI mistake → team decision 
 
 The same vocabulary continues through the learning loop and documentation slides: **decision** is what the team changed, **saved lesson** includes why, and **shared guidance** makes it available for reuse. The next result still needs review. Stage, review, Reading view, live announcements, and speaker notes use these terms rather than invented document identifiers.
 
-## Speaker template
+## Speaker introduction
 
-Slide **3**, **About me**, is a static template with `[Your name]`, `[Role · Organization]`, two short paragraph prompts, and `[Your photo]`. It contains no invented biography or portrait and adds no controls. Its **30 seconds (1:30–2:00)** come from the closing, now **90 seconds** rather than 120; the keynote remains 1,200 seconds, demo 270 seconds, and Q&A 600 seconds.
+Slide **3**, **About me**, introduces **Julian Alvarado — Xbox Design Ops** with his supplied biography translated into English. Only `[Your photo]` remains a placeholder; no portrait has been invented. Its **30 seconds (1:30–2:00)** come from the closing, now **90 seconds** rather than 120; the keynote remains 1,200 seconds, demo 270 seconds, and Q&A 600 seconds. Summarize the role and connection to the talk rather than reading the entire biography aloud.
 
-Replace the bracketed text directly in `index.html` under `.about-slide`. Keep each bio paragraph to one or two short sentences. To add a portrait later, put the image beside the deck (for example `portrait.jpg`) and replace the `.photo-placeholder` element inside `.about-photo` with `<img src="portrait.jpg" alt="Portrait of [your name]" width="800" height="1000">`, using the actual image dimensions and name. The existing frame fits a 4:5 local portrait with `object-fit: cover`; adjust `object-position` if needed. No upload UI, external image request, or new dependency is required.
+Edit the biography directly in `index.html` under `.about-slide` and keep its speaker notes in `app.js` synchronized. To add a portrait later, put the image beside the deck (for example `portrait.jpg`) and replace the `.photo-placeholder` element inside `.about-photo` with `<img src="portrait.jpg" alt="Portrait of Julian Alvarado" width="800" height="1000">`, using the actual image dimensions. The existing frame fits a 4:5 local portrait with `object-fit: cover`; adjust `object-position` if needed. No upload UI, external image request, or new dependency is required.
 
 ## Run
 
