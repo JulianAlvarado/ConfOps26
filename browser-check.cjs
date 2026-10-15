@@ -37,6 +37,8 @@ const { mkdirSync } = require("node:fs");
     assert.equal(await page.locator("#fullscreen").evaluate(node => getComputedStyle(node).outlineWidth), "3px", "Keyboard focus stays visible");
     await page.locator("#presentation").focus();
     assert.equal(await page.locator(".slide").count(), 23);
+    assert.deepEqual(await page.locator(".opening-labels span").allTextContents(), ["CAPACITY ↑", "COHERENCE ?"]);
+    assert.equal(await page.locator(".opening-art svg text").count(), 0);
     assert.deepEqual(await page.evaluate(() => ({
       keynoteCount,
       duration: notes.slice(0, keynoteCount).reduce((sum, note) => sum + note.seconds, 0),
@@ -100,6 +102,17 @@ const { mkdirSync } = require("node:fs");
         const stageMode = document.body.classList.contains("stage-mode");
         const exit = document.getElementById("stage-exit").getBoundingClientRect();
         const issues = [];
+        if (!reading && slide.id === "slide-1") {
+          const labels = slide.querySelector(".opening-labels").getBoundingClientRect();
+          const title = slide.querySelector("h1").getBoundingClientRect();
+          const art = slide.querySelector(".opening-art svg").getBoundingClientRect();
+          const scale = bounds.width / 1600;
+          const coherence = document.createRange();
+          coherence.selectNodeContents(slide.querySelector(".opening-labels span:last-child"));
+          if (Math.abs(coherence.getBoundingClientRect().right - art.right) > 1) issues.push("Coherence text must align to animation's right edge");
+          if (Math.abs(labels.top - title.top) > 1) issues.push("Opening label row must align with title top");
+          if (art.top - labels.bottom < 24 * scale - 1) issues.push("Opening labels need 24px of space above artwork");
+        }
         if (!reading && slide.id === "slide-13") {
           const range = document.createRange();
           range.selectNodeContents(slide.querySelector(".metric-foot strong"));
