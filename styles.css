@@ -307,7 +307,6 @@ main { flex: 1; min-height: 0; display: flex; align-items: center; justify-conte
 .closing .eyebrow { margin-bottom: 68px; }
 .closing-setup { font-size: 25px; color: var(--muted); margin-bottom: 22px; }
 .closing h2 { font-size: 76px; }
-.closing-answer { margin-top: 55px; color: var(--cyan); }
 #closing-reveal { margin-top: 25px; display: flex; justify-content: space-between; align-items: center; }
 .answer-word { font-size: 123px; color: var(--cyan); letter-spacing: -6px; }
 .closing-thesis { font-size: 24px; line-height: 1.5; color: var(--muted); }
@@ -434,7 +433,7 @@ dialog::backdrop { background: #05090dea; }
   .stage-mode .pillar-number,
   .stage-mode .thirty-days b,
   .stage-mode .product-logo { display: none; }
-  .stage-mode .slide button:not([data-action="align"], [data-action="pair"], [data-action="pair-reset"], [data-action="closing"], [type="submit"], [data-life]) { display: none; }
+  .stage-mode .slide button:not([data-action="align"], [data-action="pair"], [data-action="pair-reset"], [type="submit"], [data-life]) { display: none; }
   .stage-mode .slide-footer { left: 64px; right: 64px; bottom: 18px; padding-top: 10px; justify-content: flex-end; }
   .stage-mode .eyebrow { margin-bottom: 32px; }
   .stage-mode .slide button { font-size: 23px; }

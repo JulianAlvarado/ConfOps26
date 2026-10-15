@@ -212,6 +212,7 @@ assert.match(JSON.stringify(data.pairEvidence[4]), /version 1.*from the brief.*p
 assert.match(data.pairEvidence[5].verdict, /review is not over/, "Reuse never replaces evaluation");
 for (const id of ["stage-toggle", "stage-exit", "stage-help"]) assert(ids.includes(id), `Stage control ${id} exists`);
 assert.equal(data.notes.filter(note => /Stage moment [123]:/.test(note.interaction)).length, 3, "Only three intentional stage build moments");
+assert(!/closing-answer|data-action="closing"/.test(html + css + js), "Closing uses navigation, not a dedicated reveal control");
 assert(markdown.includes("Stage delivery and rehearsal"), "Export includes stage instructions");
 for (const [name, content] of [["slides", html], ["notes and dynamic copy", js], ["exported notes", markdown], ["README", readFileSync(new URL("./README.md", import.meta.url), "utf8")]]) {
   assert(!/\b(?:BRIEF|AC|DEC|RULE)[-\u2010-\u2015]\d+\b/.test(content), `${name} explains the example without obsolete document identifiers`);

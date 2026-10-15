@@ -305,8 +305,47 @@ const { mkdirSync } = require("node:fs");
     assert.match(await page.locator("#altitude-detail").innerText(), /Security, Legal/);
     await go(15);
     assert.equal(await page.locator("#progress").evaluate(node => node.value / node.max), 1);
-    await click('[data-action="closing"]');
+    assert.equal(await page.locator("#slide-15 button").count(), 0);
+    assert.equal(await page.locator("#next").getAttribute("aria-label"), "Reveal the answer");
+    assert.equal(await page.locator("#next").getAttribute("aria-expanded"), "false");
+    await click("#next");
+    assert.equal(await slideNumber(), "slide-15");
+    assert(await page.locator("#closing-reveal").isVisible());
+    assert.equal(await page.locator("#next").getAttribute("aria-expanded"), "true");
+    assert.equal(await page.locator("#next").getAttribute("aria-label"), "Next slide: Q&A");
+    assert(await page.locator("#next").evaluate(node => node === document.activeElement));
+    assert.match(await page.locator("#announcement").innerText(), /DesignOps.*infrastructure/);
     await checkLayout(false, "closing");
+    await click("#next");
+    await page.waitForFunction(() => !document.getElementById("slide-16").hidden);
+    assert.equal(await page.locator("#next").getAttribute("aria-label"), "Next slide");
+    assert.equal(await page.locator("#next").getAttribute("aria-expanded"), null);
+    for (const key of ["ArrowRight", "ArrowDown", "PageDown", "Space", "Enter"]) {
+      await go(15);
+      await page.evaluate(() => setClosing(false));
+      await page.locator(key === "Enter" ? "#next" : "#presentation").focus();
+      await page.keyboard.press(key);
+      assert.equal(await slideNumber(), "slide-15", `${key} reveals before advancing`);
+      assert(await page.locator("#closing-reveal").isVisible());
+      await page.evaluate(() => document.getElementById("presentation").dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowRight", repeat: true, bubbles: true })));
+      assert.equal(await slideNumber(), "slide-15", "Held forward key cannot skip the closing pause");
+      await page.keyboard.press(key);
+      await page.waitForFunction(() => !document.getElementById("slide-16").hidden);
+    }
+    // Both review answer states survive a complete Stage reveal/reverse rehearsal.
+    for (const revealed of [false, true]) {
+      await go(15);
+      await page.evaluate(revealed => setClosing(revealed), revealed);
+      await click("#stage-toggle");
+      assert(!(await page.locator("#closing-reveal").isVisible()));
+      await page.keyboard.press("ArrowRight");
+      assert(await page.locator("#closing-reveal").isVisible());
+      await page.keyboard.press("ArrowLeft");
+      assert(!(await page.locator("#closing-reveal").isVisible()));
+      await page.keyboard.press("Escape");
+      assert.equal(await page.locator("#closing-reveal").isVisible(), revealed);
+      assert.equal(await page.locator("#next").getAttribute("aria-expanded"), String(revealed));
+    }
     await go(16);
     assert(!(await page.locator("#progress").isVisible()));
     assert.equal(await page.locator(".qa-links a").count(), 7);
@@ -531,6 +570,21 @@ const { mkdirSync } = require("node:fs");
         }
       }
       await exerciseDemo(true, String(size.width));
+      await go(15);
+      await page.evaluate(() => setClosing(false));
+      await click("#next");
+      assert.equal(await slideNumber(), "slide-15", "Reading Next reveals the closing answer");
+      assert(await page.locator("#closing-reveal").isVisible());
+      await click("#next");
+      await page.waitForFunction(() => !document.getElementById("slide-16").hidden);
+      await go(15);
+      await page.evaluate(() => setClosing(false));
+      await page.locator("#presentation").focus();
+      await page.keyboard.press("ArrowRight");
+      assert.equal(await slideNumber(), "slide-15", "Reading Right reveals the closing answer");
+      assert(await page.locator("#closing-reveal").isVisible());
+      await page.keyboard.press("ArrowRight");
+      await page.waitForFunction(() => !document.getElementById("slide-16").hidden);
       await go(13);
       await click("#metrics-open");
       assert(await page.locator("#metrics-detail").evaluate(node => node.scrollWidth <= node.clientWidth + 1));
