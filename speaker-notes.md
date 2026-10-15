@@ -2,7 +2,7 @@
 
 Governance, systems, and the new role of DesignOps in product teams
 
-Presentation review prototype 0.1. Primary source: the supplied **DesignOps as AI Infrastructure Presentation Outline ConfOps 2026**, including the original brief, frameworks, review notes, and FAQ. The approved conference revision keeps the interactive onboarding demo instead of a redundant conflict overview, keeps Govern / Context / Evaluate central, and moves the detailed stack and lifecycle to backups. There are 14 keynote slides, Q&A, and 7 backups (22 slides total).
+Presentation review prototype 0.1. Primary source: the supplied **DesignOps as AI Infrastructure Presentation Outline ConfOps 2026**, including the original brief, frameworks, review notes, and FAQ. The approved conference revision keeps the interactive onboarding demo instead of a redundant conflict overview, keeps Govern / Context / Evaluate central, and moves the detailed stack and lifecycle to backups. There are 15 keynote slides, Q&A, and 7 backups (23 slides total).
 
 Generated from the presenter-note data in app.js. To update this document after editing those notes: `node check.mjs --write-notes`.
 
@@ -10,19 +10,21 @@ Generated from the presenter-note data in app.js. To update this document after 
 
 | Act | Slides | Window | Duration |
 | --- | --- | --- | --- |
-| I: The acceleration paradox | 1–3 | 0:00–2:30 | 2 minutes 30 seconds |
-| II: The fix and the saved lesson | 4–7 | 2:30–10:10 | 7 minutes 40 seconds |
-| III: Make the operating model repeatable | 8–13 | 10:10–18:00 | 7 minutes 50 seconds |
-| IV: Closing | 14 | 18:00–20:00 | 2 minutes |
-| Q&A | 15, with optional 16–22 | 20:00–30:00 | 10 minutes |
+| I: Introduction and the acceleration paradox | 1–4 | 0:00–3:00 | 3 minutes |
+| II: The fix and the saved lesson | 5–8 | 3:00–10:40 | 7 minutes 40 seconds |
+| III: Make the operating model repeatable | 9–14 | 10:40–18:30 | 7 minutes 50 seconds |
+| IV: Closing | 15 | 18:30–20:00 | 1 minute 30 seconds |
+| Q&A | 16, with optional 17–23 | 20:00–30:00 | 10 minutes |
 
 The timing is a rehearsal guide, not an auto-advance schedule. Keep on-screen examples short enough to preserve discussion time. Read the full notes before presenting; the slides intentionally omit nuance that belongs in the spoken narrative.
 
-Slide 5's retained six-step demo runs from **3:30–8:00**, for **270 seconds**. The removed overview's 90 seconds are reassigned to explanation and interaction pauses: 30 seconds for the audience to absorb the blocked need, 30 seconds for form validation/keyboard feedback, and 30 seconds to review the saved lesson's owner and review trigger. No steps or exercises were added. The keynote remains exactly 1,200 seconds; Q&A remains 600 seconds.
+Slide 3's **About me** template occupies **1:30–2:00 (30 seconds)**. Replace its bracketed name, role/organization, two short bio prompts, and local portrait placeholder before presenting. No biography or portrait has been invented. The closing on slide 15 is shortened from 120 to **90 seconds**, preserving the 20-minute slot. The README explains how to substitute a local portrait without upload controls.
+
+Slide 6's retained six-step demo runs from **4:00–8:30**, for **270 seconds**. The removed overview's 90 seconds are reassigned to explanation and interaction pauses: 30 seconds for the audience to absorb the blocked need, 30 seconds for form validation/keyboard feedback, and 30 seconds to review the saved lesson's owner and review trigger. No steps or exercises were added. The keynote remains exactly 1,200 seconds; Q&A remains 600 seconds.
 
 ## Stage delivery and rehearsal
 
-Choose **Stage** or press **S** before sharing. Stage closes notes and dialogs and hides review chrome; **F** optionally enters fullscreen. Only three moments need builds: slide 3 fragmentation → alignment, slide 5's six existing demo steps, and slide 14 question → answer. All other diagrams are resolved static summaries. This changes delivery, not slide order or timing.
+Choose **Stage** or press **S** before sharing. Stage closes notes and dialogs and hides review chrome; **F** optionally enters fullscreen. Only three moments need builds: slide 4 fragmentation → alignment, slide 6's six existing demo steps, and slide 15 question → answer. All other diagrams are resolved static summaries. This changes delivery, not slide order or timing.
 
 **Right / Down / Page Down / Space** advances a build before the next slide; **Left / Up / Page Up** reverses a build before the previous slide. Builds are retained when revisiting slides. Home / End jumps to the first / last slide. Tab into the demo to type and submit; input and form-button keys retain native behavior. Tab beyond the form to resume slide keys. **Escape**, **S**, **Exit stage · Esc**, or leaving native fullscreen returns to review on the current slide. Escape works from the form too. N/G cannot open notes or the index on stage.
 
@@ -64,13 +66,29 @@ The example, AI-produced forms, team decisions, and ownership are all pre-author
 
 **Speaker notes:** Each discipline gains production capacity. PMs generate briefs and hypotheses; researchers synthesize evidence; designers explore concepts; engineers generate components and tests. Generation is more distributed, but expertise is not interchangeable. The same language model can interpret the product differently in each lane. These are categories of assistance, not guarantees that outputs are accurate. Ask the room to imagine all four lanes producing simultaneously. The new constraint is agreeing on what to produce, what fits the system, and who evaluates it.
 
-**Transition:** Without shared conditions, more output can create more variation.
+**Transition:** Before we look at that variation, a brief introduction to the person sharing this perspective.
 
 ---
 
-## 3. The acceleration paradox
+## 3. About me
 
-**Timing:** 1:30–2:30 (60 seconds)
+**Timing:** 1:30–2:00 (30 seconds)
+
+**Takeaway:** Introduce yourself and the perspective you bring to DesignOps and AI.
+
+**Visual concept:** A static speaker template with a name, role and organization, two short bio paragraphs, and a portrait placeholder.
+
+**Interaction / reveal:** No builds or controls. Replace the bracketed text and local photo placeholder before presenting.
+
+**Speaker notes:** This slide is a template, not a biography. Replace [Your name] and [Role · Organization] with your confirmed details. Use the first short paragraph for your work and experience, and the second for why DesignOps and AI matter to your practice. Replace the placeholder with a local portrait and meaningful alt text; no image or biographical claims have been invented. Keep the introduction to 30 seconds. This time comes from shortening the closing from 120 to 90 seconds; the keynote remains 1,200 seconds, the demo remains 270 seconds, and Q&A remains 600 seconds.
+
+**Transition:** Now return to the shared challenge: without common conditions, more output can create more variation.
+
+---
+
+## 4. The acceleration paradox
+
+**Timing:** 2:00–3:00 (60 seconds)
 
 **Takeaway:** Shared context and evaluation govern variation without eliminating useful exploration.
 
@@ -84,9 +102,9 @@ The example, AI-produced forms, team decisions, and ownership are all pre-author
 
 ---
 
-## 4. Govern. Context. Evaluate.
+## 5. Govern. Context. Evaluate.
 
-**Timing:** 2:30–3:30 (60 seconds)
+**Timing:** 3:00–4:00 (60 seconds)
 
 **Takeaway:** GOVERN: what can AI do? CONTEXT: what does it know? EVALUATE: what does good look like?
 
@@ -100,9 +118,9 @@ The example, AI-produced forms, team decisions, and ownership are all pre-author
 
 ---
 
-## 5. Fix the form. Keep the lesson.
+## 6. Fix the form. Keep the lesson.
 
-**Timing:** 3:30–8:00 (270 seconds)
+**Timing:** 4:00–8:30 (270 seconds)
 
 **Takeaway:** The team fixes the form. DesignOps makes the lesson available to the next team and its AI tools.
 
@@ -116,9 +134,9 @@ The example, AI-produced forms, team decisions, and ownership are all pre-author
 
 ---
 
-## 6. When generation is cheap, evaluation is strategic
+## 7. When generation is cheap, evaluation is strategic
 
-**Timing:** 8:00–9:00 (60 seconds)
+**Timing:** 8:30–9:30 (60 seconds)
 
 **Takeaway:** Automated checks support accountable human judgment; they cannot prove design quality.
 
@@ -132,9 +150,9 @@ The example, AI-produced forms, team decisions, and ownership are all pre-author
 
 ---
 
-## 7. The organizational learning loop
+## 8. The organizational learning loop
 
-**Timing:** 9:00–10:10 (70 seconds)
+**Timing:** 9:30–10:40 (70 seconds)
 
 **Takeaway:** Keep the decision and its reason in shared guidance, then check the next result.
 
@@ -148,9 +166,9 @@ The example, AI-produced forms, team decisions, and ownership are all pre-author
 
 ---
 
-## 8. The role expands; the fundamentals remain
+## 9. The role expands; the fundamentals remain
 
-**Timing:** 10:10–11:00 (50 seconds)
+**Timing:** 10:40–11:30 (50 seconds)
 
 **Takeaway:** People, process, and systems remain the foundations; their scope expands.
 
@@ -164,9 +182,9 @@ The example, AI-produced forms, team decisions, and ownership are all pre-author
 
 ---
 
-## 9. DesignOps as the control plane
+## 10. DesignOps as the control plane
 
-**Timing:** 11:00–11:50 (50 seconds)
+**Timing:** 11:30–12:20 (50 seconds)
 
 **Takeaway:** DesignOps connects distributed actors through shared rules, context, and evaluation.
 
@@ -180,9 +198,9 @@ The example, AI-produced forms, team decisions, and ownership are all pre-author
 
 ---
 
-## 10. Before AI / a proposed AI-enabled journey
+## 11. Before AI / a proposed AI-enabled journey
 
-**Timing:** 11:50–12:50 (60 seconds)
+**Timing:** 12:20–13:20 (60 seconds)
 
 **Takeaway:** Pilot collaborative production and use any capacity gained for customer learning.
 
@@ -196,9 +214,9 @@ The example, AI-produced forms, team decisions, and ownership are all pre-author
 
 ---
 
-## 11. From documentation to executable standards
+## 12. From documentation to executable standards
 
-**Timing:** 12:50–14:05 (75 seconds)
+**Timing:** 13:20–14:35 (75 seconds)
 
 **Takeaway:** Turn domain knowledge into versioned, reusable context and verifiable standards.
 
@@ -212,9 +230,9 @@ The example, AI-produced forms, team decisions, and ownership are all pre-author
 
 ---
 
-## 12. Measure speed and coherence
+## 13. Measure speed and coherence
 
-**Timing:** 14:05–15:45 (100 seconds)
+**Timing:** 14:35–16:15 (100 seconds)
 
 **Takeaway:** Evaluate the whole workflow: speed, review cost, quality, coherence, and customer outcomes.
 
@@ -222,15 +240,15 @@ The example, AI-produced forms, team decisions, and ownership are all pre-author
 
 **Interaction / reveal:** Stage: four static, paired comparisons. Review: All 10 measures opens the complete comparison dialog; Definitions links to the measurement backup, also accessible from Q&A.
 
-**Speaker notes:** These are approximate comparison values informed by the presenter's early experimentation, not exact measurements, benchmarks, or a forecast. The numbers remain unchanged from the earlier synthetic comparison; the presenter reports that they are close to informal experimental observations. Underlying records, sample sizes, and methods have not been supplied, so do not claim validated results or causal ROI. Baseline to pilot: median brief-to-validated-concept time 9 to 6 days; accepted production rate 2 to 3 artifacts per team-week; production effort 18 to 11 hours per concept; review effort 4 to 6 hours; rework 35% to 24%; applicable system checks passed 78% to 90%; open accessibility/quality defects 6 to 4 per 10 screens; design-to-code divergence 28% to 18%; experiments 1 to 2 per week; approved-context reuse 25% to 70%. Review effort rises in this comparison: faster generation does not imply less review. Leading/process measures signal behavior and readiness; outcome measures test delivered workflow results. System compliance is a leading quality signal, not proof of user benefit. Both sets of approximate values and their changes appear together, without competing bar scales. Percentage measures use percentage-point changes, not relative percentages. Match work scope, staffing, artifact definition, and evaluation criteria; include sample sizes and dispersion before presenting a validated comparison. Track customer task success separately. No customer outcome data is supplied.
+**Speaker notes:** These are approximate comparison values informed by the presenter's early experimentation, not exact measurements, benchmarks, or a forecast. The presenter supplied design production-rate ranges; the other nine comparisons remain unchanged from the earlier synthetic values, reported as close to informal observations. Underlying records, sample sizes, and methods have not been supplied, so do not claim validated results or causal ROI. Baseline to pilot: median brief-to-validated-concept time 9 to 6 days; design production rate ~3–4/wk to ~1–2/wk, accepted artifacts / in a team with 8w E2E Cycle. The change ≈−2/wk is a midpoint estimate: 1.5 minus 3.5, not an independently observed change. Weekly rate and the team's eight-week end-to-end cycle are different concepts; do not divide by eight or infer an eight-week total. Production rate decreases, so do not frame it as an improvement. Production effort is 18 to 11 hours per concept; review effort 4 to 6 hours; rework 35% to 24%; applicable system checks passed 78% to 90%; open accessibility/quality defects 6 to 4 per 10 screens; design-to-code divergence 28% to 18%; experiments 1 to 2 per week; approved-context reuse 25% to 70%. Review effort rises in this comparison: faster generation does not imply less review. Leading/process measures signal behavior and readiness; outcome measures test delivered workflow results. System compliance is a leading quality signal, not proof of user benefit. Both sets of approximate values and their changes appear together, without competing bar scales. Percentage measures use percentage-point changes, not relative percentages. Match work scope, staffing, artifact definition, and evaluation criteria; include sample sizes and dispersion before presenting a validated comparison. Track customer task success separately. No customer outcome data is supplied.
 
 **Transition:** Use those measures in one bounded pilot before scaling the operating model.
 
 ---
 
-## 13. Your first 30 days
+## 14. Your first 30 days
 
-**Timing:** 15:45–18:00 (135 seconds)
+**Timing:** 16:15–18:30 (135 seconds)
 
 **Takeaway:** A 30-day pilot can begin at team, product-area, or enterprise level with clear ownership.
 
@@ -244,9 +262,9 @@ The example, AI-produced forms, team decisions, and ownership are all pre-author
 
 ---
 
-## 14. Who designs the system?
+## 15. Who designs the system?
 
-**Timing:** 18:00–20:00 (120 seconds)
+**Timing:** 18:30–20:00 (90 seconds)
 
 **Takeaway:** AI doesn't eliminate the need for DesignOps. It makes DesignOps infrastructure.
 
@@ -254,13 +272,13 @@ The example, AI-produced forms, team decisions, and ownership are all pre-author
 
 **Interaction / reveal:** Stage moment 3: pause, press Right to reveal DesignOps, then Right for Q&A. Left hides the answer before moving back. Review retains its reveal button.
 
-**Speaker notes:** Slow down. Read the question and leave space: if AI becomes part of how we design products, who designs the system in which AI operates? Reveal DesignOps. This is not a territorial claim that one function owns all AI. It is an invitation for DesignOps to connect domain expertise, governance, knowledge, workflows, and evaluation. AI creates capacity. Systems create consistency. Stewardship creates trust. DesignOps connects all three. The future is not merely managing work around design; it is designing the infrastructure through which humans and AI create products together. The practical challenge is one workflow, a baseline, a maintained context package, named human checkpoints, and evidence that quality has not been traded for speed. End on the thesis and pause rather than adding more tools.
+**Speaker notes:** Use 90 seconds for the closing; its former 30 seconds now introduce the speaker on slide 3. Slow down. Read the question and leave space: if AI becomes part of how we design products, who designs the system in which AI operates? Reveal DesignOps. This is not a territorial claim that one function owns all AI. It is an invitation for DesignOps to connect domain expertise, governance, knowledge, workflows, and evaluation. AI creates capacity. Systems create consistency. Stewardship creates trust. DesignOps connects all three. The future is not merely managing work around design; it is designing the infrastructure through which humans and AI create products together. The practical challenge is one workflow, a baseline, a maintained context package, named human checkpoints, and evidence that quality has not been traded for speed. End on the thesis and pause rather than adding more tools.
 
 **Transition:** Let's talk. Where is your team generating faster than it can maintain coherence?
 
 ---
 
-## 15. Let's talk — Q&A
+## 16. Let's talk — Q&A
 
 **Timing:** 10-minute Q&A, outside keynote timing
 
@@ -276,7 +294,7 @@ The example, AI-produced forms, team decisions, and ownership are all pre-author
 
 ---
 
-## 16. Backup: shared governance ownership
+## 17. Backup: shared governance ownership
 
 **Timing:** Optional backup, outside keynote timing
 
@@ -292,7 +310,7 @@ The example, AI-produced forms, team decisions, and ownership are all pre-author
 
 ---
 
-## 17. Backup: operating-environment architect, not AI factory
+## 18. Backup: operating-environment architect, not AI factory
 
 **Timing:** Optional backup, outside keynote timing
 
@@ -308,7 +326,7 @@ The example, AI-produced forms, team decisions, and ownership are all pre-author
 
 ---
 
-## 18. Backup: an AI-ready design system
+## 19. Backup: an AI-ready design system
 
 **Timing:** Optional backup, outside keynote timing
 
@@ -324,7 +342,7 @@ The example, AI-produced forms, team decisions, and ownership are all pre-author
 
 ---
 
-## 19. Backup: model-agnostic workflows and canonical prompts
+## 20. Backup: model-agnostic workflows and canonical prompts
 
 **Timing:** Optional backup, outside keynote timing
 
@@ -340,7 +358,7 @@ The example, AI-produced forms, team decisions, and ownership are all pre-author
 
 ---
 
-## 20. Backup: metric definitions and measurement plan
+## 21. Backup: metric definitions and measurement plan
 
 **Timing:** Optional backup, outside keynote timing
 
@@ -348,7 +366,7 @@ The example, AI-produced forms, team decisions, and ownership are all pre-author
 
 **Visual concept:** Definitions, units, and collection methods beside a concise pilot protocol.
 
-**Interaction / reveal:** Dashboard returns to slide 12 with baseline and pilot visible together. Q&A returns to the topic menu.
+**Interaction / reveal:** Dashboard returns to slide 13 with baseline and pilot visible together. Q&A returns to the topic menu.
 
 **Speaker notes:** Define 'validated concept' before collecting time: reviewer acceptance plus the agreed user-evidence threshold. Count accepted artifacts, not raw generations. Separate elapsed days from person-hours, production from review, and quality defects from severity. Define denominators for compliance, rework, reuse, and divergence. Complete experiments include a recorded learning decision, not just a release. Compare similar tasks and staffing; document sample size, spread, exclusions, and complexity. Use approved data collection with appropriate privacy controls. Review effort may increase while total effort falls, but a small observational pilot cannot establish causality. Set decision thresholds in advance and track customer task success or other relevant product outcomes. Dashboard values are preliminary approximations informed by the presenter's early experimentation, not validated measurements.
 
@@ -356,7 +374,7 @@ The example, AI-produced forms, team decisions, and ownership are all pre-author
 
 ---
 
-## 21. Backup: Organizational memory is the advantage
+## 22. Backup: Organizational memory is the advantage
 
 **Timing:** Optional backup, outside keynote timing
 
@@ -372,7 +390,7 @@ The example, AI-produced forms, team decisions, and ownership are all pre-author
 
 ---
 
-## 22. Backup: DesignOps across the product lifecycle
+## 23. Backup: DesignOps across the product lifecycle
 
 **Timing:** Optional backup, outside keynote timing
 
@@ -388,22 +406,24 @@ The example, AI-produced forms, team decisions, and ownership are all pre-author
 
 ## Early experimentation: approximate values
 
-**Early experimentation · approximate values.** The presenter reports that these unchanged comparison values are close to informal experimentation data. They are approximations, not exact measurements, benchmarks, validated results, causal evidence, or a forecast. Baseline, pilot, and change are shown together. Changes use each metric's units; percentage measures use percentage points.
+**Early experimentation · approximate values.** The presenter reports that the comparison values are close to informal experimentation data and has supplied approximate ranges for design production rate. They are approximations, not exact measurements, benchmarks, validated results, causal evidence, or a forecast. Baseline, pilot, and change are shown together. Changes use each metric's units; percentage measures use percentage points.
 
-| Metric | Baseline | Pilot | Unit / denominator | Category |
-| --- | --- | --- | --- | --- |
-| Production effort | 18h | 11h | person-hours / accepted concept | Leading / process |
-| Review effort | 4h | 6h | person-hours / accepted concept | Leading / process |
-| Design-system compliance | 78% | 90% | % applicable checks passed | Leading / process |
-| Approved-context reuse | 25% | 70% | % artifacts citing approved context | Leading / process |
-| Experimentation cadence | 1/wk | 2/wk | completed experiments / week | Leading / process |
-| Brief → validated concept | 9d | 6d | median elapsed days | Workflow outcome |
-| Design production rate | 2/wk | 3/wk | accepted artifacts / team-week | Workflow outcome |
-| Rework / revision rate | 35% | 24% | % artifacts needing major revision | Workflow outcome |
-| Accessibility / quality defects | 6/10 | 4/10 | open defects / 10 reviewed screens | Workflow outcome |
-| Design-to-code divergence | 28% | 18% | % audited UI instances divergent | Workflow outcome |
+| Metric | Baseline | Pilot | Change | Unit / context | Category |
+| --- | --- | --- | --- | --- | --- |
+| Production effort | 18h | 11h | −7 h | person-hours / accepted concept | Leading / process |
+| Review effort | 4h | 6h | +2 h | person-hours / accepted concept | Leading / process |
+| Design-system compliance | 78% | 90% | +12 pp | % applicable checks passed | Leading / process |
+| Approved-context reuse | 25% | 70% | +45 pp | % artifacts citing approved context | Leading / process |
+| Experimentation cadence | 1/wk | 2/wk | +1 /wk | completed experiments / week | Leading / process |
+| Brief → validated concept | 9d | 6d | −3 d | median elapsed days | Workflow outcome |
+| Design production rate | ~3–4/wk | ~1–2/wk | ≈−2/wk (midpoint estimate) | accepted artifacts / in a team with 8w E2E Cycle | Workflow outcome |
+| Rework / revision rate | 35% | 24% | −11 pp | % artifacts needing major revision | Workflow outcome |
+| Accessibility / quality defects | 6/10 | 4/10 | −2 /10 | open defects / 10 reviewed screens | Workflow outcome |
+| Design-to-code divergence | 28% | 18% | −10 pp | % audited UI instances divergent | Workflow outcome |
 
-The existing synthetic baseline and pilot values have been retained as approximations informed by the presenter's early experimentation. Underlying records, sample sizes, and methods have not been supplied. Review effort increases in the comparison. Leading/process classifications are useful for this workflow, not universal definitions. No actual customer-outcome evidence has been supplied.
+Design production rate is **~3–4/wk baseline → ~1–2/wk pilot**, with **≈−2/wk** computed from the range midpoints (1.5 − 3.5), not a separately observed change. The rate decreases; it is not colored as an improvement. The context is **accepted artifacts / in a team with 8w E2E Cycle**. The rate is per week; the team's eight-week end-to-end cycle is context, not a replacement denominator.
+
+The other nine synthetic comparisons remain unchanged as approximations informed by the presenter's early experimentation. Underlying records, sample sizes, and methods have not been supplied. Review effort increases in the comparison. Leading/process classifications are useful for this workflow, not universal definitions. No actual customer-outcome evidence has been supplied.
 
 ## Operational definitions and collection
 
@@ -424,26 +444,27 @@ Record sample size, spread, staffing, complexity, exclusions, and data-collectio
 
 | Source idea / review request | Where preserved |
 | --- | --- |
-| Core thesis, central question, capacity versus coherence | 1–3, 14 |
-| Illustrative onboarding problem and user requirement, within the interactive demo | 5 |
-| Product/customer journey before and after AI; Mission, Milestones, Metrics | 10 |
-| DesignOps fundamentals and expanding responsibilities | 8, 13, 17 |
-| AI control plane; domain ownership | 9, 16 |
-| Stewardship × Systems × Enablement reconciled with Govern / Context / Evaluate | 4 and its notes |
-| Organizational memory and five-layer AI design stack | 7, 18, 21 (backup) |
-| Evaluation scarcity and six-part quality rubric | 6 |
-| Discover → Define → Design → Build → Measure | 22 (backup) and its notes |
-| Designer–engineer pairing; user need → fix → saved lesson, with local HTML/CSS | 5 |
-| Learning captured into context and standards | 7, 11 |
-| Production time, rate, review, rework, consistency, and measurement | 12, 20 |
-| Canonical prompts and seven artifact transformations | 11 (four on stage; all seven in review and notes), 19 |
-| Team, product-area, and enterprise altitudes | 13 (team on stage; all three in review and notes) |
-| Evolving role and work archetypes | 17 |
-| Risks if infrastructure is absent | 3, 5 and their notes |
-| Shared governance, AI-team concern, AI-ready systems, model change, prompt ownership | 15–22 |
-| Tomorrow's actions: map, identify, codify, standardize, measure | 13, 15 |
+| Core thesis, central question, capacity versus coherence | 1–2, 4, 15 |
+| User-requested speaker template: name, role, portrait, two short bio paragraphs | 3 |
+| Illustrative onboarding problem and user requirement, within the interactive demo | 6 |
+| Product/customer journey before and after AI; Mission, Milestones, Metrics | 11 |
+| DesignOps fundamentals and expanding responsibilities | 9, 14, 18 |
+| AI control plane; domain ownership | 10, 17 |
+| Stewardship × Systems × Enablement reconciled with Govern / Context / Evaluate | 5 and its notes |
+| Organizational memory and five-layer AI design stack | 8, 19, 22 (backup) |
+| Evaluation scarcity and six-part quality rubric | 7 |
+| Discover → Define → Design → Build → Measure | 23 (backup) and its notes |
+| Designer–engineer pairing; user need → fix → saved lesson, with local HTML/CSS | 6 |
+| Learning captured into context and standards | 8, 12 |
+| Production time, rate, review, rework, consistency, and measurement | 13, 21 |
+| Canonical prompts and seven artifact transformations | 12 (four on stage; all seven in review and notes), 20 |
+| Team, product-area, and enterprise altitudes | 14 (team on stage; all three in review and notes) |
+| Evolving role and work archetypes | 18 |
+| Risks if infrastructure is absent | 4, 6 and their notes |
+| Shared governance, AI-team concern, AI-ready systems, model change, prompt ownership | 16–23 |
+| Tomorrow's actions: map, identify, codify, standardize, measure | 14, 16 |
 
-The Spanish review notes are implemented in English. Traditional DesignOps work is expanded, not erased. The proposed workflow is explicitly a hypothesis to validate. The source's tool mentions do not imply integrations; the demonstration uses local HTML/CSS. The source's unverified external archetype attribution is not reproduced as a factual attribution. Rhetorical counts are not converted into statistical claims. The stack and lifecycle walkthroughs are preserved in backups to avoid competing with the central operating model. The keynote now has 14 slides. The standalone conflict overview was removed at the user's request; its 90 seconds now support explanation and interaction pauses within the retained demo, without changing the six-step behavior or plain-language copy.
+The Spanish review notes are implemented in English. Traditional DesignOps work is expanded, not erased. The proposed workflow is explicitly a hypothesis to validate. The source's tool mentions do not imply integrations; the demonstration uses local HTML/CSS. The source's unverified external archetype attribution is not reproduced as a factual attribution. Rhetorical counts are not converted into statistical claims. The stack and lifecycle walkthroughs are preserved in backups to avoid competing with the central operating model. The keynote now has 15 slides. The standalone conflict overview was removed at the user's request; its 90 seconds now support explanation and interaction pauses within the retained demo, without changing the six-step behavior or plain-language copy.
 
 ## Conversion and delivery notes
 

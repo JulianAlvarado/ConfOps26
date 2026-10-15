@@ -1,23 +1,29 @@
 # DesignOps as AI Infrastructure
 
-**Presentation review prototype, version 0.1.** A local, dependency-free HTML/CSS/JavaScript keynote: 14 main slides (20 minutes), a Q&A menu (10 minutes), and seven optional backups.
+**Presentation review prototype, version 0.1.** A local, dependency-free HTML/CSS/JavaScript keynote: 15 main slides (20 minutes), a Q&A menu (10 minutes), and seven optional backups.
 
 ## Conference story
 
-Govern / Context / Evaluate follows the acceleration paradox at **2:30**. The retained interactive demonstration, **“Fix the form. Keep the lesson.”**, is now slide **5**, beginning at **3:30**. Its **270 seconds (4 minutes 30 seconds)** include the removed overview slide's 90 seconds as explanation, audience-reading, form-interaction, and review pauses—not new steps or an extra exercise. The keynote remains exactly **1,200 seconds**. The detailed stack and lifecycle remain available in backups.
+Govern / Context / Evaluate follows the acceleration paradox at **3:00**. The retained interactive demonstration, **“Fix the form. Keep the lesson.”**, is now slide **6**, beginning at **4:00**. Its **270 seconds (4 minutes 30 seconds)** include the removed overview slide's 90 seconds as explanation, audience-reading, form-interaction, and review pauses—not new steps or an extra exercise. The keynote remains exactly **1,200 seconds**. The detailed stack and lifecycle remain available in backups.
 
 | Slides | Story | Timing |
 | --- | --- | --- |
-| 1–3 | Opening → distributed generation → acceleration paradox | 0:00–2:30 |
-| 4–7 | Govern / Context / Evaluate → decision demo → accountable evaluation → learning loop | 2:30–10:10 |
-| 8–13 | Expanded role → control plane → collaborative journey → reusable standards → measures → 30-day pilot | 10:10–18:00 |
-| 14 | Who designs the system? | 18:00–20:00 |
-| 15 | Q&A and contact links | 20:00–30:00 |
-| 16–22 | Ownership, role, AI-ready system, model changes, measurement, context stack, lifecycle | Optional backups |
+| 1–4 | Opening → distributed generation → About me → acceleration paradox | 0:00–3:00 |
+| 5–8 | Govern / Context / Evaluate → decision demo → accountable evaluation → learning loop | 3:00–10:40 |
+| 9–14 | Expanded role → control plane → collaborative journey → reusable standards → measures → 30-day pilot | 10:40–18:30 |
+| 15 | Who designs the system? | 18:30–20:00 |
+| 16 | Q&A and contact links | 20:00–30:00 |
+| 17–23 | Ownership, role, AI-ready system, model changes, measurement, context stack, lifecycle | Optional backups |
 
 The six demo steps tell one story: **user need → AI mistake → team decision → working fix → saved lesson → next result**. Someone needs to start alone, but the first form requires an invitation. The team moves invitations after setup; DesignOps keeps the reason in shared guidance for the next team and its AI tools. The lesson retains a source, scope, version, owner, and review trigger without document codes on the slide. All examples are pre-authored and illustrative; no actual research, organizational policy, or measured improvement is implied.
 
 The same vocabulary continues through the learning loop and documentation slides: **decision** is what the team changed, **saved lesson** includes why, and **shared guidance** makes it available for reuse. The next result still needs review. Stage, review, Reading view, live announcements, and speaker notes use these terms rather than invented document identifiers.
+
+## Speaker template
+
+Slide **3**, **About me**, is a static template with `[Your name]`, `[Role · Organization]`, two short paragraph prompts, and `[Your photo]`. It contains no invented biography or portrait and adds no controls. Its **30 seconds (1:30–2:00)** come from the closing, now **90 seconds** rather than 120; the keynote remains 1,200 seconds, demo 270 seconds, and Q&A 600 seconds.
+
+Replace the bracketed text directly in `index.html` under `.about-slide`. Keep each bio paragraph to one or two short sentences. To add a portrait later, put the image beside the deck (for example `portrait.jpg`) and replace the `.photo-placeholder` element inside `.about-photo` with `<img src="portrait.jpg" alt="Portrait of [your name]" width="800" height="1000">`, using the actual image dimensions and name. The existing frame fits a 4:5 local portrait with `object-fit: cover`; adjust `object-position` if needed. No upload UI, external image request, or new dependency is required.
 
 ## Run
 
@@ -43,9 +49,9 @@ Only three slides have builds:
 
 | Slide | Stage build sequence |
 | --- | --- |
-| 3 | Fully visible fragmentation → apply shared standards → next slide |
-| 5 | Six unchanged plain-language demo steps → next slide |
-| 14 | Question → answer → Q&A |
+| 4 | Fully visible fragmentation → apply shared standards → next slide |
+| 6 | Six unchanged plain-language demo steps → next slide |
+| 15 | Question → answer → Q&A |
 
 **Right / Down / Page Down / Space** advances the current build before moving to the next slide. **Left / Up / Page Up** reverses a build, then moves to the previous slide. Returning to a slide retains its stage build. Home / End jumps to the first / last slide. Keys never auto-repeat through builds.
 
@@ -53,7 +59,7 @@ The demo's buttons and form remain keyboard accessible. **Tab** reaches its labe
 
 Entering Stage starts its three build sequences afresh but snapshots the review builds and form. Exiting restores those states, diagram selections, and the manual Reading view preference. Notes and dialogs stay closed on exit; **N/G are inactive on stage**, so they cannot accidentally appear to the audience. Fullscreen permission failures are announced and leave windowed Stage usable.
 
-Other diagrams are resolved and static: all roles generating; the complete learning loop; the original control-plane hub-and-spoke diagram with every connection visible; both journey paths; all stack layers; the lifecycle overview; and a team-level pilot. Slide 9 keeps its diagram in Stage and desktop review, with larger stage labels and no stage connection toggle; Reading view retains the text equivalent. All detailed interactions, lifecycle/altitude choices, and the ten-measure dialog remain available in review.
+Other diagrams are resolved and static: all roles generating; the complete learning loop; the original control-plane hub-and-spoke diagram with every connection visible; both journey paths; all stack layers; the lifecycle overview; and a team-level pilot. Slide 10 keeps its diagram in Stage and desktop review, with larger stage labels and no stage connection toggle; Reading view retains the text equivalent. All detailed interactions, lifecycle/altitude choices, and the ten-measure dialog remain available in review.
 
 ### Projection typography
 
@@ -77,23 +83,23 @@ Small reference-only text remains in act/topic eyebrows, slide numbers, decorati
 | Topic links on Q&A | Open the relevant backup |
 | `#13`, for example | Link directly to a slide |
 
-All animations are finite and respect `prefers-reduced-motion`. Slides never advance automatically. In review, in-slide buttons are separate from slide navigation; press Tab and Enter/Space to operate them. Reveal steps expose their current state and announce updates. Interaction state is preserved while navigating within the page and resets on reload. Keynote progress reaches 100% at slide 14; Q&A and backups have separate labels and no keynote progress bar.
+All animations are finite and respect `prefers-reduced-motion`. Slides never advance automatically. In review, in-slide buttons are separate from slide navigation; press Tab and Enter/Space to operate them. Reveal steps expose their current state and announce updates. Interaction state is preserved while navigating within the page and resets on reload. Keynote progress reaches 100% at slide 15; Q&A and backups have separate labels and no keynote progress bar.
 
 Opening Notes focuses its scrollable panel. Arrow, Page Up/Down, Home/End, and Space keys operate the panel instead of advancing slides; N or Escape closes it. Text-input controls retain their native keyboard behavior. The notes panel is part of the same display, **not a private presenter window**; close it before audience screen sharing.
 
 ## Review interactions
 
 - **2:** distribute generation across four roles.
-- **3:** trace the acceleration chain and toggle shared standards.
-- **5:** follow the user's need, AI mistake, team decision, working fix, saved lesson, and next result. The form is interactive at step 4; Reset clears it and restarts the example.
-- **7:** follow the closed organizational learning loop.
-- **9:** connect/disconnect the shared control plane.
-- **10:** replay sequential handoffs versus collaborative production.
-- **12:** compare four approximate baseline/pilot measures informed by early experimentation; open all ten in a detail dialog or jump to operational definitions.
-- **13:** compare team, product-area, and enterprise ownership.
-- **14:** pause, then reveal the answer.
-- **21 (backup):** build the organizational-memory stack.
-- **22 (backup):** inspect AI assistance, infrastructure, and review at each lifecycle stage.
+- **4:** trace the acceleration chain and toggle shared standards.
+- **6:** follow the user's need, AI mistake, team decision, working fix, saved lesson, and next result. The form is interactive at step 4; Reset clears it and restarts the example.
+- **8:** follow the closed organizational learning loop.
+- **10:** connect/disconnect the shared control plane.
+- **11:** replay sequential handoffs versus collaborative production.
+- **13:** compare four approximate baseline/pilot measures informed by early experimentation; open all ten in a detail dialog or jump to operational definitions.
+- **14:** compare team, product-area, and enterprise ownership.
+- **15:** pause, then reveal the answer.
+- **22 (backup):** build the organizational-memory stack.
+- **23 (backup):** inspect AI assistance, infrastructure, and review at each lifecycle stage.
 
 ## Files and editing
 
@@ -109,7 +115,7 @@ Each slide has a contiguous numeric ID, descriptive `data-title`, and `data-act`
 ## Assumptions and qualifications
 
 1. English is the presentation language. The supplied outline, including Spanish review notes, is the primary narrative source. No outside evidence or unverified source attribution is added.
-2. All ten dashboard comparisons are labeled **“Early experimentation · approximate values.”** The presenter reports that the existing synthetic values are close to informal experimentation data; the numbers are preserved, not replaced with exact measurements. Underlying records, sample sizes, and methods have not been supplied. Do not present them as validated organizational results, benchmarks, causal evidence, or forecasts. Review effort increases in the comparison. The slide highlights four measures; the detail dialog preserves all ten. Baseline, pilot, and absolute change appear together. Percentage measures show percentage-point changes (pp), not relative percentage changes.
+2. All ten dashboard comparisons are labeled **“Early experimentation · approximate values.”** The presenter supplied **Design production rate: ~3–4/wk baseline → ~1–2/wk pilot**, with **≈−2/wk** explicitly a **midpoint estimate** (1.5 − 3.5), not a separately observed change. Its context is **accepted artifacts / in a team with 8w E2E Cycle**: a weekly rate, not a rate per eight-week cycle. The decrease uses the warning color, not an improvement indication. The other nine synthetic comparisons are unchanged; the presenter reports they are close to informal experimentation data. Underlying records, sample sizes, and methods have not been supplied. Do not present these as validated results, benchmarks, causal evidence, or forecasts. The slide highlights four measures; the dialog and notes preserve all ten. Percentage changes use percentage points (pp), not relative percentages.
 3. Leading/process signals: production effort, review effort, system compliance, context reuse, experimentation cadence. Workflow outcomes: concept cycle time, accepted production rate, major rework, open accessibility/quality defects, and design-to-code divergence. These categories are an operational framing, not universal classifications. Actual user outcomes require separate evidence.
 4. The before/after journey is a simplified comparison and a proposed operating model to validate. Animation durations are not delivery-time measurements. The first-30-days plan is a suggested sequence, not a delivery promise.
 5. The decision example is self-contained and pre-authored. Solo setup is an assumed scenario, not research; optional invitations are an illustrative requirement, not a universal onboarding rule. The saved lesson illustrates accountable judgment, source, scope, ownership, and review after the pilot or source change. Meeting that requirement does not prove accessibility or user benefit. The real local form performs no account creation and sends or stores no user input; there is no live code generation or invented Paper/Figma integration.
@@ -129,4 +135,4 @@ This is the HTML deliverable, not a `.pptx`. The content uses fixed-ratio sectio
 - **Lifecycle/altitude selectors:** use static summary layouts or duplicate slides for each state.
 - **Closing:** retain the question and answer as two builds. Speaker notes remain separate editable text.
 
-Print CSS provides a browser handout of all 22 slides, including the closing answer. Use landscape, background graphics on, no browser headers/footers, and 100% scale; PDF print behavior varies by browser. Printing is not a PowerPoint conversion. A printout uses current interaction states; prepare those before printing if a particular state is desired.
+Print CSS provides a browser handout of all 23 slides, including the closing answer. Use landscape, background graphics on, no browser headers/footers, and 100% scale; PDF print behavior varies by browser. Printing is not a PowerPoint conversion. A printout uses current interaction states; prepare those before printing if a particular state is desired.

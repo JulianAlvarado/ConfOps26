@@ -1,6 +1,6 @@
 "use strict";
 
-const keynoteCount = 14;
+const keynoteCount = 15;
 const notes = [
   {
     seconds: 45,
@@ -16,7 +16,15 @@ const notes = [
     visual: "Four parallel lanes: product, research, design, and engineering.",
     interaction: "Stage: all four roles are resolved and visible. Review: Distribute generation activates one role per click; a fifth click resets the example.",
     body: "Each discipline gains production capacity. PMs generate briefs and hypotheses; researchers synthesize evidence; designers explore concepts; engineers generate components and tests. Generation is more distributed, but expertise is not interchangeable. The same language model can interpret the product differently in each lane. These are categories of assistance, not guarantees that outputs are accurate. Ask the room to imagine all four lanes producing simultaneously. The new constraint is agreeing on what to produce, what fits the system, and who evaluates it.",
-    transition: "Without shared conditions, more output can create more variation."
+    transition: "Before we look at that variation, a brief introduction to the person sharing this perspective."
+  },
+  {
+    seconds: 30,
+    takeaway: "Introduce yourself and the perspective you bring to DesignOps and AI.",
+    visual: "A static speaker template with a name, role and organization, two short bio paragraphs, and a portrait placeholder.",
+    interaction: "No builds or controls. Replace the bracketed text and local photo placeholder before presenting.",
+    body: "This slide is a template, not a biography. Replace [Your name] and [Role · Organization] with your confirmed details. Use the first short paragraph for your work and experience, and the second for why DesignOps and AI matter to your practice. Replace the placeholder with a local portrait and meaningful alt text; no image or biographical claims have been invented. Keep the introduction to 30 seconds. This time comes from shortening the closing from 120 to 90 seconds; the keynote remains 1,200 seconds, the demo remains 270 seconds, and Q&A remains 600 seconds.",
+    transition: "Now return to the shared challenge: without common conditions, more output can create more variation."
   },
   {
     seconds: 60,
@@ -95,7 +103,7 @@ const notes = [
     takeaway: "Evaluate the whole workflow: speed, review cost, quality, coherence, and customer outcomes.",
     visual: "Four large comparisons show baseline, pilot, and change together: concept time, production rate, review effort, and system compliance.",
     interaction: "Stage: four static, paired comparisons. Review: All 10 measures opens the complete comparison dialog; Definitions links to the measurement backup, also accessible from Q&A.",
-    body: "These are approximate comparison values informed by the presenter's early experimentation, not exact measurements, benchmarks, or a forecast. The numbers remain unchanged from the earlier synthetic comparison; the presenter reports that they are close to informal experimental observations. Underlying records, sample sizes, and methods have not been supplied, so do not claim validated results or causal ROI. Baseline to pilot: median brief-to-validated-concept time 9 to 6 days; accepted production rate 2 to 3 artifacts per team-week; production effort 18 to 11 hours per concept; review effort 4 to 6 hours; rework 35% to 24%; applicable system checks passed 78% to 90%; open accessibility/quality defects 6 to 4 per 10 screens; design-to-code divergence 28% to 18%; experiments 1 to 2 per week; approved-context reuse 25% to 70%. Review effort rises in this comparison: faster generation does not imply less review. Leading/process measures signal behavior and readiness; outcome measures test delivered workflow results. System compliance is a leading quality signal, not proof of user benefit. Both sets of approximate values and their changes appear together, without competing bar scales. Percentage measures use percentage-point changes, not relative percentages. Match work scope, staffing, artifact definition, and evaluation criteria; include sample sizes and dispersion before presenting a validated comparison. Track customer task success separately. No customer outcome data is supplied.",
+    body: "These are approximate comparison values informed by the presenter's early experimentation, not exact measurements, benchmarks, or a forecast. The presenter supplied design production-rate ranges; the other nine comparisons remain unchanged from the earlier synthetic values, reported as close to informal observations. Underlying records, sample sizes, and methods have not been supplied, so do not claim validated results or causal ROI. Baseline to pilot: median brief-to-validated-concept time 9 to 6 days; design production rate ~3–4/wk to ~1–2/wk, accepted artifacts / in a team with 8w E2E Cycle. The change ≈−2/wk is a midpoint estimate: 1.5 minus 3.5, not an independently observed change. Weekly rate and the team's eight-week end-to-end cycle are different concepts; do not divide by eight or infer an eight-week total. Production rate decreases, so do not frame it as an improvement. Production effort is 18 to 11 hours per concept; review effort 4 to 6 hours; rework 35% to 24%; applicable system checks passed 78% to 90%; open accessibility/quality defects 6 to 4 per 10 screens; design-to-code divergence 28% to 18%; experiments 1 to 2 per week; approved-context reuse 25% to 70%. Review effort rises in this comparison: faster generation does not imply less review. Leading/process measures signal behavior and readiness; outcome measures test delivered workflow results. System compliance is a leading quality signal, not proof of user benefit. Both sets of approximate values and their changes appear together, without competing bar scales. Percentage measures use percentage-point changes, not relative percentages. Match work scope, staffing, artifact definition, and evaluation criteria; include sample sizes and dispersion before presenting a validated comparison. Track customer task success separately. No customer outcome data is supplied.",
     transition: "Use those measures in one bounded pilot before scaling the operating model."
   },
   {
@@ -107,11 +115,11 @@ const notes = [
     transition: "Return to the central question: if AI participates in design, who designs its operating environment?"
   },
   {
-    seconds: 120,
+    seconds: 90,
     takeaway: "AI doesn't eliminate the need for DesignOps. It makes DesignOps infrastructure.",
     visual: "A quiet question, a deliberate answer reveal, and three concluding statements.",
     interaction: "Stage moment 3: pause, press Right to reveal DesignOps, then Right for Q&A. Left hides the answer before moving back. Review retains its reveal button.",
-    body: "Slow down. Read the question and leave space: if AI becomes part of how we design products, who designs the system in which AI operates? Reveal DesignOps. This is not a territorial claim that one function owns all AI. It is an invitation for DesignOps to connect domain expertise, governance, knowledge, workflows, and evaluation. AI creates capacity. Systems create consistency. Stewardship creates trust. DesignOps connects all three. The future is not merely managing work around design; it is designing the infrastructure through which humans and AI create products together. The practical challenge is one workflow, a baseline, a maintained context package, named human checkpoints, and evidence that quality has not been traded for speed. End on the thesis and pause rather than adding more tools.",
+    body: "Use 90 seconds for the closing; its former 30 seconds now introduce the speaker on slide 3. Slow down. Read the question and leave space: if AI becomes part of how we design products, who designs the system in which AI operates? Reveal DesignOps. This is not a territorial claim that one function owns all AI. It is an invitation for DesignOps to connect domain expertise, governance, knowledge, workflows, and evaluation. AI creates capacity. Systems create consistency. Stewardship creates trust. DesignOps connects all three. The future is not merely managing work around design; it is designing the infrastructure through which humans and AI create products together. The practical challenge is one workflow, a baseline, a maintained context package, named human checkpoints, and evidence that quality has not been traded for speed. End on the thesis and pause rather than adding more tools.",
     transition: "Let's talk. Where is your team generating faster than it can maintain coherence?"
   },
   {
@@ -158,7 +166,7 @@ const notes = [
     seconds: 0,
     takeaway: "Operational definitions, comparable work, and evidence qualifications matter more than dashboard polish.",
     visual: "Definitions, units, and collection methods beside a concise pilot protocol.",
-    interaction: "Dashboard returns to slide 12 with baseline and pilot visible together. Q&A returns to the topic menu.",
+    interaction: "Dashboard returns to slide 13 with baseline and pilot visible together. Q&A returns to the topic menu.",
     body: "Define 'validated concept' before collecting time: reviewer acceptance plus the agreed user-evidence threshold. Count accepted artifacts, not raw generations. Separate elapsed days from person-hours, production from review, and quality defects from severity. Define denominators for compliance, rework, reuse, and divergence. Complete experiments include a recorded learning decision, not just a release. Compare similar tasks and staffing; document sample size, spread, exclusions, and complexity. Use approved data collection with appropriate privacy controls. Review effort may increase while total effort falls, but a small observational pilot cannot establish causality. Set decision thresholds in advance and track customer task success or other relevant product outcomes. Dashboard values are preliminary approximations informed by the presenter's early experimentation, not validated measurements.",
     transition: "Return to the dashboard or Q&A."
   },
@@ -195,7 +203,7 @@ const metrics = [
   { name: "Approved-context reuse", group: 0, baseline: 25, pilot: 70, max: 100, unit: "% artifacts citing approved context", short: "%", better: "higher", scale: "0–100%" },
   { name: "Experimentation cadence", group: 0, baseline: 1, pilot: 2, max: 4, unit: "completed experiments / week", short: "/wk", better: "context", scale: "0–4 /wk" },
   { name: "Brief → validated concept", group: 1, baseline: 9, pilot: 6, max: 12, unit: "median elapsed days", short: "d", better: "lower", scale: "0–12 d" },
-  { name: "Design production rate", group: 1, baseline: 2, pilot: 3, max: 4, unit: "accepted artifacts / team-week", short: "/wk", better: "higher", scale: "0–4 /wk" },
+  { name: "Design production rate", group: 1, baseline: [3, 4], pilot: [1, 2], max: 4, unit: "accepted artifacts / in a team with 8w E2E Cycle", short: "/wk", better: "higher", scale: "0–4 /wk" },
   { name: "Rework / revision rate", group: 1, baseline: 35, pilot: 24, max: 100, unit: "% artifacts needing major revision", short: "%", better: "lower", scale: "0–100%" },
   { name: "Accessibility / quality defects", group: 1, baseline: 6, pilot: 4, max: 10, unit: "open defects / 10 reviewed screens", short: "/10", better: "lower", scale: "0–10 /10" },
   { name: "Design-to-code divergence", group: 1, baseline: 28, pilot: 18, max: 100, unit: "% audited UI instances divergent", short: "%", better: "lower", scale: "0–100%" }
@@ -248,6 +256,23 @@ const altitudes = {
   product: "Cross-functional leads + a system owner coordinate shared patterns and measures.",
   enterprise: "Federated product owners operate within Security, Legal, IT, and platform guardrails."
 };
+
+function metricValue(metric, scenario) {
+  const value = metric[scenario];
+  return `${Array.isArray(value) ? `~${value.join("–")}` : value}${metric.short}`;
+}
+
+function metricDelta(metric) {
+  const midpoint = value => Array.isArray(value) ? (value[0] + value[1]) / 2 : value;
+  return midpoint(metric.pilot) - midpoint(metric.baseline);
+}
+
+function metricChange(metric) {
+  const delta = metricDelta(metric);
+  const approximate = Array.isArray(metric.baseline) || Array.isArray(metric.pilot);
+  const units = metric.short === "%" ? " pp" : `${approximate ? "" : " "}${metric.short}`;
+  return `${approximate ? "≈" : ""}${delta > 0 ? "+" : "−"}${Math.abs(delta)}${units}`;
+}
 
 const slides = [...document.querySelectorAll(".slide")];
 const $ = (selector) => document.querySelector(selector);
@@ -442,18 +467,18 @@ function setClosing(revealed) {
 }
 
 function stageAdvance(direction) {
-  if (state.index === 2) {
+  if (state.index === 3) {
     const aligned = $("#fragmentation").classList.contains("aligned");
     if (aligned !== (direction > 0)) {
       setAligned(direction > 0);
       return;
     }
   }
-  if (state.index === 4 && (direction > 0 ? state.pair < 5 : state.pair > 0)) {
+  if (state.index === 5 && (direction > 0 ? state.pair < 5 : state.pair > 0)) {
     setPair(state.pair + direction);
     return;
   }
-  if (state.index === 13 && $("#closing-reveal").hidden === (direction > 0)) {
+  if (state.index === 14 && $("#closing-reveal").hidden === (direction > 0)) {
     setClosing(direction > 0);
     return;
   }
@@ -500,27 +525,25 @@ function buildMetrics() {
     if (className) element.className = className;
     return element;
   };
-  const change = (metric) => {
-    const delta = metric.pilot - metric.baseline;
-    const units = metric.short === "%" ? " pp" : ` ${metric.short}`;
-    return `${delta > 0 ? "+" : "−"}${Math.abs(delta)}${units}`;
-  };
   // Four talk-level comparisons; the complete dataset remains in the detail dialog.
   for (const index of [5, 6, 1, 2]) {
     const metric = metrics[index];
     const card = document.createElement("article");
-    card.className = `metric-card${index === 1 ? " warning" : ""}`;
+    card.className = `metric-card${index === 1 || (metric.better === "higher" && metricDelta(metric) < 0) ? " warning" : ""}`;
     card.dataset.metric = String(index);
     card.append(make("p", metric.group === 0 ? "LEADING / PROCESS" : "WORKFLOW OUTCOME", "metric-category"));
     card.append(make("h3", metric.name, "metric-name"));
     const comparison = document.createElement("dl");
     comparison.className = "metric-comparison";
-    for (const [label, value] of [["Baseline", `${metric.baseline}${metric.short}`], ["Pilot", `${metric.pilot}${metric.short}`], ["Change", change(metric)]]) {
+    for (const [label, value] of [["Baseline", metricValue(metric, "baseline")], ["Pilot", metricValue(metric, "pilot")], ["Change", metricChange(metric)]]) {
       const entry = document.createElement("div");
       entry.append(make("dt", label), make("dd", value));
       comparison.append(entry);
     }
     card.append(comparison, make("p", metric.unit, "metric-unit"));
+    if (Array.isArray(metric.baseline) || Array.isArray(metric.pilot)) {
+      card.append(make("p", "Change: midpoint estimate", "metric-estimate"));
+    }
     $("#metric-dashboard").append(card);
   }
   ["LEADING / PROCESS SIGNALS", "WORKFLOW OUTCOME MEASURES"].forEach((label, group) => {
@@ -542,10 +565,13 @@ function buildMetrics() {
       name.scope = "row";
       name.append(make("small", metric.unit));
       row.append(name);
-      for (const [i, value] of [`${metric.baseline}${metric.short}`, `${metric.pilot}${metric.short}`, change(metric)].entries()) {
+      for (const [i, value] of [metricValue(metric, "baseline"), metricValue(metric, "pilot"), metricChange(metric)].entries()) {
         const cell = row.insertCell();
         cell.textContent = value;
         cell.dataset.label = headers[i + 1];
+        if (i === 2 && (Array.isArray(metric.baseline) || Array.isArray(metric.pilot))) {
+          cell.append(make("small", "Midpoint estimate"));
+        }
       }
     });
     $("#metric-tables").append(table);
