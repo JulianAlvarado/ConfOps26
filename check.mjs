@@ -52,7 +52,7 @@ ${sections.join("\n\n---\n\n")}
 
 ## Illustrative metric dataset
 
-**Illustrative scenario — not measured results.** These numbers are not benchmarks, actual performance, causal evidence, or a forecast. Compare scenarios within each metric; bar scales differ across metrics.
+**Illustrative scenario — not measured results.** These numbers are not benchmarks, actual performance, causal evidence, or a forecast. Baseline, pilot, and change are shown together. Changes use each metric's units; percentage measures use percentage points.
 
 | Metric | Baseline | Pilot | Unit / denominator | Category |
 | --- | --- | --- | --- | --- |
@@ -112,6 +112,10 @@ assert.equal(data.notes.slice(0, 16).reduce((total, note) => total + note.second
 assert.equal(data.notes[16].seconds, 600, "Q&A is 10 minutes");
 const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]);
 assert.equal(new Set(ids).size, ids.length, "HTML IDs are unique");
+for (const match of html.matchAll(/\baria-(?:controls|labelledby|describedby)="([^"]+)"/g)) {
+  for (const id of match[1].split(/\s+/)) assert(ids.includes(id), `Resolvable accessibility reference ${id}`);
+}
+assert(/<progress\b[^>]*max="16"/.test(html), "Progress covers only the 16-slide keynote");
 for (const match of html.matchAll(/href="#([^"]+)"/g)) {
   const hash = match[1];
   assert(/^\d+$/.test(hash) ? +hash >= 1 && +hash <= 22 : ids.includes(hash), `Resolvable link #${hash}`);

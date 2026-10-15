@@ -100,9 +100,9 @@ const notes = [
   {
     seconds: 110,
     takeaway: "Evaluate the whole workflow: speed, review cost, quality, coherence, and customer outcomes.",
-    visual: "Two dashboard columns separate leading/process signals from workflow outcome measures.",
-    interaction: "Toggle baseline and pilot. Review effort deliberately rises in the pilot. Definitions links to the measurement backup.",
-    body: "Every number is synthetic: illustrative scenario—not measured results, benchmarks, or a forecast. The comparison teaches the measurement design, not an ROI claim. Baseline to pilot: median brief-to-validated-concept time 9 to 6 days; accepted production rate 2 to 3 artifacts per team-week; production effort 18 to 11 hours per concept; review effort 4 to 6 hours; rework 35% to 24%; applicable system checks passed 78% to 90%; open accessibility/quality defects 6 to 4 per 10 screens; design-to-code divergence 28% to 18%; experiments 1 to 2 per week; approved-context reuse 25% to 70%. Review effort rises intentionally: faster generation does not imply less review. Leading/process measures signal behavior and readiness; outcome measures test delivered workflow results. System compliance is a leading quality signal, not proof of user benefit. Bars use independent scales stated in labels and cannot be compared across rows. Match work scope, staffing, artifact definition, and evaluation criteria; include sample sizes and dispersion. Track customer task success separately. No customer outcome data is supplied.",
+    visual: "Four large comparisons show baseline, pilot, and change together: concept time, production rate, review effort, and system compliance.",
+    interaction: "All 10 measures opens the complete comparison in a readable detail dialog. Definitions links to the measurement backup.",
+    body: "Every number is synthetic: illustrative scenario—not measured results, benchmarks, or a forecast. The comparison teaches the measurement design, not an ROI claim. Baseline to pilot: median brief-to-validated-concept time 9 to 6 days; accepted production rate 2 to 3 artifacts per team-week; production effort 18 to 11 hours per concept; review effort 4 to 6 hours; rework 35% to 24%; applicable system checks passed 78% to 90%; open accessibility/quality defects 6 to 4 per 10 screens; design-to-code divergence 28% to 18%; experiments 1 to 2 per week; approved-context reuse 25% to 70%. Review effort rises intentionally: faster generation does not imply less review. Leading/process measures signal behavior and readiness; outcome measures test delivered workflow results. System compliance is a leading quality signal, not proof of user benefit. Both scenarios and their changes appear together, without competing bar scales. Percentage measures use percentage-point changes, not relative percentages. Match work scope, staffing, artifact definition, and evaluation criteria; include sample sizes and dispersion. Track customer task success separately. No customer outcome data is supplied.",
     transition: "Most of the raw material for this operating model already exists."
   },
   {
@@ -173,7 +173,7 @@ const notes = [
     seconds: 0,
     takeaway: "Operational definitions, comparable work, and evidence qualifications matter more than dashboard polish.",
     visual: "Definitions, units, and collection methods beside a concise pilot protocol.",
-    interaction: "Dashboard returns to slide 13 with its selected scenario preserved. Q&A returns to the topic menu.",
+    interaction: "Dashboard returns to slide 13 with baseline and pilot visible together. Q&A returns to the topic menu.",
     body: "Define 'validated concept' before collecting time: reviewer acceptance plus the agreed user-evidence threshold. Count accepted artifacts, not raw generations. Separate elapsed days from person-hours, production from review, and quality defects from severity. Define denominators for compliance, rework, reuse, and divergence. Complete experiments include a recorded learning decision, not just a release. Compare similar tasks and staffing; document sample size, spread, exclusions, and complexity. Use approved data collection with appropriate privacy controls. Review effort may increase while total effort falls, but a small observational pilot cannot establish causality. Set decision thresholds in advance and track customer task success or other relevant product outcomes. All dashboard numbers are explicitly synthetic.",
     transition: "Return to the dashboard or Q&A."
   }
@@ -226,17 +226,51 @@ const altitudes = {
 const slides = [...document.querySelectorAll(".slide")];
 const $ = (selector) => document.querySelector(selector);
 const state = { index: 0, generation: 0, cause: 0, stack: 0, pair: 0, loop: -1 };
+const smallScreen = matchMedia("(max-width: 900px), (max-height: 560px)");
+let readingPreference;
 
 function clock(seconds) {
   return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, "0")}`;
 }
 
 function fitStage() {
+  if (document.body.classList.contains("reading")) {
+    $("#stage").style.transform = "none";
+    $("#stage").style.left = "0";
+    $("#stage").style.top = "0";
+    return;
+  }
   const viewport = $("#viewport");
   const scale = Math.min(viewport.clientWidth / 1600, viewport.clientHeight / 900);
   $("#stage").style.transform = `scale(${scale})`;
   $("#stage").style.left = `${(viewport.clientWidth - 1600 * scale) / 2}px`;
   $("#stage").style.top = `${(viewport.clientHeight - 900 * scale) / 2}px`;
+}
+
+function setReadingView(reading) {
+  document.body.classList.toggle("reading", reading);
+  $("#reading-toggle").setAttribute("aria-pressed", String(reading));
+  $("#presentation").scrollTop = 0;
+  fitStage();
+}
+
+function markCurrent(selector, index) {
+  document.querySelectorAll(selector).forEach((item, i) => {
+    if (i === index) item.setAttribute("aria-current", "step");
+    else item.removeAttribute("aria-current");
+  });
+}
+
+function renderStack() {
+  document.querySelectorAll("[data-layer]").forEach((layer) => {
+    const index = Number(layer.dataset.layer);
+    const current = index === state.stack;
+    layer.classList.toggle("revealed", index <= state.stack);
+    if (current) layer.setAttribute("aria-current", "step");
+    else layer.removeAttribute("aria-current");
+    layer.setAttribute("role", "group");
+    layer.setAttribute("aria-label", `Layer ${index + 1} of 5: ${layer.querySelector("h3").textContent}. ${current ? "Current layer" : index < state.stack ? "Built" : "Not yet built"}.`);
+  });
 }
 
 function updateNotes() {
@@ -276,12 +310,15 @@ function renderSlide(index) {
   $("#counter").textContent = state.index < 16 ? `${String(state.index + 1).padStart(2, "0")} / 16` : state.index === 16 ? "Q&A" : `B${state.index - 16} / 5`;
   $("#slide-title").textContent = slide.dataset.title;
   $("#act-label").textContent = state.index < 4 ? "ACT I" : state.index < 11 ? "ACT II" : state.index < 15 ? "ACT III" : state.index === 15 ? "ACT IV" : state.index === 16 ? "Q&A" : "BACKUP";
-  $("#progress").value = state.index + 1;
-  $("#progress").setAttribute("aria-valuetext", `Slide ${state.index + 1} of ${slides.length}, including Q&A and backups`);
+  $("#progress").value = Math.min(state.index + 1, 16);
+  $("#progress").hidden = state.index >= 16;
+  $("#progress").setAttribute("aria-valuetext", `Keynote slide ${Math.min(state.index + 1, 16)} of 16`);
   $("#previous").disabled = state.index === 0;
   $("#next").disabled = state.index === slides.length - 1;
   document.querySelectorAll("#slide-index a").forEach((link, i) => link.setAttribute("aria-current", String(i === state.index)));
   document.title = `${state.index + 1}. ${slide.dataset.title} — DesignOps`;
+  $("#announcement").textContent = `${$("#counter").textContent}: ${slide.dataset.title}`;
+  $("#presentation").scrollTop = 0;
   updateNotes();
   if (focusWasInSlide && oldSlide !== slide) {
     const heading = slide.querySelector("h1, h2");
@@ -305,7 +342,7 @@ function toggleNotes(force) {
   const open = force === undefined ? $("#notes").hidden : force;
   $("#notes").hidden = !open;
   $("#notes-toggle").setAttribute("aria-expanded", String(open));
-  if (open) $("#notes-close").focus();
+  if (open) $("#notes").focus();
   else $("#notes-toggle").focus();
 }
 
@@ -341,56 +378,62 @@ function selectLife(index) {
 }
 
 function buildMetrics() {
-  const dashboard = $("#metric-dashboard");
+  const make = (tag, text, className) => {
+    const element = document.createElement(tag);
+    element.textContent = text;
+    if (className) element.className = className;
+    return element;
+  };
+  const change = (metric) => {
+    const delta = metric.pilot - metric.baseline;
+    const units = metric.short === "%" ? " pp" : ` ${metric.short}`;
+    return `${delta > 0 ? "+" : "−"}${Math.abs(delta)}${units}`;
+  };
+  // Four talk-level comparisons; the complete dataset remains in the detail dialog.
+  for (const index of [5, 6, 1, 2]) {
+    const metric = metrics[index];
+    const card = document.createElement("article");
+    card.className = `metric-card${index === 1 ? " warning" : ""}`;
+    card.dataset.metric = String(index);
+    card.append(make("p", metric.group === 0 ? "LEADING / PROCESS" : "WORKFLOW OUTCOME", "metric-category"));
+    card.append(make("h3", metric.name, "metric-name"));
+    const comparison = document.createElement("dl");
+    comparison.className = "metric-comparison";
+    for (const [label, value] of [["Baseline", `${metric.baseline}${metric.short}`], ["Pilot", `${metric.pilot}${metric.short}`], ["Change", change(metric)]]) {
+      const entry = document.createElement("div");
+      entry.append(make("dt", label), make("dd", value));
+      comparison.append(entry);
+    }
+    card.append(comparison, make("p", metric.unit, "metric-unit"));
+    $("#metric-dashboard").append(card);
+  }
   ["LEADING / PROCESS SIGNALS", "WORKFLOW OUTCOME MEASURES"].forEach((label, group) => {
-    const column = document.createElement("article");
-    column.className = "metric-column";
-    const title = document.createElement("h3");
-    title.textContent = label;
-    column.append(title);
-    metrics.forEach((metric, index) => {
+    const table = document.createElement("table");
+    table.className = "metric-table";
+    table.append(make("caption", label));
+    const head = table.createTHead().insertRow();
+    const headers = ["Metric / unit", "Baseline", "Pilot", "Change"];
+    for (const label of headers) {
+      const th = make("th", label);
+      th.scope = "col";
+      head.append(th);
+    }
+    const body = table.createTBody();
+    metrics.forEach((metric) => {
       if (metric.group !== group) return;
-      const row = document.createElement("div");
-      row.className = "metric-row";
-      row.dataset.metric = String(index);
-      const name = document.createElement("span");
-      name.className = "metric-name";
-      name.textContent = metric.name;
-      const value = document.createElement("span");
-      value.className = "metric-value";
-      const unit = document.createElement("span");
-      unit.className = "metric-unit";
-      unit.textContent = metric.unit;
-      const scale = document.createElement("span");
-      scale.className = "metric-unit";
-      scale.textContent = metric.scale;
-      const bar = document.createElement("div");
-      bar.className = "metric-bar";
-      bar.setAttribute("aria-hidden", "true");
-      bar.style.gridColumn = "1 / -1";
-      bar.append(document.createElement("span"));
-      row.append(name, value, unit, scale, bar);
-      column.append(row);
+      const row = body.insertRow();
+      const name = make("th", metric.name);
+      name.scope = "row";
+      name.append(make("small", metric.unit));
+      row.append(name);
+      for (const [i, value] of [`${metric.baseline}${metric.short}`, `${metric.pilot}${metric.short}`, change(metric)].entries()) {
+        const cell = row.insertCell();
+        cell.textContent = value;
+        cell.dataset.label = headers[i + 1];
+      }
     });
-    dashboard.append(column);
+    $("#metric-tables").append(table);
   });
-  selectMetrics("baseline");
-}
-
-function selectMetrics(scenario) {
-  document.querySelectorAll("[data-metrics]").forEach((button) => button.setAttribute("aria-pressed", String(button.dataset.metrics === scenario)));
-  document.querySelectorAll("[data-metric]").forEach((row) => {
-    const metric = metrics[Number(row.dataset.metric)];
-    const value = metric[scenario];
-    row.querySelector(".metric-value").textContent = `${value}${metric.short}`;
-    row.style.setProperty("--value", `${value / metric.max * 100}%`);
-    const improved = metric.better === "lower" ? value < metric.baseline : metric.better === "higher" && value > metric.baseline;
-    row.classList.toggle("good", scenario === "pilot" && improved);
-    row.classList.toggle("warning", scenario === "pilot" && metric.name === "Review effort");
-  });
-  $("#metric-verdict").textContent = scenario === "baseline"
-    ? "Baseline: establish the same scope, units, and review rubric."
-    : "Illustrative pilot: production improves; review effort rises. Verify the trade-off.";
 }
 
 function setPair(step) {
@@ -406,6 +449,7 @@ function setPair(step) {
     item.classList.toggle("current", i === step);
     item.classList.toggle("done", i < step);
   });
+  markCurrent("#pair-steps li", step);
   const next = $('[data-action="pair"]');
   next.textContent = step === 5 ? "Collaboration cycle complete ✓" : "Next collaboration step →";
   next.disabled = step === 5;
@@ -422,6 +466,8 @@ const actions = {
     state.generation = (state.generation + 1) % 5;
     document.querySelectorAll(".role").forEach((role, i) => role.classList.toggle("generated", i < state.generation));
     button.textContent = state.generation === 4 ? "Reset generation ↺" : `Distribute generation · ${state.generation}/4 ↗`;
+    markCurrent(".role", state.generation - 1);
+    $("#generation-status").textContent = state.generation === 0 ? "Generation reset. No roles active." : `${state.generation} of 4 roles generating. Latest: ${document.querySelectorAll(".role h3")[state.generation - 1].textContent}.`;
   },
   cause(button) {
     state.cause = (state.cause + 1) % 5;
@@ -430,6 +476,8 @@ const actions = {
       document.querySelectorAll(selector).forEach((item, i) => item.classList.toggle("lit", i <= state.cause));
     }
     button.textContent = state.cause === 4 ? "Restart the chain" : "Trace the chain";
+    markCurrent("#causal-chain li", state.cause);
+    $("#cause-status").textContent = `Stage ${state.cause + 1} of 5: ${document.querySelectorAll("#causal-chain li")[state.cause].textContent}.`;
   },
   align(button) {
     const aligned = $("#fragmentation").classList.toggle("aligned");
@@ -444,6 +492,9 @@ const actions = {
     void journeys.offsetWidth;
     journeys.classList.add("running");
     button.textContent = "Replay both journeys ↺";
+    const status = $("#journey-status");
+    status.dataset.replays = String(Number(status.dataset.replays || 0) + 1);
+    status.textContent = `Run ${status.dataset.replays}: sequential handoffs move research to release; the proposed collaborative model pairs shared intent and production with experiments and learning.`;
   },
   connect(button) {
     const connected = $("#network").classList.toggle("connected");
@@ -453,7 +504,8 @@ const actions = {
   },
   stack(button) {
     state.stack = (state.stack + 1) % 5;
-    document.querySelectorAll("[data-layer]").forEach((layer) => layer.classList.toggle("revealed", Number(layer.dataset.layer) <= state.stack));
+    renderStack();
+    $("#stack-status").textContent = `Layer ${state.stack + 1} of 5: ${$(`[data-layer="${state.stack}"] h3`).textContent}. ${state.stack === 4 ? "Stack complete." : "Build from the foundation up."}`;
     button.textContent = state.stack === 4 ? "Rebuild from the foundation" : "Build the context stack";
   },
   pair() { setPair(Math.min(5, state.pair + 1)); },
@@ -461,6 +513,7 @@ const actions = {
   loop(button) {
     state.loop = (state.loop + 1) % 5;
     document.querySelectorAll(".loop-node").forEach((node, i) => node.classList.toggle("current", i === state.loop));
+    markCurrent("#loop-reading li", state.loop);
     const stages = ["AI generates with current context.", "Humans evaluate with evidence and expertise.", "Capture the decision, rationale, and owner.", "Review and version the improved context.", "Re-evaluate the next output. Close the loop."];
     $("#loop-status").textContent = stages[state.loop];
     button.textContent = state.loop === 4 ? "Start the next cycle ↺" : "Follow one learning cycle →";
@@ -481,7 +534,6 @@ document.addEventListener("click", (event) => {
   if (!button) return;
   if (button.dataset.action) actions[button.dataset.action](button);
   if (button.dataset.life !== undefined) selectLife(Number(button.dataset.life));
-  if (button.dataset.metrics) selectMetrics(button.dataset.metrics);
   if (button.dataset.altitude) {
     document.querySelectorAll("[data-altitude]").forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
     $("#altitude-detail").textContent = altitudes[button.dataset.altitude];
@@ -511,6 +563,15 @@ $("#next").addEventListener("click", () => navigate(state.index + 1));
 $("#notes-toggle").addEventListener("click", () => toggleNotes());
 $("#notes-close").addEventListener("click", () => toggleNotes(false));
 $("#fullscreen").addEventListener("click", fullscreen);
+$("#reading-toggle").addEventListener("click", () => {
+  readingPreference = !document.body.classList.contains("reading");
+  setReadingView(readingPreference);
+});
+smallScreen.addEventListener("change", () => {
+  if (readingPreference === undefined) setReadingView(smallScreen.matches);
+});
+$("#metrics-open").addEventListener("click", () => $("#metrics-detail").showModal());
+$("#metrics-close").addEventListener("click", () => $("#metrics-detail").close());
 $("#overview-toggle").addEventListener("click", () => $("#overview").showModal());
 $("#overview-close").addEventListener("click", () => $("#overview").close());
 $("#slide-index").addEventListener("click", (event) => {
@@ -518,8 +579,16 @@ $("#slide-index").addEventListener("click", (event) => {
 });
 
 document.addEventListener("keydown", (event) => {
-  if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey || $("#overview").open) return;
+  if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey || document.querySelector("dialog[open]")) return;
+  if (event.target.closest("#notes")) {
+    if (["Escape", "n", "N"].includes(event.key)) {
+      event.preventDefault();
+      toggleNotes(false);
+    }
+    return;
+  }
   if (event.target.closest("input, textarea, select, [contenteditable='true']")) return;
+  if (document.body.classList.contains("reading") && ["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "].includes(event.key)) return;
   if (event.code === "Space" && event.target.closest("button, a")) return;
   switch (event.key) {
     case "ArrowRight": case "ArrowDown": case "PageDown": case " ":
@@ -542,6 +611,9 @@ document.addEventListener("fullscreenchange", () => {
 });
 window.addEventListener("hashchange", () => renderSlide(readHash()));
 new ResizeObserver(fitStage).observe($("#viewport"));
+new ResizeObserver(() => {
+  document.body.style.setProperty("--toolbar-height", `${$(".toolbar").getBoundingClientRect().height}px`);
+}).observe($(".toolbar"));
 document.querySelectorAll(".sequential .workflow-track span").forEach((item, i) => item.style.setProperty("--i", i));
 slides.forEach((slide, index) => {
   const link = document.createElement("a");
@@ -553,5 +625,19 @@ slides.forEach((slide, index) => {
 });
 selectLife(0);
 buildMetrics();
+document.querySelectorAll(".loop-node").forEach((node) => {
+  const item = document.createElement("li");
+  item.textContent = [...node.querySelectorAll("text")].map((text) => text.textContent).join(" — ");
+  $("#loop-reading").append(item);
+});
+document.querySelectorAll(".definitions tbody tr").forEach((row) => {
+  [...row.cells].forEach((cell, index) => {
+    cell.dataset.label = ["Metric", "Definition / unit", "Collection method"][index];
+  });
+});
+markCurrent("#causal-chain li", 0);
+markCurrent("#pair-steps li", 0);
+renderStack();
+setReadingView(smallScreen.matches);
 renderSlide(readHash());
 fitStage();

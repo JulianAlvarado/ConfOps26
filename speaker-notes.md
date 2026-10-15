@@ -216,11 +216,11 @@ The timing is a rehearsal guide, not an auto-advance schedule. Keep on-screen ex
 
 **Takeaway:** Evaluate the whole workflow: speed, review cost, quality, coherence, and customer outcomes.
 
-**Visual concept:** Two dashboard columns separate leading/process signals from workflow outcome measures.
+**Visual concept:** Four large comparisons show baseline, pilot, and change together: concept time, production rate, review effort, and system compliance.
 
-**Interaction / reveal:** Toggle baseline and pilot. Review effort deliberately rises in the pilot. Definitions links to the measurement backup.
+**Interaction / reveal:** All 10 measures opens the complete comparison in a readable detail dialog. Definitions links to the measurement backup.
 
-**Speaker notes:** Every number is synthetic: illustrative scenario—not measured results, benchmarks, or a forecast. The comparison teaches the measurement design, not an ROI claim. Baseline to pilot: median brief-to-validated-concept time 9 to 6 days; accepted production rate 2 to 3 artifacts per team-week; production effort 18 to 11 hours per concept; review effort 4 to 6 hours; rework 35% to 24%; applicable system checks passed 78% to 90%; open accessibility/quality defects 6 to 4 per 10 screens; design-to-code divergence 28% to 18%; experiments 1 to 2 per week; approved-context reuse 25% to 70%. Review effort rises intentionally: faster generation does not imply less review. Leading/process measures signal behavior and readiness; outcome measures test delivered workflow results. System compliance is a leading quality signal, not proof of user benefit. Bars use independent scales stated in labels and cannot be compared across rows. Match work scope, staffing, artifact definition, and evaluation criteria; include sample sizes and dispersion. Track customer task success separately. No customer outcome data is supplied.
+**Speaker notes:** Every number is synthetic: illustrative scenario—not measured results, benchmarks, or a forecast. The comparison teaches the measurement design, not an ROI claim. Baseline to pilot: median brief-to-validated-concept time 9 to 6 days; accepted production rate 2 to 3 artifacts per team-week; production effort 18 to 11 hours per concept; review effort 4 to 6 hours; rework 35% to 24%; applicable system checks passed 78% to 90%; open accessibility/quality defects 6 to 4 per 10 screens; design-to-code divergence 28% to 18%; experiments 1 to 2 per week; approved-context reuse 25% to 70%. Review effort rises intentionally: faster generation does not imply less review. Leading/process measures signal behavior and readiness; outcome measures test delivered workflow results. System compliance is a leading quality signal, not proof of user benefit. Both scenarios and their changes appear together, without competing bar scales. Percentage measures use percentage-point changes, not relative percentages. Match work scope, staffing, artifact definition, and evaluation criteria; include sample sizes and dispersion. Track customer task success separately. No customer outcome data is supplied.
 
 **Transition:** Most of the raw material for this operating model already exists.
 
@@ -362,7 +362,7 @@ The timing is a rehearsal guide, not an auto-advance schedule. Keep on-screen ex
 
 **Visual concept:** Definitions, units, and collection methods beside a concise pilot protocol.
 
-**Interaction / reveal:** Dashboard returns to slide 13 with its selected scenario preserved. Q&A returns to the topic menu.
+**Interaction / reveal:** Dashboard returns to slide 13 with baseline and pilot visible together. Q&A returns to the topic menu.
 
 **Speaker notes:** Define 'validated concept' before collecting time: reviewer acceptance plus the agreed user-evidence threshold. Count accepted artifacts, not raw generations. Separate elapsed days from person-hours, production from review, and quality defects from severity. Define denominators for compliance, rework, reuse, and divergence. Complete experiments include a recorded learning decision, not just a release. Compare similar tasks and staffing; document sample size, spread, exclusions, and complexity. Use approved data collection with appropriate privacy controls. Review effort may increase while total effort falls, but a small observational pilot cannot establish causality. Set decision thresholds in advance and track customer task success or other relevant product outcomes. All dashboard numbers are explicitly synthetic.
 
@@ -370,7 +370,7 @@ The timing is a rehearsal guide, not an auto-advance schedule. Keep on-screen ex
 
 ## Illustrative metric dataset
 
-**Illustrative scenario — not measured results.** These numbers are not benchmarks, actual performance, causal evidence, or a forecast. Compare scenarios within each metric; bar scales differ across metrics.
+**Illustrative scenario — not measured results.** These numbers are not benchmarks, actual performance, causal evidence, or a forecast. Baseline, pilot, and change are shown together. Changes use each metric's units; percentage measures use percentage points.
 
 | Metric | Baseline | Pilot | Unit / denominator | Category |
 | --- | --- | --- | --- | --- |
