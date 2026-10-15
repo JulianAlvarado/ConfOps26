@@ -14,12 +14,14 @@
     <a class="wordmark" href="#1" aria-label="Go to opening slide"><span class="brand-mark" aria-hidden="true">◈</span> DESIGNOPS <span class="toolbar-muted">/ AI INFRASTRUCTURE</span></a>
     <div class="toolbar-actions">
       <span class="version">REVIEW 0.1</span>
+      <button id="stage-toggle" aria-pressed="false" aria-describedby="stage-help">Stage <kbd>S</kbd></button>
       <button id="reading-toggle" aria-pressed="false" aria-controls="presentation">Reading view</button>
       <button id="overview-toggle" aria-haspopup="dialog">Slides <kbd>G</kbd></button>
       <button id="notes-toggle" aria-expanded="false" aria-controls="notes">Notes <kbd>N</kbd></button>
       <button id="fullscreen" aria-label="Enter fullscreen">Fullscreen <kbd>F</kbd></button>
     </div>
   </header>
+  <p id="stage-help" class="sr-only">Stage hides review tools. Right arrow advances a build, then the slide. Left arrow reverses it. F toggles fullscreen. Escape or S returns to review. Tab operates the demo form; focus outside it to resume slide keys.</p>
 
   <main id="presentation" tabindex="0" aria-label="DesignOps as AI Infrastructure">
     <div id="viewport">
@@ -96,9 +98,9 @@
           <div class="eyebrow">ACT II <span>03 — THE CORE OPERATING MODEL</span></div>
           <h2 id="title-4">Three questions.<br><em>One coherent system.</em></h2>
           <div class="framework">
-            <article><span class="pillar-number">01 / PERMISSION</span><h3>GOVERN</h3><p>Who can accept the choice?</p><ul><li>Designer + engineer review</li><li>No real contact data in this demo</li><li>Product owner approves the rule</li></ul></article>
-            <article><span class="pillar-number">02 / KNOWLEDGE</span><h3>CONTEXT</h3><p>What must the choice respect?</p><ul><li>The user is starting alone</li><li>Invitations must be optional</li><li>Supported form + shared tokens</li></ul></article>
-            <article><span class="pillar-number">03 / JUDGMENT</span><h3>EVALUATE</h3><p>What makes it acceptable?</p><ul><li>Complete setup without email</li><li>Check labels + errors + focus</li><li>Record decision and rationale</li></ul></article>
+            <article><span class="pillar-number">01 / PERMISSION</span><h3>GOVERN</h3><p>Who can accept the choice?</p><ul><li>Designer + engineer review</li><li class="review-detail">No real contact data in this demo</li><li>Product owner approves the rule</li></ul></article>
+            <article><span class="pillar-number">02 / KNOWLEDGE</span><h3>CONTEXT</h3><p>What must the choice respect?</p><ul><li>The user is starting alone</li><li>Invitations must be optional</li><li class="review-detail">Supported form + shared tokens</li></ul></article>
+            <article><span class="pillar-number">03 / JUDGMENT</span><h3>EVALUATE</h3><p>What makes it acceptable?</p><ul><li>Complete setup without email</li><li>Check labels + errors + focus</li><li class="review-detail">Record decision and rationale</li></ul></article>
           </div>
           <div class="framework-foundation"><span>STEWARDSHIP grounds governance</span><span>SYSTEMS carry context</span><span>ENABLEMENT puts all three into practice</span></div>
           <footer class="slide-footer"><span>CANONICAL PROMPTS · PLAYBOOKS · TRAINING · SHARED QUALITY RUBRICS</span><span>04 / 14</span></footer>
@@ -241,11 +243,11 @@
             <div class="standards-table">
               <div><span>Guidelines</span><b>→</b><strong>Machine-readable rules</strong></div>
               <div><span>Design system</span><b>→</b><strong>AI-readable design system</strong></div>
-              <div><span>Templates</span><b>→</b><strong>Canonical prompts</strong></div>
+              <div class="review-detail"><span>Templates</span><b>→</b><strong>Canonical prompts</strong></div>
               <div><span>Documentation</span><b>→</b><strong>Reusable context packages</strong></div>
               <div><span>Critique</span><b>→</b><strong>Evaluation rubrics</strong></div>
-              <div><span>SOPs</span><b>→</b><strong>Human–AI workflows</strong></div>
-              <div><span>Efficiency metrics</span><b>→</b><strong>Speed + quality + outcomes</strong></div>
+              <div class="review-detail"><span>SOPs</span><b>→</b><strong>Human–AI workflows</strong></div>
+              <div class="review-detail"><span>Efficiency metrics</span><b>→</b><strong>Speed + quality + outcomes</strong></div>
             </div>
             <aside class="context-package"><div class="code-label">ILLUSTRATIVE RULE / SOLO SETUP</div><pre><code><span>source:</span> solo-setup brief (assumed)
 <span>criterion:</span> finish without an invite
@@ -255,7 +257,9 @@
 <span>owner:</span> product lead
 <span>version:</span> 1, reviewed by the team
 <span>review:</span> after pilot / change
-<span>evidence:</span> user test pending</code></pre><p>DesignOps maintains the package.<br>Domain experts own its validity.</p></aside>
+<span>evidence:</span> user test pending</code></pre>
+              <dl class="stage-only stage-rule"><dt>Rule · solo setup</dt><dd>Invitations after setup</dd><dt>Reason · from the brief</dt><dd>The person may be starting alone.</dd><dt>Owner · product lead</dt><dd>Version 1, reviewed by the team</dd><dt>Review · after pilot / change</dt><dd>User test pending</dd></dl>
+              <p>DesignOps maintains the package.<br>Domain experts own its validity.</p></aside>
           </div>
           <footer class="slide-footer"><span>EXECUTABLE STANDARDS REQUIRE IMPLEMENTATION + VALIDATION, NOT JUST A PROMPT</span><span>11 / 14</span></footer>
         </section>
@@ -278,6 +282,7 @@
             <article><span>DAYS 22–30</span><h3>Pilot + compare</h3><p>Run equivalent work.<br>Review speed, quality,<br>and customer evidence.</p><b>LEARN / DECIDE</b></article>
           </div>
           <div class="altitude-bar" role="group" aria-label="Select organizational altitude"><span>START AT</span><button data-altitude="team" aria-pressed="true">Team</button><button data-altitude="product" aria-pressed="false">Product area</button><button data-altitude="enterprise" aria-pressed="false">Enterprise</button><p id="altitude-detail" aria-live="polite">Design + engineering leads own one workflow; DesignOps facilitates.</p></div>
+          <p class="stage-only stage-altitude">Start with one team: design + engineering own the workflow; DesignOps facilitates.</p>
           <footer class="slide-footer"><span>DON'T WAIT FOR AN ENTERPRISE TRANSFORMATION TO START LEARNING</span><span>13 / 14</span></footer>
         </section>
 
@@ -388,6 +393,7 @@
       </div>
     </div>
   </main>
+  <button id="stage-exit" hidden>Exit stage · Esc</button>
 
   <aside id="notes" class="notes-panel" aria-label="Presenter notes" tabindex="0" hidden>
     <div class="notes-header"><h2>Presenter notes</h2><button id="notes-close" aria-label="Close presenter notes">Close ×</button></div>

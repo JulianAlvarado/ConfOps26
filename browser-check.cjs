@@ -61,6 +61,8 @@ const { mkdirSync } = require("node:fs");
         const slide = document.querySelector(".slide:not([hidden])");
         const bounds = slide.getBoundingClientRect();
         const footer = slide.querySelector(".slide-footer").getBoundingClientRect();
+        const stageMode = document.body.classList.contains("stage-mode");
+        const exit = document.getElementById("stage-exit").getBoundingClientRect();
         const issues = [];
         for (const node of slide.querySelectorAll("*")) {
           if (node.closest(".sr-only, svg") || !node.checkVisibility()) continue;
@@ -69,6 +71,17 @@ const { mkdirSync } = require("node:fs");
           if (!rect.width || !rect.height) continue;
           if (rect.left < bounds.left - 1 || rect.right > bounds.right + 1) issues.push(`${node.className || node.tagName}: outside horizontal slide bounds`);
           if (!reading && !node.closest(".slide-footer") && rect.bottom > footer.top - 4) issues.push(`${node.className || node.tagName}: overlaps footer`);
+          if (stageMode && !node.closest(".slide-footer") && node.childNodes.length && [...node.childNodes].some(child => child.nodeType === Node.TEXT_NODE && child.textContent.trim())) {
+            if (rect.left < exit.right && rect.right > exit.left && rect.top < exit.bottom && rect.bottom > exit.top) issues.push(`${node.className || node.tagName}: overlaps stage exit`);
+            for (const child of node.childNodes) {
+              if (child.nodeType !== Node.TEXT_NODE || !child.textContent.trim()) continue;
+              const range = document.createRange();
+              range.selectNodeContents(child);
+              for (const text of range.getClientRects()) {
+                if (text.right > rect.right + 1 || text.left < rect.left - 1) issues.push(`${node.className || node.tagName}: text overflows its container`);
+              }
+            }
+          }
           if (reading && node.matches("button:not(:disabled), input") && rect.height < 44) issues.push(`${node.tagName}: target under 44px`);
           if (reading && node.matches("p:not(.kicker), li, td, input") && parseFloat(getComputedStyle(node).fontSize) < 16) issues.push(`${node.className || node.tagName}: text under 16px`);
           if (node.matches(".prototype-form, .decision-evidence")) {
@@ -262,6 +275,166 @@ const { mkdirSync } = require("node:fs");
     await page.waitForFunction(() => Boolean(document.fullscreenElement));
     await click("#fullscreen");
     await page.waitForFunction(() => !document.fullscreenElement);
+    const reviewState = () => page.evaluate(() => ({
+      state: { ...state },
+      reading: document.body.classList.contains("reading"),
+      aligned: document.querySelector("#fragmentation").className,
+      connected: document.querySelector("#network").className,
+      closing: document.querySelector("#closing-reveal").hidden,
+      name: document.querySelector("#workspace-name").value,
+      invalid: document.querySelector("#workspace-name").getAttribute("aria-invalid"),
+      result: document.querySelector("#prototype-result").textContent,
+      resultClass: document.querySelector("#prototype-result").className,
+      life: document.querySelector("[data-life][aria-pressed='true']").dataset.life,
+      altitude: document.querySelector("[data-altitude][aria-pressed='true']").dataset.altitude
+    }));
+    const stageFonts = [];
+    for (const size of [{ width: 1280, height: 720 }, { width: 1680, height: 1080 }]) {
+      await page.setViewportSize(size);
+      await go(5);
+      await click('[data-action="pair-reset"]');
+      for (let i = 0; i < 3; i++) await click('[data-action="pair"]');
+      await page.locator("#workspace-name").fill("Saved review");
+      await click("#prototype-form button");
+      const beforeStage = await reviewState();
+      await click("#notes-toggle");
+      await click("#stage-toggle");
+      assert(await page.locator("body").evaluate(node => node.classList.contains("stage-mode")));
+      for (const selector of [".toolbar", ".navigation", "#notes"]) assert(!(await page.locator(selector).isVisible()));
+      assert(await page.locator("#stage-exit").isVisible());
+      for (const key of ["n", "g"]) await page.keyboard.press(key);
+      assert.equal(await page.locator("dialog[open]").count(), 0);
+      assert(!(await page.locator("#notes").isVisible()));
+      const fontResults = await page.evaluate(() => {
+        const selectors = [
+          ".framework p", ".framework li", ".standards-table > div", ".stage-rule dt", ".stage-rule dd",
+          ".role-output span", ".causal-chain li", ".branch-outputs span", ".source-node", ".alignment-band",
+          ".pair-steps li", "#pair-explanation", ".decision-evidence dt", ".decision-evidence dd",
+          "#evidence-verdict", ".prototype-code", ".prototype-form label", ".prototype-form input",
+          ".prototype-form button", ".field-hint", ".prototype-result", ".rubric > div", ".rubric p",
+          "#loop-reading li", ".network-summary p", ".network-summary li", ".workflow-track span",
+          ".journey p", ".metric-unit", ".metric-comparison dt", ".slide .scenario-label", ".thirty-days p",
+          ".stage-altitude", ".stack-layer p", ".lifecycle button > span"
+        ];
+        const scale = document.getElementById("stage").getBoundingClientRect().width / 1600;
+        // Hidden slides still inherit stage type; omit deliberately reduced review-only details.
+        return selectors.map(selector => ({
+          selector,
+          pixels: Math.min(...[...document.querySelectorAll(selector)].filter(node => !node.classList.contains("review-detail")).map(node => parseFloat(getComputedStyle(node).fontSize) * scale))
+        }));
+      });
+      stageFonts.push({ viewport: size, minimum: Math.min(...fontResults.map(item => item.pixels)) });
+      for (const result of fontResults) assert(result.pixels >= 18, `${size.width}: ${result.selector} projects at ${result.pixels}px`);
+      for (let i = 1; i <= 22; i++) {
+        await go(i);
+        await checkLayout(false, `stage-${size.width}/slide-${i}`);
+        const controls = await page.locator(".slide:not([hidden]) button").evaluateAll(nodes => nodes.filter(node => node.checkVisibility() && !node.disabled).map(node => node.dataset.action || node.type));
+        if (![3, 5, 14].includes(i)) assert.deepEqual(controls, [], `No extra stage builds on slide ${i}`);
+        if ([3, 4, 7, 9, 11, 12, 21, 22].includes(i)) await capture(`stage-${size.width}-slide-${i}`);
+      }
+      await go(3);
+      await page.locator("#presentation").focus();
+      await page.keyboard.press("ArrowRight");
+      assert.equal(await slideNumber(), "slide-3");
+      assert.equal(await page.locator('[data-action="align"]').getAttribute("aria-pressed"), "true");
+      await page.keyboard.down("ArrowRight");
+      await page.keyboard.up("ArrowRight");
+      await page.waitForFunction(() => !document.querySelector("#slide-4").hidden);
+      await page.evaluate(() => document.getElementById("presentation").dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowRight", repeat: true, bubbles: true })));
+      assert.equal(await slideNumber(), "slide-4", "Held advance keys do not skip builds/slides");
+      await page.keyboard.press("ArrowLeft");
+      await page.waitForFunction(() => !document.querySelector("#slide-3").hidden);
+      await page.keyboard.press("ArrowLeft");
+      assert.equal(await page.locator('[data-action="align"]').getAttribute("aria-pressed"), "false");
+      await page.keyboard.press("PageDown");
+      await page.keyboard.press("PageDown");
+      await page.waitForFunction(() => !document.querySelector("#slide-4").hidden);
+      await page.keyboard.press("ArrowRight");
+      await page.waitForFunction(() => !document.querySelector("#slide-5").hidden);
+      for (let i = 0; i < 6; i++) {
+        if (i) await page.keyboard.press("ArrowRight");
+        assert.equal(await page.locator("#prototype-scene").getAttribute("data-step"), String(i));
+        if (i === 3) {
+          await page.locator("#workspace-name").focus();
+          for (const key of ["ArrowRight", "ArrowLeft", "PageDown", " ", "n", "g", "f", "s"]) await page.keyboard.press(key);
+          assert.equal(await page.locator("#prototype-scene").getAttribute("data-step"), "3");
+          assert.equal(await slideNumber(), "slide-5");
+          assert.equal(await page.locator("dialog[open]").count(), 0);
+          await page.locator("#workspace-name").fill(" ");
+          await page.keyboard.press("Enter");
+          assert.equal(await page.locator("#workspace-name").getAttribute("aria-invalid"), "true");
+          await page.locator("#workspace-name").fill("<b>Team</b>" + "W".repeat(38));
+          await page.keyboard.press("Tab");
+          await page.keyboard.press("Enter");
+          assert.match(await page.locator("#prototype-result").innerText(), /Nothing was saved or sent/);
+          assert.equal(await page.locator("#prototype-result b").count(), 0);
+          await page.keyboard.press("ArrowRight");
+          assert.equal(await page.locator("#prototype-scene").getAttribute("data-step"), "3", "Form buttons keep native keys");
+          await page.keyboard.press("Tab");
+          assert(await page.locator("#stage-exit").evaluate(node => node === document.activeElement), "Tab beyond submit restores access to slide keys and exit");
+        }
+        await checkLayout(false, `stage-${size.width}/demo-${i}`);
+        await capture(`stage-${size.width}-demo-${i + 1}`);
+      }
+      await page.keyboard.press("ArrowRight");
+      await page.waitForFunction(() => !document.querySelector("#slide-6").hidden);
+      await page.keyboard.press("ArrowLeft");
+      await page.waitForFunction(() => !document.querySelector("#slide-5").hidden);
+      assert.equal(await page.locator("#prototype-scene").getAttribute("data-step"), "5", "Back navigation keeps builds");
+      await page.keyboard.press("ArrowLeft");
+      assert.equal(await page.locator("#prototype-scene").getAttribute("data-step"), "4");
+      await go(14);
+      await page.locator("#presentation").focus();
+      await page.keyboard.press("Space");
+      assert(await page.locator("#closing-reveal").isVisible());
+      await checkLayout(false, `stage-${size.width}/closing-revealed`);
+      await capture(`stage-${size.width}-closing`);
+      await page.keyboard.press("ArrowLeft");
+      assert(!(await page.locator("#closing-reveal").isVisible()));
+      await page.keyboard.press("ArrowRight");
+      await page.keyboard.press("ArrowRight");
+      await page.waitForFunction(() => !document.querySelector("#slide-15").hidden);
+      for (let number = 16; number <= 22; number++) {
+        await click(`.qa-links a[href="#${number}"]`);
+        await page.waitForFunction(number => !document.getElementById(`slide-${number}`).hidden, number);
+        await click(`#slide-${number} .eyebrow a[href="#15"]`);
+        await page.waitForFunction(() => !document.getElementById("slide-15").hidden);
+      }
+      await go(5);
+      await page.keyboard.press("Escape");
+      assert.deepEqual(await reviewState(), beforeStage, "Stage restores every review state, including form and builds");
+      assert(!(await page.locator("#notes").isVisible()), "Never reopen notes on the shared display");
+      assert(await page.locator("#stage-toggle").evaluate(node => node === document.activeElement));
+    }
+    console.log("Projected stage body/diagram minima:", JSON.stringify(stageFonts));
+    // Closing a native fullscreen session also leaves stage, even without a page key event.
+    await page.keyboard.press("s");
+    await page.keyboard.press("f");
+    await page.waitForFunction(() => Boolean(document.fullscreenElement));
+    await page.evaluate(() => document.exitFullscreen());
+    await page.waitForFunction(() => !document.body.classList.contains("stage-mode"));
+    await page.keyboard.press("s");
+    await page.keyboard.press("f");
+    await page.waitForFunction(() => Boolean(document.fullscreenElement));
+    await page.keyboard.press("Escape");
+    await page.waitForFunction(() => !document.fullscreenElement && !document.body.classList.contains("stage-mode"));
+    await page.evaluate(() => {
+      document.querySelector("#overview").showModal();
+      document.querySelector("#metrics-detail").showModal();
+      setStageMode(true);
+    });
+    assert.equal(await page.locator("dialog[open]").count(), 0, "Stage closes every top-layer dialog");
+    await click("#stage-exit");
+    await page.keyboard.press("s");
+    await page.evaluate(() => Object.defineProperty(document, "fullscreenEnabled", { configurable: true, value: false }));
+    await page.keyboard.press("f");
+    assert.match(await page.locator("#stage-exit").innerText(), /Fullscreen unavailable/);
+    await page.evaluate(() => { delete document.fullscreenEnabled; });
+    await page.keyboard.press("Escape");
+    await click("#fullscreen");
+    await page.waitForFunction(() => Boolean(document.fullscreenElement));
+    await click("#fullscreen");
+    await page.waitForFunction(() => !document.fullscreenElement);
     for (const size of [{ width: 900, height: 900 }, { width: 390, height: 844 }, { width: 320, height: 700 }, { width: 844, height: 390 }]) {
       await page.setViewportSize(size);
       await page.waitForFunction(() => document.body.classList.contains("reading"));
@@ -293,11 +466,16 @@ const { mkdirSync } = require("node:fs");
     await click("#reading-toggle");
     await page.setViewportSize({ width: 1200, height: 1000 });
     assert.equal(await page.locator("body").evaluate(node => node.classList.contains("reading")), true);
+    await click("#stage-toggle");
+    assert.equal(await page.locator("body").evaluate(node => node.classList.contains("reading")), false);
+    await page.setViewportSize({ width: 1280, height: 720 });
+    await page.keyboard.press("s");
+    assert.equal(await page.locator("body").evaluate(node => node.classList.contains("reading")), true, "Explicit Reading preference survives stage and resizing");
     await page.emulateMedia({ media: "print" });
     assert.equal(await page.locator(".slide:visible").count(), 22);
     assert.deepEqual(errors, [], "No browser errors or remote requests");
     assert.deepEqual(failures, [], "Layout and legibility regressions");
-    console.log("PASS: all 22 slides, six viewports, every decision-demo state, preserved copy/control edits, reading mode, keyboard/notes, progressive accessibility, metrics, forms, backup links, fullscreen, and print.");
+    console.log("PASS: all 22 slides, six review viewports plus two stage sizes, every demo state, preserved review edits, stage builds/back/exit/fullscreen, form key isolation, review restoration, projected type/overflow, reading/notes, accessibility, metrics, backup links, and print.");
   } finally {
     await browser.close();
   }

@@ -20,6 +20,16 @@ The timing is a rehearsal guide, not an auto-advance schedule. Keep on-screen ex
 
 Slide 5's retained six-step demo runs from **3:30–8:00**, for **270 seconds**. The removed overview's 90 seconds are reassigned to explanation and interaction pauses: 30 seconds for the audience to absorb the blocked need, 30 seconds for form validation/keyboard feedback, and 30 seconds to review the saved lesson's owner and review trigger. No steps or exercises were added. The keynote remains exactly 1,200 seconds; Q&A remains 600 seconds.
 
+## Stage delivery and rehearsal
+
+Choose **Stage** or press **S** before sharing. Stage closes notes and dialogs and hides review chrome; **F** optionally enters fullscreen. Only three moments need builds: slide 3 fragmentation → alignment, slide 5's six existing demo steps, and slide 14 question → answer. All other diagrams are resolved static summaries. This changes delivery, not slide order or timing.
+
+**Right / Down / Page Down / Space** advances a build before the next slide; **Left / Up / Page Up** reverses a build before the previous slide. Builds are retained when revisiting slides. Home / End jumps to the first / last slide. Tab into the demo to type and submit; input and form-button keys retain native behavior. Tab beyond the form to resume slide keys. **Escape**, **S**, **Exit stage · Esc**, or leaving native fullscreen returns to review on the current slide. Escape works from the form too. N/G cannot open notes or the index on stage.
+
+Review's build states, form value/feedback, diagram selections, and manual Reading preference are restored on exit; notes and dialogs remain closed. Entering Stage again starts a new rehearsal of the three build moments. Use the form only for fictional input: it sends and saves nothing.
+
+Stage prioritizes projected labels: the tested decision-bearing body and diagram text is at least 18.4px effective at 1280×720, and 24.15px at 1680×1080. The framework shows two points per question; the documentation model shows four mappings and a concise scoped rule. Full lists, seven transformations, detailed rule provenance, lifecycle panels, altitude options, and all ten measures remain in review and these notes. Act/topic labels, counters, decorative ordinals, window chrome, and reference-appendix metadata remain smaller. Reading view remains the appropriate reference-reading surface on small screens.
+
 ## Illustrative decision trail
 
 The assumed user needs to start a workspace alone. The first generated form requires a teammate email and blocks that task. Designer and engineer move invitations after setup. DesignOps saves the lesson and its reason in shared guidance, scoped to solo workspace setup, with a product lead owner and review after the pilot or a source change. The next proposed form meets that requirement, but still needs accessibility and user-outcome review.
@@ -50,7 +60,7 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 **Visual concept:** Four parallel lanes: product, research, design, and engineering.
 
-**Interaction / reveal:** Distribute generation activates one role per click; a fifth click resets the example.
+**Interaction / reveal:** Stage: all four roles are resolved and visible. Review: Distribute generation activates one role per click; a fifth click resets the example.
 
 **Speaker notes:** Each discipline gains production capacity. PMs generate briefs and hypotheses; researchers synthesize evidence; designers explore concepts; engineers generate components and tests. Generation is more distributed, but expertise is not interchangeable. The same language model can interpret the product differently in each lane. These are categories of assistance, not guarantees that outputs are accurate. Ask the room to imagine all four lanes producing simultaneously. The new constraint is agreeing on what to produce, what fits the system, and who evaluates it.
 
@@ -66,7 +76,7 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 **Visual concept:** A causal chain sits above diverging output branches; a shared standards band aligns their treatment.
 
-**Interaction / reveal:** Trace the chain progresses through five stages, activating more branches and divergent patterns. Apply shared standards toggles fragmentation versus coherence.
+**Interaction / reveal:** Stage moment 1: the complete chain starts fragmented. Right advances to shared standards, then to the next slide; Left reverses it. Review retains the five-stage trace and alignment toggle.
 
 **Speaker notes:** Read the chain deliberately: more AI, more output, more variation, more decisions, more opportunities for inconsistency. This is a conceptual mechanism, not a statistical forecast. Variation is useful during exploration; unmanaged variation becomes expensive at system boundaries. Examples include conflicting terminology, duplicated research, inaccessible patterns, undocumented AI decisions, and design-system drift. The source's '17 versions of a pattern' is rhetorical, not a measured statistic, so we do not chart it. Apply shared context and evaluation: options can remain different while obeying common constraints. A green state is an explanatory metaphor, not a claim that standards automatically eliminate defects.
 
@@ -82,7 +92,7 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 **Visual concept:** Three pillars apply Govern / Context / Evaluate directly to the solo-setup conflict.
 
-**Interaction / reveal:** Static anchor slide. Return to these three questions throughout the talk.
+**Interaction / reveal:** Static anchor slide. Stage emphasizes two supporting points per question; the full lists and foundation remain in review and these notes.
 
 **Speaker notes:** Use one model throughout. The next demo follows someone starting a workspace alone; use that need to ground the three questions. Govern asks what AI may do and who can accept it: in this illustrative case, no real contact data enters the demo, a designer and engineer review, and a product lead owns the scoped rule. Context carries the solo-setup brief, the requirement to make invitations optional, and the supported form pattern together. Evaluate asks whether setup completes without email, while checking labels, errors, focus, and feasibility. Meeting that requirement alone cannot establish user value. These concrete checks sit within broader tool, data, privacy, risk, and release boundaries. Stewardship grounds governance; systems carry context; enablement puts all three into practice through workflows, prompts, rubrics, and training. This is the core model, not another framework to memorize.
 
@@ -98,7 +108,7 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 **Visual concept:** Six plain-language steps follow one problem from the user's need to a corrected form and a reusable lesson.
 
-**Interaction / reveal:** Advance six steps. At step 4, try creating a workspace with a name only. Reset clears the form and returns to the user's need.
+**Interaction / reveal:** Stage moment 2: Right advances the six steps, then the slide; Left reverses them. At step 4, Tab into the name-only form; native field and submit keys never advance the deck. Tab out to resume. Review keeps its buttons; Reset clears the form in either mode.
 
 **Speaker notes:** Introduce the fictional example here: someone wants to start a workspace alone. Allow 270 seconds (4 minutes 30 seconds) for the six existing steps. The 90 seconds recovered from the removed overview slide are explanation and interaction pauses, not extra UI or an exercise: 30 seconds to let the audience absorb the blocked user need, 30 seconds for the form's validation and keyboard feedback, and 30 seconds to review why the saved lesson needs an owner and a review trigger. First: the person wants to start a workspace alone. Second: the AI-produced form requires someone else's email, so the person gets stuck. Third: the designer and engineer move invitations after workspace creation. Fourth: try the revised local form with just a workspace name; show validation and keyboard feedback if useful. Nothing is saved or sent. Fifth: explain why fixing one screen is not enough. DesignOps records the lesson with the original solo-setup assumption, the team's reason, a product lead owner, and a review date after the pilot. Put that guidance where the next team and its AI tools can use it. Sixth: the next proposed form allows setup without inviting anyone. A reviewer verifies that behavior and still checks accessibility and user outcomes. Do not claim the rule guarantees future results or that this is a real user study. Every state is pre-authored and illustrative. The distinction is simple: product experts decide what the experience should do; DesignOps helps that decision survive beyond this one screen.
 
@@ -128,9 +138,9 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 **Takeaway:** Learning compounds only when decisions feed back into maintained context and standards.
 
-**Visual concept:** A closed five-stage loop surrounds organizational memory.
+**Visual concept:** A complete five-stage learning sequence on stage; a closed loop around organizational memory in review.
 
-**Interaction / reveal:** Follow one learning cycle highlights a stage per click, wrapping back to generation.
+**Interaction / reveal:** Stage: the whole sequence is static, ending with re-evaluation. Review: Follow one learning cycle highlights a stage per click, wrapping back to generation.
 
 **Speaker notes:** Return to the decision to offer invitations after setup and the saved lesson. The useful artifact is not merely the revised form: it is the requirement, reason, owner, and review trigger attached to it. AI generates using current context; humans evaluate; the decision is recorded; reviewed guidance updates context; the next result is checked again. The example proves neither that one field is always best nor that context automatically prevents future violations. Its scenario is assumed and user validation is pending. If the solo-setup assumption changes, the product lead revisits the rule; DesignOps keeps the source, access, version, and review cadence usable across teams. Retire stale rules rather than making every observation universal policy.
 
@@ -162,7 +172,7 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 **Visual concept:** Five AI-enabled actors connect through a common operating layer.
 
-**Interaction / reveal:** Connect the control plane switches dashed, weak links to shared connections; click again to disconnect.
+**Interaction / reveal:** Stage: a static connected-role summary with shared governance, context, and evaluation. Review: Connect the control plane toggles the network links.
 
 **Speaker notes:** The control plane metaphor distinguishes defining the conditions of work from doing everyone's work. PM, research, design, prototyping, and engineering keep their domain responsibilities. DesignOps coordinates reusable context, risk-based guardrails, evaluation criteria, ownership, and enablement. It should not become a central approval queue. Security, Legal, IT, platform teams, and domain experts remain essential partners. Clear boundaries can allow teams to move without repeatedly asking permission for known-safe tasks.
 
@@ -178,7 +188,7 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 **Visual concept:** Two journeys connect customer need to customer feedback: sequential handoffs and a collaborative experiment loop.
 
-**Interaction / reveal:** Animate both journeys highlights sequential dependencies versus parallel collaboration; timings are illustrative motion, not measured duration.
+**Interaction / reveal:** Stage: both journeys are fully resolved and static. Review can animate sequencing versus collaboration; motion is illustrative, not measured duration.
 
 **Speaker notes:** The before journey is a deliberately simplified pattern, not a claim that all pre-AI teams worked sequentially. Research informs a brief, design produces mocks, engineering builds, and customers finally respond. The proposed alternative starts with Mission, Milestones, and Metrics—the source's MMM. PM, research, design, and engineering share intent; specification, concepts, feasibility, and HTML/CSS prototypes evolve together. Releases can become experiments that inform another iteration. AI may reduce production effort, but review, integration, and dependency costs still count. Do not promise a one-week release or universal acceleration. Measure elapsed production time, person-hours, waiting time, customer validation, and experimentation cadence. The animation contrasts sequencing, not numeric speed. A prototype is not a production release; user evidence remains necessary.
 
@@ -192,9 +202,9 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 **Takeaway:** Turn domain knowledge into versioned, reusable context and verifiable standards.
 
-**Visual concept:** Seven artifact transformations sit beside the illustrative solo-setup rule, including its source, owner, and review trigger.
+**Visual concept:** Four large artifact transformations and a concise solo-setup rule on stage; all seven transformations and the complete source package in review.
 
-**Interaction / reveal:** Static transformation; readable text remains editable for future PowerPoint recreation.
+**Interaction / reveal:** Static transformation. Stage emphasizes rule, reason, owner/version, review trigger, and pending user evidence; review and notes retain the full detail.
 
 **Speaker notes:** Use the saved solo-setup lesson as the concrete artifact rather than narrating seven new frameworks. Its source is explicitly assumed, the requirement and decision are readable, its scope is solo setup, and its owner and review trigger are visible. User evidence remains pending. The seven transformations preserve the broader source material: guidelines to machine-readable rules, design systems to consumable systems, templates to canonical prompts, documentation to context packages, critique to rubrics, SOPs to human–AI workflows, efficiency measures to speed plus quality and outcomes. A YAML-like package does not enforce itself. Integration, permissions, validation, and human review are still required. DesignOps maintains the package; domain experts author, approve, and revisit its validity.
 
@@ -210,7 +220,7 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 **Visual concept:** Four large comparisons show baseline, pilot, and change together: concept time, production rate, review effort, and system compliance.
 
-**Interaction / reveal:** All 10 measures opens the complete comparison in a readable detail dialog. Definitions links to the measurement backup.
+**Interaction / reveal:** Stage: four static, paired comparisons. Review: All 10 measures opens the complete comparison dialog; Definitions links to the measurement backup, also accessible from Q&A.
 
 **Speaker notes:** Every number is synthetic: illustrative scenario—not measured results, benchmarks, or a forecast. The comparison teaches the measurement design, not an ROI claim. Baseline to pilot: median brief-to-validated-concept time 9 to 6 days; accepted production rate 2 to 3 artifacts per team-week; production effort 18 to 11 hours per concept; review effort 4 to 6 hours; rework 35% to 24%; applicable system checks passed 78% to 90%; open accessibility/quality defects 6 to 4 per 10 screens; design-to-code divergence 28% to 18%; experiments 1 to 2 per week; approved-context reuse 25% to 70%. Review effort rises intentionally: faster generation does not imply less review. Leading/process measures signal behavior and readiness; outcome measures test delivered workflow results. System compliance is a leading quality signal, not proof of user benefit. Both scenarios and their changes appear together, without competing bar scales. Percentage measures use percentage-point changes, not relative percentages. Match work scope, staffing, artifact definition, and evaluation criteria; include sample sizes and dispersion. Track customer task success separately. No customer outcome data is supplied.
 
@@ -224,9 +234,9 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 **Takeaway:** A 30-day pilot can begin at team, product-area, or enterprise level with clear ownership.
 
-**Visual concept:** Four weekly phases and an organizational-altitude selector.
+**Visual concept:** Four weekly phases with a team-level starting point on stage and an organizational-altitude selector in review.
 
-**Interaction / reveal:** Choose Team, Product area, or Enterprise to inspect different ownership and governance needs.
+**Interaction / reveal:** Stage: a static team-level pilot. Review: choose Team, Product area, or Enterprise to inspect ownership and governance; all three are covered in these notes.
 
 **Speaker notes:** Days 1–7: map actual AI use and identify inconsistency, quality gaps, and risk. Days 8–14: select one useful, bounded workflow and package relevant organizational knowledge. Days 15–21: name decision owners, define human checkpoints and evaluation criteria, and establish a baseline before the pilot. Days 22–30: run comparable work and decide whether to adopt, revise, or stop. Avoid sensitive or high-risk first pilots unless the appropriate governance is already in place. At team level, design and engineering leads can own a single workflow with DesignOps facilitation. At product-area level, PM, research, design, engineering, and a system owner coordinate shared patterns and cross-team outcomes. At enterprise level, federated product ownership works within Security, Legal, IT, and platform guardrails. DesignOps connects the altitudes; it does not unilaterally own policy or product decisions. Calendar windows are a suggested starting plan, not promised delivery dates.
 
@@ -242,7 +252,7 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 **Visual concept:** A quiet question, a deliberate answer reveal, and three concluding statements.
 
-**Interaction / reveal:** Pause before revealing DesignOps. Continue to the Q&A slide when ready.
+**Interaction / reveal:** Stage moment 3: pause, press Right to reveal DesignOps, then Right for Q&A. Left hides the answer before moving back. Review retains its reveal button.
 
 **Speaker notes:** Slow down. Read the question and leave space: if AI becomes part of how we design products, who designs the system in which AI operates? Reveal DesignOps. This is not a territorial claim that one function owns all AI. It is an invitation for DesignOps to connect domain expertise, governance, knowledge, workflows, and evaluation. AI creates capacity. Systems create consistency. Stewardship creates trust. DesignOps connects all three. The future is not merely managing work around design; it is designing the infrastructure through which humans and AI create products together. The practical challenge is one workflow, a baseline, a maintained context package, named human checkpoints, and evidence that quality has not been traded for speed. End on the thesis and pause rather than adding more tools.
 
@@ -354,7 +364,7 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 **Visual concept:** A five-layer AI design stack, built from models to connecting DesignOps infrastructure.
 
-**Interaction / reveal:** Build the context stack adds one highlighted layer per click; after all layers it resets to the foundation.
+**Interaction / reveal:** Stage: all five layers are resolved. Review: Build the context stack adds one highlighted layer per click; after all layers it resets to the foundation.
 
 **Speaker notes:** Models provide capabilities. Agents and tools connect capabilities to tasks. Organizational context provides what models do not inherently know: tokens, components, research, product knowledge, brand, accessibility, terminology, workflows, repositories, PRs, existing experiences, and past decisions. Stewardship adds guardrails, exclusions, evaluation, and human checkpoints. DesignOps connects the layers. The diagram is a responsibility model, not a mandatory software architecture. Do not feed all organizational data into a model: permissions, privacy, provenance, source quality, freshness, and ownership determine what context may be used. A design system is one part of organizational memory, not the whole memory.
 
@@ -368,11 +378,11 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 **Takeaway:** Governance, context, and evaluation follow the work across every lifecycle stage.
 
-**Visual concept:** Five selectable stages sit above a persistent shared-infrastructure rail.
+**Visual concept:** Five lifecycle phases above a persistent shared-infrastructure rail; detailed per-phase panels remain in review.
 
-**Interaction / reveal:** Select a stage to reveal AI assistance, DesignOps infrastructure, and the human checkpoint.
+**Interaction / reveal:** Stage: a static five-phase overview. Review: select a phase to reveal AI assistance, DesignOps infrastructure, and the human checkpoint.
 
-**Speaker notes:** Discover: AI can cluster and retrieve research; DesignOps supports consent, traceability, source quality, and reusable knowledge. Define: AI can draft briefs and identify gaps; shared brief structure, product vocabulary, and source context keep framing grounded. Design: alternatives and prototypes rely on system rules, prompts, accessibility constraints, and critique. Build: generated code needs component metadata, supported patterns, tokens, validation, and paired review. Measure: AI can summarize observations, but people interpret outcomes, record caveats, and decide what should change. Do not turn this into a tool catalog. Show one or two stages live and use the persistent rail to connect them.
+**Speaker notes:** Discover: AI can cluster and retrieve research; DesignOps supports consent, traceability, source quality, and reusable knowledge. Define: AI can draft briefs and identify gaps; shared brief structure, product vocabulary, and source context keep framing grounded. Design: alternatives and prototypes rely on system rules, prompts, accessibility constraints, and critique. Build: generated code needs component metadata, supported patterns, tokens, validation, and paired review. Measure: AI can summarize observations, but people interpret outcomes, record caveats, and decide what should change. Do not turn this into a tool catalog. Discuss one or two phases with the persistent rail; use review mode only when the detailed panels are needed.
 
 **Transition:** Return to Q&A. The keynote's onboarding decision is one example at the design-to-build boundary.
 
@@ -426,8 +436,8 @@ Record sample size, spread, staffing, complexity, exclusions, and data-collectio
 | Designer–engineer pairing; context → conflict → decision → rule, with local HTML/CSS | 5 |
 | Learning captured into context and standards | 7, 11 |
 | Production time, rate, review, rework, consistency, and measurement | 12, 20 |
-| Canonical prompts and seven artifact transformations | 11, 19 |
-| Team, product-area, and enterprise altitudes | 13 |
+| Canonical prompts and seven artifact transformations | 11 (four on stage; all seven in review and notes), 19 |
+| Team, product-area, and enterprise altitudes | 13 (team on stage; all three in review and notes) |
 | Evolving role and work archetypes | 17 |
 | Risks if infrastructure is absent | 3, 5 and their notes |
 | Shared governance, AI-team concern, AI-ready systems, model change, prompt ownership | 15–22 |

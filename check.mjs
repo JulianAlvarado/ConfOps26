@@ -50,6 +50,16 @@ The timing is a rehearsal guide, not an auto-advance schedule. Keep on-screen ex
 
 Slide 5's retained six-step demo runs from **3:30–8:00**, for **270 seconds**. The removed overview's 90 seconds are reassigned to explanation and interaction pauses: 30 seconds for the audience to absorb the blocked need, 30 seconds for form validation/keyboard feedback, and 30 seconds to review the saved lesson's owner and review trigger. No steps or exercises were added. The keynote remains exactly 1,200 seconds; Q&A remains 600 seconds.
 
+## Stage delivery and rehearsal
+
+Choose **Stage** or press **S** before sharing. Stage closes notes and dialogs and hides review chrome; **F** optionally enters fullscreen. Only three moments need builds: slide 3 fragmentation → alignment, slide 5's six existing demo steps, and slide 14 question → answer. All other diagrams are resolved static summaries. This changes delivery, not slide order or timing.
+
+**Right / Down / Page Down / Space** advances a build before the next slide; **Left / Up / Page Up** reverses a build before the previous slide. Builds are retained when revisiting slides. Home / End jumps to the first / last slide. Tab into the demo to type and submit; input and form-button keys retain native behavior. Tab beyond the form to resume slide keys. **Escape**, **S**, **Exit stage · Esc**, or leaving native fullscreen returns to review on the current slide. Escape works from the form too. N/G cannot open notes or the index on stage.
+
+Review's build states, form value/feedback, diagram selections, and manual Reading preference are restored on exit; notes and dialogs remain closed. Entering Stage again starts a new rehearsal of the three build moments. Use the form only for fictional input: it sends and saves nothing.
+
+Stage prioritizes projected labels: the tested decision-bearing body and diagram text is at least 18.4px effective at 1280×720, and 24.15px at 1680×1080. The framework shows two points per question; the documentation model shows four mappings and a concise scoped rule. Full lists, seven transformations, detailed rule provenance, lifecycle panels, altitude options, and all ten measures remain in review and these notes. Act/topic labels, counters, decorative ordinals, window chrome, and reference-appendix metadata remain smaller. Reading view remains the appropriate reference-reading surface on small screens.
+
 ## Illustrative decision trail
 
 The assumed user needs to start a workspace alone. The first generated form requires a teammate email and blocks that task. Designer and engineer move invitations after setup. DesignOps saves the lesson and its reason in shared guidance, scoped to solo workspace setup, with a product lead owner and review after the pilot or a source change. The next proposed form meets that requirement, but still needs accessibility and user-outcome review.
@@ -99,8 +109,8 @@ Record sample size, spread, staffing, complexity, exclusions, and data-collectio
 | Designer–engineer pairing; context → conflict → decision → rule, with local HTML/CSS | 5 |
 | Learning captured into context and standards | 7, 11 |
 | Production time, rate, review, rework, consistency, and measurement | 12, 20 |
-| Canonical prompts and seven artifact transformations | 11, 19 |
-| Team, product-area, and enterprise altitudes | 13 |
+| Canonical prompts and seven artifact transformations | 11 (four on stage; all seven in review and notes), 19 |
+| Team, product-area, and enterprise altitudes | 13 (team on stage; all three in review and notes) |
 | Evolving role and work archetypes | 17 |
 | Risks if infrastructure is absent | 3, 5 and their notes |
 | Shared governance, AI-team concern, AI-ready systems, model change, prompt ownership | 15–22 |
@@ -172,6 +182,9 @@ for (const step of [0, 1, 2, 4, 5]) {
 }
 assert.match(JSON.stringify(data.pairEvidence[4]), /version 1.*from the brief.*product lead.*after the pilot/, "Saved lesson retains version, source, owner, and review trigger");
 assert.match(data.pairEvidence[5].verdict, /review is not over/, "Reuse never replaces evaluation");
+for (const id of ["stage-toggle", "stage-exit", "stage-help"]) assert(ids.includes(id), `Stage control ${id} exists`);
+assert.equal(data.notes.filter(note => /Stage moment [123]:/.test(note.interaction)).length, 3, "Only three intentional stage build moments");
+assert(markdown.includes("Stage delivery and rehearsal"), "Export includes stage instructions");
 assert(!/BRIEF-01|AC-01|DEC-01|RULE-01/.test(JSON.stringify([data.pairDescriptions, data.pairCode, data.pairLabels, data.pairEvidence])), "Demo explains the example without document codes");
 assert(css.includes("prefers-reduced-motion"));
 assert(html.includes("ILLUSTRATIVE SCENARIO — NOT MEASURED RESULTS"));

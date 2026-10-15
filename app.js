@@ -14,7 +14,7 @@ const notes = [
     seconds: 45,
     takeaway: "Distributed generation moves the bottleneck toward alignment, quality, and governance.",
     visual: "Four parallel lanes: product, research, design, and engineering.",
-    interaction: "Distribute generation activates one role per click; a fifth click resets the example.",
+    interaction: "Stage: all four roles are resolved and visible. Review: Distribute generation activates one role per click; a fifth click resets the example.",
     body: "Each discipline gains production capacity. PMs generate briefs and hypotheses; researchers synthesize evidence; designers explore concepts; engineers generate components and tests. Generation is more distributed, but expertise is not interchangeable. The same language model can interpret the product differently in each lane. These are categories of assistance, not guarantees that outputs are accurate. Ask the room to imagine all four lanes producing simultaneously. The new constraint is agreeing on what to produce, what fits the system, and who evaluates it.",
     transition: "Without shared conditions, more output can create more variation."
   },
@@ -22,7 +22,7 @@ const notes = [
     seconds: 60,
     takeaway: "Shared context and evaluation govern variation without eliminating useful exploration.",
     visual: "A causal chain sits above diverging output branches; a shared standards band aligns their treatment.",
-    interaction: "Trace the chain progresses through five stages, activating more branches and divergent patterns. Apply shared standards toggles fragmentation versus coherence.",
+    interaction: "Stage moment 1: the complete chain starts fragmented. Right advances to shared standards, then to the next slide; Left reverses it. Review retains the five-stage trace and alignment toggle.",
     body: "Read the chain deliberately: more AI, more output, more variation, more decisions, more opportunities for inconsistency. This is a conceptual mechanism, not a statistical forecast. Variation is useful during exploration; unmanaged variation becomes expensive at system boundaries. Examples include conflicting terminology, duplicated research, inaccessible patterns, undocumented AI decisions, and design-system drift. The source's '17 versions of a pattern' is rhetorical, not a measured statistic, so we do not chart it. Apply shared context and evaluation: options can remain different while obeying common constraints. A green state is an explanatory metaphor, not a claim that standards automatically eliminate defects.",
     transition: "Three questions help us govern that variation. Then we will apply them to one workspace-setup example."
   },
@@ -30,7 +30,7 @@ const notes = [
     seconds: 60,
     takeaway: "GOVERN: what can AI do? CONTEXT: what does it know? EVALUATE: what does good look like?",
     visual: "Three pillars apply Govern / Context / Evaluate directly to the solo-setup conflict.",
-    interaction: "Static anchor slide. Return to these three questions throughout the talk.",
+    interaction: "Static anchor slide. Stage emphasizes two supporting points per question; the full lists and foundation remain in review and these notes.",
     body: "Use one model throughout. The next demo follows someone starting a workspace alone; use that need to ground the three questions. Govern asks what AI may do and who can accept it: in this illustrative case, no real contact data enters the demo, a designer and engineer review, and a product lead owns the scoped rule. Context carries the solo-setup brief, the requirement to make invitations optional, and the supported form pattern together. Evaluate asks whether setup completes without email, while checking labels, errors, focus, and feasibility. Meeting that requirement alone cannot establish user value. These concrete checks sit within broader tool, data, privacy, risk, and release boundaries. Stewardship grounds governance; systems carry context; enablement puts all three into practice through workflows, prompts, rubrics, and training. This is the core model, not another framework to memorize.",
     transition: "Now follow those three responsibilities through the actual decision."
   },
@@ -38,7 +38,7 @@ const notes = [
     seconds: 270,
     takeaway: "The team fixes the form. DesignOps makes the lesson available to the next team and its AI tools.",
     visual: "Six plain-language steps follow one problem from the user's need to a corrected form and a reusable lesson.",
-    interaction: "Advance six steps. At step 4, try creating a workspace with a name only. Reset clears the form and returns to the user's need.",
+    interaction: "Stage moment 2: Right advances the six steps, then the slide; Left reverses them. At step 4, Tab into the name-only form; native field and submit keys never advance the deck. Tab out to resume. Review keeps its buttons; Reset clears the form in either mode.",
     body: "Introduce the fictional example here: someone wants to start a workspace alone. Allow 270 seconds (4 minutes 30 seconds) for the six existing steps. The 90 seconds recovered from the removed overview slide are explanation and interaction pauses, not extra UI or an exercise: 30 seconds to let the audience absorb the blocked user need, 30 seconds for the form's validation and keyboard feedback, and 30 seconds to review why the saved lesson needs an owner and a review trigger. First: the person wants to start a workspace alone. Second: the AI-produced form requires someone else's email, so the person gets stuck. Third: the designer and engineer move invitations after workspace creation. Fourth: try the revised local form with just a workspace name; show validation and keyboard feedback if useful. Nothing is saved or sent. Fifth: explain why fixing one screen is not enough. DesignOps records the lesson with the original solo-setup assumption, the team's reason, a product lead owner, and a review date after the pilot. Put that guidance where the next team and its AI tools can use it. Sixth: the next proposed form allows setup without inviting anyone. A reviewer verifies that behavior and still checks accessibility and user outcomes. Do not claim the rule guarantees future results or that this is a real user study. Every state is pre-authored and illustrative. The distinction is simple: product experts decide what the experience should do; DesignOps helps that decision survive beyond this one screen.",
     transition: "One criterion passed. What else must a reviewer still judge?"
   },
@@ -53,8 +53,8 @@ const notes = [
   {
     seconds: 70,
     takeaway: "Learning compounds only when decisions feed back into maintained context and standards.",
-    visual: "A closed five-stage loop surrounds organizational memory.",
-    interaction: "Follow one learning cycle highlights a stage per click, wrapping back to generation.",
+    visual: "A complete five-stage learning sequence on stage; a closed loop around organizational memory in review.",
+    interaction: "Stage: the whole sequence is static, ending with re-evaluation. Review: Follow one learning cycle highlights a stage per click, wrapping back to generation.",
     body: "Return to the decision to offer invitations after setup and the saved lesson. The useful artifact is not merely the revised form: it is the requirement, reason, owner, and review trigger attached to it. AI generates using current context; humans evaluate; the decision is recorded; reviewed guidance updates context; the next result is checked again. The example proves neither that one field is always best nor that context automatically prevents future violations. Its scenario is assumed and user validation is pending. If the solo-setup assumption changes, the product lead revisits the rule; DesignOps keeps the source, access, version, and review cadence usable across teams. Retire stale rules rather than making every observation universal policy.",
     transition: "That maintenance is recognizable DesignOps work—with a wider scope."
   },
@@ -70,7 +70,7 @@ const notes = [
     seconds: 50,
     takeaway: "DesignOps connects distributed actors through shared rules, context, and evaluation.",
     visual: "Five AI-enabled actors connect through a common operating layer.",
-    interaction: "Connect the control plane switches dashed, weak links to shared connections; click again to disconnect.",
+    interaction: "Stage: a static connected-role summary with shared governance, context, and evaluation. Review: Connect the control plane toggles the network links.",
     body: "The control plane metaphor distinguishes defining the conditions of work from doing everyone's work. PM, research, design, prototyping, and engineering keep their domain responsibilities. DesignOps coordinates reusable context, risk-based guardrails, evaluation criteria, ownership, and enablement. It should not become a central approval queue. Security, Legal, IT, platform teams, and domain experts remain essential partners. Clear boundaries can allow teams to move without repeatedly asking permission for known-safe tasks.",
     transition: "The shared contract also changes how work moves between these people."
   },
@@ -78,15 +78,15 @@ const notes = [
     seconds: 60,
     takeaway: "Pilot collaborative production and use any capacity gained for customer learning.",
     visual: "Two journeys connect customer need to customer feedback: sequential handoffs and a collaborative experiment loop.",
-    interaction: "Animate both journeys highlights sequential dependencies versus parallel collaboration; timings are illustrative motion, not measured duration.",
+    interaction: "Stage: both journeys are fully resolved and static. Review can animate sequencing versus collaboration; motion is illustrative, not measured duration.",
     body: "The before journey is a deliberately simplified pattern, not a claim that all pre-AI teams worked sequentially. Research informs a brief, design produces mocks, engineering builds, and customers finally respond. The proposed alternative starts with Mission, Milestones, and Metrics—the source's MMM. PM, research, design, and engineering share intent; specification, concepts, feasibility, and HTML/CSS prototypes evolve together. Releases can become experiments that inform another iteration. AI may reduce production effort, but review, integration, and dependency costs still count. Do not promise a one-week release or universal acceleration. Measure elapsed production time, person-hours, waiting time, customer validation, and experimentation cadence. The animation contrasts sequencing, not numeric speed. A prototype is not a production release; user evidence remains necessary.",
     transition: "The reusable contract can start with documentation the team already has."
   },
   {
     seconds: 75,
     takeaway: "Turn domain knowledge into versioned, reusable context and verifiable standards.",
-    visual: "Seven artifact transformations sit beside the illustrative solo-setup rule, including its source, owner, and review trigger.",
-    interaction: "Static transformation; readable text remains editable for future PowerPoint recreation.",
+    visual: "Four large artifact transformations and a concise solo-setup rule on stage; all seven transformations and the complete source package in review.",
+    interaction: "Static transformation. Stage emphasizes rule, reason, owner/version, review trigger, and pending user evidence; review and notes retain the full detail.",
     body: "Use the saved solo-setup lesson as the concrete artifact rather than narrating seven new frameworks. Its source is explicitly assumed, the requirement and decision are readable, its scope is solo setup, and its owner and review trigger are visible. User evidence remains pending. The seven transformations preserve the broader source material: guidelines to machine-readable rules, design systems to consumable systems, templates to canonical prompts, documentation to context packages, critique to rubrics, SOPs to human–AI workflows, efficiency measures to speed plus quality and outcomes. A YAML-like package does not enforce itself. Integration, permissions, validation, and human review are still required. DesignOps maintains the package; domain experts author, approve, and revisit its validity.",
     transition: "Maintaining this contract costs time. How would we know the workflow is worth adopting?"
   },
@@ -94,15 +94,15 @@ const notes = [
     seconds: 100,
     takeaway: "Evaluate the whole workflow: speed, review cost, quality, coherence, and customer outcomes.",
     visual: "Four large comparisons show baseline, pilot, and change together: concept time, production rate, review effort, and system compliance.",
-    interaction: "All 10 measures opens the complete comparison in a readable detail dialog. Definitions links to the measurement backup.",
+    interaction: "Stage: four static, paired comparisons. Review: All 10 measures opens the complete comparison dialog; Definitions links to the measurement backup, also accessible from Q&A.",
     body: "Every number is synthetic: illustrative scenario—not measured results, benchmarks, or a forecast. The comparison teaches the measurement design, not an ROI claim. Baseline to pilot: median brief-to-validated-concept time 9 to 6 days; accepted production rate 2 to 3 artifacts per team-week; production effort 18 to 11 hours per concept; review effort 4 to 6 hours; rework 35% to 24%; applicable system checks passed 78% to 90%; open accessibility/quality defects 6 to 4 per 10 screens; design-to-code divergence 28% to 18%; experiments 1 to 2 per week; approved-context reuse 25% to 70%. Review effort rises intentionally: faster generation does not imply less review. Leading/process measures signal behavior and readiness; outcome measures test delivered workflow results. System compliance is a leading quality signal, not proof of user benefit. Both scenarios and their changes appear together, without competing bar scales. Percentage measures use percentage-point changes, not relative percentages. Match work scope, staffing, artifact definition, and evaluation criteria; include sample sizes and dispersion. Track customer task success separately. No customer outcome data is supplied.",
     transition: "Use those measures in one bounded pilot before scaling the operating model."
   },
   {
     seconds: 135,
     takeaway: "A 30-day pilot can begin at team, product-area, or enterprise level with clear ownership.",
-    visual: "Four weekly phases and an organizational-altitude selector.",
-    interaction: "Choose Team, Product area, or Enterprise to inspect different ownership and governance needs.",
+    visual: "Four weekly phases with a team-level starting point on stage and an organizational-altitude selector in review.",
+    interaction: "Stage: a static team-level pilot. Review: choose Team, Product area, or Enterprise to inspect ownership and governance; all three are covered in these notes.",
     body: "Days 1–7: map actual AI use and identify inconsistency, quality gaps, and risk. Days 8–14: select one useful, bounded workflow and package relevant organizational knowledge. Days 15–21: name decision owners, define human checkpoints and evaluation criteria, and establish a baseline before the pilot. Days 22–30: run comparable work and decide whether to adopt, revise, or stop. Avoid sensitive or high-risk first pilots unless the appropriate governance is already in place. At team level, design and engineering leads can own a single workflow with DesignOps facilitation. At product-area level, PM, research, design, engineering, and a system owner coordinate shared patterns and cross-team outcomes. At enterprise level, federated product ownership works within Security, Legal, IT, and platform guardrails. DesignOps connects the altitudes; it does not unilaterally own policy or product decisions. Calendar windows are a suggested starting plan, not promised delivery dates.",
     transition: "Return to the central question: if AI participates in design, who designs its operating environment?"
   },
@@ -110,7 +110,7 @@ const notes = [
     seconds: 120,
     takeaway: "AI doesn't eliminate the need for DesignOps. It makes DesignOps infrastructure.",
     visual: "A quiet question, a deliberate answer reveal, and three concluding statements.",
-    interaction: "Pause before revealing DesignOps. Continue to the Q&A slide when ready.",
+    interaction: "Stage moment 3: pause, press Right to reveal DesignOps, then Right for Q&A. Left hides the answer before moving back. Review retains its reveal button.",
     body: "Slow down. Read the question and leave space: if AI becomes part of how we design products, who designs the system in which AI operates? Reveal DesignOps. This is not a territorial claim that one function owns all AI. It is an invitation for DesignOps to connect domain expertise, governance, knowledge, workflows, and evaluation. AI creates capacity. Systems create consistency. Stewardship creates trust. DesignOps connects all three. The future is not merely managing work around design; it is designing the infrastructure through which humans and AI create products together. The practical challenge is one workflow, a baseline, a maintained context package, named human checkpoints, and evidence that quality has not been traded for speed. End on the thesis and pause rather than adding more tools.",
     transition: "Let's talk. Where is your team generating faster than it can maintain coherence?"
   },
@@ -166,16 +166,16 @@ const notes = [
     seconds: 0,
     takeaway: "The differentiator is governed organizational knowledge, not loyalty to a model.",
     visual: "A five-layer AI design stack, built from models to connecting DesignOps infrastructure.",
-    interaction: "Build the context stack adds one highlighted layer per click; after all layers it resets to the foundation.",
+    interaction: "Stage: all five layers are resolved. Review: Build the context stack adds one highlighted layer per click; after all layers it resets to the foundation.",
     body: "Models provide capabilities. Agents and tools connect capabilities to tasks. Organizational context provides what models do not inherently know: tokens, components, research, product knowledge, brand, accessibility, terminology, workflows, repositories, PRs, existing experiences, and past decisions. Stewardship adds guardrails, exclusions, evaluation, and human checkpoints. DesignOps connects the layers. The diagram is a responsibility model, not a mandatory software architecture. Do not feed all organizational data into a model: permissions, privacy, provenance, source quality, freshness, and ownership determine what context may be used. A design system is one part of organizational memory, not the whole memory.",
     transition: "Return to Q&A, or use the lifecycle backup to locate these responsibilities in the work."
   },
   {
     seconds: 0,
     takeaway: "Governance, context, and evaluation follow the work across every lifecycle stage.",
-    visual: "Five selectable stages sit above a persistent shared-infrastructure rail.",
-    interaction: "Select a stage to reveal AI assistance, DesignOps infrastructure, and the human checkpoint.",
-    body: "Discover: AI can cluster and retrieve research; DesignOps supports consent, traceability, source quality, and reusable knowledge. Define: AI can draft briefs and identify gaps; shared brief structure, product vocabulary, and source context keep framing grounded. Design: alternatives and prototypes rely on system rules, prompts, accessibility constraints, and critique. Build: generated code needs component metadata, supported patterns, tokens, validation, and paired review. Measure: AI can summarize observations, but people interpret outcomes, record caveats, and decide what should change. Do not turn this into a tool catalog. Show one or two stages live and use the persistent rail to connect them.",
+    visual: "Five lifecycle phases above a persistent shared-infrastructure rail; detailed per-phase panels remain in review.",
+    interaction: "Stage: a static five-phase overview. Review: select a phase to reveal AI assistance, DesignOps infrastructure, and the human checkpoint.",
+    body: "Discover: AI can cluster and retrieve research; DesignOps supports consent, traceability, source quality, and reusable knowledge. Define: AI can draft briefs and identify gaps; shared brief structure, product vocabulary, and source context keep framing grounded. Design: alternatives and prototypes rely on system rules, prompts, accessibility constraints, and critique. Build: generated code needs component metadata, supported patterns, tokens, validation, and paired review. Measure: AI can summarize observations, but people interpret outcomes, record caveats, and decide what should change. Do not turn this into a tool catalog. Discuss one or two phases with the persistent rail; use review mode only when the detailed panels are needed.",
     transition: "Return to Q&A. The keynote's onboarding decision is one example at the design-to-build boundary."
   }
 ];
@@ -254,6 +254,7 @@ const $ = (selector) => document.querySelector(selector);
 const state = { index: 0, generation: 0, cause: 0, stack: 0, pair: 0, loop: -1 };
 const smallScreen = matchMedia("(max-width: 900px), (max-height: 560px)");
 let readingPreference;
+let stageReview;
 
 function clock(seconds) {
   return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, "0")}`;
@@ -274,8 +275,9 @@ function fitStage() {
 }
 
 function setReadingView(reading) {
-  document.body.classList.toggle("reading", reading);
-  $("#reading-toggle").setAttribute("aria-pressed", String(reading));
+  const active = reading && !stageReview;
+  document.body.classList.toggle("reading", active);
+  $("#reading-toggle").setAttribute("aria-pressed", String(active));
   $("#presentation").scrollTop = 0;
   fitStage();
 }
@@ -290,12 +292,13 @@ function markCurrent(selector, index) {
 function renderStack() {
   document.querySelectorAll("[data-layer]").forEach((layer) => {
     const index = Number(layer.dataset.layer);
-    const current = index === state.stack;
-    layer.classList.toggle("revealed", index <= state.stack);
+    const current = !stageReview && index === state.stack;
+    const built = Boolean(stageReview) || index <= state.stack;
+    layer.classList.toggle("revealed", built);
     if (current) layer.setAttribute("aria-current", "step");
     else layer.removeAttribute("aria-current");
     layer.setAttribute("role", "group");
-    layer.setAttribute("aria-label", `Layer ${index + 1} of 5: ${layer.querySelector("h3").textContent}. ${current ? "Current layer" : index < state.stack ? "Built" : "Not yet built"}.`);
+    layer.setAttribute("aria-label", `Layer ${index + 1} of 5: ${layer.querySelector("h3").textContent}. ${current ? "Current layer" : built ? "Built" : "Not yet built"}.`);
   });
 }
 
@@ -365,6 +368,7 @@ function readHash() {
 }
 
 function toggleNotes(force) {
+  if (stageReview) return;
   const open = force === undefined ? $("#notes").hidden : force;
   $("#notes").hidden = !open;
   $("#notes-toggle").setAttribute("aria-expanded", String(open));
@@ -372,10 +376,95 @@ function toggleNotes(force) {
   else $("#notes-toggle").focus();
 }
 
+function setStageMode(active) {
+  if (active === Boolean(stageReview)) return;
+  if (active) {
+    // Stage builds are temporary; review's diagram and form states survive a rehearsal.
+    stageReview = {
+      pair: state.pair,
+      aligned: $("#fragmentation").classList.contains("aligned"),
+      closing: !$("#closing-reveal").hidden,
+      name: $("#workspace-name").value,
+      invalid: $("#workspace-name").getAttribute("aria-invalid"),
+      result: $("#prototype-result").textContent,
+      resultClass: $("#prototype-result").className
+    };
+    document.querySelectorAll("dialog[open]").forEach(dialog => dialog.close());
+    $("#notes").hidden = true;
+    $("#notes-toggle").setAttribute("aria-expanded", "false");
+    setAligned(false);
+    setPair(0);
+    setClosing(false);
+  } else {
+    const saved = stageReview;
+    stageReview = undefined;
+    setAligned(saved.aligned);
+    setPair(saved.pair);
+    setClosing(saved.closing);
+    $("#workspace-name").value = saved.name;
+    if (saved.invalid === null) $("#workspace-name").removeAttribute("aria-invalid");
+    else $("#workspace-name").setAttribute("aria-invalid", saved.invalid);
+    $("#prototype-result").textContent = saved.result;
+    $("#prototype-result").className = saved.resultClass;
+  }
+  document.body.classList.toggle("stage-mode", active);
+  $("#stage-toggle").setAttribute("aria-pressed", String(active));
+  $("#stage-exit").hidden = !active;
+  $("#stage-exit").textContent = "Exit stage · Esc";
+  document.querySelectorAll("[data-life]").forEach(button => { button.disabled = active; });
+  renderStack();
+  markCurrent(".role", active ? -1 : state.generation - 1);
+  markCurrent("#causal-chain li", active ? -1 : state.cause);
+  markCurrent("#loop-reading li", active ? -1 : state.loop);
+  setReadingView(readingPreference ?? smallScreen.matches);
+  (active ? $("#presentation") : $("#stage-toggle")).focus({ preventScroll: true });
+  $("#announcement").textContent = active ? $("#stage-help").textContent : "Review restored. Notes remain closed.";
+}
+
+async function exitStage() {
+  setStageMode(false);
+  if (document.fullscreenElement) await fullscreen();
+}
+
+function setAligned(aligned) {
+  $("#fragmentation").classList.toggle("aligned", aligned);
+  const button = $('[data-action="align"]');
+  button.setAttribute("aria-pressed", String(aligned));
+  button.textContent = aligned ? "Remove shared standards" : "Apply shared standards";
+  $("#fragment-caption").textContent = aligned ? "Distinct ideas. Shared constraints. Accountable decisions." : "Different patterns. Conflicting terminology. Unowned decisions.";
+}
+
+function setClosing(revealed) {
+  $("#closing-reveal").hidden = !revealed;
+  $('[data-action="closing"]').hidden = revealed;
+  $('[data-action="closing"]').setAttribute("aria-expanded", String(revealed));
+  if (stageReview) $("#announcement").textContent = revealed ? "DesignOps. It makes DesignOps infrastructure." : "Who designs the system in which AI operates?";
+}
+
+function stageAdvance(direction) {
+  if (state.index === 2) {
+    const aligned = $("#fragmentation").classList.contains("aligned");
+    if (aligned !== (direction > 0)) {
+      setAligned(direction > 0);
+      return;
+    }
+  }
+  if (state.index === 4 && (direction > 0 ? state.pair < 5 : state.pair > 0)) {
+    setPair(state.pair + direction);
+    return;
+  }
+  if (state.index === 13 && $("#closing-reveal").hidden === (direction > 0)) {
+    setClosing(direction > 0);
+    return;
+  }
+  navigate(state.index + direction);
+}
+
 async function fullscreen() {
   if (!document.fullscreenEnabled) {
     $("#announcement").textContent = "Fullscreen is unavailable in this browser. Open index.html in a desktop browser to present fullscreen.";
     $("#fullscreen").textContent = "Fullscreen unavailable";
+    if (stageReview) $("#stage-exit").textContent = "Fullscreen unavailable · Exit stage (Esc)";
     return;
   }
   try {
@@ -384,6 +473,7 @@ async function fullscreen() {
   } catch (error) {
     $("#announcement").textContent = `Could not enter fullscreen: ${error.message}`;
     $("#fullscreen").textContent = "Fullscreen blocked";
+    if (stageReview) $("#stage-exit").textContent = "Fullscreen blocked · Exit stage (Esc)";
     console.error("Fullscreen request failed", error);
   }
 }
@@ -517,11 +607,8 @@ const actions = {
     markCurrent("#causal-chain li", state.cause);
     $("#cause-status").textContent = `Stage ${state.cause + 1} of 5: ${document.querySelectorAll("#causal-chain li")[state.cause].textContent}.`;
   },
-  align(button) {
-    const aligned = $("#fragmentation").classList.toggle("aligned");
-    button.setAttribute("aria-pressed", String(aligned));
-    button.textContent = aligned ? "Remove shared standards" : "Apply shared standards";
-    $("#fragment-caption").textContent = aligned ? "Distinct ideas. Shared constraints. Accountable decisions." : "Different patterns. Conflicting terminology. Unowned decisions.";
+  align() {
+    setAligned(!$("#fragmentation").classList.contains("aligned"));
   },
   journey(button) {
     const journeys = $("#journeys");
@@ -557,11 +644,9 @@ const actions = {
     button.textContent = state.loop === 4 ? "Start the next cycle ↺" : "Follow one learning cycle →";
   },
   "metric-definitions"() { navigate(slides.indexOf($(".measurement-backup"))); },
-  closing(button) {
-    $("#closing-reveal").hidden = false;
-    button.setAttribute("aria-expanded", "true");
+  closing() {
+    setClosing(true);
     $("#announcement").textContent = "DesignOps. AI doesn't eliminate the need for DesignOps. It makes DesignOps infrastructure.";
-    button.hidden = true;
     $(".closing h2").tabIndex = -1;
     $(".closing h2").focus({ preventScroll: true });
   }
@@ -601,6 +686,8 @@ $("#next").addEventListener("click", () => navigate(state.index + 1));
 $("#notes-toggle").addEventListener("click", () => toggleNotes());
 $("#notes-close").addEventListener("click", () => toggleNotes(false));
 $("#fullscreen").addEventListener("click", fullscreen);
+$("#stage-toggle").addEventListener("click", () => setStageMode(true));
+$("#stage-exit").addEventListener("click", exitStage);
 $("#reading-toggle").addEventListener("click", () => {
   readingPreference = !document.body.classList.contains("reading");
   setReadingView(readingPreference);
@@ -617,7 +704,13 @@ $("#slide-index").addEventListener("click", (event) => {
 });
 
 document.addEventListener("keydown", (event) => {
-  if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey || document.querySelector("dialog[open]")) return;
+  if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey) return;
+  if (stageReview && event.key === "Escape") {
+    event.preventDefault();
+    exitStage();
+    return;
+  }
+  if (document.querySelector("dialog[open]")) return;
   if (event.target.closest("#notes")) {
     if (["Escape", "n", "N"].includes(event.key)) {
       event.preventDefault();
@@ -626,6 +719,28 @@ document.addEventListener("keydown", (event) => {
     return;
   }
   if (event.target.closest("input, textarea, select, [contenteditable='true']")) return;
+  if (event.key.toLowerCase() === "s") {
+    event.preventDefault();
+    if (event.repeat) return;
+    if (stageReview) exitStage();
+    else setStageMode(true);
+    return;
+  }
+  if (stageReview) {
+    // Native form/button activation wins over the presentation's build keys.
+    if (event.target.closest("form") || (event.code === "Space" && event.target.closest("button, a"))) return;
+    if (["ArrowRight", "ArrowDown", "PageDown", " ", "ArrowLeft", "ArrowUp", "PageUp"].includes(event.key)) {
+      event.preventDefault();
+      if (!event.repeat) stageAdvance(["ArrowLeft", "ArrowUp", "PageUp"].includes(event.key) ? -1 : 1);
+    } else if (event.key.toLowerCase() === "f") {
+      event.preventDefault();
+      fullscreen();
+    } else if (event.key === "Home" || event.key === "End") {
+      event.preventDefault();
+      navigate(event.key === "Home" ? 0 : slides.length - 1);
+    }
+    return;
+  }
   if (document.body.classList.contains("reading") && ["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "].includes(event.key)) return;
   if (event.code === "Space" && event.target.closest("button, a")) return;
   switch (event.key) {
@@ -644,6 +759,7 @@ document.addEventListener("keydown", (event) => {
 
 document.addEventListener("fullscreenchange", () => {
   const active = Boolean(document.fullscreenElement);
+  if (!active && stageReview) setStageMode(false);
   $("#fullscreen").textContent = active ? "Exit fullscreen" : "Fullscreen";
   $("#fullscreen").setAttribute("aria-label", active ? "Exit fullscreen" : "Enter fullscreen");
 });

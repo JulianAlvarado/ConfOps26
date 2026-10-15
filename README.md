@@ -33,10 +33,37 @@ Open `http://127.0.0.1:8080`. Stop the server with Ctrl+C.
 
 **Presentation view** preserves the 1600 × 900 (16:9) stage. **Reading view** reflows the same slide into a scrollable layout with readable text, 44px-minimum controls, and text equivalents for complex SVG diagrams. Reading view starts automatically at widths of 900px or less, or heights of 560px or less. The toolbar toggle lets you choose either view at any size; your choice lasts until reload. For larger text on a laptop, turn Reading view on rather than shrinking the stage.
 
-## Present
+## Stage delivery
+
+Choose **Stage** or press **S** before sharing the screen. Stage removes the review toolbar, version label, navigation hints, notes, and open dialogs. **F** optionally enters native fullscreen; Stage also works in a window. The visible **Exit stage · Esc** control stays in the bottom-left footer area.
+
+Only three slides have builds:
+
+| Slide | Stage build sequence |
+| --- | --- |
+| 3 | Fully visible fragmentation → apply shared standards → next slide |
+| 5 | Six unchanged plain-language demo steps → next slide |
+| 14 | Question → answer → Q&A |
+
+**Right / Down / Page Down / Space** advances the current build before moving to the next slide. **Left / Up / Page Up** reverses a build, then moves to the previous slide. Returning to a slide retains its stage build. Home / End jumps to the first / last slide. Keys never auto-repeat through builds.
+
+The demo's buttons and form remain keyboard accessible. **Tab** reaches its labeled input and submit button; native typing, arrows, Space, and Enter remain native within the form. Tab beyond the form (or focus the slide background) to resume presentation keys. **Escape** exits Stage even from the input. **S**, the exit button, or leaving browser fullscreen also returns to review. The current slide stays selected.
+
+Entering Stage starts its three build sequences afresh but snapshots the review builds and form. Exiting restores those states, diagram selections, and the manual Reading view preference. Notes and dialogs stay closed on exit; **N/G are inactive on stage**, so they cannot accidentally appear to the audience. Fullscreen permission failures are announced and leave windowed Stage usable.
+
+Other diagrams are resolved, static summaries: all roles generating; the complete learning loop and connected control plane; both journey paths; all stack layers; the lifecycle overview; and a team-level pilot. All detailed interactions, lifecycle/altitude choices, and the ten-measure dialog remain available in review.
+
+### Projection typography
+
+Stage uses the full available 16:9 area, not the smaller review viewport. The established system sans and semantic monospace stay unchanged. Decision-bearing body/diagram text uses a minimum **23px design-space size**: measured **18.4px at 1280×720** and **24.15px at 1680×1080** after the actual stage transform. Framework questions/list items are 32/28px; documentation mappings and rule content are 29/27px. The framework shows two supporting points per question; the documentation model shows four mappings and a concise rule summary. Complete lists, provenance, and the other three mappings remain in review and notes.
+
+Small reference-only text remains in act/topic eyebrows, slide numbers, decorative output labels, role/step ordinals, and demo window chrome. The dense measurement appendix remains a reference table (18.4px cells at 1280×720); its captions/column labels and some backup category labels are smaller, not the primary spoken argument. Synthetic-results and rule-scope disclaimers remain visible. Use Reading view for reference reading or smaller displays; Stage is intended for projection at 1280×720 or larger, not phone-scale delivery.
+
+## Review controls
 
 | Control | Action |
 | --- | --- |
+| S / Stage | Start clean stage delivery |
 | Next / previous, Left / Right arrows | Navigate slides in either view |
 | Up / Down, Page Up / Down, Space | Navigate in presentation view; scroll in reading view |
 | Home / End | First / last slide in presentation view; scroll in reading view |
@@ -48,11 +75,11 @@ Open `http://127.0.0.1:8080`. Stop the server with Ctrl+C.
 | Topic links on Q&A | Open the relevant backup |
 | `#13`, for example | Link directly to a slide |
 
-All animations are finite and respect `prefers-reduced-motion`. Slides never advance automatically. In-slide buttons are intentionally separate from slide navigation; press Tab and Enter/Space to operate them. Reveal steps expose their current state and announce updates. Interaction state is preserved while navigating within the page and resets on reload. Keynote progress reaches 100% at slide 14; Q&A and backups have separate labels and no keynote progress bar.
+All animations are finite and respect `prefers-reduced-motion`. Slides never advance automatically. In review, in-slide buttons are separate from slide navigation; press Tab and Enter/Space to operate them. Reveal steps expose their current state and announce updates. Interaction state is preserved while navigating within the page and resets on reload. Keynote progress reaches 100% at slide 14; Q&A and backups have separate labels and no keynote progress bar.
 
 Opening Notes focuses its scrollable panel. Arrow, Page Up/Down, Home/End, and Space keys operate the panel instead of advancing slides; N or Escape closes it. Text-input controls retain their native keyboard behavior. The notes panel is part of the same display, **not a private presenter window**; close it before audience screen sharing.
 
-## Interactive moments
+## Review interactions
 
 - **2:** distribute generation across four roles.
 - **3:** trace the acceleration chain and toggle shared standards.
@@ -73,7 +100,7 @@ Opening Notes focuses its scrollable panel. Arrow, Page Up/Down, Home/End, and S
 - `app.js`: navigation, local interactions, metric dataset, and presenter notes displayed in the UI.
 - `speaker-notes.md`: standalone rehearsal script, timings, takeaways, visuals, transitions, assumptions, and source traceability.
 - `check.mjs`: zero-dependency source consistency check and notes exporter. Run `node check.mjs`.
-- `browser-check.cjs`: optional browser regression checks for all slides and six demo states across six viewports. With Playwright available, run `node browser-check.cjs`. If Playwright is installed outside this folder, set `PLAYWRIGHT_MODULE` to its module path. Set `SNAPSHOT_DIR` to an artifact directory to capture desktop/mobile screenshots during the same run. The presentation itself still has no dependencies.
+- `browser-check.cjs`: optional browser regression checks for all slides and six demo states across six review viewports, plus Stage at 1280×720 and 1680×1080. Covers build/slide keys, form isolation, clean entry/exit, fullscreen, review restoration, effective font thresholds, and overflow. With Playwright available, run `node browser-check.cjs`. If Playwright is installed outside this folder, set `PLAYWRIGHT_MODULE` to its module path. Set `SNAPSHOT_DIR` to an artifact directory to capture stage/desktop/mobile screenshots during the same run. The presentation itself still has no dependencies.
 
 Each slide has a contiguous numeric ID, descriptive `data-title`, and `data-act`. IDs follow the revised DOM order, so old numeric links may now point to different content. The `notes` array uses that same order; `keynoteCount` defines the talk boundary. Edit presenter notes in `app.js`, then run `node check.mjs --write-notes` to regenerate `speaker-notes.md` and verify consistency. Shared colors are CSS custom properties. Metric values and axis bounds live in the `metrics` array. There is no external data collection, analytics, persistence, or live AI call.
 
