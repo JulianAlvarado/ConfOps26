@@ -5,14 +5,14 @@ import vm from "node:vm";
 const html = readFileSync(new URL("./index.html", import.meta.url), "utf8");
 const css = readFileSync(new URL("./styles.css", import.meta.url), "utf8");
 const js = readFileSync(new URL("./app.js", import.meta.url), "utf8");
-const data = vm.runInNewContext(`${js.slice(0, js.indexOf("const slides ="))}; ({ notes, metrics, lifecycle, pairDescriptions, pairCode, pairLabels });`);
+const data = vm.runInNewContext(`${js.slice(0, js.indexOf("const slides ="))}; ({ keynoteCount, notes, metrics, lifecycle, pairDescriptions, pairCode, pairLabels, pairEvidence });`);
 const titles = [...html.matchAll(/<section class="slide[^"]*" id="slide-(\d+)"[^>]*data-title="([^"]+)"/g)];
 if (process.argv.includes("--write-notes")) {
   let elapsed = 0;
   const clock = (seconds) => `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, "0")}`;
   const sections = data.notes.map((note, index) => {
-    const timing = index < 16 ? `${clock(elapsed)}–${clock(elapsed + note.seconds)} (${note.seconds} seconds)` : index === 16 ? "10-minute Q&A, outside keynote timing" : "Optional backup, outside keynote timing";
-    if (index < 16) elapsed += note.seconds;
+    const timing = index < data.keynoteCount ? `${clock(elapsed)}–${clock(elapsed + note.seconds)} (${note.seconds} seconds)` : index === data.keynoteCount ? "10-minute Q&A, outside keynote timing" : "Optional backup, outside keynote timing";
+    if (index < data.keynoteCount) elapsed += note.seconds;
     return `## ${index + 1}. ${titles[index][2]}
 
 **Timing:** ${timing}
@@ -32,7 +32,7 @@ if (process.argv.includes("--write-notes")) {
 
 Governance, systems, and the new role of DesignOps in product teams
 
-Presentation review prototype 0.1. Primary source: the supplied **DesignOps as AI Infrastructure Presentation Outline ConfOps 2026**, including the original brief, frameworks, review notes, and FAQ. The accompanying build brief supplies the 16-slide narrative and implementation requirements.
+Presentation review prototype 0.1. Primary source: the supplied **DesignOps as AI Infrastructure Presentation Outline ConfOps 2026**, including the original brief, frameworks, review notes, and FAQ. The approved conference revision brings an illustrative operational conflict forward, keeps Govern / Context / Evaluate central, and moves the detailed stack and lifecycle to backups. There are 15 keynote slides, Q&A, and 7 backups (23 slides total).
 
 Generated from the presenter-note data in app.js. To update this document after editing those notes: \`node check.mjs --write-notes\`.
 
@@ -40,13 +40,19 @@ Generated from the presenter-note data in app.js. To update this document after 
 
 | Act | Slides | Window | Duration |
 | --- | --- | --- | --- |
-| I: The acceleration paradox | 1–4 | 0:00–5:00 | 5 minutes |
-| II: The new role of DesignOps | 5–11 | 5:00–12:00 | 7 minutes |
-| III: Making the operating model real | 12–15 | 12:00–18:00 | 6 minutes |
-| IV: Closing | 16 | 18:00–20:00 | 2 minutes |
-| Q&A | 17, with optional 18–22 | 20:00–30:00 | 10 minutes |
+| I: From acceleration to conflict | 1–4 | 0:00–4:00 | 4 minutes |
+| II: The decision and its reusable rule | 5–8 | 4:00–10:10 | 6 minutes 10 seconds |
+| III: Make the operating model repeatable | 9–14 | 10:10–18:00 | 7 minutes 50 seconds |
+| IV: Closing | 15 | 18:00–20:00 | 2 minutes |
+| Q&A | 16, with optional 17–23 | 20:00–30:00 | 10 minutes |
 
 The timing is a rehearsal guide, not an auto-advance schedule. Keep on-screen examples short enough to preserve discussion time. Read the full notes before presenting; the slides intentionally omit nuance that belongs in the spoken narrative.
+
+## Illustrative decision trail
+
+BRIEF-01 assumes a teammate setting up alone. AC-01 requires workspace creation without an email address. Candidate A violates AC-01 by requiring a teammate email. Designer and engineer record DEC-01: defer invitations. RULE-01 v1 carries that reason into the next candidate, scoped to solo workspace setup, with a product lead owner and review after the pilot or a source change. Candidate B passes that criterion, not every quality check.
+
+All scenario artifacts, generated choices, reviewer decisions, and ownership examples are pre-authored and illustrative. They are not research findings, actual organizational policy, live model output, or measured improvements. User validation is pending. DesignOps maintains the source/criterion/decision/rule contract and the review path; domain experts retain product judgment.
 
 ${sections.join("\n\n---\n\n")}
 
@@ -79,25 +85,26 @@ Record sample size, spread, staffing, complexity, exclusions, and data-collectio
 
 | Source idea / review request | Where preserved |
 | --- | --- |
-| Core thesis, central question, capacity versus coherence | 1–3, 16 |
-| Product/customer journey before and after AI; Mission, Milestones, Metrics | 4 |
-| DesignOps fundamentals and expanding responsibilities | 5, 15, 19 |
-| AI control plane; domain ownership | 6, 18 |
-| Stewardship × Systems × Enablement reconciled with Govern / Context / Evaluate | 7 and its notes |
-| Organizational memory and five-layer AI design stack | 8, 20 |
-| Evaluation scarcity and six-part quality rubric | 9 |
-| Discover → Define → Design → Build → Measure | 10 and its notes |
-| Designer–engineer pairing; early concept to HTML/CSS prototype | 11 |
-| Learning captured into context and standards | 12 |
-| Production time, rate, review, rework, consistency, and measurement | 13, 22 |
-| Canonical prompts and seven artifact transformations | 14, 21 |
-| Team, product-area, and enterprise altitudes | 15 |
-| Evolving role and work archetypes | 19 |
-| Risks if infrastructure is absent | 3 and its notes |
-| Shared governance, AI-team concern, AI-ready systems, model change, prompt ownership | 17–22 |
-| Tomorrow's actions: map, identify, codify, standardize, measure | 15, 17 |
+| Core thesis, central question, capacity versus coherence | 1–3, 15 |
+| Early illustrative onboarding conflict and criterion | 4 |
+| Product/customer journey before and after AI; Mission, Milestones, Metrics | 11 |
+| DesignOps fundamentals and expanding responsibilities | 9, 14, 18 |
+| AI control plane; domain ownership | 10, 17 |
+| Stewardship × Systems × Enablement reconciled with Govern / Context / Evaluate | 5 and its notes |
+| Organizational memory and five-layer AI design stack | 8, 19, 22 (backup) |
+| Evaluation scarcity and six-part quality rubric | 7 |
+| Discover → Define → Design → Build → Measure | 23 (backup) and its notes |
+| Designer–engineer pairing; context → conflict → decision → rule, with local HTML/CSS | 6 |
+| Learning captured into context and standards | 8, 12 |
+| Production time, rate, review, rework, consistency, and measurement | 13, 21 |
+| Canonical prompts and seven artifact transformations | 12, 20 |
+| Team, product-area, and enterprise altitudes | 14 |
+| Evolving role and work archetypes | 18 |
+| Risks if infrastructure is absent | 3–4 and their notes |
+| Shared governance, AI-team concern, AI-ready systems, model change, prompt ownership | 16–23 |
+| Tomorrow's actions: map, identify, codify, standardize, measure | 14, 16 |
 
-The Spanish review notes are implemented in English. Traditional DesignOps work is expanded, not erased. The proposed workflow is explicitly a hypothesis to validate. The source's tool mentions do not imply integrations; the pair-programming demonstration uses local HTML/CSS. The source's unverified external archetype attribution is not reproduced as a factual attribution. Rhetorical counts are not converted into statistical claims. The original longer outline is condensed to 16 main slides, with meaningful detail moved into notes and backups rather than discarded.
+The Spanish review notes are implemented in English. Traditional DesignOps work is expanded, not erased. The proposed workflow is explicitly a hypothesis to validate. The source's tool mentions do not imply integrations; the demonstration uses local HTML/CSS. The source's unverified external archetype attribution is not reproduced as a factual attribution. Rhetorical counts are not converted into statistical claims. The stack and lifecycle walkthroughs are preserved in backups to avoid competing with the central operating model. The keynote now has 15 slides; the added conflict and expanded demo use time recovered from those supporting walkthroughs.
 
 ## Conversion and delivery notes
 
@@ -106,19 +113,32 @@ Keep slide text editable and vector diagrams separate from surrounding copy when
   writeFileSync(new URL("./speaker-notes.md", import.meta.url), document);
 }
 const markdown = readFileSync(new URL("./speaker-notes.md", import.meta.url), "utf8");
-assert.equal(titles.length, 22, "16 main slides + Q&A + 5 backups");
+assert.equal(data.keynoteCount, 15);
+assert.equal(titles.length, 23, "15 keynote slides + Q&A + 7 backups");
+assert.deepEqual(titles.map(match => Number(match[1])), Array.from({ length: 23 }, (_, i) => i + 1), "Contiguous IDs match DOM order");
+assert.equal((html.match(/class="slide backup/g) || []).length, 7);
+assert.match(titles[3][2], /conflicting choices/);
+assert.match(titles[4][2], /Govern/);
+assert.match(titles[5][2], /reusable rule/);
+assert.match(titles[15][2], /Q&A/);
+assert.match(titles[21][2], /Organizational memory/);
+assert.match(titles[22][2], /product lifecycle/);
 assert.equal(data.notes.length, titles.length, "Every slide has presenter notes");
-assert.equal(data.notes.slice(0, 16).reduce((total, note) => total + note.seconds, 0), 1200, "Main talk is exactly 20 minutes");
-assert.equal(data.notes[16].seconds, 600, "Q&A is 10 minutes");
+assert.equal(data.notes.slice(0, data.keynoteCount).reduce((total, note) => total + note.seconds, 0), 1200, "Main talk is exactly 20 minutes");
+assert.equal(data.notes[data.keynoteCount].seconds, 600, "Q&A is 10 minutes");
+assert(data.notes.slice(data.keynoteCount + 1).every(note => note.seconds === 0), "Backups do not consume keynote time");
+for (const [start, end, seconds] of [[0, 4, 240], [4, 8, 370], [8, 14, 470], [14, 15, 120]]) {
+  assert.equal(data.notes.slice(start, end).reduce((total, note) => total + note.seconds, 0), seconds, "Act timing matches the rehearsal plan");
+}
 const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]);
 assert.equal(new Set(ids).size, ids.length, "HTML IDs are unique");
 for (const match of html.matchAll(/\baria-(?:controls|labelledby|describedby)="([^"]+)"/g)) {
   for (const id of match[1].split(/\s+/)) assert(ids.includes(id), `Resolvable accessibility reference ${id}`);
 }
-assert(/<progress\b[^>]*max="16"/.test(html), "Progress covers only the 16-slide keynote");
+assert(/<progress\b[^>]*max="15"/.test(html), "Progress covers only the 15-slide keynote");
 for (const match of html.matchAll(/href="#([^"]+)"/g)) {
   const hash = match[1];
-  assert(/^\d+$/.test(hash) ? +hash >= 1 && +hash <= 22 : ids.includes(hash), `Resolvable link #${hash}`);
+  assert(/^\d+$/.test(hash) ? +hash >= 1 && +hash <= titles.length : ids.includes(hash), `Resolvable link #${hash}`);
 }
 for (const [index, note] of data.notes.entries()) {
   for (const key of ["takeaway", "visual", "interaction", "body", "transition"]) {
@@ -140,9 +160,17 @@ for (const stage of data.lifecycle) assert.equal(stage.length, 6);
 assert.equal(data.pairDescriptions.length, 6);
 assert.equal(data.pairLabels.length, 6);
 assert.equal(data.pairCode.length, 6);
+assert.equal(data.pairEvidence.length, 6);
+assert.equal(data.pairEvidence[3], null, "Step 4 is the interactive revised form");
+for (const step of [0, 1, 2, 4, 5]) {
+  assert.equal(data.pairEvidence[step].entries.length, 3);
+  assert(data.pairEvidence[step].title && data.pairEvidence[step].verdict);
+}
+assert.match(data.pairCode[4], /RULE-01 v1 ← DEC-01 ← AC-01 ← BRIEF-01/, "Rule keeps explicit provenance");
+assert.match(data.pairEvidence[5].verdict, /Re-evaluate/, "Reuse never replaces evaluation");
 assert(css.includes("prefers-reduced-motion"));
 assert(html.includes("ILLUSTRATIVE SCENARIO — NOT MEASURED RESULTS"));
 assert(!/\b(?:src|href)="https?:\/\//.test(html.replace(/<a\b[^>]*>/gi, "")), "No remote assets; outbound links are allowed");
 assert(!/\b(?:fetch|XMLHttpRequest|WebSocket|setInterval)\s*\(/.test(js), "No network or repeating timers");
 new vm.Script(js, { filename: "app.js" });
-console.log("PASS: 22 slides, 20-minute keynote + 10-minute Q&A, synchronized notes, metrics, links, offline and motion contracts.");
+console.log("PASS: 23 slides (15 keynote + Q&A + 7 backups), exact 20-minute keynote + 10-minute Q&A, decision trace, synchronized notes, metrics, links, offline and motion contracts.");

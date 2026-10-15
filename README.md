@@ -1,6 +1,21 @@
 # DesignOps as AI Infrastructure
 
-**Presentation review prototype, version 0.1.** A local, dependency-free HTML/CSS/JavaScript keynote: 16 main slides (20 minutes), a Q&A menu (10 minutes), and five optional backups.
+**Presentation review prototype, version 0.1.** A local, dependency-free HTML/CSS/JavaScript keynote: 15 main slides (20 minutes), a Q&A menu (10 minutes), and seven optional backups.
+
+## Conference story
+
+The onboarding conflict follows the acceleration paradox at **2:30**. Govern / Context / Evaluate provides the central model at **4:00**, followed by a three-minute operational demonstration at **5:00**. The detailed stack and lifecycle remain available in backups rather than competing with the keynote.
+
+| Slides | Story | Timing |
+| --- | --- | --- |
+| 1–4 | Opening → distributed generation → acceleration paradox → onboarding conflict | 0:00–4:00 |
+| 5–8 | Govern / Context / Evaluate → decision demo → accountable evaluation → learning loop | 4:00–10:10 |
+| 9–14 | Expanded role → control plane → collaborative journey → reusable standards → measures → 30-day pilot | 10:10–18:00 |
+| 15 | Who designs the system? | 18:00–20:00 |
+| 16 | Q&A and contact links | 20:00–30:00 |
+| 17–23 | Ownership, role, AI-ready system, model changes, measurement, context stack, lifecycle | Optional backups |
+
+The six demo states expose a single trace: **BRIEF-01 → AC-01 → DEC-01 → RULE-01**. An illustrative solo-setup brief conflicts with a required invitation. Human reviewers reject the gate; a revised local form implements the choice; a scoped, owned rule carries the reason to another candidate. DesignOps maintains that context and review path, not every product decision. All artifacts and candidates are pre-authored teaching material; no actual research, organizational policy, or measured improvement is implied.
 
 ## Run
 
@@ -33,7 +48,7 @@ Open `http://127.0.0.1:8080`. Stop the server with Ctrl+C.
 | Topic links on Q&A | Open the relevant backup |
 | `#13`, for example | Link directly to a slide |
 
-All animations are finite and respect `prefers-reduced-motion`. Slides never advance automatically. In-slide buttons are intentionally separate from slide navigation; press Tab and Enter/Space to operate them. Reveal steps expose their current state and announce updates. Interaction state is preserved while navigating within the page and resets on reload. Keynote progress reaches 100% at slide 16; Q&A and backups have separate labels and no keynote progress bar.
+All animations are finite and respect `prefers-reduced-motion`. Slides never advance automatically. In-slide buttons are intentionally separate from slide navigation; press Tab and Enter/Space to operate them. Reveal steps expose their current state and announce updates. Interaction state is preserved while navigating within the page and resets on reload. Keynote progress reaches 100% at slide 15; Q&A and backups have separate labels and no keynote progress bar.
 
 Opening Notes focuses its scrollable panel. Arrow, Page Up/Down, Home/End, and Space keys operate the panel instead of advancing slides; N or Escape closes it. Text-input controls retain their native keyboard behavior. The notes panel is part of the same display, **not a private presenter window**; close it before audience screen sharing.
 
@@ -41,15 +56,15 @@ Opening Notes focuses its scrollable panel. Arrow, Page Up/Down, Home/End, and S
 
 - **2:** distribute generation across four roles.
 - **3:** trace the acceleration chain and toggle shared standards.
-- **4:** replay sequential handoffs versus collaborative production.
-- **6:** connect/disconnect the shared control plane.
-- **8:** build the organizational-memory stack.
-- **10:** inspect AI assistance, infrastructure, and review at each lifecycle stage.
-- **11:** walk through six designer–engineer–AI steps and try the local HTML/CSS form.
-- **12:** follow the closed organizational learning loop.
+- **6:** inspect shared context, conflicting choice, human decision, revised form, reusable rule, and next candidate. The form is interactive at step 4; Reset clears it and restarts the trace.
+- **8:** follow the closed organizational learning loop.
+- **10:** connect/disconnect the shared control plane.
+- **11:** replay sequential handoffs versus collaborative production.
 - **13:** compare four illustrative baseline/pilot measures side by side; open all ten in a detail dialog or jump to operational definitions.
-- **15:** compare team, product-area, and enterprise ownership.
-- **16:** pause, then reveal the answer.
+- **14:** compare team, product-area, and enterprise ownership.
+- **15:** pause, then reveal the answer.
+- **22 (backup):** build the organizational-memory stack.
+- **23 (backup):** inspect AI assistance, infrastructure, and review at each lifecycle stage.
 
 ## Files and editing
 
@@ -58,9 +73,9 @@ Opening Notes focuses its scrollable panel. Arrow, Page Up/Down, Home/End, and S
 - `app.js`: navigation, local interactions, metric dataset, and presenter notes displayed in the UI.
 - `speaker-notes.md`: standalone rehearsal script, timings, takeaways, visuals, transitions, assumptions, and source traceability.
 - `check.mjs`: zero-dependency source consistency check and notes exporter. Run `node check.mjs`.
-- `browser-check.cjs`: optional browser regression checks for audit fixes. With Playwright available, run `node browser-check.cjs`. If Playwright is installed outside this folder, set `PLAYWRIGHT_MODULE` to its module path. The presentation itself still has no dependencies.
+- `browser-check.cjs`: optional browser regression checks for all slides and six demo states across six viewports. With Playwright available, run `node browser-check.cjs`. If Playwright is installed outside this folder, set `PLAYWRIGHT_MODULE` to its module path. Set `SNAPSHOT_DIR` to an artifact directory to capture desktop/mobile screenshots during the same run. The presentation itself still has no dependencies.
 
-Each slide has a stable numeric ID and a descriptive `data-title`. Edit presenter notes in `app.js`, then run `node check.mjs --write-notes` to regenerate `speaker-notes.md` and verify consistency. Shared colors are CSS custom properties. Metric values and axis bounds live in the `metrics` array. There is no external data collection, analytics, persistence, or live AI call.
+Each slide has a contiguous numeric ID, descriptive `data-title`, and `data-act`. IDs follow the revised DOM order, so old numeric links may now point to different content. The `notes` array uses that same order; `keynoteCount` defines the talk boundary. Edit presenter notes in `app.js`, then run `node check.mjs --write-notes` to regenerate `speaker-notes.md` and verify consistency. Shared colors are CSS custom properties. Metric values and axis bounds live in the `metrics` array. There is no external data collection, analytics, persistence, or live AI call.
 
 ## Assumptions and qualifications
 
@@ -68,7 +83,7 @@ Each slide has a stable numeric ID and a descriptive `data-title`. Edit presente
 2. All ten dashboard comparisons are **“Illustrative scenario — not measured results.”** They are neither industry benchmarks nor actual organizational performance. Review effort intentionally increases. The slide highlights four measures; the detail dialog preserves all ten. Baseline, pilot, and absolute change appear together. Percentage measures show percentage-point changes (pp), not relative percentage changes.
 3. Leading/process signals: production effort, review effort, system compliance, context reuse, experimentation cadence. Workflow outcomes: concept cycle time, accepted production rate, major rework, open accessibility/quality defects, and design-to-code divergence. These categories are an operational framing, not universal classifications. Actual user outcomes require separate evidence.
 4. The before/after journey is a simplified comparison and a proposed operating model to validate. Animation durations are not delivery-time measurements. The first-30-days plan is a suggested sequence, not a delivery promise.
-5. The pairing example is self-contained and pre-authored. It demonstrates a real local form, not live code generation, a production service, or an invented Paper/Figma integration. It performs no account creation and sends or stores no user input.
+5. The decision example is self-contained and pre-authored. BRIEF-01 is an assumed scenario, not research; AC-01 is a teaching criterion, not a universal onboarding rule. DEC-01 and RULE-01 illustrate accountable judgment, provenance, scope, ownership, and review after the pilot or source change. Passing AC-01 does not prove accessibility or user benefit. The real local form performs no account creation and sends or stores no user input; there is no live code generation or invented Paper/Figma integration.
 6. Stewardship grounds GOVERN; Systems carry CONTEXT; Enablement activates GOVERN, CONTEXT, and EVALUATE through prompts, training, workflows, and rubrics. Evaluation remains a shared expert capability, not an AI score.
 7. Graphite, warm off-white, cyan, lime, and coral distinguish shared systems, alignment, and drift. System fonts keep the deck offline. A consistent branching/connecting motif ties output to coherence without stock AI imagery.
 
@@ -81,8 +96,8 @@ This is the HTML deliverable, not a `.pptx`. The content uses fixed-ratio sectio
 - **Branch/network/loop diagrams:** preserve inline SVG as vectors, or recreate nodes and connectors as editable shapes.
 - **Interactions:** export initial and resolved states as separate slides or use native Appear/Fade builds. Preserve the labels and explicit human checkpoints.
 - **Metrics:** recreate native comparison cards/tables from `metrics`; retain both scenarios, units, percentage-point changes, and the increased review effort. Use the full ten-measure comparison as a backup.
-- **Pair-programming demo:** use static concept → context → code → critique frames and a link to the HTML prototype. PowerPoint cannot reproduce the live form as editable slide content.
+- **Decision demo:** preserve context → conflicting choice → human decision → revised form → reusable rule → next-candidate check as six frames and link to the HTML prototype. Keep provenance and the illustrative qualification visible. PowerPoint cannot reproduce the live form as editable slide content.
 - **Lifecycle/altitude selectors:** use static summary layouts or duplicate slides for each state.
 - **Closing:** retain the question and answer as two builds. Speaker notes remain separate editable text.
 
-Print CSS provides a browser handout of all 22 slides, including the closing answer. Use landscape, background graphics on, no browser headers/footers, and 100% scale; PDF print behavior varies by browser. Printing is not a PowerPoint conversion. A printout uses current interaction states; prepare those before printing if a particular state is desired.
+Print CSS provides a browser handout of all 23 slides, including the closing answer. Use landscape, background graphics on, no browser headers/footers, and 100% scale; PDF print behavior varies by browser. Printing is not a PowerPoint conversion. A printout uses current interaction states; prepare those before printing if a particular state is desired.

@@ -2,6 +2,7 @@ const { chromium } = require(process.env.PLAYWRIGHT_MODULE || "playwright");
 const assert = require("node:assert/strict");
 const path = require("node:path");
 const { pathToFileURL } = require("node:url");
+const { mkdirSync } = require("node:fs");
 
 (async () => {
   const browser = await chromium.launch();
@@ -19,6 +20,31 @@ const { pathToFileURL } = require("node:url");
     };
     const click = selector => page.locator(selector).click();
     const slideNumber = () => page.locator(".slide:not([hidden])").getAttribute("id");
+    const snapshotDir = process.env.SNAPSHOT_DIR;
+    if (snapshotDir) mkdirSync(snapshotDir, { recursive: true });
+    const capture = async label => {
+      if (snapshotDir) await page.screenshot({ path: path.join(snapshotDir, `${label}.png`) });
+    };
+    assert.equal(await page.locator(".slide").count(), 23);
+    assert.deepEqual(await page.evaluate(() => ({
+      keynoteCount,
+      duration: notes.slice(0, keynoteCount).reduce((sum, note) => sum + note.seconds, 0),
+      qa: notes[keynoteCount].seconds,
+      backups: notes.slice(keynoteCount + 1).map(note => note.seconds)
+    })), { keynoteCount: 15, duration: 1200, qa: 600, backups: [0, 0, 0, 0, 0, 0, 0] });
+    assert.match(await page.locator("#slide-9").textContent(), /Scale design systems/);
+    assert.equal(await page.locator(".fundamentals p").count(), 0);
+    assert.match(await page.locator("#slide-22 .lead").textContent(), /allow the model to know/);
+    for (const number of [1, 7, 9, 10, 11]) {
+      assert.equal(await page.locator(`#slide-${number} .slide-footer span`).count(), 1, "Removed footer taglines remain absent");
+      assert.equal(await page.locator(`#slide-${number} .slide-footer`).evaluate(node => getComputedStyle(node).justifyContent), "flex-end");
+    }
+    for (const action of ["generate", "cause", "align", "journey", "connect", "stack"]) {
+      assert.deepEqual(await page.locator(`[data-action="${action}"]`).evaluate(node => {
+        const style = getComputedStyle(node);
+        return [style.fontSize, style.paddingTop, style.paddingLeft];
+      }), ["16px", "9px", "14px"], `${action} retains compact sizing after relocation`);
+    }
     const failures = [];
     const checkLayout = async (reading, label) => {
       const issues = await page.evaluate(reading => {
@@ -35,9 +61,9 @@ const { pathToFileURL } = require("node:url");
           if (!reading && !node.closest(".slide-footer") && rect.bottom > footer.top - 4) issues.push(`${node.className || node.tagName}: overlaps footer`);
           if (reading && node.matches("button:not(:disabled), input") && rect.height < 44) issues.push(`${node.tagName}: target under 44px`);
           if (reading && node.matches("p:not(.kicker), li, td, input") && parseFloat(getComputedStyle(node).fontSize) < 16) issues.push(`${node.className || node.tagName}: text under 16px`);
-          if (node.matches(".prototype-form")) {
+          if (node.matches(".prototype-form, .decision-evidence")) {
             const scene = node.closest(".prototype-scene").getBoundingClientRect();
-            if (rect.top < scene.top || rect.bottom > scene.bottom) issues.push("Form overlaps prototype chrome/code");
+            if (rect.top < scene.top - 1 || rect.bottom > scene.bottom + 1) issues.push("Demo content overlaps prototype chrome/code");
           }
         }
         const main = document.getElementById("presentation");
@@ -47,9 +73,73 @@ const { pathToFileURL } = require("node:url");
       }, reading);
       if (issues.length) failures.push({ label, issues });
     };
+    const exerciseDemo = async (reading, label) => {
+      await go(6);
+      await click('[data-action="pair-reset"]');
+      const expected = [/context travels/, /Candidate A/, /DEC-01/, null, /RULE-01 v1/, /Candidate B/];
+      for (let i = 0; i < 6; i++) {
+        if (i) await click('[data-action="pair"]');
+        assert.equal(await page.locator("#prototype-scene").getAttribute("data-step"), String(i));
+        assert.equal(await page.locator("#pair-steps [aria-current='step']").count(), 1);
+        assert.equal(await page.locator("#pair-steps li").nth(i).getAttribute("aria-current"), "step");
+        assert.equal(await page.locator("#prototype-form").isVisible(), i === 3);
+        if (expected[i]) assert.match(await page.locator("#evidence-title").innerText(), expected[i]);
+        if (i === 0) assert.match(await page.locator("#evidence-details").innerText(), /BRIEF-01[\s\S]*AC-01/);
+        if (i === 1) assert.match(await page.locator("#evidence-verdict").innerText(), /Fails AC-01/);
+        if (i === 2) {
+          assert.match(await page.locator("#evidence-details").innerText(), /designer \+ engineer/);
+          await go(7);
+          await go(6);
+          assert.equal(await page.locator("#prototype-scene").getAttribute("data-step"), "2", "Navigating preserves demo state");
+        }
+        if (i === 3) {
+          assert.equal(await page.locator("#prototype-form input").count(), 1, "AC-01: no invitation field");
+          await page.locator("#workspace-name").fill("");
+          await click("#prototype-form button");
+          assert(await page.locator("#workspace-name").evaluate(node => node.matches(":invalid")), "Empty name remains required");
+          await page.locator("#workspace-name").fill(" ");
+          await click("#prototype-form button");
+          assert.equal(await page.locator("#workspace-name").getAttribute("aria-invalid"), "true");
+          await page.locator("#workspace-name").fill("<b>Team</b>" + "W".repeat(38));
+          await click("#prototype-form button");
+          assert.equal(await page.locator("#prototype-result b").count(), 0);
+          assert.match(await page.locator("#prototype-result").innerText(), /Nothing was saved or sent/);
+          assert.equal(await page.locator("#workspace-name").getAttribute("aria-invalid"), null);
+          assert.equal((await page.locator("#workspace-name").inputValue()).length, 48);
+          await page.locator("#workspace-name").focus();
+          await page.keyboard.press("ArrowRight");
+          assert.equal(await slideNumber(), "slide-6");
+        }
+        if (i === 4) {
+          assert.match(await page.locator("#prototype-code").innerText(), /RULE-01 v1 ← DEC-01 ← AC-01 ← BRIEF-01/);
+          assert.match(await page.locator("#evidence-details").innerText(), /product lead[\s\S]*after pilot or source change/);
+        }
+        if (i === 5) {
+          assert.match(await page.locator("#evidence-details").innerText(), /passes[\s\S]*actual user outcomes/);
+          assert(await page.locator('[data-action="pair"]').isDisabled());
+        }
+        await checkLayout(reading, `${label}/pair-${i}`);
+        if (label === "1200" || label === "390") {
+          if (reading) await page.locator("#prototype-scene").scrollIntoViewIfNeeded();
+          await capture(`${label}-demo-${i + 1}`);
+        }
+      }
+      await click('[data-action="pair-reset"]');
+      assert.equal(await page.locator("#workspace-name").inputValue(), "");
+      assert.equal(await page.locator("#workspace-name").getAttribute("aria-invalid"), null);
+      assert.equal(await page.locator("#prototype-scene").getAttribute("data-step"), "0");
+      assert(!(await page.locator('[data-action="pair"]').isDisabled()));
+    };
     for (const width of [1680, 1200]) {
       await page.setViewportSize({ width, height: 1000 });
-      for (let i = 1; i <= 22; i++) { await go(i); await checkLayout(false, `${width}/slide-${i}`); }
+      for (let i = 1; i <= 23; i++) {
+        await go(i);
+        await checkLayout(false, `${width}/slide-${i}`);
+        assert.match(await page.locator("#notes-content h3").innerText(), new RegExp(`^${i}\\. `));
+        assert.equal(await page.locator("#act-label").innerText(), await page.locator(`#slide-${i}`).getAttribute("data-act"));
+        if (width === 1200 && [4, 5, 8, 12, 16, 22, 23].includes(i)) await capture(`1200-slide-${i}`);
+      }
+      await exerciseDemo(false, String(width));
     }
     await go(13);
     assert.deepEqual(await page.locator(".metric-comparison > div:last-child dd").allTextContents(), ["−3 d", "+1 /wk", "+2 h", "+12 pp"]);
@@ -87,10 +177,10 @@ const { pathToFileURL } = require("node:url");
     await click('[data-action="align"]');
     assert.equal(await page.locator('[data-action="align"]').getAttribute("aria-pressed"), "true");
     await checkLayout(false, "aligned");
-    await go(4);
+    await go(11);
     await click('[data-action="journey"]');
     assert.match(await page.locator("#journey-status").innerText(), /Run 1:/);
-    await go(6);
+    await go(10);
     const contrast = await page.evaluate(() => {
       const luminance = color => {
         const channels = color.match(/[\d.]+/g).slice(0, 3).map(n => {
@@ -100,7 +190,7 @@ const { pathToFileURL } = require("node:url");
         return channels.reduce((sum, value, i) => sum + value * [0.2126, 0.7152, 0.0722][i], 0);
       };
       const ratio = (a, b) => (Math.max(luminance(a), luminance(b)) + 0.05) / (Math.min(luminance(a), luminance(b)) + 0.05);
-      const background = getComputedStyle(document.getElementById("slide-6")).backgroundColor;
+      const background = getComputedStyle(document.getElementById("slide-10")).backgroundColor;
       return {
         network: ratio(getComputedStyle(document.querySelector(".network-links")).stroke, background),
         button: ratio(getComputedStyle(document.querySelector('[data-action="connect"]')).borderTopColor, background)
@@ -109,50 +199,51 @@ const { pathToFileURL } = require("node:url");
     assert(contrast.network >= 3 && contrast.button >= 3, "Inactive links and control boundaries meet 3:1");
     await click('[data-action="connect"]');
     assert.equal(await page.locator('[data-action="connect"]').getAttribute("aria-pressed"), "true");
-    await go(8);
+    await go(22);
     const before = await page.locator("#stack").ariaSnapshot();
     for (let i = 0; i < 4; i++) await click('[data-action="stack"]');
     assert.notEqual(await page.locator("#stack").ariaSnapshot(), before);
     assert.equal(await page.locator(".stack-layer.revealed").count(), 5);
     assert.match(await page.locator("#stack-status").innerText(), /Layer 5 of 5/);
-    await go(10);
+    await go(23);
     for (let i = 0; i < 5; i++) {
       await click(`[data-life="${i}"]`);
       assert.equal(await page.locator(`[data-life="${i}"]`).getAttribute("aria-pressed"), "true");
       await checkLayout(false, `lifecycle-${i}`);
     }
-    await go(11);
-    assert.equal(await page.locator('[data-action="pair-reset"]').evaluate(node => getComputedStyle(node).fontSize), "19px");
-    for (let i = 0; i <= 5; i++) {
-      if (i) await click('[data-action="pair"]');
-      assert.equal(await page.locator("#pair-steps [aria-current='step']").count(), 1);
-      if (i === 3) {
-        await page.locator("#workspace-name").fill(" ");
-        await click("#prototype-form button");
-        assert.equal(await page.locator("#workspace-name").getAttribute("aria-invalid"), "true");
-        await page.locator("#workspace-name").fill("<b>Team</b>" + "W".repeat(38));
-        await click("#prototype-form button");
-        assert.equal(await page.locator("#prototype-result b").count(), 0);
-        assert.match(await page.locator("#prototype-result").innerText(), /Nothing was saved or sent/);
-        await page.locator("#workspace-name").focus();
-        await page.keyboard.press("ArrowRight");
-        assert.equal(await slideNumber(), "slide-11");
-      }
-      await checkLayout(false, `pair-${i}`);
-    }
-    await go(12);
+    await go(6);
+    assert.deepEqual(await page.locator('[data-action="pair-reset"]').evaluate(node => {
+      const style = getComputedStyle(node);
+      return [style.fontSize, style.paddingTop, style.paddingLeft];
+    }), ["19px", "14px", "22px"]);
+    await go(8);
     for (let i = 0; i < 6; i++) await click('[data-action="loop"]');
     assert.equal(await page.locator(".loop-node.current").count(), 1);
     assert.equal(await page.locator("#loop-reading [aria-current='step']").count(), 1);
-    await go(15);
+    await go(14);
     await click('[data-altitude="enterprise"]');
     assert.match(await page.locator("#altitude-detail").innerText(), /Security, Legal/);
-    await go(16);
+    await go(15);
     assert.equal(await page.locator("#progress").evaluate(node => node.value / node.max), 1);
     await click('[data-action="closing"]');
     await checkLayout(false, "closing");
-    await go(17);
+    await go(16);
     assert(!(await page.locator("#progress").isVisible()));
+    assert.equal(await page.locator(".qa-links a").count(), 7);
+    for (let number = 17; number <= 23; number++) {
+      await click(`.qa-links a[href="#${number}"]`);
+      await page.waitForFunction(number => !document.getElementById(`slide-${number}`).hidden, number);
+      assert.equal(await page.locator("#counter").innerText(), `B${number - 16} / 7`);
+      await click(`#slide-${number} .eyebrow a[href="#16"]`);
+      await page.waitForFunction(() => !document.getElementById("slide-16").hidden);
+    }
+    assert.deepEqual(await page.locator(".contact-links a").evaluateAll(links => links.map(link => [link.href, link.target, link.rel])),
+      [["https://www.linkedin.com/in/alvaradolj1/", "_blank", "noopener noreferrer"], ["https://github.com/JulianAlvarado", "_blank", "noopener noreferrer"]]);
+    await go(13);
+    await click('[data-action="metric-definitions"]');
+    await page.waitForFunction(() => !document.getElementById("slide-21").hidden);
+    await click('#slide-21 a[href="#13"]');
+    await page.waitForFunction(() => !document.getElementById("slide-13").hidden);
     await click("#fullscreen");
     await page.waitForFunction(() => Boolean(document.fullscreenElement));
     await click("#fullscreen");
@@ -160,7 +251,12 @@ const { pathToFileURL } = require("node:url");
     for (const size of [{ width: 900, height: 900 }, { width: 390, height: 844 }, { width: 320, height: 700 }, { width: 844, height: 390 }]) {
       await page.setViewportSize(size);
       await page.waitForFunction(() => document.body.classList.contains("reading"));
-      for (let i = 1; i <= 22; i++) { await go(i); await checkLayout(true, `${size.width}/slide-${i}`); }
+      for (let i = 1; i <= 23; i++) {
+        await go(i);
+        await checkLayout(true, `${size.width}/slide-${i}`);
+        if (size.width === 390 && [4, 5, 12, 16].includes(i)) await capture(`390-slide-${i}`);
+      }
+      await exerciseDemo(true, String(size.width));
       await go(13);
       await click("#metrics-open");
       assert(await page.locator("#metrics-detail").evaluate(node => node.scrollWidth <= node.clientWidth + 1));
@@ -169,14 +265,14 @@ const { pathToFileURL } = require("node:url");
       assert(await page.locator("#notes").evaluate(node => node.getBoundingClientRect().top > document.querySelector(".toolbar").getBoundingClientRect().bottom));
       await page.keyboard.press("Escape");
     }
-    await go(22);
+    await go(21);
     await page.locator("#presentation").focus();
     await page.keyboard.press("PageDown");
     await page.waitForTimeout(250);
-    assert.equal(await slideNumber(), "slide-22");
+    assert.equal(await slideNumber(), "slide-21");
     assert(await page.locator("#presentation").evaluate(node => node.scrollTop > 0));
     await page.keyboard.press("ArrowLeft");
-    await page.waitForFunction(() => !document.getElementById("slide-21").hidden);
+    await page.waitForFunction(() => !document.getElementById("slide-20").hidden);
     await click("#reading-toggle");
     await page.setViewportSize({ width: 390, height: 844 });
     assert.equal(await page.locator("body").evaluate(node => node.classList.contains("reading")), false);
@@ -184,10 +280,10 @@ const { pathToFileURL } = require("node:url");
     await page.setViewportSize({ width: 1200, height: 1000 });
     assert.equal(await page.locator("body").evaluate(node => node.classList.contains("reading")), true);
     await page.emulateMedia({ media: "print" });
-    assert.equal(await page.locator(".slide:visible").count(), 22);
+    assert.equal(await page.locator(".slide:visible").count(), 23);
     assert.deepEqual(errors, [], "No browser errors or remote requests");
     assert.deepEqual(failures, [], "Layout and legibility regressions");
-    console.log("PASS: all 22 slides, six viewports, reading mode, keyboard/notes, progressive accessibility, metrics, forms, fullscreen, and print.");
+    console.log("PASS: all 23 slides, six viewports, every decision-demo state, preserved copy/control edits, reading mode, keyboard/notes, progressive accessibility, metrics, forms, backup links, fullscreen, and print.");
   } finally {
     await browser.close();
   }

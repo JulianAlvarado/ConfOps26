@@ -2,7 +2,7 @@
 
 Governance, systems, and the new role of DesignOps in product teams
 
-Presentation review prototype 0.1. Primary source: the supplied **DesignOps as AI Infrastructure Presentation Outline ConfOps 2026**, including the original brief, frameworks, review notes, and FAQ. The accompanying build brief supplies the 16-slide narrative and implementation requirements.
+Presentation review prototype 0.1. Primary source: the supplied **DesignOps as AI Infrastructure Presentation Outline ConfOps 2026**, including the original brief, frameworks, review notes, and FAQ. The approved conference revision brings an illustrative operational conflict forward, keeps Govern / Context / Evaluate central, and moves the detailed stack and lifecycle to backups. There are 15 keynote slides, Q&A, and 7 backups (23 slides total).
 
 Generated from the presenter-note data in app.js. To update this document after editing those notes: `node check.mjs --write-notes`.
 
@@ -10,17 +10,23 @@ Generated from the presenter-note data in app.js. To update this document after 
 
 | Act | Slides | Window | Duration |
 | --- | --- | --- | --- |
-| I: The acceleration paradox | 1–4 | 0:00–5:00 | 5 minutes |
-| II: The new role of DesignOps | 5–11 | 5:00–12:00 | 7 minutes |
-| III: Making the operating model real | 12–15 | 12:00–18:00 | 6 minutes |
-| IV: Closing | 16 | 18:00–20:00 | 2 minutes |
-| Q&A | 17, with optional 18–22 | 20:00–30:00 | 10 minutes |
+| I: From acceleration to conflict | 1–4 | 0:00–4:00 | 4 minutes |
+| II: The decision and its reusable rule | 5–8 | 4:00–10:10 | 6 minutes 10 seconds |
+| III: Make the operating model repeatable | 9–14 | 10:10–18:00 | 7 minutes 50 seconds |
+| IV: Closing | 15 | 18:00–20:00 | 2 minutes |
+| Q&A | 16, with optional 17–23 | 20:00–30:00 | 10 minutes |
 
 The timing is a rehearsal guide, not an auto-advance schedule. Keep on-screen examples short enough to preserve discussion time. Read the full notes before presenting; the slides intentionally omit nuance that belongs in the spoken narrative.
 
+## Illustrative decision trail
+
+BRIEF-01 assumes a teammate setting up alone. AC-01 requires workspace creation without an email address. Candidate A violates AC-01 by requiring a teammate email. Designer and engineer record DEC-01: defer invitations. RULE-01 v1 carries that reason into the next candidate, scoped to solo workspace setup, with a product lead owner and review after the pilot or a source change. Candidate B passes that criterion, not every quality check.
+
+All scenario artifacts, generated choices, reviewer decisions, and ownership examples are pre-authored and illustrative. They are not research findings, actual organizational policy, live model output, or measured improvements. User validation is pending. DesignOps maintains the source/criterion/decision/rule contract and the review path; domain experts retain product judgment.
+
 ## 1. AI makes us faster. Who keeps us coherent?
 
-**Timing:** 0:00–1:00 (60 seconds)
+**Timing:** 0:00–0:45 (45 seconds)
 
 **Takeaway:** AI increases production capacity. DesignOps maintains organizational coherence.
 
@@ -28,7 +34,7 @@ The timing is a rehearsal guide, not an auto-advance schedule. Keep on-screen ex
 
 **Interaction / reveal:** A short entrance trace establishes the flow motif. No automatic slide advancement.
 
-**Speaker notes:** Open with the tension, not a list of tools. Teams can generate briefs, concepts, research summaries, and code faster than before. But faster creation does not automatically produce a coherent customer experience. This talk argues that DesignOps expands from optimizing workflows into designing the operating infrastructure for human–AI product teams. We will connect governance, organizational knowledge, and evaluation, then make that practical through a paired prototype and a measurable pilot. The audience leaves with a framework and a first-30-days starting point.
+**Speaker notes:** Open with the tension, not a list of tools. Teams can generate briefs, concepts, research summaries, and code faster than before. Faster creation does not automatically produce a coherent customer experience. We will follow one illustrative onboarding conflict: a working screen violates an agreed criterion. Watch how shared context, a human decision, and a reusable rule change the next output. Then ask what DesignOps must maintain around that work and how a bounded pilot could test its value. The example is pre-authored, not a report of organizational results.
 
 **Transition:** What changes when production becomes distributed across the whole team?
 
@@ -36,7 +42,7 @@ The timing is a rehearsal guide, not an auto-advance schedule. Keep on-screen ex
 
 ## 2. Everyone can generate
 
-**Timing:** 1:00–2:05 (65 seconds)
+**Timing:** 0:45–1:30 (45 seconds)
 
 **Takeaway:** Distributed generation moves the bottleneck toward alignment, quality, and governance.
 
@@ -52,7 +58,7 @@ The timing is a rehearsal guide, not an auto-advance schedule. Keep on-screen ex
 
 ## 3. The acceleration paradox
 
-**Timing:** 2:05–3:15 (70 seconds)
+**Timing:** 1:30–2:30 (60 seconds)
 
 **Takeaway:** Shared context and evaluation govern variation without eliminating useful exploration.
 
@@ -62,29 +68,93 @@ The timing is a rehearsal guide, not an auto-advance schedule. Keep on-screen ex
 
 **Speaker notes:** Read the chain deliberately: more AI, more output, more variation, more decisions, more opportunities for inconsistency. This is a conceptual mechanism, not a statistical forecast. Variation is useful during exploration; unmanaged variation becomes expensive at system boundaries. Examples include conflicting terminology, duplicated research, inaccessible patterns, undocumented AI decisions, and design-system drift. The source's '17 versions of a pattern' is rhetorical, not a measured statistic, so we do not chart it. Apply shared context and evaluation: options can remain different while obeying common constraints. A green state is an explanatory metaphor, not a claim that standards automatically eliminate defects.
 
-**Transition:** The opportunity is to redesign how work moves, not just accelerate each handoff.
+**Transition:** Here is that variation at one concrete boundary: a teammate trying to create a workspace.
 
 ---
 
-## 4. Before AI / a proposed AI-enabled journey
+## 4. One onboarding task. Two conflicting choices.
 
-**Timing:** 3:15–5:00 (105 seconds)
+**Timing:** 2:30–4:00 (90 seconds)
 
-**Takeaway:** Pilot collaborative production and use any capacity gained for customer learning.
+**Takeaway:** A working interface can still violate the agreed user need. The decision needs a source and an owner.
 
-**Visual concept:** Two journeys connect customer need to customer feedback: sequential handoffs and a collaborative experiment loop.
+**Visual concept:** An illustrative solo-setup brief faces a generated flow that requires a teammate email.
 
-**Interaction / reveal:** Animate both journeys highlights sequential dependencies versus parallel collaboration; timings are illustrative motion, not measured duration.
+**Interaction / reveal:** Static conflict. Point to AC-01 before asking who can accept the generated choice.
 
-**Speaker notes:** The before journey is a deliberately simplified pattern, not a claim that all pre-AI teams worked sequentially. Research informs a brief, design produces mocks, engineering builds, and customers finally respond. The proposed alternative starts with Mission, Milestones, and Metrics—the source's MMM. PM, research, design, and engineering share intent; specification, concepts, feasibility, and HTML/CSS prototypes evolve together. Releases can become experiments that inform another iteration. AI may reduce production effort, but review, integration, and dependency costs still count. Do not promise a one-week release or universal acceleration. Measure elapsed production time, person-hours, waiting time, customer validation, and experimentation cadence. The animation contrasts sequencing, not numeric speed. A prototype is not a production release; user evidence remains necessary.
+**Speaker notes:** Introduce the case now, before another framework. Everything in this case is pre-authored and illustrative: BRIEF-01 is an assumed scenario, not a research finding. A new teammate is setting up alone and may not know whom to invite. The team has agreed AC-01: create a workspace without requiring an invitation or email address. A plausible generated flow instead makes teammate email mandatory. It can compile and look polished while failing the agreed criterion. Do not claim that users were observed or that conversion improved. The question is not whether AI can draw a form. It is who can reject the gate, on what basis, and how another team can reuse that decision. DesignOps makes the brief, criterion, review owner, and decision record available together; domain experts retain judgment.
 
-**Transition:** DesignOps helps make that collaborative operating model repeatable.
+**Transition:** Three operating questions turn this disagreement into a reviewable decision.
 
 ---
 
-## 5. The role expands; the fundamentals remain
+## 5. Govern. Context. Evaluate.
 
-**Timing:** 5:00–5:45 (45 seconds)
+**Timing:** 4:00–5:00 (60 seconds)
+
+**Takeaway:** GOVERN: what can AI do? CONTEXT: what does it know? EVALUATE: what does good look like?
+
+**Visual concept:** Three pillars apply Govern / Context / Evaluate directly to the solo-setup conflict.
+
+**Interaction / reveal:** Static anchor slide. Return to these three questions throughout the talk.
+
+**Speaker notes:** Use one model throughout. Govern asks what AI may do and who can accept it: in this illustrative case, no real contact data enters the demo, a designer and engineer review, and a product lead owns the scoped rule. Context carries BRIEF-01, AC-01, and the supported form pattern together. Evaluate asks whether setup completes without email, while checking labels, errors, focus, and feasibility. Passing AC-01 alone cannot establish user value. These concrete checks sit within broader tool, data, privacy, risk, and release boundaries. Stewardship grounds governance; systems carry context; enablement puts all three into practice through workflows, prompts, rubrics, and training. This is the core model, not another framework to memorize.
+
+**Transition:** Now follow those three responsibilities through the actual decision.
+
+---
+
+## 6. Context → conflict → decision → reusable rule
+
+**Timing:** 5:00–8:00 (180 seconds)
+
+**Takeaway:** DesignOps makes the source, criterion, reviewer decision, and reusable rule travel together.
+
+**Visual concept:** Six states trace BRIEF-01 → AC-01 → DEC-01 → RULE-01, with a working local form between decision and reuse.
+
+**Interaction / reveal:** Advance six states. At step 4, try the name-only form, including invalid input. Reset clears the form and returns to shared context.
+
+**Speaker notes:** Spend three minutes here, roughly 30 seconds per state. First show the shared package: BRIEF-01 assumes a teammate setting up alone; AC-01 requires completion without email. These are illustrative assumptions and an agreed teaching criterion, not sourced research. Second inspect Candidate A: its mandatory teammate email violates AC-01 despite working code. Third show DEC-01: designer and engineer reject that gate, retaining the name field; DesignOps records the source and reason without replacing expert judgment. Fourth try the revised semantic HTML/CSS form. It uses shared tokens, a label, bounded input, keyboard focus, and safe text feedback. No account is created and nothing is saved or sent. Fifth record RULE-01 v1: invitations follow creation in this solo-setup scenario. Its provenance is explicit, the illustrative product lead owns it, and review is due after the pilot or a source change. Sixth inspect Candidate B: optional invitations after setup pass AC-01, but accessibility and user-outcome evaluation remain necessary. All candidates, decisions, owners, and rules are pre-authored teaching artifacts—not live generation, actual research, or organizational policy. The DesignOps contribution is the maintained contract and review path. The next team can reuse the reason, not just copy a screen.
+
+**Transition:** One criterion passed. What else must a reviewer still judge?
+
+---
+
+## 7. When generation is cheap, evaluation is strategic
+
+**Timing:** 8:00–9:00 (60 seconds)
+
+**Takeaway:** Automated checks support accountable human judgment; they cannot prove design quality.
+
+**Visual concept:** Multiple candidates flow through a six-part rubric to an explicit human decision.
+
+**Interaction / reveal:** Static flow; no fabricated AI score or automatic approval.
+
+**Speaker notes:** Walk through the rubric: approved components and tokens; identified user needs without unnecessary complexity; accessibility; brand and content principles; product strategy; and engineering feasibility. Domain experts define the standard together. Automated checks can detect specific violations, but a passing score cannot establish usefulness, coherence, or user success. A human reviewer accepts, revises, or rejects and records reasons. Keep evidence linked to decisions. Designers increasingly direct and evaluate alternatives, but craft and domain expertise remain indispensable.
+
+**Transition:** Once we record the judgment, how do we keep it useful rather than bury it in an archive?
+
+---
+
+## 8. The organizational learning loop
+
+**Timing:** 9:00–10:10 (70 seconds)
+
+**Takeaway:** Learning compounds only when decisions feed back into maintained context and standards.
+
+**Visual concept:** A closed five-stage loop surrounds organizational memory.
+
+**Interaction / reveal:** Follow one learning cycle highlights a stage per click, wrapping back to generation.
+
+**Speaker notes:** Return to DEC-01 and RULE-01. The useful artifact is not merely the revised form: it is the criterion, reason, owner, and review trigger attached to it. AI generates using current context; humans evaluate; the decision is recorded; a reviewed rule updates context; the next candidate is checked again. The example proves neither that one field is always best nor that context automatically prevents future violations. Its scenario is assumed and user validation is pending. If the solo-setup assumption changes, the product lead revisits the rule; DesignOps keeps provenance, access, version, and review cadence usable across teams. Retire stale rules rather than making every observation universal policy.
+
+**Transition:** That maintenance is recognizable DesignOps work—with a wider scope.
+
+---
+
+## 9. The role expands; the fundamentals remain
+
+**Timing:** 10:10–11:00 (50 seconds)
 
 **Takeaway:** People, process, and systems remain the foundations; their scope expands.
 
@@ -98,9 +168,9 @@ The timing is a rehearsal guide, not an auto-advance schedule. Keep on-screen ex
 
 ---
 
-## 6. DesignOps as the control plane
+## 10. DesignOps as the control plane
 
-**Timing:** 5:45–6:40 (55 seconds)
+**Timing:** 11:00–11:50 (50 seconds)
 
 **Takeaway:** DesignOps connects distributed actors through shared rules, context, and evaluation.
 
@@ -110,109 +180,45 @@ The timing is a rehearsal guide, not an auto-advance schedule. Keep on-screen ex
 
 **Speaker notes:** The control plane metaphor distinguishes defining the conditions of work from doing everyone's work. PM, research, design, prototyping, and engineering keep their domain responsibilities. DesignOps coordinates reusable context, risk-based guardrails, evaluation criteria, ownership, and enablement. It should not become a central approval queue. Security, Legal, IT, platform teams, and domain experts remain essential partners. Clear boundaries can allow teams to move without repeatedly asking permission for known-safe tasks.
 
-**Transition:** We can make this operating layer memorable with three questions.
+**Transition:** The shared contract also changes how work moves between these people.
 
 ---
 
-## 7. Govern. Context. Evaluate.
+## 11. Before AI / a proposed AI-enabled journey
 
-**Timing:** 6:40–7:45 (65 seconds)
+**Timing:** 11:50–12:50 (60 seconds)
 
-**Takeaway:** GOVERN: what can AI do? CONTEXT: what does it know? EVALUATE: what does good look like?
+**Takeaway:** Pilot collaborative production and use any capacity gained for customer learning.
 
-**Visual concept:** Three equal pillars with a supporting enablement foundation.
+**Visual concept:** Two journeys connect customer need to customer feedback: sequential handoffs and a collaborative experiment loop.
 
-**Interaction / reveal:** Static anchor slide. Return to these three questions throughout the talk.
+**Interaction / reveal:** Animate both journeys highlights sequential dependencies versus parallel collaboration; timings are illustrative motion, not measured duration.
 
-**Speaker notes:** Govern covers permitted tools, data and privacy boundaries, exclusions, risk levels, review checkpoints, decision owners, and documentation. Context covers tokens, components, research, product principles, brand, terminology, and constraints. Evaluate combines system checks, user needs, accessibility, product strategy, engineering feasibility, and human judgment. Reconcile the source's Stewardship × Systems × Enablement rather than offering a competing model: stewardship grounds governance and accountability; systems make context consumable; enablement activates all three through workflows, canonical prompts, rubrics, examples, playbooks, and training. Evaluation is a shared capability supported by stewardship and enablement, not a replacement for enablement.
+**Speaker notes:** The before journey is a deliberately simplified pattern, not a claim that all pre-AI teams worked sequentially. Research informs a brief, design produces mocks, engineering builds, and customers finally respond. The proposed alternative starts with Mission, Milestones, and Metrics—the source's MMM. PM, research, design, and engineering share intent; specification, concepts, feasibility, and HTML/CSS prototypes evolve together. Releases can become experiments that inform another iteration. AI may reduce production effort, but review, integration, and dependency costs still count. Do not promise a one-week release or universal acceleration. Measure elapsed production time, person-hours, waiting time, customer validation, and experimentation cadence. The animation contrasts sequencing, not numeric speed. A prototype is not a production release; user evidence remains necessary.
 
-**Transition:** The most durable part of that infrastructure is organizational memory.
-
----
-
-## 8. Organizational memory is the advantage
-
-**Timing:** 7:45–8:45 (60 seconds)
-
-**Takeaway:** The differentiator is governed organizational knowledge, not loyalty to a model.
-
-**Visual concept:** A five-layer AI design stack, built from models to connecting DesignOps infrastructure.
-
-**Interaction / reveal:** Build the context stack adds one highlighted layer per click; after all layers it resets to the foundation.
-
-**Speaker notes:** Models provide capabilities. Agents and tools connect capabilities to tasks. Organizational context provides what models do not inherently know: tokens, components, research, product knowledge, brand, accessibility, terminology, workflows, repositories, PRs, existing experiences, and past decisions. Stewardship adds guardrails, exclusions, evaluation, and human checkpoints. DesignOps connects the layers. The diagram is a responsibility model, not a mandatory software architecture. Do not feed all organizational data into a model: permissions, privacy, provenance, source quality, freshness, and ownership determine what context may be used. A design system is one part of organizational memory, not the whole memory.
-
-**Transition:** Useful context makes better candidates possible. Evaluation still determines what is acceptable.
+**Transition:** The reusable contract can start with documentation the team already has.
 
 ---
 
-## 9. When generation is cheap, evaluation is strategic
+## 12. From documentation to executable standards
 
-**Timing:** 8:45–9:45 (60 seconds)
+**Timing:** 12:50–14:05 (75 seconds)
 
-**Takeaway:** Automated checks support accountable human judgment; they cannot prove design quality.
+**Takeaway:** Turn domain knowledge into versioned, reusable context and verifiable standards.
 
-**Visual concept:** Multiple candidates flow through a six-part rubric to an explicit human decision.
+**Visual concept:** Seven artifact transformations sit beside the illustrative RULE-01 contract, including provenance, owner, and review trigger.
 
-**Interaction / reveal:** Static flow; no fabricated AI score or automatic approval.
+**Interaction / reveal:** Static transformation; readable text remains editable for future PowerPoint recreation.
 
-**Speaker notes:** Walk through the rubric: approved components and tokens; identified user needs without unnecessary complexity; accessibility; brand and content principles; product strategy; and engineering feasibility. Domain experts define the standard together. Automated checks can detect specific violations, but a passing score cannot establish usefulness, coherence, or user success. A human reviewer accepts, revises, or rejects and records reasons. Keep evidence linked to decisions. Designers increasingly direct and evaluate alternatives, but craft and domain expertise remain indispensable.
+**Speaker notes:** Use RULE-01 as the concrete artifact rather than narrating seven new frameworks. Its source is explicitly assumed, its criterion and decision have IDs, its scope is solo setup, and its owner and review trigger are visible. User evidence remains pending. The seven transformations preserve the broader source material: guidelines to machine-readable rules, design systems to consumable systems, templates to canonical prompts, documentation to context packages, critique to rubrics, SOPs to human–AI workflows, efficiency measures to speed plus quality and outcomes. A YAML-like package does not enforce itself. Integration, permissions, validation, and human review are still required. DesignOps maintains the package; domain experts author, approve, and revisit its validity.
 
-**Transition:** These same responsibilities apply throughout the product lifecycle.
-
----
-
-## 10. DesignOps across the product lifecycle
-
-**Timing:** 9:45–10:40 (55 seconds)
-
-**Takeaway:** Governance, context, and evaluation follow the work across every lifecycle stage.
-
-**Visual concept:** Five selectable stages sit above a persistent shared-infrastructure rail.
-
-**Interaction / reveal:** Select a stage to reveal AI assistance, DesignOps infrastructure, and the human checkpoint.
-
-**Speaker notes:** Discover: AI can cluster and retrieve research; DesignOps supports consent, traceability, source quality, and reusable knowledge. Define: AI can draft briefs and identify gaps; shared brief structure, product vocabulary, and source context keep framing grounded. Design: alternatives and prototypes rely on system rules, prompts, accessibility constraints, and critique. Build: generated code needs component metadata, supported patterns, tokens, validation, and paired review. Measure: AI can summarize observations, but people interpret outcomes, record caveats, and decide what should change. Do not turn this into a tool catalog. Show one or two stages live and use the persistent rail to connect them.
-
-**Transition:** Let's make the design-to-build boundary concrete with a paired example.
-
----
-
-## 11. Designer + engineer + AI: concept to HTML/CSS
-
-**Timing:** 10:40–12:00 (80 seconds)
-
-**Takeaway:** Designer–engineer pairing makes intent, system constraints, implementation, and critique one conversation.
-
-**Visual concept:** Six collaboration steps transform a rough onboarding concept into a working local HTML/CSS form.
-
-**Interaction / reveal:** Advance the six steps, then try the form. It only updates local page state; no account, storage, model, or network integration.
-
-**Speaker notes:** Start with a user need: a new teammate must create a workspace. Agree on the success signal. Explore a simple first task versus an overloaded form. Inspect existing tokens, supported component patterns, semantics, and constraints before code generation. The designer brings interaction intent and craft; the engineer brings feasibility, implementation quality, and supported architecture; AI assists with alternatives and implementation. The coded form uses a label, required input, keyboard focus, a status message, and shared CSS tokens. This demo is pre-authored, not live AI generation or an integration with Paper or Figma. Review together: user need, terminology, tokens, accessibility, feasibility, and error handling. Refine and capture the rationale. Automated checks and this visual demo do not replace a full accessibility audit or user validation; the component is not production-ready authentication.
-
-**Transition:** The output matters. The decision that improved the output is reusable organizational knowledge.
-
----
-
-## 12. The organizational learning loop
-
-**Timing:** 12:00–13:05 (65 seconds)
-
-**Takeaway:** Learning compounds only when decisions feed back into maintained context and standards.
-
-**Visual concept:** A closed five-stage loop surrounds organizational memory.
-
-**Interaction / reveal:** Follow one learning cycle highlights a stage per click, wrapping back to generation.
-
-**Speaker notes:** AI generates using the current context. Humans evaluate. Capture the decision, rationale, evidence, and owner—not just the final image or code. Update the context package, rubric, example, token, or workflow that caused the problem. Review and version the change before reuse, then evaluate whether later AI-assisted work actually improves. For example, the paired demo may reveal that first-time setup should ask for one field, not three. That learning belongs with the pattern and its evidence. Avoid treating every observation as universal policy. Assign an owner, access rules, review cadence, and a way to retire stale knowledge.
-
-**Transition:** A learning loop needs measures of both capacity and coherence.
+**Transition:** Maintaining this contract costs time. How would we know the workflow is worth adopting?
 
 ---
 
 ## 13. Measure speed and coherence
 
-**Timing:** 13:05–14:55 (110 seconds)
+**Timing:** 14:05–15:45 (100 seconds)
 
 **Takeaway:** Evaluate the whole workflow: speed, review cost, quality, coherence, and customer outcomes.
 
@@ -222,29 +228,13 @@ The timing is a rehearsal guide, not an auto-advance schedule. Keep on-screen ex
 
 **Speaker notes:** Every number is synthetic: illustrative scenario—not measured results, benchmarks, or a forecast. The comparison teaches the measurement design, not an ROI claim. Baseline to pilot: median brief-to-validated-concept time 9 to 6 days; accepted production rate 2 to 3 artifacts per team-week; production effort 18 to 11 hours per concept; review effort 4 to 6 hours; rework 35% to 24%; applicable system checks passed 78% to 90%; open accessibility/quality defects 6 to 4 per 10 screens; design-to-code divergence 28% to 18%; experiments 1 to 2 per week; approved-context reuse 25% to 70%. Review effort rises intentionally: faster generation does not imply less review. Leading/process measures signal behavior and readiness; outcome measures test delivered workflow results. System compliance is a leading quality signal, not proof of user benefit. Both scenarios and their changes appear together, without competing bar scales. Percentage measures use percentage-point changes, not relative percentages. Match work scope, staffing, artifact definition, and evaluation criteria; include sample sizes and dispersion. Track customer task success separately. No customer outcome data is supplied.
 
-**Transition:** Most of the raw material for this operating model already exists.
+**Transition:** Use those measures in one bounded pilot before scaling the operating model.
 
 ---
 
-## 14. From documentation to executable standards
+## 14. Your first 30 days
 
-**Timing:** 14:55–16:10 (75 seconds)
-
-**Takeaway:** Turn domain knowledge into versioned, reusable context and verifiable standards.
-
-**Visual concept:** Seven familiar artifacts become operational infrastructure beside an example context package.
-
-**Interaction / reveal:** Static transformation; readable text remains editable for future PowerPoint recreation.
-
-**Speaker notes:** Guidelines become machine-readable rules; design systems gain metadata and code equivalents; templates become canonical prompts; documentation becomes context packages; critique becomes rubrics; SOPs become human–AI workflows; efficiency measures expand to speed, quality, and outcomes. A canonical prompt is more than 'create onboarding.' It carries product context, target user, accessibility, design-system rules, tone, interaction principles, constraints, and evaluation criteria. Domain experts co-author and maintain it; DesignOps facilitates reuse and governance. 'Executable' is a direction, not magic: writing a YAML-like package does not enforce it. Enforcement requires integration, appropriate permissions, validation, and human review. Keep rationale and sources alongside rules.
-
-**Transition:** Start with one bounded workflow rather than a comprehensive transformation.
-
----
-
-## 15. Your first 30 days
-
-**Timing:** 16:10–18:00 (110 seconds)
+**Timing:** 15:45–18:00 (135 seconds)
 
 **Takeaway:** A 30-day pilot can begin at team, product-area, or enterprise level with clear ownership.
 
@@ -258,7 +248,7 @@ The timing is a rehearsal guide, not an auto-advance schedule. Keep on-screen ex
 
 ---
 
-## 16. Who designs the system?
+## 15. Who designs the system?
 
 **Timing:** 18:00–20:00 (120 seconds)
 
@@ -274,23 +264,23 @@ The timing is a rehearsal guide, not an auto-advance schedule. Keep on-screen ex
 
 ---
 
-## 17. Let's talk — Q&A
+## 16. Let's talk — Q&A
 
 **Timing:** 10-minute Q&A, outside keynote timing
 
 **Takeaway:** Use the conversation to connect the operating model to the audience's constraints.
 
-**Visual concept:** Five navigable question prompts beside a minimal Q&A invitation.
+**Visual concept:** Seven backup topics and LinkedIn/GitHub contact links beside the Q&A invitation.
 
 **Interaction / reveal:** Select a topic to open a backup; each backup links back to Q&A.
 
-**Speaker notes:** Reserve ten minutes for discussion. Invite specific workflow examples rather than abstract predictions. The five backups cover governance ownership, the evolving role, AI-ready design systems, model-agnostic workflows and canonical prompts, and measurement. If asked whether this is just AI governance, explain that governance is one component; context, workflows, evaluation, and enablement make AI useful in the actual product ecosystem. If asked what to do tomorrow: map, identify, codify, standardize, and measure.
+**Speaker notes:** Reserve ten minutes for discussion. Invite specific workflow examples rather than abstract predictions. Seven backups cover governance ownership, the evolving role, AI-ready design systems, model-agnostic workflows, measurement, the full context stack, and the product lifecycle. The stack and lifecycle are supporting lenses, not new models the audience needs to memorize during the keynote. If asked whether this is just AI governance, return to the decision trail: governance is one component; context, workflows, evaluation, and enablement make it useful in the product ecosystem. If asked what to do tomorrow: map, identify, codify, standardize, and measure.
 
 **Transition:** Choose a backup only when it helps answer a question.
 
 ---
 
-## 18. Backup: shared governance ownership
+## 17. Backup: shared governance ownership
 
 **Timing:** Optional backup, outside keynote timing
 
@@ -306,7 +296,7 @@ The timing is a rehearsal guide, not an auto-advance schedule. Keep on-screen ex
 
 ---
 
-## 19. Backup: operating-environment architect, not AI factory
+## 18. Backup: operating-environment architect, not AI factory
 
 **Timing:** Optional backup, outside keynote timing
 
@@ -322,7 +312,7 @@ The timing is a rehearsal guide, not an auto-advance schedule. Keep on-screen ex
 
 ---
 
-## 20. Backup: an AI-ready design system
+## 19. Backup: an AI-ready design system
 
 **Timing:** Optional backup, outside keynote timing
 
@@ -338,7 +328,7 @@ The timing is a rehearsal guide, not an auto-advance schedule. Keep on-screen ex
 
 ---
 
-## 21. Backup: model-agnostic workflows and canonical prompts
+## 20. Backup: model-agnostic workflows and canonical prompts
 
 **Timing:** Optional backup, outside keynote timing
 
@@ -354,7 +344,7 @@ The timing is a rehearsal guide, not an auto-advance schedule. Keep on-screen ex
 
 ---
 
-## 22. Backup: metric definitions and measurement plan
+## 21. Backup: metric definitions and measurement plan
 
 **Timing:** Optional backup, outside keynote timing
 
@@ -367,6 +357,38 @@ The timing is a rehearsal guide, not an auto-advance schedule. Keep on-screen ex
 **Speaker notes:** Define 'validated concept' before collecting time: reviewer acceptance plus the agreed user-evidence threshold. Count accepted artifacts, not raw generations. Separate elapsed days from person-hours, production from review, and quality defects from severity. Define denominators for compliance, rework, reuse, and divergence. Complete experiments include a recorded learning decision, not just a release. Compare similar tasks and staffing; document sample size, spread, exclusions, and complexity. Use approved data collection with appropriate privacy controls. Review effort may increase while total effort falls, but a small observational pilot cannot establish causality. Set decision thresholds in advance and track customer task success or other relevant product outcomes. All dashboard numbers are explicitly synthetic.
 
 **Transition:** Return to the dashboard or Q&A.
+
+---
+
+## 22. Backup: Organizational memory is the advantage
+
+**Timing:** Optional backup, outside keynote timing
+
+**Takeaway:** The differentiator is governed organizational knowledge, not loyalty to a model.
+
+**Visual concept:** A five-layer AI design stack, built from models to connecting DesignOps infrastructure.
+
+**Interaction / reveal:** Build the context stack adds one highlighted layer per click; after all layers it resets to the foundation.
+
+**Speaker notes:** Models provide capabilities. Agents and tools connect capabilities to tasks. Organizational context provides what models do not inherently know: tokens, components, research, product knowledge, brand, accessibility, terminology, workflows, repositories, PRs, existing experiences, and past decisions. Stewardship adds guardrails, exclusions, evaluation, and human checkpoints. DesignOps connects the layers. The diagram is a responsibility model, not a mandatory software architecture. Do not feed all organizational data into a model: permissions, privacy, provenance, source quality, freshness, and ownership determine what context may be used. A design system is one part of organizational memory, not the whole memory.
+
+**Transition:** Return to Q&A, or use the lifecycle backup to locate these responsibilities in the work.
+
+---
+
+## 23. Backup: DesignOps across the product lifecycle
+
+**Timing:** Optional backup, outside keynote timing
+
+**Takeaway:** Governance, context, and evaluation follow the work across every lifecycle stage.
+
+**Visual concept:** Five selectable stages sit above a persistent shared-infrastructure rail.
+
+**Interaction / reveal:** Select a stage to reveal AI assistance, DesignOps infrastructure, and the human checkpoint.
+
+**Speaker notes:** Discover: AI can cluster and retrieve research; DesignOps supports consent, traceability, source quality, and reusable knowledge. Define: AI can draft briefs and identify gaps; shared brief structure, product vocabulary, and source context keep framing grounded. Design: alternatives and prototypes rely on system rules, prompts, accessibility constraints, and critique. Build: generated code needs component metadata, supported patterns, tokens, validation, and paired review. Measure: AI can summarize observations, but people interpret outcomes, record caveats, and decide what should change. Do not turn this into a tool catalog. Show one or two stages live and use the persistent rail to connect them.
+
+**Transition:** Return to Q&A. The keynote's onboarding decision is one example at the design-to-build boundary.
 
 ## Illustrative metric dataset
 
@@ -406,25 +428,26 @@ Record sample size, spread, staffing, complexity, exclusions, and data-collectio
 
 | Source idea / review request | Where preserved |
 | --- | --- |
-| Core thesis, central question, capacity versus coherence | 1–3, 16 |
-| Product/customer journey before and after AI; Mission, Milestones, Metrics | 4 |
-| DesignOps fundamentals and expanding responsibilities | 5, 15, 19 |
-| AI control plane; domain ownership | 6, 18 |
-| Stewardship × Systems × Enablement reconciled with Govern / Context / Evaluate | 7 and its notes |
-| Organizational memory and five-layer AI design stack | 8, 20 |
-| Evaluation scarcity and six-part quality rubric | 9 |
-| Discover → Define → Design → Build → Measure | 10 and its notes |
-| Designer–engineer pairing; early concept to HTML/CSS prototype | 11 |
-| Learning captured into context and standards | 12 |
-| Production time, rate, review, rework, consistency, and measurement | 13, 22 |
-| Canonical prompts and seven artifact transformations | 14, 21 |
-| Team, product-area, and enterprise altitudes | 15 |
-| Evolving role and work archetypes | 19 |
-| Risks if infrastructure is absent | 3 and its notes |
-| Shared governance, AI-team concern, AI-ready systems, model change, prompt ownership | 17–22 |
-| Tomorrow's actions: map, identify, codify, standardize, measure | 15, 17 |
+| Core thesis, central question, capacity versus coherence | 1–3, 15 |
+| Early illustrative onboarding conflict and criterion | 4 |
+| Product/customer journey before and after AI; Mission, Milestones, Metrics | 11 |
+| DesignOps fundamentals and expanding responsibilities | 9, 14, 18 |
+| AI control plane; domain ownership | 10, 17 |
+| Stewardship × Systems × Enablement reconciled with Govern / Context / Evaluate | 5 and its notes |
+| Organizational memory and five-layer AI design stack | 8, 19, 22 (backup) |
+| Evaluation scarcity and six-part quality rubric | 7 |
+| Discover → Define → Design → Build → Measure | 23 (backup) and its notes |
+| Designer–engineer pairing; context → conflict → decision → rule, with local HTML/CSS | 6 |
+| Learning captured into context and standards | 8, 12 |
+| Production time, rate, review, rework, consistency, and measurement | 13, 21 |
+| Canonical prompts and seven artifact transformations | 12, 20 |
+| Team, product-area, and enterprise altitudes | 14 |
+| Evolving role and work archetypes | 18 |
+| Risks if infrastructure is absent | 3–4 and their notes |
+| Shared governance, AI-team concern, AI-ready systems, model change, prompt ownership | 16–23 |
+| Tomorrow's actions: map, identify, codify, standardize, measure | 14, 16 |
 
-The Spanish review notes are implemented in English. Traditional DesignOps work is expanded, not erased. The proposed workflow is explicitly a hypothesis to validate. The source's tool mentions do not imply integrations; the pair-programming demonstration uses local HTML/CSS. The source's unverified external archetype attribution is not reproduced as a factual attribution. Rhetorical counts are not converted into statistical claims. The original longer outline is condensed to 16 main slides, with meaningful detail moved into notes and backups rather than discarded.
+The Spanish review notes are implemented in English. Traditional DesignOps work is expanded, not erased. The proposed workflow is explicitly a hypothesis to validate. The source's tool mentions do not imply integrations; the demonstration uses local HTML/CSS. The source's unverified external archetype attribution is not reproduced as a factual attribution. Rhetorical counts are not converted into statistical claims. The stack and lifecycle walkthroughs are preserved in backups to avoid competing with the central operating model. The keynote now has 15 slides; the added conflict and expanded demo use time recovered from those supporting walkthroughs.
 
 ## Conversion and delivery notes
 
