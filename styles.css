@@ -51,7 +51,8 @@ main { flex: 1; min-height: 0; display: flex; align-items: center; justify-conte
 #slide-3 button[data-action="cause"],
 #slide-3 button[data-action="align"],
 #slide-4 button[data-action="journey"],
-#slide-6 button[data-action="connect"] { font-size: 16px; padding: 9px 14px; }
+#slide-6 button[data-action="connect"],
+#slide-8 button[data-action="stack"] { font-size: 16px; padding: 9px 14px; }
 .slide-footer { position: absolute; bottom: 35px; left: 76px; right: 76px; border-top: 1px solid var(--line); padding-top: 20px; display: flex; align-items: center; justify-content: space-between; color: var(--muted); font: 12px var(--mono); letter-spacing: 1.4px; }
 .kicker { font: 14px var(--mono); color: var(--muted); letter-spacing: 2px; margin-bottom: 25px; }
 .lead { color: var(--muted); font-size: 26px; line-height: 1.5; margin-top: 30px; }
