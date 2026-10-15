@@ -41,7 +41,7 @@ Generated from the presenter-note data in app.js. To update this document after 
 | Act | Slides | Window | Duration |
 | --- | --- | --- | --- |
 | I: The acceleration paradox | 1–3 | 0:00–2:30 | 2 minutes 30 seconds |
-| II: The decision and its reusable rule | 4–7 | 2:30–10:10 | 7 minutes 40 seconds |
+| II: The fix and the saved lesson | 4–7 | 2:30–10:10 | 7 minutes 40 seconds |
 | III: Make the operating model repeatable | 8–13 | 10:10–18:00 | 7 minutes 50 seconds |
 | IV: Closing | 14 | 18:00–20:00 | 2 minutes |
 | Q&A | 15, with optional 16–22 | 20:00–30:00 | 10 minutes |
@@ -64,19 +64,19 @@ Stage prioritizes projected labels: the tested decision-bearing body and diagram
 
 The assumed user needs to start a workspace alone. The first generated form requires a teammate email and blocks that task. Designer and engineer move invitations after setup. DesignOps saves the lesson and its reason in shared guidance, scoped to solo workspace setup, with a product lead owner and review after the pilot or a source change. The next proposed form meets that requirement, but still needs accessibility and user-outcome review.
 
-All scenario artifacts, generated choices, reviewer decisions, and ownership examples are pre-authored and illustrative. They are not research findings, actual organizational policy, live model output, or measured improvements. User validation is pending. DesignOps maintains the source/criterion/decision/rule contract and the review path; domain experts retain product judgment.
+The example, AI-produced forms, team decisions, and ownership are all pre-authored and illustrative. They are not research findings, actual organizational policy, live model output, or measured improvements. User validation is pending. DesignOps keeps the user's need, the team's decision, its reason, and its owner together in shared guidance. Product experts still decide whether the guidance and each new result are appropriate.
 
 ${sections.join("\n\n---\n\n")}
 
-## Illustrative metric dataset
+## Early experimentation: approximate values
 
-**Illustrative scenario — not measured results.** These numbers are not benchmarks, actual performance, causal evidence, or a forecast. Baseline, pilot, and change are shown together. Changes use each metric's units; percentage measures use percentage points.
+**Early experimentation · approximate values.** The presenter reports that these unchanged comparison values are close to informal experimentation data. They are approximations, not exact measurements, benchmarks, validated results, causal evidence, or a forecast. Baseline, pilot, and change are shown together. Changes use each metric's units; percentage measures use percentage points.
 
 | Metric | Baseline | Pilot | Unit / denominator | Category |
 | --- | --- | --- | --- | --- |
 ${metricTable}
 
-Baseline and pilot are synthetic teaching scenarios. They deliberately include an increase in review effort. Leading/process classifications are useful for this workflow, not universal definitions. No actual customer-outcome evidence has been supplied.
+The existing synthetic baseline and pilot values have been retained as approximations informed by the presenter's early experimentation. Underlying records, sample sizes, and methods have not been supplied. Review effort increases in the comparison. Leading/process classifications are useful for this workflow, not universal definitions. No actual customer-outcome evidence has been supplied.
 
 ## Operational definitions and collection
 
@@ -98,7 +98,7 @@ Record sample size, spread, staffing, complexity, exclusions, and data-collectio
 | Source idea / review request | Where preserved |
 | --- | --- |
 | Core thesis, central question, capacity versus coherence | 1–3, 14 |
-| Illustrative onboarding conflict and criterion, within the interactive demo | 5 |
+| Illustrative onboarding problem and user requirement, within the interactive demo | 5 |
 | Product/customer journey before and after AI; Mission, Milestones, Metrics | 10 |
 | DesignOps fundamentals and expanding responsibilities | 8, 13, 17 |
 | AI control plane; domain ownership | 9, 16 |
@@ -106,7 +106,7 @@ Record sample size, spread, staffing, complexity, exclusions, and data-collectio
 | Organizational memory and five-layer AI design stack | 7, 18, 21 (backup) |
 | Evaluation scarcity and six-part quality rubric | 6 |
 | Discover → Define → Design → Build → Measure | 22 (backup) and its notes |
-| Designer–engineer pairing; context → conflict → decision → rule, with local HTML/CSS | 5 |
+| Designer–engineer pairing; user need → fix → saved lesson, with local HTML/CSS | 5 |
 | Learning captured into context and standards | 7, 11 |
 | Production time, rate, review, rework, consistency, and measurement | 12, 20 |
 | Canonical prompts and seven artifact transformations | 11 (four on stage; all seven in review and notes), 19 |
@@ -185,9 +185,11 @@ assert.match(data.pairEvidence[5].verdict, /review is not over/, "Reuse never re
 for (const id of ["stage-toggle", "stage-exit", "stage-help"]) assert(ids.includes(id), `Stage control ${id} exists`);
 assert.equal(data.notes.filter(note => /Stage moment [123]:/.test(note.interaction)).length, 3, "Only three intentional stage build moments");
 assert(markdown.includes("Stage delivery and rehearsal"), "Export includes stage instructions");
-assert(!/BRIEF-01|AC-01|DEC-01|RULE-01/.test(JSON.stringify([data.pairDescriptions, data.pairCode, data.pairLabels, data.pairEvidence])), "Demo explains the example without document codes");
+for (const [name, content] of [["slides", html], ["notes and dynamic copy", js], ["exported notes", markdown], ["README", readFileSync(new URL("./README.md", import.meta.url), "utf8")]]) {
+  assert(!/\b(?:BRIEF|AC|DEC|RULE)[-\u2010-\u2015]\d+\b/.test(content), `${name} explains the example without obsolete document identifiers`);
+}
 assert(css.includes("prefers-reduced-motion"));
-assert(html.includes("ILLUSTRATIVE SCENARIO — NOT MEASURED RESULTS"));
+assert.equal((html.match(/EARLY EXPERIMENTATION · APPROXIMATE VALUES/g) || []).length, 2, "Slide and detailed metrics retain the approximate-value qualification");
 assert(!/\b(?:src|href)="https?:\/\//.test(html.replace(/<a\b[^>]*>/gi, "")), "No remote assets; outbound links are allowed");
 assert(!/\b(?:fetch|XMLHttpRequest|WebSocket|setInterval)\s*\(/.test(js), "No network or repeating timers");
 new vm.Script(js, { filename: "app.js" });

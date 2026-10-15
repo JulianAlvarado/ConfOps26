@@ -415,7 +415,6 @@ dialog::backdrop { background: #05090dea; }
   .stage-mode .context-package pre,
   .stage-mode .altitude-bar,
   .stage-mode .life-detail,
-  .stage-mode .network svg,
   .stage-mode .learning-loop svg,
   .stage-mode #network-status,
   .stage-mode #loop-status,
@@ -482,10 +481,10 @@ dialog::backdrop { background: #05090dea; }
   .stage-mode .rubric > div { gap: 22px 15px; }
   .stage-mode .human-gate .tag { font: 23px/1.4 sans-serif; white-space: normal; }
   .stage-mode .network-layout, .stage-mode .loop-layout { grid-template-columns: 1fr 1.22fr; gap: 48px; margin-top: 42px; }
-  .stage-mode .network-summary { display: block; padding: 30px; border: 1px solid var(--cyan); }
-  .stage-mode .network-summary h3 { font-size: 32px; margin-bottom: 20px; }
-  .stage-mode .network-summary p { font-size: 25px; line-height: 1.5; }
-  .stage-mode .network-summary ul { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 30px 0; font-size: 28px; color: var(--cyan); }
+  .stage-mode .network-links { stroke: var(--cyan); stroke-dasharray: none; opacity: 1; animation: none; }
+  .stage-mode .network-hub, .stage-mode .network-node rect { stroke: var(--cyan); }
+  .stage-mode .network-hub { x: 175px; width: 400px; }
+  .stage-mode :is(.network-node text, .hub-subtitle, .hub-detail) { font: 24px sans-serif; }
   .stage-mode .network-caption { font: 25px/1.4 sans-serif; margin-top: 26px; }
   .stage-mode #loop-reading { display: block; padding-left: 40px; margin: 0; font-size: 27px; line-height: 1.45; }
   .stage-mode #loop-reading li { padding: 22px 10px; border-bottom: 1px solid var(--line); }

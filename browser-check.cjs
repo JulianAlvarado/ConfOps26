@@ -34,6 +34,9 @@ const { mkdirSync } = require("node:fs");
       backups: notes.slice(keynoteCount + 1).map(note => note.seconds)
     })), { keynoteCount: 14, duration: 1200, demo: 270, qa: 600, backups: [0, 0, 0, 0, 0, 0, 0] });
     assert.equal(await page.locator(".conflict-slide").count(), 0);
+    for (const label of await page.locator(".scenario-label").allTextContents()) {
+      assert.equal(label.trim(), "EARLY EXPERIMENTATION · APPROXIMATE VALUES");
+    }
     await go(3);
     await page.keyboard.press("ArrowRight");
     await page.waitForFunction(() => !document.getElementById("slide-4").hidden);
@@ -64,6 +67,7 @@ const { mkdirSync } = require("node:fs");
         const stageMode = document.body.classList.contains("stage-mode");
         const exit = document.getElementById("stage-exit").getBoundingClientRect();
         const issues = [];
+        if (/\b(?:BRIEF|AC|DEC|RULE)[-\u2010-\u2015]\d+\b/.test(slide.textContent)) issues.push("Obsolete example identifier in slide copy");
         for (const node of slide.querySelectorAll("*")) {
           if (node.closest(".sr-only, svg") || !node.checkVisibility()) continue;
           if (reading && node.closest(".definitions thead")) continue;
@@ -244,7 +248,13 @@ const { mkdirSync } = require("node:fs");
       return [style.fontSize, style.paddingTop, style.paddingLeft];
     }), ["19px", "14px", "22px"]);
     await go(7);
-    for (let i = 0; i < 6; i++) await click('[data-action="loop"]');
+    assert.equal(await page.locator("#slide-7 .lead").innerText(), "Keep the decision and its reason.\nShare them with the next team.");
+    const loopLabels = ["AI proposes a design", "The team reviews it", "Save the lesson", "Update the guidance", "Check the next result"];
+    for (let i = 0; i < 6; i++) {
+      await click('[data-action="loop"]');
+      assert((await page.locator("#loop-status").innerText()).startsWith(loopLabels[i % 5]));
+      assert((await page.locator("#loop-reading [aria-current='step']").innerText()).startsWith(loopLabels[i % 5]));
+    }
     assert.equal(await page.locator(".loop-node.current").count(), 1);
     assert.equal(await page.locator("#loop-reading [aria-current='step']").count(), 1);
     await go(13);
@@ -312,7 +322,7 @@ const { mkdirSync } = require("node:fs");
           ".pair-steps li", "#pair-explanation", ".decision-evidence dt", ".decision-evidence dd",
           "#evidence-verdict", ".prototype-code", ".prototype-form label", ".prototype-form input",
           ".prototype-form button", ".field-hint", ".prototype-result", ".rubric > div", ".rubric p",
-          "#loop-reading li", ".network-summary p", ".network-summary li", ".workflow-track span",
+          "#loop-reading li", ".workflow-track span",
           ".journey p", ".metric-unit", ".metric-comparison dt", ".slide .scenario-label", ".thirty-days p",
           ".stage-altitude", ".stack-layer p", ".lifecycle button > span"
         ];
@@ -330,6 +340,27 @@ const { mkdirSync } = require("node:fs");
         await checkLayout(false, `stage-${size.width}/slide-${i}`);
         const controls = await page.locator(".slide:not([hidden]) button").evaluateAll(nodes => nodes.filter(node => node.checkVisibility() && !node.disabled).map(node => node.dataset.action || node.type));
         if (![3, 5, 14].includes(i)) assert.deepEqual(controls, [], `No extra stage builds on slide ${i}`);
+        if (i === 9) {
+          assert(await page.locator("#network svg").isVisible(), "Stage retains the hub-and-spoke diagram");
+          assert(!(await page.locator(".network-summary").isVisible()), "Stage does not substitute the Reading summary");
+          const diagramIssues = await page.locator("#network").evaluate(network => {
+            const issues = [];
+            const links = getComputedStyle(network.querySelector(".network-links"));
+            if (links.strokeDasharray !== "none") issues.push("Stage connections must all be resolved");
+            for (const text of network.querySelectorAll("svg text")) {
+              const box = text.getBBox();
+              const node = text.closest(".network-node");
+              const frame = (node ? node.querySelector("rect") : network.querySelector(".network-hub")).getBBox();
+              const transform = text.getScreenCTM();
+              const pixels = parseFloat(getComputedStyle(text).fontSize) * Math.hypot(transform.a, transform.b);
+              if (pixels < 18.4) issues.push(`${text.textContent}: projects at ${pixels}px`);
+              if (box.x < frame.x + 4 || box.x + box.width > frame.x + frame.width - 4 ||
+                  box.y < frame.y || box.y + box.height > frame.y + frame.height) issues.push(`${text.textContent}: outside node`);
+            }
+            return issues;
+          });
+          assert.deepEqual(diagramIssues, [], `Stage diagram labels at ${size.width}`);
+        }
         if ([3, 4, 7, 9, 11, 12, 21, 22].includes(i)) await capture(`stage-${size.width}-slide-${i}`);
       }
       await go(3);

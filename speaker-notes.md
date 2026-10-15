@@ -11,7 +11,7 @@ Generated from the presenter-note data in app.js. To update this document after 
 | Act | Slides | Window | Duration |
 | --- | --- | --- | --- |
 | I: The acceleration paradox | 1–3 | 0:00–2:30 | 2 minutes 30 seconds |
-| II: The decision and its reusable rule | 4–7 | 2:30–10:10 | 7 minutes 40 seconds |
+| II: The fix and the saved lesson | 4–7 | 2:30–10:10 | 7 minutes 40 seconds |
 | III: Make the operating model repeatable | 8–13 | 10:10–18:00 | 7 minutes 50 seconds |
 | IV: Closing | 14 | 18:00–20:00 | 2 minutes |
 | Q&A | 15, with optional 16–22 | 20:00–30:00 | 10 minutes |
@@ -34,7 +34,7 @@ Stage prioritizes projected labels: the tested decision-bearing body and diagram
 
 The assumed user needs to start a workspace alone. The first generated form requires a teammate email and blocks that task. Designer and engineer move invitations after setup. DesignOps saves the lesson and its reason in shared guidance, scoped to solo workspace setup, with a product lead owner and review after the pilot or a source change. The next proposed form meets that requirement, but still needs accessibility and user-outcome review.
 
-All scenario artifacts, generated choices, reviewer decisions, and ownership examples are pre-authored and illustrative. They are not research findings, actual organizational policy, live model output, or measured improvements. User validation is pending. DesignOps maintains the source/criterion/decision/rule contract and the review path; domain experts retain product judgment.
+The example, AI-produced forms, team decisions, and ownership are all pre-authored and illustrative. They are not research findings, actual organizational policy, live model output, or measured improvements. User validation is pending. DesignOps keeps the user's need, the team's decision, its reason, and its owner together in shared guidance. Product experts still decide whether the guidance and each new result are appropriate.
 
 ## 1. AI makes us faster. Who keeps us coherent?
 
@@ -46,7 +46,7 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 **Interaction / reveal:** A short entrance trace establishes the flow motif. No automatic slide advancement.
 
-**Speaker notes:** Open with the tension, not a list of tools. Teams can generate briefs, concepts, research summaries, and code faster than before. Faster creation does not automatically produce a coherent customer experience. We will follow one illustrative onboarding conflict: a working screen violates an agreed criterion. Watch how shared context, a human decision, and a reusable rule change the next output. Then ask what DesignOps must maintain around that work and how a bounded pilot could test its value. The example is pre-authored, not a report of organizational results.
+**Speaker notes:** Open with the tension, not a list of tools. Teams can generate briefs, concepts, research summaries, and code faster than before. Faster creation does not automatically produce a coherent customer experience. We will follow one illustrative onboarding problem: a working form stops someone from starting alone. Watch how the team fixes it, saves the lesson in shared guidance, and checks the next result. Then ask what DesignOps must maintain around that work and how a bounded pilot could test its value. The example is pre-authored, not a report of organizational results.
 
 **Transition:** What changes when production becomes distributed across the whole team?
 
@@ -112,7 +112,7 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 **Speaker notes:** Introduce the fictional example here: someone wants to start a workspace alone. Allow 270 seconds (4 minutes 30 seconds) for the six existing steps. The 90 seconds recovered from the removed overview slide are explanation and interaction pauses, not extra UI or an exercise: 30 seconds to let the audience absorb the blocked user need, 30 seconds for the form's validation and keyboard feedback, and 30 seconds to review why the saved lesson needs an owner and a review trigger. First: the person wants to start a workspace alone. Second: the AI-produced form requires someone else's email, so the person gets stuck. Third: the designer and engineer move invitations after workspace creation. Fourth: try the revised local form with just a workspace name; show validation and keyboard feedback if useful. Nothing is saved or sent. Fifth: explain why fixing one screen is not enough. DesignOps records the lesson with the original solo-setup assumption, the team's reason, a product lead owner, and a review date after the pilot. Put that guidance where the next team and its AI tools can use it. Sixth: the next proposed form allows setup without inviting anyone. A reviewer verifies that behavior and still checks accessibility and user outcomes. Do not claim the rule guarantees future results or that this is a real user study. Every state is pre-authored and illustrative. The distinction is simple: product experts decide what the experience should do; DesignOps helps that decision survive beyond this one screen.
 
-**Transition:** One criterion passed. What else must a reviewer still judge?
+**Transition:** The person can now finish setup alone. What else must the team check?
 
 ---
 
@@ -136,13 +136,13 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 **Timing:** 9:00–10:10 (70 seconds)
 
-**Takeaway:** Learning compounds only when decisions feed back into maintained context and standards.
+**Takeaway:** Keep the decision and its reason in shared guidance, then check the next result.
 
 **Visual concept:** A complete five-stage learning sequence on stage; a closed loop around organizational memory in review.
 
 **Interaction / reveal:** Stage: the whole sequence is static, ending with re-evaluation. Review: Follow one learning cycle highlights a stage per click, wrapping back to generation.
 
-**Speaker notes:** Return to the decision to offer invitations after setup and the saved lesson. The useful artifact is not merely the revised form: it is the requirement, reason, owner, and review trigger attached to it. AI generates using current context; humans evaluate; the decision is recorded; reviewed guidance updates context; the next result is checked again. The example proves neither that one field is always best nor that context automatically prevents future violations. Its scenario is assumed and user validation is pending. If the solo-setup assumption changes, the product lead revisits the rule; DesignOps keeps the source, access, version, and review cadence usable across teams. Retire stale rules rather than making every observation universal policy.
+**Speaker notes:** Return to the decision to offer invitations after setup. Do not save only the corrected form: save why the team changed it and who will review that guidance. Follow the same sequence on screen: AI proposes a design using shared guidance; the team checks it against the user's need; they save the lesson, including the decision, reason, and owner; DesignOps updates the guidance available to the next team and its AI tools; a reviewer checks the next result. The example does not prove that one field is always best or that guidance automatically prevents mistakes. It is fictional and user validation is pending. If the solo-setup assumption changes, the product lead revisits the guidance. DesignOps keeps its source, version, access, and review date current. Retire lessons that no longer apply instead of turning every observation into universal policy.
 
 **Transition:** That maintenance is recognizable DesignOps work—with a wider scope.
 
@@ -172,11 +172,11 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 **Visual concept:** Five AI-enabled actors connect through a common operating layer.
 
-**Interaction / reveal:** Stage: a static connected-role summary with shared governance, context, and evaluation. Review: Connect the control plane toggles the network links.
+**Interaction / reveal:** Stage: the original hub-and-spoke diagram stays fully connected, with larger labels and no extra control. Review: Connect the control plane toggles the network links. Reading view retains the accessible text summary.
 
 **Speaker notes:** The control plane metaphor distinguishes defining the conditions of work from doing everyone's work. PM, research, design, prototyping, and engineering keep their domain responsibilities. DesignOps coordinates reusable context, risk-based guardrails, evaluation criteria, ownership, and enablement. It should not become a central approval queue. Security, Legal, IT, platform teams, and domain experts remain essential partners. Clear boundaries can allow teams to move without repeatedly asking permission for known-safe tasks.
 
-**Transition:** The shared contract also changes how work moves between these people.
+**Transition:** Shared guidance also changes how work moves between these people.
 
 ---
 
@@ -192,7 +192,7 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 **Speaker notes:** The before journey is a deliberately simplified pattern, not a claim that all pre-AI teams worked sequentially. Research informs a brief, design produces mocks, engineering builds, and customers finally respond. The proposed alternative starts with Mission, Milestones, and Metrics—the source's MMM. PM, research, design, and engineering share intent; specification, concepts, feasibility, and HTML/CSS prototypes evolve together. Releases can become experiments that inform another iteration. AI may reduce production effort, but review, integration, and dependency costs still count. Do not promise a one-week release or universal acceleration. Measure elapsed production time, person-hours, waiting time, customer validation, and experimentation cadence. The animation contrasts sequencing, not numeric speed. A prototype is not a production release; user evidence remains necessary.
 
-**Transition:** The reusable contract can start with documentation the team already has.
+**Transition:** Shared guidance can start with documentation the team already has.
 
 ---
 
@@ -202,13 +202,13 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 **Takeaway:** Turn domain knowledge into versioned, reusable context and verifiable standards.
 
-**Visual concept:** Four large artifact transformations and a concise solo-setup rule on stage; all seven transformations and the complete source package in review.
+**Visual concept:** Four documentation transformations and the saved solo-setup lesson on stage; all seven transformations and the full shared guidance in review.
 
-**Interaction / reveal:** Static transformation. Stage emphasizes rule, reason, owner/version, review trigger, and pending user evidence; review and notes retain the full detail.
+**Interaction / reveal:** Static transformation. Stage emphasizes lesson, reason, owner/version, review date, and pending user evidence; review and notes retain the full detail.
 
 **Speaker notes:** Use the saved solo-setup lesson as the concrete artifact rather than narrating seven new frameworks. Its source is explicitly assumed, the requirement and decision are readable, its scope is solo setup, and its owner and review trigger are visible. User evidence remains pending. The seven transformations preserve the broader source material: guidelines to machine-readable rules, design systems to consumable systems, templates to canonical prompts, documentation to context packages, critique to rubrics, SOPs to human–AI workflows, efficiency measures to speed plus quality and outcomes. A YAML-like package does not enforce itself. Integration, permissions, validation, and human review are still required. DesignOps maintains the package; domain experts author, approve, and revisit its validity.
 
-**Transition:** Maintaining this contract costs time. How would we know the workflow is worth adopting?
+**Transition:** Maintaining this guidance costs time. How would we know the workflow is worth adopting?
 
 ---
 
@@ -222,7 +222,7 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 **Interaction / reveal:** Stage: four static, paired comparisons. Review: All 10 measures opens the complete comparison dialog; Definitions links to the measurement backup, also accessible from Q&A.
 
-**Speaker notes:** Every number is synthetic: illustrative scenario—not measured results, benchmarks, or a forecast. The comparison teaches the measurement design, not an ROI claim. Baseline to pilot: median brief-to-validated-concept time 9 to 6 days; accepted production rate 2 to 3 artifacts per team-week; production effort 18 to 11 hours per concept; review effort 4 to 6 hours; rework 35% to 24%; applicable system checks passed 78% to 90%; open accessibility/quality defects 6 to 4 per 10 screens; design-to-code divergence 28% to 18%; experiments 1 to 2 per week; approved-context reuse 25% to 70%. Review effort rises intentionally: faster generation does not imply less review. Leading/process measures signal behavior and readiness; outcome measures test delivered workflow results. System compliance is a leading quality signal, not proof of user benefit. Both scenarios and their changes appear together, without competing bar scales. Percentage measures use percentage-point changes, not relative percentages. Match work scope, staffing, artifact definition, and evaluation criteria; include sample sizes and dispersion. Track customer task success separately. No customer outcome data is supplied.
+**Speaker notes:** These are approximate comparison values informed by the presenter's early experimentation, not exact measurements, benchmarks, or a forecast. The numbers remain unchanged from the earlier synthetic comparison; the presenter reports that they are close to informal experimental observations. Underlying records, sample sizes, and methods have not been supplied, so do not claim validated results or causal ROI. Baseline to pilot: median brief-to-validated-concept time 9 to 6 days; accepted production rate 2 to 3 artifacts per team-week; production effort 18 to 11 hours per concept; review effort 4 to 6 hours; rework 35% to 24%; applicable system checks passed 78% to 90%; open accessibility/quality defects 6 to 4 per 10 screens; design-to-code divergence 28% to 18%; experiments 1 to 2 per week; approved-context reuse 25% to 70%. Review effort rises in this comparison: faster generation does not imply less review. Leading/process measures signal behavior and readiness; outcome measures test delivered workflow results. System compliance is a leading quality signal, not proof of user benefit. Both sets of approximate values and their changes appear together, without competing bar scales. Percentage measures use percentage-point changes, not relative percentages. Match work scope, staffing, artifact definition, and evaluation criteria; include sample sizes and dispersion before presenting a validated comparison. Track customer task success separately. No customer outcome data is supplied.
 
 **Transition:** Use those measures in one bounded pilot before scaling the operating model.
 
@@ -314,7 +314,7 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 **Takeaway:** AI readiness adds meaning, constraints, examples, and evaluation to an existing design system.
 
-**Visual concept:** Foundation plus machine-consumable reasoning, with a context contract underneath.
+**Visual concept:** Foundation plus machine-consumable reasoning, with shared-context ownership underneath.
 
 **Interaction / reveal:** Back to Q&A returns to the topic menu.
 
@@ -330,7 +330,7 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 **Takeaway:** Build durable knowledge, rules, workflows, and evaluation around replaceable models.
 
-**Visual concept:** A stable context contract spans interchangeable model capabilities.
+**Visual concept:** Shared knowledge, rules, workflows, and evaluation remain as models change.
 
 **Interaction / reveal:** Back to Q&A returns to the topic menu.
 
@@ -350,7 +350,7 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 **Interaction / reveal:** Dashboard returns to slide 12 with baseline and pilot visible together. Q&A returns to the topic menu.
 
-**Speaker notes:** Define 'validated concept' before collecting time: reviewer acceptance plus the agreed user-evidence threshold. Count accepted artifacts, not raw generations. Separate elapsed days from person-hours, production from review, and quality defects from severity. Define denominators for compliance, rework, reuse, and divergence. Complete experiments include a recorded learning decision, not just a release. Compare similar tasks and staffing; document sample size, spread, exclusions, and complexity. Use approved data collection with appropriate privacy controls. Review effort may increase while total effort falls, but a small observational pilot cannot establish causality. Set decision thresholds in advance and track customer task success or other relevant product outcomes. All dashboard numbers are explicitly synthetic.
+**Speaker notes:** Define 'validated concept' before collecting time: reviewer acceptance plus the agreed user-evidence threshold. Count accepted artifacts, not raw generations. Separate elapsed days from person-hours, production from review, and quality defects from severity. Define denominators for compliance, rework, reuse, and divergence. Complete experiments include a recorded learning decision, not just a release. Compare similar tasks and staffing; document sample size, spread, exclusions, and complexity. Use approved data collection with appropriate privacy controls. Review effort may increase while total effort falls, but a small observational pilot cannot establish causality. Set decision thresholds in advance and track customer task success or other relevant product outcomes. Dashboard values are preliminary approximations informed by the presenter's early experimentation, not validated measurements.
 
 **Transition:** Return to the dashboard or Q&A.
 
@@ -386,9 +386,9 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 
 **Transition:** Return to Q&A. The keynote's onboarding decision is one example at the design-to-build boundary.
 
-## Illustrative metric dataset
+## Early experimentation: approximate values
 
-**Illustrative scenario — not measured results.** These numbers are not benchmarks, actual performance, causal evidence, or a forecast. Baseline, pilot, and change are shown together. Changes use each metric's units; percentage measures use percentage points.
+**Early experimentation · approximate values.** The presenter reports that these unchanged comparison values are close to informal experimentation data. They are approximations, not exact measurements, benchmarks, validated results, causal evidence, or a forecast. Baseline, pilot, and change are shown together. Changes use each metric's units; percentage measures use percentage points.
 
 | Metric | Baseline | Pilot | Unit / denominator | Category |
 | --- | --- | --- | --- | --- |
@@ -403,7 +403,7 @@ All scenario artifacts, generated choices, reviewer decisions, and ownership exa
 | Accessibility / quality defects | 6/10 | 4/10 | open defects / 10 reviewed screens | Workflow outcome |
 | Design-to-code divergence | 28% | 18% | % audited UI instances divergent | Workflow outcome |
 
-Baseline and pilot are synthetic teaching scenarios. They deliberately include an increase in review effort. Leading/process classifications are useful for this workflow, not universal definitions. No actual customer-outcome evidence has been supplied.
+The existing synthetic baseline and pilot values have been retained as approximations informed by the presenter's early experimentation. Underlying records, sample sizes, and methods have not been supplied. Review effort increases in the comparison. Leading/process classifications are useful for this workflow, not universal definitions. No actual customer-outcome evidence has been supplied.
 
 ## Operational definitions and collection
 
@@ -425,7 +425,7 @@ Record sample size, spread, staffing, complexity, exclusions, and data-collectio
 | Source idea / review request | Where preserved |
 | --- | --- |
 | Core thesis, central question, capacity versus coherence | 1–3, 14 |
-| Illustrative onboarding conflict and criterion, within the interactive demo | 5 |
+| Illustrative onboarding problem and user requirement, within the interactive demo | 5 |
 | Product/customer journey before and after AI; Mission, Milestones, Metrics | 10 |
 | DesignOps fundamentals and expanding responsibilities | 8, 13, 17 |
 | AI control plane; domain ownership | 9, 16 |
@@ -433,7 +433,7 @@ Record sample size, spread, staffing, complexity, exclusions, and data-collectio
 | Organizational memory and five-layer AI design stack | 7, 18, 21 (backup) |
 | Evaluation scarcity and six-part quality rubric | 6 |
 | Discover → Define → Design → Build → Measure | 22 (backup) and its notes |
-| Designer–engineer pairing; context → conflict → decision → rule, with local HTML/CSS | 5 |
+| Designer–engineer pairing; user need → fix → saved lesson, with local HTML/CSS | 5 |
 | Learning captured into context and standards | 7, 11 |
 | Production time, rate, review, rework, consistency, and measurement | 12, 20 |
 | Canonical prompts and seven artifact transformations | 11 (four on stage; all seven in review and notes), 19 |

@@ -17,6 +17,8 @@ Govern / Context / Evaluate follows the acceleration paradox at **2:30**. The re
 
 The six demo steps tell one story: **user need → AI mistake → team decision → working fix → saved lesson → next result**. Someone needs to start alone, but the first form requires an invitation. The team moves invitations after setup; DesignOps keeps the reason in shared guidance for the next team and its AI tools. The lesson retains a source, scope, version, owner, and review trigger without document codes on the slide. All examples are pre-authored and illustrative; no actual research, organizational policy, or measured improvement is implied.
 
+The same vocabulary continues through the learning loop and documentation slides: **decision** is what the team changed, **saved lesson** includes why, and **shared guidance** makes it available for reuse. The next result still needs review. Stage, review, Reading view, live announcements, and speaker notes use these terms rather than invented document identifiers.
+
 ## Run
 
 Open `index.html` directly in a modern desktop browser. No build, installation, external fonts, API keys, network access, or AI service is required.
@@ -51,13 +53,13 @@ The demo's buttons and form remain keyboard accessible. **Tab** reaches its labe
 
 Entering Stage starts its three build sequences afresh but snapshots the review builds and form. Exiting restores those states, diagram selections, and the manual Reading view preference. Notes and dialogs stay closed on exit; **N/G are inactive on stage**, so they cannot accidentally appear to the audience. Fullscreen permission failures are announced and leave windowed Stage usable.
 
-Other diagrams are resolved, static summaries: all roles generating; the complete learning loop and connected control plane; both journey paths; all stack layers; the lifecycle overview; and a team-level pilot. All detailed interactions, lifecycle/altitude choices, and the ten-measure dialog remain available in review.
+Other diagrams are resolved and static: all roles generating; the complete learning loop; the original control-plane hub-and-spoke diagram with every connection visible; both journey paths; all stack layers; the lifecycle overview; and a team-level pilot. Slide 9 keeps its diagram in Stage and desktop review, with larger stage labels and no stage connection toggle; Reading view retains the text equivalent. All detailed interactions, lifecycle/altitude choices, and the ten-measure dialog remain available in review.
 
 ### Projection typography
 
 Stage uses the full available 16:9 area, not the smaller review viewport. The established system sans and semantic monospace stay unchanged. Decision-bearing body/diagram text uses a minimum **23px design-space size**: measured **18.4px at 1280×720** and **24.15px at 1680×1080** after the actual stage transform. Framework questions/list items are 32/28px; documentation mappings and rule content are 29/27px. The framework shows two supporting points per question; the documentation model shows four mappings and a concise rule summary. Complete lists, provenance, and the other three mappings remain in review and notes.
 
-Small reference-only text remains in act/topic eyebrows, slide numbers, decorative output labels, role/step ordinals, and demo window chrome. The dense measurement appendix remains a reference table (18.4px cells at 1280×720); its captions/column labels and some backup category labels are smaller, not the primary spoken argument. Synthetic-results and rule-scope disclaimers remain visible. Use Reading view for reference reading or smaller displays; Stage is intended for projection at 1280×720 or larger, not phone-scale delivery.
+Small reference-only text remains in act/topic eyebrows, slide numbers, decorative output labels, role/step ordinals, and demo window chrome. The dense measurement appendix remains a reference table (18.4px cells at 1280×720); its captions/column labels and some backup category labels are smaller, not the primary spoken argument. Approximate-value and rule-scope qualifications remain visible. Use Reading view for reference reading or smaller displays; Stage is intended for projection at 1280×720 or larger, not phone-scale delivery.
 
 ## Review controls
 
@@ -83,11 +85,11 @@ Opening Notes focuses its scrollable panel. Arrow, Page Up/Down, Home/End, and S
 
 - **2:** distribute generation across four roles.
 - **3:** trace the acceleration chain and toggle shared standards.
-- **5:** inspect shared context, conflicting choice, human decision, revised form, reusable rule, and next candidate. The form is interactive at step 4; Reset clears it and restarts the trace.
+- **5:** follow the user's need, AI mistake, team decision, working fix, saved lesson, and next result. The form is interactive at step 4; Reset clears it and restarts the example.
 - **7:** follow the closed organizational learning loop.
 - **9:** connect/disconnect the shared control plane.
 - **10:** replay sequential handoffs versus collaborative production.
-- **12:** compare four illustrative baseline/pilot measures side by side; open all ten in a detail dialog or jump to operational definitions.
+- **12:** compare four approximate baseline/pilot measures informed by early experimentation; open all ten in a detail dialog or jump to operational definitions.
 - **13:** compare team, product-area, and enterprise ownership.
 - **14:** pause, then reveal the answer.
 - **21 (backup):** build the organizational-memory stack.
@@ -107,7 +109,7 @@ Each slide has a contiguous numeric ID, descriptive `data-title`, and `data-act`
 ## Assumptions and qualifications
 
 1. English is the presentation language. The supplied outline, including Spanish review notes, is the primary narrative source. No outside evidence or unverified source attribution is added.
-2. All ten dashboard comparisons are **“Illustrative scenario — not measured results.”** They are neither industry benchmarks nor actual organizational performance. Review effort intentionally increases. The slide highlights four measures; the detail dialog preserves all ten. Baseline, pilot, and absolute change appear together. Percentage measures show percentage-point changes (pp), not relative percentage changes.
+2. All ten dashboard comparisons are labeled **“Early experimentation · approximate values.”** The presenter reports that the existing synthetic values are close to informal experimentation data; the numbers are preserved, not replaced with exact measurements. Underlying records, sample sizes, and methods have not been supplied. Do not present them as validated organizational results, benchmarks, causal evidence, or forecasts. Review effort increases in the comparison. The slide highlights four measures; the detail dialog preserves all ten. Baseline, pilot, and absolute change appear together. Percentage measures show percentage-point changes (pp), not relative percentage changes.
 3. Leading/process signals: production effort, review effort, system compliance, context reuse, experimentation cadence. Workflow outcomes: concept cycle time, accepted production rate, major rework, open accessibility/quality defects, and design-to-code divergence. These categories are an operational framing, not universal classifications. Actual user outcomes require separate evidence.
 4. The before/after journey is a simplified comparison and a proposed operating model to validate. Animation durations are not delivery-time measurements. The first-30-days plan is a suggested sequence, not a delivery promise.
 5. The decision example is self-contained and pre-authored. Solo setup is an assumed scenario, not research; optional invitations are an illustrative requirement, not a universal onboarding rule. The saved lesson illustrates accountable judgment, source, scope, ownership, and review after the pilot or source change. Meeting that requirement does not prove accessibility or user benefit. The real local form performs no account creation and sends or stores no user input; there is no live code generation or invented Paper/Figma integration.
@@ -123,7 +125,7 @@ This is the HTML deliverable, not a `.pptx`. The content uses fixed-ratio sectio
 - **Branch/network/loop diagrams:** preserve inline SVG as vectors, or recreate nodes and connectors as editable shapes.
 - **Interactions:** export initial and resolved states as separate slides or use native Appear/Fade builds. Preserve the labels and explicit human checkpoints.
 - **Metrics:** recreate native comparison cards/tables from `metrics`; retain both scenarios, units, percentage-point changes, and the increased review effort. Use the full ten-measure comparison as a backup.
-- **Decision demo:** preserve context → conflicting choice → human decision → revised form → reusable rule → next-candidate check as six frames and link to the HTML prototype. Keep provenance and the illustrative qualification visible. PowerPoint cannot reproduce the live form as editable slide content.
+- **Decision demo:** preserve user need → AI mistake → team decision → working fix → saved lesson → next result as six frames and link to the HTML prototype. Keep the reason, source, owner, and illustrative qualification visible. PowerPoint cannot reproduce the live form as editable slide content.
 - **Lifecycle/altitude selectors:** use static summary layouts or duplicate slides for each state.
 - **Closing:** retain the question and answer as two builds. Speaker notes remain separate editable text.
 
