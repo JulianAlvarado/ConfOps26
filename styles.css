@@ -262,7 +262,6 @@ main { flex: 1; min-height: 0; display: flex; align-items: center; justify-conte
 #slide-13 h2.compact-title { font-size: 52px; }
 .metric-foot { display: flex; justify-content: space-between; align-items: center; margin-top: 24px; gap: 25px; }
 .metric-foot p { font-size: 23px; line-height: 1.5; }
-.metric-foot small { font-size: 21px; }
 .metric-table { width: 100%; border-collapse: collapse; margin: 28px 0; }
 .metric-table caption { color: var(--cyan); font: 14px var(--mono); text-align: left; padding-bottom: 14px; }
 .metric-table th, .metric-table td { text-align: left; padding: 14px 12px; border-bottom: 1px solid var(--line); font-size: 17px; line-height: 1.5; }
@@ -426,7 +425,7 @@ dialog::backdrop { background: #05090dea; }
     .branch-outputs span, .alignment-band, .journey p, .workflow-track span,
     .output-pile > span, .output-pile p, .rubric h3, .rubric > div, .rubric p,
     .human-gate p, .stack-layer p, .metric-comparison dt, .metric-unit,
-    .metric-foot small, .thirty-days article > span, .thirty-days p, .closing-setup,
+    .thirty-days article > span, .thirty-days p, .closing-setup,
     .closing-thesis, .contact-links a, .ownership-grid p, .role-responsibilities small,
     .model-swap p, .measurement-note, .infrastructure-rail > span,
     .system-readiness article > span) { font-size: 25px; }

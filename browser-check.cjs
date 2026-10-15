@@ -100,6 +100,11 @@ const { mkdirSync } = require("node:fs");
         const stageMode = document.body.classList.contains("stage-mode");
         const exit = document.getElementById("stage-exit").getBoundingClientRect();
         const issues = [];
+        if (!reading && slide.id === "slide-13") {
+          const range = document.createRange();
+          range.selectNodeContents(slide.querySelector(".metric-foot strong"));
+          if (range.getClientRects().length !== 1) issues.push("Metric question must fit on one line");
+        }
         if (/\b(?:BRIEF|AC|DEC|RULE)[-\u2010-\u2015]\d+\b/.test(slide.textContent)) issues.push("Obsolete example identifier in slide copy");
         for (const node of slide.querySelectorAll("*")) {
           if (node.closest(".sr-only, svg") || !node.checkVisibility()) continue;
@@ -207,6 +212,7 @@ const { mkdirSync } = require("node:fs");
       await exerciseDemo(false, String(width));
     }
     await go(13);
+    assert.equal(await page.locator(".metric-foot > p").innerText(), "More review—better outcomes?");
     assert.deepEqual(await page.locator(".metric-comparison > div:last-child dd").allTextContents(), ["−3 d", "≈−2/wk", "+2 h", "+12 pp"]);
     assert.equal(await page.locator('.metric-card[data-metric="1"] .metric-comparison dd').nth(1).innerText(), "6h");
     const productionCard = page.locator(".metric-card").filter({ has: page.getByRole("heading", { name: "Design production rate", exact: true }) });
@@ -369,6 +375,8 @@ const { mkdirSync } = require("node:fs");
     await go(16);
     assert(!(await page.locator("#progress").isVisible()));
     assert.equal(await page.locator(".qa-links a").count(), 7);
+    assert.equal(await page.locator("#slide-16 .lead").count(), 0, "Selected Q&A prompt stays removed");
+    assert.equal(await page.locator("#title-16").innerText(), "Let's\ntalk.");
     for (let number = 17; number <= 23; number++) {
       await click(`.qa-links a[href="#${number}"]`);
       await page.waitForFunction(number => !document.getElementById(`slide-${number}`).hidden, number);
