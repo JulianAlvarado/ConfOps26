@@ -21,9 +21,9 @@ The same vocabulary continues through the learning loop and documentation slides
 
 ## Speaker introduction
 
-Slide **3**, **About me**, introduces **Julian Alvarado — Xbox Design Ops** with his supplied biography translated into English. Only `[Your photo]` remains a placeholder; no portrait has been invented. Its **30 seconds (1:30–2:00)** come from the closing, now **90 seconds** rather than 120; the keynote remains 1,200 seconds, demo 270 seconds, and Q&A 600 seconds. Summarize the role and connection to the talk rather than reading the entire biography aloud.
+Slide **3**, **About me**, is a text-only introduction to **Julian Alvarado — Xbox Design Ops**, with his supplied biography translated into English and personal interests. Its **30 seconds (1:30–2:00)** come from the closing, now **90 seconds** rather than 120; the keynote remains 1,200 seconds, demo 270 seconds, and Q&A 600 seconds. Summarize the role and connection to the talk rather than reading the entire biography aloud.
 
-Edit the biography directly in `index.html` under `.about-slide` and keep its speaker notes in `app.js` synchronized. To add a portrait later, put the image beside the deck (for example `portrait.jpg`) and replace the `.photo-placeholder` element inside `.about-photo` with `<img src="portrait.jpg" alt="Portrait of Julian Alvarado" width="800" height="1000">`, using the actual image dimensions. The existing frame fits a 4:5 local portrait with `object-fit: cover`; adjust `object-position` if needed. No upload UI, external image request, or new dependency is required.
+Edit the biography directly in `index.html` under `.about-slide` and keep its speaker notes in `app.js` synchronized.
 
 ## Run
 

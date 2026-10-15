@@ -48,7 +48,7 @@ Generated from the presenter-note data in app.js. To update this document after 
 
 The timing is a rehearsal guide, not an auto-advance schedule. Keep on-screen examples short enough to preserve discussion time. Read the full notes before presenting; the slides intentionally omit nuance that belongs in the spoken narrative.
 
-Slide 3's **About me** introduction occupies **1:30–2:00 (30 seconds)**. It presents Julian Alvarado's supplied biography in English, with Xbox Design Ops as the role line. Only the local portrait placeholder remains. Summarize the role and connection to the talk instead of reading the full biography aloud. The closing on slide 15 is shortened from 120 to **90 seconds**, preserving the 20-minute slot. The README explains how to substitute a local portrait without upload controls.
+Slide 3's text-only **About me** introduction occupies **1:30–2:00 (30 seconds)**. It presents Julian Alvarado's supplied biography in English and personal interests, with Xbox Design Ops as the role line. Summarize the role and connection to the talk instead of reading the full biography aloud. The closing on slide 15 is shortened from 120 to **90 seconds**, preserving the 20-minute slot.
 
 Slide 6's retained six-step demo runs from **4:00–8:30**, for **270 seconds**. The removed overview's 90 seconds are reassigned to explanation and interaction pauses: 30 seconds for the audience to absorb the blocked need, 30 seconds for form validation/keyboard feedback, and 30 seconds to review the saved lesson's owner and review trigger. No steps or exercises were added. The keynote remains exactly 1,200 seconds; Q&A remains 600 seconds.
 
@@ -102,7 +102,7 @@ Record sample size, spread, staffing, complexity, exclusions, and data-collectio
 | Source idea / review request | Where preserved |
 | --- | --- |
 | Core thesis, central question, capacity versus coherence | 1–2, 4, 15 |
-| Speaker introduction: supplied name, role, translated biography, portrait placeholder | 3 |
+| Speaker introduction: supplied name, role, translated biography, personal interests | 3 |
 | Illustrative onboarding problem and user requirement, within the interactive demo | 6 |
 | Product/customer journey before and after AI; Mission, Milestones, Metrics | 11 |
 | DesignOps fundamentals and expanding responsibilities | 9, 14, 18 |
@@ -139,11 +139,11 @@ assert.equal(data.notes[2].seconds, 30, "Speaker introduction has 30 seconds");
 assert.equal(data.notes[14].seconds, 90, "Closing contributes 30 seconds to the speaker introduction");
 const about = html.match(/<section class="slide about-slide"[\s\S]*?<\/section>/)?.[0];
 assert(about, "Speaker introduction exists");
-for (const text of ["Julian Alvarado", "Xbox Design Ops", "Senior Program Manager", "responsible AI", "people-centered creative organizations", "[Your photo]"]) {
+for (const text of ["Julian Alvarado", "Xbox Design Ops", "Senior Program Manager", "responsible AI", "people-centered creative organizations"]) {
   assert(about.includes(text), `Speaker content: ${text}`);
 }
 assert(!about.includes("[Your name]") && !about.includes("SPEAKER TEMPLATE"), "Supplied biography replaces text placeholders");
-assert(!/<button|data-action|<input|<img/.test(about), "Speaker introduction is static with no real portrait");
+assert(!/<button|data-action|<input|<img/.test(about), "Speaker introduction stays static and text-only");
 assert.match(titles[4][2], /Govern/);
 assert.equal(titles[5][2], "Fix the form. Keep the lesson.");
 assert(!html.includes("conflict-slide") && !css.includes("conflict-layout"), "Redundant slide and its styles are removed");

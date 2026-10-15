@@ -58,10 +58,10 @@ const { mkdirSync } = require("node:fs");
     assert.equal(await page.locator(".about-role").innerText(), "Xbox Design Ops");
     assert.equal(await page.locator(".about-bio p").count(), 3);
     assert.match(await page.locator(".about-bio").innerText(), /Senior Program Manager and Design Operations leader at Microsoft/);
-    assert.match(await page.locator(".about-bio").innerText(), /responsible AI, and building resilient, people-centered creative organizations/);
+    assert.match(await page.locator(".about-bio").innerText(), /better systems, clearer processes, and responsible AI/);
+    assert.match(await page.locator(".about-bio").innerText(), /deliver—building resilient, people-centered creative organizations/);
     assert.equal(await page.locator(".about-bio p").last().innerText(), "Outside work, Julian is a daily CrossFit devotee and a “forever blue belt” in jiu-jitsu. A retired musician, he still loves live shows and enjoys drawing at home. Currently in rotation: Radiohead, Lenny Kravitz, Oasis, and Crosses.");
     assert.equal(await page.locator(".about-slide button, .about-slide input, .about-slide img").count(), 0);
-    assert.match(await page.locator(".photo-placeholder").getAttribute("aria-label"), /Photo placeholder/);
     assert.match(await page.locator(".note-time").innerText(), /1:30–2:00 · 30 seconds/);
     await page.keyboard.press("ArrowRight");
     await page.waitForFunction(() => !document.getElementById("slide-4").hidden);
@@ -360,7 +360,7 @@ const { mkdirSync } = require("node:fs");
       assert(!(await page.locator("#notes").isVisible()));
       const fontResults = await page.evaluate(() => {
         const selectors = [
-          ".about-role", ".about-bio p", ".photo-placeholder",
+          ".about-role", ".about-bio p",
           ".framework p", ".framework li", ".standards-table > div", ".stage-rule dt", ".stage-rule dd",
           ".role-output span", ".causal-chain li", ".branch-outputs span", ".source-node", ".alignment-band",
           ".pair-steps li", "#pair-explanation", ".decision-evidence dt", ".decision-evidence dd",
