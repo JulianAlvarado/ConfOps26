@@ -118,7 +118,7 @@ const notes = [
     seconds: 90,
     takeaway: "AI doesn't eliminate the need for DesignOps. It makes DesignOps infrastructure.",
     visual: "A quiet question, a deliberate answer reveal, and three concluding statements.",
-    interaction: "Stage moment 3: pause, press Right to reveal DesignOps, then Right for Q&A. Left hides the answer before moving back. Review retains its reveal button.",
+    interaction: "Stage moment 3: pause, press Right to reveal DesignOps, then Right for Q&A. Left hides the answer before moving back. In review, Next or a forward navigation key reveals the answer first, then advances to Q&A. Reading view keeps its native scroll keys. There is no separate reveal button.",
     body: "Use 90 seconds for the closing; its former 30 seconds now introduce the speaker on slide 3. Slow down. Read the question and leave space: if AI becomes part of how we design products, who designs the system in which AI operates? Reveal DesignOps. This is not a territorial claim that one function owns all AI. It is an invitation for DesignOps to connect domain expertise, governance, knowledge, workflows, and evaluation. AI creates capacity. Systems create consistency. Stewardship creates trust. DesignOps connects all three. The future is not merely managing work around design; it is designing the infrastructure through which humans and AI create products together. The practical challenge is one workflow, a baseline, a maintained context package, named human checkpoints, and evidence that quality has not been traded for speed. End on the thesis and pause rather than adding more tools.",
     transition: "Let's talk. Where is your team generating faster than it can maintain coherence?"
   },
@@ -348,6 +348,7 @@ function renderSlide(index) {
   $("#progress").setAttribute("aria-valuetext", `Keynote slide ${Math.min(state.index + 1, keynoteCount)} of ${keynoteCount}`);
   $("#previous").disabled = state.index === 0;
   $("#next").disabled = state.index === slides.length - 1;
+  updateNext();
   document.querySelectorAll("#slide-index a").forEach((link, i) => link.setAttribute("aria-current", String(i === state.index)));
   document.title = `${state.index + 1}. ${slide.dataset.title} — DesignOps`;
   $("#announcement").textContent = `${$("#counter").textContent}: ${slide.dataset.title}`;
@@ -438,11 +439,31 @@ function setAligned(aligned) {
   $("#fragment-caption").textContent = aligned ? "Distinct ideas. Shared constraints. Accountable decisions." : "Different patterns. Conflicting terminology. Unowned decisions.";
 }
 
+function updateNext() {
+  const next = $("#next");
+  const closing = state.index === 14;
+  const revealed = !$("#closing-reveal").hidden;
+  const label = closing ? (revealed ? "Next slide: Q&A" : "Reveal the answer") : "Next slide";
+  next.setAttribute("aria-label", label);
+  next.title = label;
+  if (closing) {
+    next.setAttribute("aria-controls", "closing-reveal");
+    next.setAttribute("aria-expanded", String(revealed));
+  } else {
+    next.removeAttribute("aria-controls");
+    next.removeAttribute("aria-expanded");
+  }
+}
+
 function setClosing(revealed) {
   $("#closing-reveal").hidden = !revealed;
-  $('[data-action="closing"]').hidden = revealed;
-  $('[data-action="closing"]').setAttribute("aria-expanded", String(revealed));
-  if (stageReview) $("#announcement").textContent = revealed ? "DesignOps. It makes DesignOps infrastructure." : "Who designs the system in which AI operates?";
+  updateNext();
+  if (state.index === 14) $("#announcement").textContent = revealed ? "DesignOps. AI doesn't eliminate the need for DesignOps. It makes DesignOps infrastructure." : "Who designs the system in which AI operates?";
+}
+
+function advanceReview() {
+  if (state.index === 14 && $("#closing-reveal").hidden) setClosing(true);
+  else navigate(state.index + 1);
 }
 
 function stageAdvance(direction) {
@@ -642,13 +663,7 @@ const actions = {
     $("#loop-status").textContent = stages[state.loop];
     button.textContent = state.loop === 4 ? "Start the next cycle ↺" : "Follow one learning cycle →";
   },
-  "metric-definitions"() { navigate(slides.indexOf($(".measurement-backup"))); },
-  closing() {
-    setClosing(true);
-    $("#announcement").textContent = "DesignOps. AI doesn't eliminate the need for DesignOps. It makes DesignOps infrastructure.";
-    $(".closing h2").tabIndex = -1;
-    $(".closing h2").focus({ preventScroll: true });
-  }
+  "metric-definitions"() { navigate(slides.indexOf($(".measurement-backup"))); }
 };
 
 document.addEventListener("click", (event) => {
@@ -677,7 +692,7 @@ $("#prototype-form").addEventListener("submit", (event) => {
 $("#workspace-name").setAttribute("aria-describedby", "workspace-hint prototype-result");
 
 $("#previous").addEventListener("click", () => navigate(state.index - 1));
-$("#next").addEventListener("click", () => navigate(state.index + 1));
+$("#next").addEventListener("click", advanceReview);
 $("#notes-toggle").addEventListener("click", () => toggleNotes());
 $("#notes-close").addEventListener("click", () => toggleNotes(false));
 $("#fullscreen").addEventListener("click", fullscreen);
@@ -740,7 +755,9 @@ document.addEventListener("keydown", (event) => {
   if (event.code === "Space" && event.target.closest("button, a")) return;
   switch (event.key) {
     case "ArrowRight": case "ArrowDown": case "PageDown": case " ":
-      event.preventDefault(); navigate(state.index + 1); break;
+      event.preventDefault();
+      if (!event.repeat || state.index !== 14) advanceReview();
+      break;
     case "ArrowLeft": case "ArrowUp": case "PageUp":
       event.preventDefault(); navigate(state.index - 1); break;
     case "Home": event.preventDefault(); navigate(0); break;

@@ -78,7 +78,7 @@ Small reference-only text remains in act/topic eyebrows, slide numbers, decorati
 | Control | Action |
 | --- | --- |
 | S / Stage | Start clean stage delivery |
-| Next / previous, Left / Right arrows | Navigate slides in either view |
+| Next / previous, Left / Right arrows | Navigate slides in either view; slide 15's first forward action reveals the answer, the next opens Q&A |
 | Up / Down, Page Up / Down, Space | Navigate in presentation view; scroll in reading view |
 | Home / End | First / last slide in presentation view; scroll in reading view |
 | Reading view | Toggle the reflowed reading layout |
@@ -103,7 +103,7 @@ Opening Notes focuses its scrollable panel. Arrow, Page Up/Down, Home/End, and S
 - **11:** replay sequential handoffs versus collaborative production.
 - **13:** compare four approximate baseline/pilot measures informed by early experimentation; open all ten in a detail dialog or jump to operational definitions.
 - **14:** static four-week pilot timeline; open Notes for team, product-area, and enterprise ownership.
-- **15:** pause, then reveal the answer.
+- **15:** pause, then use bottom navigation **Next** to reveal the answer; use Next again for Q&A. Forward navigation keys behave identically. The Next control's accessible label and tooltip identify its current action; the reveal is announced without moving keyboard focus. There is no on-slide reveal button. Reading view retains its native scroll keys; Right still advances. Stage retains its reveal/reverse build and restores review's prior answer state on exit.
 - **22 (backup):** build the organizational-memory stack.
 - **23 (backup):** inspect AI assistance, infrastructure, and review at each lifecycle stage.
 
