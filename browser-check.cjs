@@ -25,6 +25,17 @@ const { mkdirSync } = require("node:fs");
     const capture = async label => {
       if (snapshotDir) await page.screenshot({ path: path.join(snapshotDir, `${label}.png`) });
     };
+    for (const control of await page.locator(".toolbar-actions button, .toolbar-actions kbd").all()) {
+      assert.equal(await control.evaluate(node => getComputedStyle(node).borderTopWidth), "0px", "Toolbar actions and shortcuts have no outlined boxes");
+    }
+    await page.locator("#notes-toggle").hover();
+    assert.equal(await page.locator("#notes-toggle").evaluate(node => getComputedStyle(node).textDecorationLine), "underline");
+    await click("#notes-toggle");
+    assert.equal(await page.locator("#notes-toggle").evaluate(node => getComputedStyle(node).color), "rgb(118, 227, 227)");
+    await click("#notes-toggle");
+    await page.keyboard.press("Tab");
+    assert.equal(await page.locator("#fullscreen").evaluate(node => getComputedStyle(node).outlineWidth), "3px", "Keyboard focus stays visible");
+    await page.locator("#presentation").focus();
     assert.equal(await page.locator(".slide").count(), 23);
     assert.deepEqual(await page.evaluate(() => ({
       keynoteCount,

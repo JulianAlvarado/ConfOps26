@@ -41,6 +41,8 @@ Open `http://127.0.0.1:8080`. Stop the server with Ctrl+C.
 
 **Presentation view** preserves the 1600 × 900 (16:9) stage. **Reading view** reflows the same slide into a scrollable layout with readable text, 44px-minimum controls, and text equivalents for complex SVG diagrams. Reading view starts automatically at widths of 900px or less, or heights of 560px or less. The toolbar toggle lets you choose either view at any size; your choice lasts until reload. For larger text on a laptop, turn Reading view on rather than shrinking the stage.
 
+The review toolbar uses borderless, text-style controls with understated shortcut hints. Hover underlines the action; active Reading view and open Notes use a cyan underline. Keyboard focus retains its visible outline, and mobile controls retain their 44px minimum height.
+
 ## Stage delivery
 
 Choose **Stage** or press **S** before sharing the screen. Stage removes the review toolbar, version label, navigation hints, notes, and open dialogs. **F** optionally enters native fullscreen; Stage also works in a window. The visible **Exit stage · Esc** control stays in the bottom-left footer area.
