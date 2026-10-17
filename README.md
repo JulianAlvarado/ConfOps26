@@ -113,6 +113,8 @@ node check.mjs
 
 La regresión de navegador cubre las 23 diapositivas, seis estados de demo, seis tamaños en revisión/Lectura y Escenario a 1280×720 y 1680×1080. Comprueba teclas, foco, restauración, formulario seguro, métricas, contactos, apoyos, tipografía, traducción visible y recortes. Requiere una instalación existente de Playwright:
 
+La barra mantiene cada etiqueta y su atajo en una sola línea. Hasta 1200 px oculta el subtítulo de marca para conservar espacio; hasta 700 px distribuye los controles completos en filas con objetivos de al menos 44 px. Las comprobaciones de barra cubren de 320 a 1680 px, incluido el panel de 1000 px.
+
 ```sh
 PLAYWRIGHT_MODULE=/ruta/a/playwright \
 SNAPSHOT_DIR=/ruta/a/capturas \

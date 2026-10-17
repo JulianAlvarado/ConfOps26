@@ -43,6 +43,53 @@ const { mkdirSync } = require("node:fs");
     const capture = async label => {
       if (snapshotDir) await page.screenshot({ path: path.join(snapshotDir, `${label}.png`) });
     };
+    for (const width of [1680, 1201, 1200, 1100, 1000, 901, 900, 701, 700, 390, 320]) {
+      await page.setViewportSize({ width, height: 844 });
+      const toolbarIssues = await page.locator(".toolbar").evaluate(toolbar => {
+        const issues = [];
+        const actions = toolbar.querySelector(".toolbar-actions");
+        const buttons = [...actions.querySelectorAll("button")];
+        if (buttons.length !== 5) issues.push("Expected all five toolbar actions");
+        const children = [...actions.children].filter(node => node.checkVisibility());
+        const boxes = children.map(node => node.getBoundingClientRect());
+        for (const [index, node] of children.entries()) {
+          const box = boxes[index];
+          if (box.left < 0 || box.right > innerWidth) issues.push(`${node.id || node.className}: outside viewport`);
+          if (innerWidth > 700 && Math.abs(box.top + box.height / 2 - (boxes[0].top + boxes[0].height / 2)) > 1) issues.push("Desktop actions must share one centered row");
+          if (innerWidth <= 700 && node.matches("button") && box.height < 44) issues.push(`${node.id}: mobile target under 44px`);
+          const walker = document.createTreeWalker(node, NodeFilter.SHOW_TEXT);
+          const textCenters = [];
+          while (walker.nextNode()) {
+            const text = walker.currentNode;
+            if (!text.textContent.trim() || !text.parentElement.checkVisibility()) continue;
+            const range = document.createRange();
+            range.selectNodeContents(text);
+            const rects = [...range.getClientRects()].filter(rect => rect.width > 0);
+            if (rects.length !== 1) issues.push(`${node.id || node.className}: wrapped label`);
+            for (const rect of rects) {
+              textCenters.push(rect.top + rect.height / 2);
+              if (rect.left < box.left - 1 || rect.right > box.right + 1) issues.push(`${node.id}: clipped label`);
+            }
+          }
+          if (!textCenters.length || Math.max(...textCenters) - Math.min(...textCenters) > 6) issues.push(`${node.id || node.className}: shortcut on a separate line`);
+          for (const other of boxes.slice(index + 1)) {
+            if (box.left < other.right && box.right > other.left && box.top < other.bottom && box.bottom > other.top) issues.push("Toolbar controls overlap");
+          }
+        }
+        const brand = toolbar.querySelector(".wordmark").getBoundingClientRect();
+        if (boxes.some(box => box.left < brand.right && box.right > brand.left && box.top < brand.bottom && box.bottom > brand.top)) issues.push("Actions overlap brand");
+        if (document.documentElement.scrollWidth > innerWidth) issues.push("Toolbar causes page overflow");
+        if (innerWidth > 900 && !toolbar.querySelector(".version").checkVisibility()) issues.push("Desktop version must remain visible");
+        return issues;
+      });
+      assert.deepEqual(toolbarIssues, [], `Toolbar at ${width}px`);
+      for (const control of await page.locator(".toolbar-actions button").all()) {
+        await control.focus();
+        assert(await control.evaluate(node => node === document.activeElement && node.getBoundingClientRect().right <= innerWidth), "Every toolbar action remains focusable onscreen");
+      }
+      if ([1000, 390, 320].includes(width)) await capture(`toolbar-${width}`);
+    }
+    await page.setViewportSize({ width: 1680, height: 1080 });
     for (const control of await page.locator(".toolbar-actions button, .toolbar-actions kbd").all()) {
       assert.equal(await control.evaluate(node => getComputedStyle(node).borderTopWidth), "0px", "Toolbar actions and shortcuts have no outlined boxes");
     }
