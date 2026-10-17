@@ -7,6 +7,15 @@ const css = readFileSync(new URL("./styles.css", import.meta.url), "utf8");
 const js = readFileSync(new URL("./app.js", import.meta.url), "utf8");
 const data = vm.runInNewContext(`${js.slice(0, js.indexOf("const slides ="))}; ({ keynoteCount, notes, metrics, lifecycle, pairLabels, pairEvidence, metricValue, metricDelta, metricChange });`);
 const titles = [...html.matchAll(/<section class="slide[^"]*" id="slide-(\d+)"[^>]*data-title="([^"]+)"/g)];
+const catalogSource = readFileSync(new URL("./spanish.js", import.meta.url), "utf8");
+const languageSource = readFileSync(new URL("./language.js", import.meta.url), "utf8");
+const catalog = vm.runInNewContext(`${catalogSource}; spanish;`);
+const spanishData = vm.runInNewContext(`${catalogSource}
+${languageSource.slice(0, languageSource.indexOf("const translatedElements"))}
+${js.slice(0, js.indexOf("const slides ="))}
+language = "es";
+translateData({ keynoteCount, notes, metrics, lifecycle, pairLabels, pairEvidence, metricValue, metricDelta, metricChange });`);
+const spanishTitles = titles.map(match => [match[0], match[1], catalog.copy.find(item => item.selector === `#slide-${match[1]}`).attributes["data-title"][1]]);
 if (process.argv.includes("--write-notes")) {
   let elapsed = 0;
   const clock = (seconds) => `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, "0")}`;
@@ -35,6 +44,8 @@ Governance, systems, and the new role of DesignOps in product teams
 Keynote v2. Primary source: the supplied **DesignOps as AI Infrastructure Presentation Outline ConfOps 2026**, including the original brief, frameworks, review notes, and FAQ. The conference revision keeps the interactive onboarding demo instead of a redundant conflict overview, keeps Govern / Context / Evaluate central, and moves the detailed stack and lifecycle to backups. V2 simplifies slides 5, 6, and 14 in both Stage and review: three questions, one demo surface per step, and a four-part pilot timeline. Supporting operational detail remains in these notes. There are 15 keynote slides, Q&A, and 7 backups (23 slides total).
 
 Generated from the presenter-note data in app.js. To update this document after editing those notes: \`node check.mjs --write-notes\`.
+
+The same index.html includes English and Spanish. Use the toolbar's Español / English button, or L outside forms, notes, and dialogs (including on Stage), to switch without losing the current slide or demo progress. English starts on reload. Spanish notes are in speaker-notes-es.md; update their translations in spanish.js before generating both documents with the command above.
 
 ## Pacing
 
@@ -128,8 +139,141 @@ The Spanish review notes are implemented in English. Traditional DesignOps work 
 Keep slide text editable and vector diagrams separate from surrounding copy when recreating in PowerPoint. Use static before/after states or native appearance builds for branches, networks, stacks, and learning loops. Replace the live pair-programming form with concept-to-prototype frames and a link to this HTML presentation. Keep metric scenario labels and human-review qualifications visible in every exported state. The README documents full conversion assumptions and local navigation.
 `;
   writeFileSync(new URL("./speaker-notes.md", import.meta.url), document);
+  exportSpanishNotes(spanishData, spanishTitles);
 }
+function exportSpanishNotes(data, titles) {
+  let elapsed = 0;
+  const clock = seconds => `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, "0")}`;
+  const sections = data.notes.map((note, index) => {
+    const timing = index < data.keynoteCount ? `${clock(elapsed)}–${clock(elapsed + note.seconds)} (${note.seconds} segundos)` : index === data.keynoteCount ? "10 minutos de preguntas, fuera del tiempo de conferencia" : "Apoyo opcional, fuera del tiempo de conferencia";
+    if (index < data.keynoteCount) elapsed += note.seconds;
+    return `## ${index + 1}. ${titles[index][2]}
+
+**Tiempo:** ${timing}
+
+**Idea clave:** ${note.takeaway}
+
+**Concepto visual:** ${note.visual}
+
+**Interacción / revelado:** ${note.interaction}
+
+**Notas del ponente:** ${note.body}
+
+**Transición:** ${note.transition}`;
+  });
+  const metricTable = data.metrics.map(metric => `| ${metric.name} | ${data.metricValue(metric, "baseline")} | ${data.metricValue(metric, "pilot")} | ${data.metricChange(metric)}${Array.isArray(metric.baseline) ? " (estimación por puntos medios)" : ""} | ${metric.unit} | ${metric.group === 0 ? "Anticipado / proceso" : "Resultado del flujo"} |`).join("\n");
+  const document = `# DesignOps como infraestructura de IA
+
+Gobernanza, sistemas y el nuevo papel de DesignOps en los equipos de producto
+
+**Conferencia v2 · versión española de la presentación bilingüe.** Fuente principal: el esquema facilitado «DesignOps as AI Infrastructure Presentation Outline ConfOps 2026», con el encargo, marcos, observaciones de revisión y preguntas frecuentes. Esta edición conserva el relato y el diseño de V2; no añade evidencia externa ni integraciones. Son 15 diapositivas principales, Preguntas y 7 apoyos: 23 en total.
+
+Documento generado a partir de app.js y spanish.js. Edita allí las notas y ejecuta \`node check.mjs --write-notes\`; no edites este archivo generado.
+
+El mismo index.html reúne inglés y español. El botón Español / English de la barra, o L fuera del formulario, las notas y los diálogos (también en Escenario), cambia el idioma sin perder la diapositiva ni el paso de la demo. Al recargar se inicia en inglés. Las notas inglesas están en speaker-notes.md. El comando anterior genera ambos documentos.
+
+## Ritmo
+
+| Acto | Diapositivas | Intervalo | Duración |
+| --- | --- | --- | --- |
+| I: Presentación y paradoja de la aceleración | 1–4 | 0:00–3:00 | 3 minutos |
+| II: La solución y la lección guardada | 5–8 | 3:00–10:40 | 7 minutos 40 segundos |
+| III: Hacer repetible el modelo operativo | 9–14 | 10:40–18:30 | 7 minutos 50 segundos |
+| IV: Cierre | 15 | 18:30–20:00 | 1 minuto 30 segundos |
+| Preguntas | 16, con 17–23 opcionales | 20:00–30:00 | 10 minutos |
+
+El tiempo orienta el ensayo; no hay avance automático. Sobre mí ocupa 1:30–2:00 (30 segundos); resume el papel del ponente sin leer toda la biografía. El cierre conserva 90 segundos. La demo de seis pasos ocupa 4:00–8:30 (270 segundos). Los 90 segundos de la antigua diapositiva de resumen se dedican a pausas: 30 para comprender la necesidad bloqueada, 30 para validación y teclado, y 30 para responsable y revisión de la lección. No se añaden pasos ni ejercicios. Total: 1.200 segundos de conferencia y 600 de preguntas.
+
+## Presentación en Escenario y ensayo
+
+Pulsa **Escenario** o **S** antes de compartir. Se cierran notas y diálogos y se ocultan las herramientas de revisión. **F** activa pantalla completa, opcional. Solo hay tres secuencias: diapositiva 4, fragmentación y alineación; 6, seis pasos; 15, pregunta y respuesta. Los demás diagramas se muestran completos.
+
+**Derecha / Abajo / Av Pág / Espacio** avanza un paso antes de cambiar de diapositiva. **Izquierda / Arriba / Re Pág** retrocede un paso antes de volver. Los pasos se conservan al regresar. Inicio / Fin salta a primera / última. Tab entra en el formulario; las teclas del campo y del botón conservan su comportamiento. Sal con Tab para navegar. Escape, S, **Salir de Escenario · Esc** o salir de pantalla completa devuelve a revisión sin cambiar la diapositiva. Escape funciona dentro del formulario; N/G no abren notas ni índice en Escenario.
+
+Al salir se restauran pasos de revisión, datos y respuesta del formulario, selecciones y preferencia de Lectura. Notas y diálogos permanecen cerrados. Entrar otra vez inicia un ensayo nuevo. Usa solo datos ficticios: el formulario no guarda ni envía nada.
+
+Escenario mantiene la jerarquía para proyección: texto principal y diagramas comprobados desde 18,4 px efectivos a 1280×720 y 24,15 px a 1680×1080. Etiquetas de referencia, números y metadatos pueden ser menores. Usa Lectura para consultar en pantallas pequeñas. Las diapositivas 5, 6 y 14 conservan la limpieza de V2: tres preguntas, una superficie por paso y cuatro resultados de piloto. Las bases operativas y responsabilidades por ámbito permanecen en estas notas.
+
+## Decisión ilustrativa y límites
+
+El alta individual es un supuesto, no un hallazgo de investigación. El formulario exige inicialmente una invitación; diseño e ingeniería la trasladan después del alta. DesignOps conserva la razón, fuente, alcance, versión, responsable de producto y revisión tras el piloto o cambio del encargo. El siguiente formulario cumple el requisito, pero aún requiere comprobar accesibilidad y resultados con usuarios.
+
+Todos los estados, decisiones y atribuciones a IA están preparados de antemano. No son IA en directo, políticas reales ni mejoras medidas. La validación con usuarios está pendiente. Los expertos de producto siguen decidiendo si la guía y cada resultado son adecuados.
+
+${sections.join("\n\n---\n\n")}
+
+## Experimentación inicial: valores aproximados
+
+**Experimentación inicial · valores aproximados.** No son mediciones exactas, resultados validados, referencias de rendimiento, evidencia causal ni previsiones. Se muestran referencia, piloto y cambio juntos; los porcentajes usan puntos porcentuales.
+
+| Métrica | Referencia | Piloto | Cambio | Unidad / contexto | Categoría |
+| --- | --- | --- | --- | --- | --- |
+${metricTable}
+
+El ritmo de producción pasa de **~3–4/sem a ~1–2/sem**. **≈−2/sem** se calcula con puntos medios (1,5 − 3,5), no como observación independiente. Disminuye y no se presenta como mejora. Son entregables aceptados por semana en un equipo cuyo ciclo integral dura 8 semanas: no se divide por ocho ni se infiere un total del ciclo.
+
+Las otras nueve comparaciones conservan los valores sintéticos que el ponente considera próximos a su experimentación informal. No se han facilitado registros, muestras ni métodos. La revisión aumenta. Las categorías anticipado/proceso y resultado son operativas para este flujo, no universales. No se aportan resultados reales de clientes.
+
+## Definiciones y recogida
+
+- **Encargo → concepto validado:** mediana de días desde el encargo registrado hasta la aceptación del revisor y el umbral acordado de evidencia de usuarios. Un prototipo visualmente terminado no basta.
+- **Producción:** entregables aceptados por equipo y semana, con tipo, alcance, dotación y criterios comparables.
+- **Esfuerzo:** horas-persona por concepto aceptado; producción y revisión por separado, incluidas crítica, reevaluación y validación. No equivale a días transcurridos.
+- **Retrabajo:** porcentaje de entregables revisados que requieren cambios importantes. Define «importante» antes y registra las razones.
+- **Cumplimiento:** comprobaciones aplicables de tokens, componentes y patrones superadas entre todas las aplicables. Registra exclusiones y muestreo.
+- **Defectos:** defectos abiertos sin duplicados por 10 pantallas revisadas y su gravedad. Combina pruebas manuales y automáticas; el recuento no demuestra conformidad de accesibilidad.
+- **Divergencia:** instancias auditadas que incumplen el diseño aprobado entre todas las de la muestra definida.
+- **Experimentación:** experimentos terminados por semana con interpretación y decisión registradas, no solo lanzamientos.
+- **Reutilización:** entregables que citan contexto vigente y aprobado entre todos los revisados. Citar no demuestra uso adecuado.
+- **Resultados de clientes:** recoger aparte éxito en tareas y fricciones observadas en tareas comparables. Esta presentación no los inventa.
+
+Documenta muestra, dispersión, dotación, complejidad, exclusiones y límites de recogida. Un piloto observacional pequeño no establece causalidad. Fija criterios de adoptar, revisar y detener antes de ver resultados. Aplica las políticas de privacidad y acceso.
+
+## Cobertura y decisiones editoriales
+
+La tesis se conserva en 1–2, 4 y 15; la biografía en 3; la decisión en 6; los criterios de evaluación en 7; la memoria en 8 y 22; fundamentos y funciones en 9, 14 y 18; plano de control y responsables en 10 y 17; recorrido del cliente y MMM en 11; siete transformaciones y prompts canónicos en 12 y 20; medición en 13 y 21; sistema preparado para IA en 19; ciclo de vida en 23. Gobernar / Contexto / Evaluar sigue siendo el modelo central de 5. Gestión responsable, sistemas y habilitación lo sostienen, no lo sustituyen.
+
+El trabajo tradicional se amplía, no desaparece. El flujo propuesto es una hipótesis. Las menciones de herramientas no implican integraciones: la demo usa HTML/CSS local. No se reproduce como hecho una atribución externa sin verificar ni se transforman recursos retóricos en estadísticas. Las capas y el ciclo quedan en apoyos. Se mantiene la presentación del ponente solo con texto.
+
+## Exportación y entrega
+
+El README contiene el comando reproducible del PDF español, con 23 páginas de 1200×675 puntos, 16:9, usando Escenario y estados resueltos. Los PDF ingleses heredados no se modifican. El PDF no sustituye las seis interacciones ni estas notas. Para una futura conversión a PowerPoint, conserva texto editable y vectores, pasos nativos de aparición, nombres de escenarios y límites de la evidencia. Sustituye el formulario por seis fotogramas y un enlace al HTML; no atribuyas al PDF ni a PowerPoint un formulario funcional.
+`;
+  writeFileSync(new URL("./speaker-notes-es.md", import.meta.url), document);
+}
+
+
 const markdown = readFileSync(new URL("./speaker-notes.md", import.meta.url), "utf8");
+const spanishMarkdown = readFileSync(new URL("./speaker-notes-es.md", import.meta.url), "utf8");
+for (const [index, note] of spanishData.notes.entries()) {
+  assert.equal(note.seconds, data.notes[index].seconds, "Language never changes timing");
+  for (const key of ["takeaway", "visual", "interaction", "body", "transition"]) {
+    assert.notEqual(note[key], data.notes[index][key], `Spanish notes translated: ${index + 1} ${key}`);
+    assert(spanishMarkdown.includes(note[key]), `Spanish export synchronized: ${index + 1} ${key}`);
+  }
+  assert(spanishMarkdown.includes(`## ${index + 1}. ${spanishTitles[index][2]}`));
+}
+for (const [index, metric] of spanishData.metrics.entries()) {
+  for (const key of ["baseline", "pilot", "group", "max", "better"]) {
+    assert.equal(JSON.stringify(metric[key]), JSON.stringify(data.metrics[index][key]), `Unchanged metric ${index} ${key}`);
+  }
+}
+assert.equal(spanishData.metricChange(spanishData.metrics[6]), "≈−2/sem");
+assert.match(spanishData.pairEvidence[4].verdict, /validación con usuarios pendiente/);
+assert.match(spanishData.pairEvidence[5].verdict, /revisión continúa/);
+assert.equal(new Set(catalog.copy.map(item => item.selector)).size, catalog.copy.length, "Static translations have unique targets");
+for (const [key, value] of Object.entries(catalog.messages)) {
+  assert.equal([...key.matchAll(/\{\d+\}/g)].map(match => match[0]).sort().join(), [...value.matchAll(/\{\d+\}/g)].map(match => match[0]).sort().join(), `Matching template slots: ${key}`);
+}
+for (const match of js.matchAll(/\bt\(("(?:[^"\\]|\\.)*")\)/g)) {
+  const key = JSON.parse(match[1]);
+  assert(Object.hasOwn(catalog.messages, key), `Runtime translation exists: ${key}`);
+}
+for (const source of [catalogSource, languageSource, js]) {
+  assert(!/\b(?:fetch|XMLHttpRequest|WebSocket|localStorage|sessionStorage)\b/.test(source), "Offline localization never persists personal data");
+  new vm.Script(source);
+}
+assert(html.indexOf('src="spanish.js"') < html.indexOf('src="language.js"') && html.indexOf('src="language.js"') < html.indexOf('src="app.js"'), "Ordered classic scripts work on file://");
 assert.equal(data.keynoteCount, 15);
 assert.equal(titles.length, 23, "15 keynote slides + Q&A + 7 backups");
 assert.deepEqual(titles.map(match => Number(match[1])), Array.from({ length: 23 }, (_, i) => i + 1), "Contiguous IDs match DOM order");

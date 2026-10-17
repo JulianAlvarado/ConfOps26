@@ -2,7 +2,7 @@ const { chromium } = require(process.env.PLAYWRIGHT_MODULE || "playwright");
 const assert = require("node:assert/strict");
 const path = require("node:path");
 const { pathToFileURL } = require("node:url");
-const { mkdirSync } = require("node:fs");
+const { mkdirSync, readFileSync } = require("node:fs");
 
 (async () => {
   const browser = await chromium.launch();
@@ -14,6 +14,22 @@ const { mkdirSync } = require("node:fs");
     page.on("request", request => { if (/^https?:/.test(request.url())) errors.push(`Remote request: ${request.url()}`); });
     await page.goto(pathToFileURL(path.join(__dirname, "index.html")).href);
     await page.waitForFunction(() => document.querySelectorAll(".metric-card").length === 4);
+    assert.deepEqual(await page.evaluate(html => {
+      const source = new DOMParser().parseFromString(html, "text/html");
+      const errors = [];
+      for (const copy of spanish.copy) {
+        const element = source.querySelector(copy.selector);
+        if (!element) { errors.push(`Missing translation: ${copy.selector}`); continue; }
+        if (copy.html && element.innerHTML !== copy.html[0]) errors.push(`Stale heading: ${copy.selector}`);
+        for (const [index, values] of Object.entries(copy.text)) {
+          if (element.childNodes[index]?.textContent !== values[0]) errors.push(`Stale text: ${copy.selector}/${index}`);
+        }
+        for (const [name, values] of Object.entries(copy.attributes)) {
+          if (element.getAttribute(name) !== values[0]) errors.push(`Stale attribute: ${copy.selector}/${name}`);
+        }
+      }
+      return errors;
+    }, readFileSync(path.join(__dirname, "index.html"), "utf8")), [], "Translation catalog matches the editable English source");
     const go = async number => {
       await page.evaluate(number => { location.hash = String(number); }, number);
       await page.waitForFunction(number => !document.getElementById(`slide-${number}`).hidden, number);
@@ -102,6 +118,16 @@ const { mkdirSync } = require("node:fs");
         const stageMode = document.body.classList.contains("stage-mode");
         const exit = document.getElementById("stage-exit").getBoundingClientRect();
         const issues = [];
+        for (const diagram of slide.querySelectorAll(".network svg, .learning-loop svg")) {
+          if (!diagram.checkVisibility()) continue;
+          for (const text of diagram.querySelectorAll("text")) {
+            const group = text.closest(".network-node, .loop-node");
+            const frame = group ? group.querySelector("rect").getBBox() : diagram.closest(".network") ? diagram.querySelector(".network-hub").getBBox() : diagram.viewBox.baseVal;
+            const box = text.getBBox();
+            if (box.x < frame.x + 2 || box.x + box.width > frame.x + frame.width - 2 ||
+                box.y < frame.y || box.y + box.height > frame.y + frame.height) issues.push(`${text.textContent}: outside diagram frame`);
+          }
+        }
         if (!reading && slide.id === "slide-1") {
           const labels = slide.querySelector(".opening-labels").getBoundingClientRect();
           const title = slide.querySelector("h1").getBoundingClientRect();
@@ -665,11 +691,204 @@ const { mkdirSync } = require("node:fs");
     await page.setViewportSize({ width: 1280, height: 720 });
     await page.keyboard.press("s");
     assert.equal(await page.locator("body").evaluate(node => node.classList.contains("reading")), true, "Explicit Reading preference survives stage and resizing");
+    // Exercise the same mounted deck in both directions; switching must not replay actions.
+    await page.reload();
+    await page.setViewportSize({ width: 1680, height: 1080 });
+    await page.waitForFunction(() => document.querySelectorAll(".metric-card").length === 4);
+    assert.equal(await page.locator("html").getAttribute("lang"), "en", "Every fresh load starts in English");
+    const interactionState = () => ({
+      state: { ...state }, review: stageReview, hash: location.hash,
+      classes: document.body.className, notes: !$("#notes").hidden,
+      dialogs: [...document.querySelectorAll("dialog[open]")].map(node => node.id),
+      name: $("#workspace-name").value, invalid: $("#workspace-name").getAttribute("aria-invalid"),
+      customError: $("#workspace-name").validity.customError,
+      closing: !$("#closing-reveal").hidden, aligned: $("#fragmentation").classList.contains("aligned"),
+      connected: $("#network").classList.contains("connected"),
+      diagrams: [...document.querySelectorAll(".role, #causal-chain li, .branch-lines path, .branch-outputs span, .loop-node, [data-layer]")].map(node => [node.getAttribute("class"), node.getAttribute("aria-current")]),
+      replays: $("#journey-status").dataset.replays
+    });
+    const switchTo = async language => {
+      const before = await page.evaluate(interactionState);
+      await page.evaluate(language => setLanguage(language), language);
+      assert.deepEqual(await page.evaluate(interactionState), before, "Language changes copy, not state");
+      assert.equal(await page.locator("html").getAttribute("lang"), language);
+      assert.equal(await page.locator(".slide").count(), 23);
+      assert.equal(await page.locator("#slide-index a").count(), 23);
+      assert.equal(await page.locator("#loop-reading li").count(), 5);
+      assert.equal(await page.locator(".metric-card").count(), 4);
+      assert.equal(await page.locator(".metric-table tbody tr").count(), 10);
+      assert.equal(await page.locator("[id]").evaluateAll(nodes => new Set(nodes.map(node => node.id)).size === nodes.length), true);
+      assert.equal(await page.title(), await page.evaluate(() => `${state.index + 1}. ${slides[state.index].dataset.title} — DesignOps`));
+    };
+    await switchTo("es");
+    await switchTo("en");
+    await go(6);
+    await page.evaluate(() => {
+      for (let i = 0; i < 2; i++) { actions.generate(); actions.cause(); actions.stack(); actions.loop(); }
+      actions.connect(); actions.journey(); selectLife(3);
+      setAligned(true); setClosing(true); setPair(3);
+      $("#workspace-name").value = "<b>Equipo</b>";
+      $("#prototype-form").requestSubmit();
+      $("#workspace-name").value = "Unsubmitted draft";
+      toggleNotes(true);
+    });
+    const inputHandle = await page.locator("#workspace-name").elementHandle();
+    for (const language of ["es", "en", "es", "en"]) {
+      await switchTo(language);
+      assert(await inputHandle.evaluate(node => node === document.querySelector("#workspace-name")), "Input is never remounted");
+      assert.equal(await page.locator("#prototype-result b").count(), 0, "Translated feedback treats submitted input as text");
+      assert.match(await page.locator("#prototype-result").textContent(), /<b>Equipo<\/b>/, "Feedback retains submitted value, not the edited draft");
+      assert.match(await page.locator("#notes-content").textContent(), language === "es" ? /270 segundos/ : /270 seconds/);
+      assert.match(await page.locator("#generation-status").textContent(), language === "es" ? /2 de 4/ : /2 of 4/);
+      assert.match(await page.locator("#cause-status").textContent(), language === "es" ? /Paso 3 de 4/ : /Stage 3 of 4/);
+      assert.match(await page.locator("#stack-status").textContent(), language === "es" ? /Capa 3 de 5/ : /Layer 3 of 5/);
+    }
+    await page.evaluate(() => toggleNotes(false));
+    for (const language of ["es", "en"]) {
+      await switchTo(language);
+      await page.locator("#workspace-name").fill("");
+      await click("#prototype-form button");
+      assert.equal(await page.locator("#workspace-name").evaluate(node => node.validationMessage),
+        language === "es" ? "Escribe un nombre para el espacio de trabajo." : "Enter a workspace name.");
+      await page.evaluate(() => setStageMode(true));
+      await switchTo(language === "es" ? "en" : "es");
+      await page.evaluate(() => setStageMode(false));
+      assert.equal(await page.locator("#workspace-name").evaluate(node => node.validationMessage),
+        language === "es" ? "Enter a workspace name." : "Escribe un nombre para el espacio de trabajo.", "Saved native validity restores in the current language");
+      await page.locator("#workspace-name").fill(" ");
+      await click("#prototype-form button");
+      await switchTo(language);
+      assert.equal(await page.locator("#workspace-name").getAttribute("aria-invalid"), "true");
+      assert.match(await page.locator("#prototype-result").textContent(), language === "es" ? /2–48 caracteres/ : /2–48 non-padding/);
+      await page.locator("#workspace-name").fill("Review workspace");
+      await click("#prototype-form button");
+    }
+    await page.evaluate(() => setStageMode(true));
+    await go(6);
+    await page.evaluate(() => {
+      setPair(3);
+      $("#workspace-name").value = "Stage workspace";
+      $("#prototype-form").requestSubmit();
+    });
+    await page.locator("#workspace-name").focus();
+    const currentLanguage = await page.locator("html").getAttribute("lang");
+    await page.keyboard.press("l");
+    assert.equal(await page.locator("html").getAttribute("lang"), currentLanguage, "L remains native typing inside the form");
+    await page.locator("#presentation").focus();
+    await page.keyboard.press("l");
+    assert.notEqual(await page.locator("html").getAttribute("lang"), currentLanguage, "Stage can switch without exiting");
+    assert.equal(await page.locator("#prototype-scene").getAttribute("data-step"), "3");
+    await page.keyboard.press("ArrowLeft");
+    assert.equal(await page.locator("#prototype-scene").getAttribute("data-step"), "2");
+    await page.keyboard.press("ArrowRight");
+    assert.equal(await page.locator("#prototype-scene").getAttribute("data-step"), "3");
+    await page.keyboard.press("Escape");
+    assert.equal(await page.locator("#workspace-name").inputValue(), "Review workspace");
+    for (const language of ["es", "en"]) {
+      await switchTo(language);
+      await go(15);
+      await page.evaluate(() => setClosing(false));
+      await click("#next");
+      assert.equal(await slideNumber(), "slide-15");
+      assert.equal(await page.locator("#next").getAttribute("aria-expanded"), "true");
+      await click("#next");
+      await page.waitForFunction(() => state.index === 15);
+      await page.evaluate(() => { setStageMode(true); renderSlide(14); setClosing(true); });
+      await switchTo(language === "es" ? "en" : "es");
+      await page.locator("#presentation").focus();
+      await page.keyboard.press("ArrowLeft");
+      assert.equal(await page.locator("#closing-reveal").isVisible(), false);
+      await page.keyboard.press("s");
+    }
+    await go(13);
+    await click("#metrics-open");
+    await switchTo("es");
+    assert.match(await page.locator("#metrics-title").textContent(), /10 métricas/);
+    assert.deepEqual(await page.locator('.metric-card[data-metric="6"] dd').allTextContents(), ["~3–4/sem", "~1–2/sem", "≈−2/sem"]);
+    await page.keyboard.press("Escape");
+    await click("#overview-toggle");
+    await switchTo("en");
+    await page.keyboard.press("ArrowRight");
+    assert.equal(await slideNumber(), "slide-13", "Open dialog retains native navigation after switching");
+    await page.keyboard.press("Escape");
+    await click("#language-toggle");
+    assert.equal(await page.locator("html").getAttribute("lang"), "es", "One click has one handler");
+    for (const language of ["es", "en"]) {
+      await switchTo(language);
+      const errorCount = errors.length;
+      await page.evaluate(async () => {
+        const original = document.documentElement.requestFullscreen;
+        document.documentElement.requestFullscreen = async () => { throw new Error("Permission denied"); };
+        try { await fullscreen(); } finally { document.documentElement.requestFullscreen = original; }
+      });
+      assert.equal(errors.length, errorCount + 1, "Fullscreen failure remains explicitly logged");
+      assert.match(errors.pop(), language === "es" ? /Error al solicitar pantalla completa/ : /Fullscreen request failed/);
+      assert.match(await page.locator("#announcement").textContent(), language === "es" ? /No se pudo activar/ : /Could not enter/);
+      await switchTo(language === "es" ? "en" : "es");
+      assert.match(await page.locator("#fullscreen").textContent(), language === "es" ? /Fullscreen blocked/ : /Pantalla completa bloqueada/);
+    }
+    await page.evaluate(() => { state.fullscreen = ""; renderFullscreen(); });
+    const checkSpanish = async () => {
+      const stale = await page.evaluate(() => {
+        const forbidden = /\b(?:AI|the|with|without|your|this|next|previous|workspace|required|baseline|outcomes|guidance|shared|govern|evaluate|fullscreen|stage|reading|backup|handoffs|mocks|release|pending|learn|review|seconds)\b/i;
+        const copy = [];
+        for (const node of document.querySelectorAll("body *")) {
+          if (node.closest("#language-toggle") || (!node.checkVisibility() && !node.matches('[role="status"], #stage-help'))) continue;
+          for (const child of node.childNodes) {
+            if (child.nodeType === Node.TEXT_NODE && child.textContent.trim()) copy.push(child.textContent.trim());
+          }
+          for (const name of ["aria-label", "aria-valuetext", "title", "placeholder", "data-label"]) {
+            if (node.hasAttribute(name)) copy.push(node.getAttribute(name));
+          }
+        }
+        return copy.filter(text => forbidden.test(text));
+      });
+      assert.deepEqual(stale, [], "Visible copy and accessible dynamic states have no stale English");
+    };
+    // Fresh example values avoid mistaking deliberately untranslated user input for UI copy.
+    await page.evaluate(() => setPair(0));
+    for (const size of [
+      { width: 1680, height: 1000 }, { width: 1200, height: 1000 },
+      { width: 900, height: 900 }, { width: 390, height: 844 },
+      { width: 320, height: 700 }, { width: 844, height: 390 },
+      { width: 1280, height: 720, stage: true }, { width: 1680, height: 1080, stage: true }
+    ]) {
+      await page.setViewportSize({ width: size.width, height: size.height });
+      await page.evaluate(stage => setStageMode(stage), Boolean(size.stage));
+      const reading = await page.locator("body").evaluate(node => node.classList.contains("reading"));
+      await page.evaluate(() => { setAligned(true); setClosing(true); setPair(5); });
+      for (let i = 1; i <= 23; i++) {
+        await go(i);
+        await checkLayout(reading, `es-${size.stage ? "stage" : "review"}-${size.width}/${i}`);
+        await checkSpanish();
+        if ([1, 5, 10, 13, 14, 16, 21].includes(i)) await capture(`es-${size.stage ? "stage" : "review"}-${size.width}-slide-${i}`);
+      }
+      await go(6);
+      for (let step = 0; step < 6; step++) {
+        await page.evaluate(step => setPair(step), step);
+        await switchTo("en");
+        await switchTo("es");
+        assert.equal(await page.locator("#pair-count").textContent(), `PASO ${step + 1} DE 6`);
+        if (step !== 3) assert.equal(await page.locator("#evidence-title").textContent(), await page.evaluate(step => pairEvidence[step].title, step));
+        if (step === 4) assert.match(await page.locator("#evidence-verdict").textContent(), /validación con usuarios pendiente/);
+        if (step === 5) assert.match(await page.locator("#evidence-verdict").textContent(), /revisión continúa/);
+        await checkLayout(reading, `es-${size.width}/demo-${step}`);
+        await checkSpanish();
+        if (size.stage) {
+          const sizes = await page.locator("#pair-label, .prototype-scene h3, .prototype-scene dd").evaluateAll(nodes => nodes.filter(node => node.checkVisibility()).map(node => parseFloat(getComputedStyle(node).fontSize) * document.querySelector(".slide.active").getBoundingClientRect().width / 1600));
+          assert(sizes.length > 0 && Math.min(...sizes) >= 18.4 - 0.001, "Translated decision text preserves projected minimum");
+        }
+        await capture(`es-${size.stage ? "stage" : "review"}-${size.width}-demo-${step}`);
+      }
+    }
+    await page.reload();
+    assert.equal(await page.locator("html").getAttribute("lang"), "en", "Language and form data are not persisted");
+    assert.equal(await page.locator("#workspace-name").inputValue(), "");
     await page.emulateMedia({ media: "print" });
     assert.equal(await page.locator(".slide:visible").count(), 23);
     assert.deepEqual(errors, [], "No browser errors or remote requests");
     assert.deepEqual(failures, [], "Layout and legibility regressions");
-    console.log("PASS: all 23 slides, six review viewports plus two stage sizes, every demo state, preserved review edits, stage builds/back/exit/fullscreen, form key isolation, review restoration, projected type/overflow, reading/notes, accessibility, metrics, backup links, and print.");
+    console.log("PASS: English and Spanish in one offline deck; all 23 slides, six review viewports plus two stage sizes, every demo state, in-place switches, preserved form/build/mode state, native keys/validation, fullscreen failures, projected type/overflow, notes, accessibility, metrics, links, and print.");
   } finally {
     await browser.close();
   }

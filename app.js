@@ -1,7 +1,7 @@
 "use strict";
 
 const keynoteCount = 15;
-const notes = [
+let notes = [
   {
     seconds: 45,
     takeaway: "AI increases production capacity. DesignOps maintains organizational coherence.",
@@ -188,7 +188,7 @@ const notes = [
   }
 ];
 
-const lifecycle = [
+let lifecycle = [
   ["AI CONTRIBUTION", "Cluster findings, synthesize evidence, retrieve prior research.", "DESIGNOPS INFRASTRUCTURE", "Consent, source quality, traceability, reusable research.", "HUMAN CHECKPOINT", "Researcher verifies sources, uncertainty, and interpretation."],
   ["AI CONTRIBUTION", "Draft briefs, summarize requirements, identify gaps.", "DESIGNOPS INFRASTRUCTURE", "Canonical brief, product vocabulary, shared mission and metrics.", "HUMAN CHECKPOINT", "PM + domain experts agree on the problem and success criteria."],
   ["AI CONTRIBUTION", "Explore alternatives, generate concepts, prototype interactions.", "DESIGNOPS INFRASTRUCTURE", "System context, canonical prompts, accessibility, critique rubric.", "HUMAN CHECKPOINT", "Designers evaluate user need, craft, coherence, and evidence."],
@@ -196,7 +196,7 @@ const lifecycle = [
   ["AI CONTRIBUTION", "Summarize results, surface patterns, compare observations.", "DESIGNOPS INFRASTRUCTURE", "Metric definitions, decision logs, versioned learning packages.", "HUMAN CHECKPOINT", "Team interprets outcomes and decides what context should change."]
 ];
 
-const metrics = [
+let metrics = [
   { name: "Production effort", group: 0, baseline: 18, pilot: 11, max: 24, unit: "person-hours / accepted concept", short: "h", better: "lower", scale: "0–24 h" },
   { name: "Review effort", group: 0, baseline: 4, pilot: 6, max: 8, unit: "person-hours / accepted concept", short: "h", better: "context", scale: "0–8 h" },
   { name: "Design-system compliance", group: 0, baseline: 78, pilot: 90, max: 100, unit: "% applicable checks passed", short: "%", better: "higher", scale: "0–100%" },
@@ -209,8 +209,8 @@ const metrics = [
   { name: "Design-to-code divergence", group: 1, baseline: 28, pilot: 18, max: 100, unit: "% audited UI instances divergent", short: "%", better: "lower", scale: "0–100%" }
 ];
 
-const pairLabels = ["What the user needs", "What AI got wrong", "What the team changes", "Try the fix", "Save the lesson", "Check the next result"];
-const pairEvidence = [
+let pairLabels = ["What the user needs", "What AI got wrong", "What the team changes", "Try the fix", "Save the lesson", "Check the next result"];
+let pairEvidence = [
   { title: "Let me start on my own.", entries: [
     ["The situation", "I do not have a teammate to invite yet."],
     ["What I need", "Name my workspace and start working."]
@@ -255,10 +255,42 @@ function metricChange(metric) {
 
 const slides = [...document.querySelectorAll(".slide")];
 const $ = (selector) => document.querySelector(selector);
-const state = { index: 0, generation: 0, cause: 0, stack: 0, pair: 0, loop: -1 };
+const englishData = { notes, lifecycle, metrics, pairLabels, pairEvidence };
+const state = { index: 0, generation: 0, generationStarted: false, cause: 0, stack: 0, pair: 0, loop: -1, life: 0, formResult: "idle", formName: "", fullscreen: "" };
 const smallScreen = matchMedia("(max-width: 900px), (max-height: 560px)");
 let readingPreference;
 let stageReview;
+
+function setLanguage(nextLanguage) {
+  if (!["en", "es"].includes(nextLanguage)) throw new RangeError(`Unsupported language: ${nextLanguage}`);
+  if (language === nextLanguage) return;
+  const scroll = [$("#presentation").scrollTop, $("#notes").scrollTop];
+  language = nextLanguage;
+  translateMarkup();
+  ({ notes, lifecycle, metrics, pairLabels, pairEvidence } = translateData(englishData));
+  renderGeneration();
+  renderCause();
+  setAligned($("#fragmentation").classList.contains("aligned"));
+  renderPair();
+  renderFormResult();
+  if ($("#workspace-name").validity.customError) $("#workspace-name").setCustomValidity(t("Enter a workspace name."));
+  renderJourney();
+  renderNetwork();
+  renderStackCopy();
+  renderLoopLabels();
+  renderLoop();
+  selectLife(state.life);
+  buildMetrics();
+  renderDefinitions();
+  document.querySelectorAll("#slide-index a").forEach((link, index) => {
+    link.lastChild.textContent = slides[index].dataset.title;
+  });
+  renderFullscreen();
+  renderSlide(state.index);
+  $("#presentation").scrollTop = scroll[0];
+  $("#notes").scrollTop = scroll[1];
+  fitStage();
+}
 
 function clock(seconds) {
   return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, "0")}`;
@@ -302,14 +334,14 @@ function renderStack() {
     if (current) layer.setAttribute("aria-current", "step");
     else layer.removeAttribute("aria-current");
     layer.setAttribute("role", "group");
-    layer.setAttribute("aria-label", `Layer ${index + 1} of 5: ${layer.querySelector("h3").textContent}. ${current ? "Current layer" : built ? "Built" : "Not yet built"}.`);
+    layer.setAttribute("aria-label", t`Layer ${index + 1} of 5: ${layer.querySelector("h3").textContent}. ${current ? t("Current layer") : built ? t("Built") : t("Not yet built")}.`);
   });
 }
 
 function updateNotes() {
   const note = notes[state.index];
   const elapsed = notes.slice(0, Math.min(state.index, keynoteCount)).reduce((sum, item) => sum + item.seconds, 0);
-  const timing = state.index < keynoteCount ? `${clock(elapsed)}–${clock(elapsed + note.seconds)} · ${note.seconds} seconds` : state.index === keynoteCount ? "10-minute Q&A · outside the 20-minute keynote" : "Optional backup · outside keynote timing";
+  const timing = state.index < keynoteCount ? t`${clock(elapsed)}–${clock(elapsed + note.seconds)} · ${note.seconds} seconds` : state.index === keynoteCount ? t("10-minute Q&A · outside the 20-minute keynote") : t("Optional backup · outside keynote timing");
   const content = $("#notes-content");
   content.replaceChildren();
   const add = (tag, text, className) => {
@@ -321,8 +353,8 @@ function updateNotes() {
   add("p", timing, "note-time");
   add("h3", `${state.index + 1}. ${slides[state.index].dataset.title}`);
   for (const [label, text] of [
-    ["TAKEAWAY", note.takeaway], ["VISUAL", note.visual], ["INTERACTION", note.interaction],
-    ["SPEAKER NOTES", note.body], ["TRANSITION", note.transition]
+    [t("TAKEAWAY"), note.takeaway], ["VISUAL", note.visual], [t("INTERACTION"), note.interaction],
+    [t("SPEAKER NOTES"), note.body], [t("TRANSITION"), note.transition]
   ]) {
     add("h4", label);
     add("p", text);
@@ -337,15 +369,15 @@ function renderSlide(index) {
   slides.forEach((slide, i) => {
     slide.hidden = i !== state.index;
     slide.classList.toggle("active", i === state.index);
-    slide.setAttribute("aria-label", `${i + 1} of ${slides.length}: ${slide.dataset.title}`);
+    slide.setAttribute("aria-label", t`${i + 1} of ${slides.length}: ${slide.dataset.title}`);
   });
   const slide = slides[state.index];
-  $("#counter").textContent = state.index < keynoteCount ? `${String(state.index + 1).padStart(2, "0")} / ${keynoteCount}` : state.index === keynoteCount ? "Q&A" : `B${state.index - keynoteCount} / ${slides.length - keynoteCount - 1}`;
+  $("#counter").textContent = state.index < keynoteCount ? `${String(state.index + 1).padStart(2, "0")} / ${keynoteCount}` : state.index === keynoteCount ? t("Q&A") : `B${state.index - keynoteCount} / ${slides.length - keynoteCount - 1}`;
   $("#slide-title").textContent = slide.dataset.title;
   $("#act-label").textContent = slide.dataset.act;
   $("#progress").value = Math.min(state.index + 1, keynoteCount);
   $("#progress").hidden = state.index >= keynoteCount;
-  $("#progress").setAttribute("aria-valuetext", `Keynote slide ${Math.min(state.index + 1, keynoteCount)} of ${keynoteCount}`);
+  $("#progress").setAttribute("aria-valuetext", t`Keynote slide ${Math.min(state.index + 1, keynoteCount)} of ${keynoteCount}`);
   $("#previous").disabled = state.index === 0;
   $("#next").disabled = state.index === slides.length - 1;
   updateNext();
@@ -390,9 +422,10 @@ function setStageMode(active) {
       aligned: $("#fragmentation").classList.contains("aligned"),
       closing: !$("#closing-reveal").hidden,
       name: $("#workspace-name").value,
+      validity: $("#workspace-name").validity.customError,
       invalid: $("#workspace-name").getAttribute("aria-invalid"),
-      result: $("#prototype-result").textContent,
-      resultClass: $("#prototype-result").className
+      formResult: state.formResult,
+      formName: state.formName
     };
     document.querySelectorAll("dialog[open]").forEach(dialog => dialog.close());
     $("#notes").hidden = true;
@@ -407,15 +440,17 @@ function setStageMode(active) {
     setPair(saved.pair);
     setClosing(saved.closing);
     $("#workspace-name").value = saved.name;
+    $("#workspace-name").setCustomValidity(saved.validity ? t("Enter a workspace name.") : "");
     if (saved.invalid === null) $("#workspace-name").removeAttribute("aria-invalid");
     else $("#workspace-name").setAttribute("aria-invalid", saved.invalid);
-    $("#prototype-result").textContent = saved.result;
-    $("#prototype-result").className = saved.resultClass;
+    state.formResult = saved.formResult;
+    state.formName = saved.formName;
+    renderFormResult();
   }
   document.body.classList.toggle("stage-mode", active);
   $("#stage-toggle").setAttribute("aria-pressed", String(active));
   $("#stage-exit").hidden = !active;
-  $("#stage-exit").textContent = "Exit stage · Esc";
+  $("#stage-exit").textContent = t("Exit stage · Esc");
   document.querySelectorAll("[data-life]").forEach(button => { button.disabled = active; });
   renderStack();
   markCurrent(".role", active ? -1 : state.generation - 1);
@@ -423,7 +458,7 @@ function setStageMode(active) {
   markCurrent("#loop-reading li", active ? -1 : state.loop);
   setReadingView(readingPreference ?? smallScreen.matches);
   (active ? $("#presentation") : $("#stage-toggle")).focus({ preventScroll: true });
-  $("#announcement").textContent = active ? $("#stage-help").textContent : "Review restored. Notes remain closed.";
+  $("#announcement").textContent = active ? $("#stage-help").textContent : t("Review restored. Notes remain closed.");
 }
 
 async function exitStage() {
@@ -435,15 +470,15 @@ function setAligned(aligned) {
   $("#fragmentation").classList.toggle("aligned", aligned);
   const button = $('[data-action="align"]');
   button.setAttribute("aria-pressed", String(aligned));
-  button.textContent = aligned ? "Remove shared standards" : "Apply shared standards";
-  $("#fragment-caption").textContent = aligned ? "Distinct ideas. Shared constraints. Accountable decisions." : "Different patterns. Conflicting terminology. Unowned decisions.";
+  button.textContent = aligned ? t("Remove shared standards") : t("Apply shared standards");
+  $("#fragment-caption").textContent = aligned ? t("Distinct ideas. Shared constraints. Accountable decisions.") : t("Different patterns. Conflicting terminology. Unowned decisions.");
 }
 
 function updateNext() {
   const next = $("#next");
   const closing = state.index === 14;
   const revealed = !$("#closing-reveal").hidden;
-  const label = closing ? (revealed ? "Next slide: Q&A" : "Reveal the answer") : "Next slide";
+  const label = closing ? (revealed ? t("Next slide: Q&A") : t("Reveal the answer")) : t("Next slide");
   next.setAttribute("aria-label", label);
   next.title = label;
   if (closing) {
@@ -458,7 +493,7 @@ function updateNext() {
 function setClosing(revealed) {
   $("#closing-reveal").hidden = !revealed;
   updateNext();
-  if (state.index === 14) $("#announcement").textContent = revealed ? "DesignOps. AI doesn't eliminate the need for DesignOps. It makes DesignOps infrastructure." : "Who designs the system in which AI operates?";
+  if (state.index === 14) $("#announcement").textContent = revealed ? t("DesignOps. AI doesn't eliminate the need for DesignOps. It makes DesignOps infrastructure.") : t("Who designs the system in which AI operates?");
 }
 
 function advanceReview() {
@@ -487,23 +522,35 @@ function stageAdvance(direction) {
 
 async function fullscreen() {
   if (!document.fullscreenEnabled) {
-    $("#announcement").textContent = "Fullscreen is unavailable in this browser. Open index.html in a desktop browser to present fullscreen.";
-    $("#fullscreen").textContent = "Fullscreen unavailable";
-    if (stageReview) $("#stage-exit").textContent = "Fullscreen unavailable · Exit stage (Esc)";
+    state.fullscreen = "unavailable";
+    $("#announcement").textContent = t("Fullscreen is unavailable in this browser. Open index.html in a desktop browser to present fullscreen.");
+    renderFullscreen();
     return;
   }
   try {
     if (document.fullscreenElement) await document.exitFullscreen();
     else await document.documentElement.requestFullscreen();
   } catch (error) {
-    $("#announcement").textContent = `Could not enter fullscreen: ${error.message}`;
-    $("#fullscreen").textContent = "Fullscreen blocked";
-    if (stageReview) $("#stage-exit").textContent = "Fullscreen blocked · Exit stage (Esc)";
-    console.error("Fullscreen request failed", error);
+    state.fullscreen = "blocked";
+    $("#announcement").textContent = t("Could not enter fullscreen. You can continue in windowed Stage.");
+    renderFullscreen();
+    console.error(t("Fullscreen request failed"), error);
   }
 }
 
+function renderFullscreen() {
+  const active = Boolean(document.fullscreenElement);
+  const label = state.fullscreen === "unavailable" ? t("Fullscreen unavailable")
+    : state.fullscreen === "blocked" ? t("Fullscreen blocked")
+    : active ? t("Exit fullscreen") : t("Fullscreen");
+  $("#fullscreen").textContent = label;
+  $("#fullscreen").setAttribute("aria-label", state.fullscreen ? label : active ? t("Exit fullscreen") : t("Enter fullscreen"));
+  $("#stage-exit").textContent = state.fullscreen === "unavailable" ? t("Fullscreen unavailable · Exit stage (Esc)")
+    : state.fullscreen === "blocked" ? t("Fullscreen blocked · Exit stage (Esc)") : t("Exit stage · Esc");
+}
+
 function selectLife(index) {
+  state.life = index;
   document.querySelectorAll("[data-life]").forEach((button, i) => button.setAttribute("aria-pressed", String(i === index)));
   const detail = $("#life-detail");
   detail.replaceChildren();
@@ -519,6 +566,8 @@ function selectLife(index) {
 }
 
 function buildMetrics() {
+  $("#metric-dashboard").replaceChildren();
+  $("#metric-tables").replaceChildren();
   const make = (tag, text, className) => {
     const element = document.createElement(tag);
     element.textContent = text;
@@ -531,27 +580,27 @@ function buildMetrics() {
     const card = document.createElement("article");
     card.className = `metric-card${index === 1 || (metric.better === "higher" && metricDelta(metric) < 0) ? " warning" : ""}`;
     card.dataset.metric = String(index);
-    card.append(make("p", metric.group === 0 ? "LEADING / PROCESS" : "WORKFLOW OUTCOME", "metric-category"));
+    card.append(make("p", metric.group === 0 ? t("LEADING / PROCESS") : t("WORKFLOW OUTCOME"), "metric-category"));
     card.append(make("h3", metric.name, "metric-name"));
     const comparison = document.createElement("dl");
     comparison.className = "metric-comparison";
-    for (const [label, value] of [["Baseline", metricValue(metric, "baseline")], ["Pilot", metricValue(metric, "pilot")], ["Change", metricChange(metric)]]) {
+    for (const [label, value] of [[t("Baseline"), metricValue(metric, "baseline")], [t("Pilot"), metricValue(metric, "pilot")], [t("Change"), metricChange(metric)]]) {
       const entry = document.createElement("div");
       entry.append(make("dt", label), make("dd", value));
       comparison.append(entry);
     }
     card.append(comparison, make("p", metric.unit, "metric-unit"));
     if (Array.isArray(metric.baseline) || Array.isArray(metric.pilot)) {
-      card.append(make("p", "Change: midpoint estimate", "metric-estimate"));
+      card.append(make("p", t("Change: midpoint estimate"), "metric-estimate"));
     }
     $("#metric-dashboard").append(card);
   }
-  ["LEADING / PROCESS SIGNALS", "WORKFLOW OUTCOME MEASURES"].forEach((label, group) => {
+  [t("LEADING / PROCESS SIGNALS"), t("WORKFLOW OUTCOME MEASURES")].forEach((label, group) => {
     const table = document.createElement("table");
     table.className = "metric-table";
     table.append(make("caption", label));
     const head = table.createTHead().insertRow();
-    const headers = ["Metric / unit", "Baseline", "Pilot", "Change"];
+    const headers = [t("Metric / unit"), t("Baseline"), t("Pilot"), t("Change")];
     for (const label of headers) {
       const th = make("th", label);
       th.scope = "col";
@@ -570,7 +619,7 @@ function buildMetrics() {
         cell.textContent = value;
         cell.dataset.label = headers[i + 1];
         if (i === 2 && (Array.isArray(metric.baseline) || Array.isArray(metric.pilot))) {
-          cell.append(make("small", "Midpoint estimate"));
+          cell.append(make("small", t("Midpoint estimate")));
         }
       }
     });
@@ -580,6 +629,19 @@ function buildMetrics() {
 
 function setPair(step) {
   state.pair = step;
+  if (step === 0) {
+    $("#prototype-form").reset();
+    $("#workspace-name").setCustomValidity("");
+    $("#workspace-name").removeAttribute("aria-invalid");
+    state.formResult = "idle";
+    state.formName = "";
+    renderFormResult();
+  }
+  renderPair();
+}
+
+function renderPair() {
+  const step = state.pair;
   $("#prototype-scene").dataset.step = String(step);
   $("#decision-evidence").hidden = step === 3;
   $("#prototype-form").hidden = step !== 3;
@@ -596,28 +658,68 @@ function setPair(step) {
     }
     $("#evidence-verdict").textContent = evidence.verdict;
   }
-  $("#pair-count").textContent = `STEP ${step + 1} OF 6`;
+  $("#pair-count").textContent = t`STEP ${step + 1} OF 6`;
   $("#pair-label").textContent = pairLabels[step];
   const next = $('[data-action="pair"]');
-  next.textContent = ["See the problem →", "See the team's decision →", "Try the fix →", "Save the lesson →", "Check the next result →", "Example complete ✓"][step];
+  next.textContent = [t("See the problem →"), t("See the team's decision →"), t("Try the fix →"), t("Save the lesson →"), t("Check the next result →"), t("Example complete ✓")][step];
   next.disabled = step === 5;
-  if (step === 0) {
-    $("#prototype-form").reset();
-    $("#workspace-name").removeAttribute("aria-invalid");
-    $("#prototype-result").textContent = "Prototype only. No account or network request.";
-    $("#prototype-result").className = "prototype-result";
-  }
+}
+
+function renderGeneration() {
+  if (!state.generationStarted) return;
+  const button = $('[data-action="generate"]');
+  document.querySelectorAll(".role").forEach((role, i) => role.classList.toggle("generated", i < state.generation));
+  button.textContent = state.generation === 4 ? t("Reset generation ↺") : t`Distribute generation · ${state.generation}/4 ↗`;
+  markCurrent(".role", stageReview ? -1 : state.generation - 1);
+  $("#generation-status").textContent = state.generation === 0 ? t("Generation reset. No roles active.") : t`${state.generation} of 4 roles generating. Latest: ${document.querySelectorAll(".role h3")[state.generation - 1].textContent}.`;
+}
+
+function renderCause() {
+  const button = $('[data-action="cause"]');
+  const steps = [...document.querySelectorAll("#causal-chain li")];
+  const complete = state.cause === steps.length - 1;
+  button.textContent = complete ? t("Restart the chain") : t("Trace the chain");
+  markCurrent("#causal-chain li", stageReview ? -1 : state.cause);
+  $("#cause-status").textContent = t`Stage ${state.cause + 1} of ${steps.length}: ${steps[state.cause].textContent}.`;
+}
+
+function renderJourney() {
+  const status = $("#journey-status");
+  if (!status.dataset.replays) return;
+  $('[data-action="journey"]').textContent = t("Replay both journeys ↺");
+  status.textContent = t`Run ${status.dataset.replays}: sequential handoffs move research to release; the proposed collaborative model pairs shared intent and production with experiments and learning.`;
+}
+
+function renderNetwork() {
+  const button = $('[data-action="connect"]');
+  const connected = $("#network").classList.contains("connected");
+  button.setAttribute("aria-pressed", String(connected));
+  button.textContent = connected ? t("Disconnect the control plane") : t("Connect the control plane");
+  $("#network-status").textContent = connected ? t("Shared rules. Reusable context. Human evaluation.") : t("Isolated tools. Local rules. Fragmented context.");
+}
+
+function renderStackCopy() {
+  renderStack();
+  $("#stack-status").textContent = t`Layer ${state.stack + 1} of 5: ${$(`[data-layer="${state.stack}"] h3`).textContent}. ${state.stack === 4 ? t("Stack complete.") : t("Build from the foundation up.")}`;
+  $('[data-action="stack"]').textContent = state.stack === 4 ? t("Rebuild from the foundation") : t("Build the context stack");
+}
+
+function renderLoop() {
+  if (state.loop < 0) return;
+  document.querySelectorAll(".loop-node").forEach((node, i) => node.classList.toggle("current", i === state.loop));
+  markCurrent("#loop-reading li", stageReview ? -1 : state.loop);
+  const stages = [t("AI proposes a design using shared guidance."), t("The team reviews it against the user's need."), t("Save the lesson: the decision, reason, and owner."), t("Update the guidance for the next team and its AI tools."), t("Check the next result. Do not assume success.")];
+  $("#loop-status").textContent = stages[state.loop];
+  $('[data-action="loop"]').textContent = state.loop === 4 ? t("Start the next cycle ↺") : t("Follow one learning cycle →");
 }
 
 const actions = {
-  generate(button) {
+  generate() {
+    state.generationStarted = true;
     state.generation = (state.generation + 1) % 5;
-    document.querySelectorAll(".role").forEach((role, i) => role.classList.toggle("generated", i < state.generation));
-    button.textContent = state.generation === 4 ? "Reset generation ↺" : `Distribute generation · ${state.generation}/4 ↗`;
-    markCurrent(".role", state.generation - 1);
-    $("#generation-status").textContent = state.generation === 0 ? "Generation reset. No roles active." : `${state.generation} of 4 roles generating. Latest: ${document.querySelectorAll(".role h3")[state.generation - 1].textContent}.`;
+    renderGeneration();
   },
-  cause(button) {
+  cause() {
     const steps = [...document.querySelectorAll("#causal-chain li")];
     state.cause = (state.cause + 1) % steps.length;
     const complete = state.cause === steps.length - 1;
@@ -625,45 +727,34 @@ const actions = {
     for (const selector of [".branch-lines path", ".branch-outputs span"]) {
       document.querySelectorAll(selector).forEach((item, i) => item.classList.toggle("lit", complete || i <= state.cause));
     }
-    button.textContent = complete ? "Restart the chain" : "Trace the chain";
-    markCurrent("#causal-chain li", state.cause);
-    $("#cause-status").textContent = `Stage ${state.cause + 1} of ${steps.length}: ${steps[state.cause].textContent}.`;
+    renderCause();
   },
   align() {
     setAligned(!$("#fragmentation").classList.contains("aligned"));
   },
-  journey(button) {
+  journey() {
     const journeys = $("#journeys");
     journeys.classList.remove("running");
     // Restart a finite explanatory animation; there is no slide-advance timer.
     void journeys.offsetWidth;
     journeys.classList.add("running");
-    button.textContent = "Replay both journeys ↺";
     const status = $("#journey-status");
     status.dataset.replays = String(Number(status.dataset.replays || 0) + 1);
-    status.textContent = `Run ${status.dataset.replays}: sequential handoffs move research to release; the proposed collaborative model pairs shared intent and production with experiments and learning.`;
+    renderJourney();
   },
-  connect(button) {
-    const connected = $("#network").classList.toggle("connected");
-    button.setAttribute("aria-pressed", String(connected));
-    button.textContent = connected ? "Disconnect the control plane" : "Connect the control plane";
-    $("#network-status").textContent = connected ? "Shared rules. Reusable context. Human evaluation." : "Isolated tools. Local rules. Fragmented context.";
+  connect() {
+    $("#network").classList.toggle("connected");
+    renderNetwork();
   },
-  stack(button) {
+  stack() {
     state.stack = (state.stack + 1) % 5;
-    renderStack();
-    $("#stack-status").textContent = `Layer ${state.stack + 1} of 5: ${$(`[data-layer="${state.stack}"] h3`).textContent}. ${state.stack === 4 ? "Stack complete." : "Build from the foundation up."}`;
-    button.textContent = state.stack === 4 ? "Rebuild from the foundation" : "Build the context stack";
+    renderStackCopy();
   },
   pair() { setPair(Math.min(5, state.pair + 1)); },
   "pair-reset"() { setPair(0); },
-  loop(button) {
+  loop() {
     state.loop = (state.loop + 1) % 5;
-    document.querySelectorAll(".loop-node").forEach((node, i) => node.classList.toggle("current", i === state.loop));
-    markCurrent("#loop-reading li", state.loop);
-    const stages = ["AI proposes a design using shared guidance.", "The team reviews it against the user's need.", "Save the lesson: the decision, reason, and owner.", "Update the guidance for the next team and its AI tools.", "Check the next result. Do not assume success."];
-    $("#loop-status").textContent = stages[state.loop];
-    button.textContent = state.loop === 4 ? "Start the next cycle ↺" : "Follow one learning cycle →";
+    renderLoop();
   },
   "metric-definitions"() { navigate(slides.indexOf($(".measurement-backup"))); }
 };
@@ -675,24 +766,38 @@ document.addEventListener("click", (event) => {
   if (button.dataset.life !== undefined) selectLife(Number(button.dataset.life));
 });
 
+function renderFormResult() {
+  const result = $("#prototype-result");
+  const value = state.formName;
+  result.className = `prototype-result${state.formResult === "idle" ? "" : ` ${state.formResult}`}`;
+  result.textContent = state.formResult === "error" ? t("Enter a workspace name with 2–48 non-padding characters.")
+    : state.formResult === "success" ? t`“${value}” is ready in this local demo. Nothing was saved or sent.`
+    : t("Prototype only. No account or network request.");
+}
+
 $("#prototype-form").addEventListener("submit", (event) => {
   event.preventDefault();
   const input = $("#workspace-name");
   const value = input.value.trim();
-  const result = $("#prototype-result");
   if (value.length < 2 || value.length > 48) {
     input.setAttribute("aria-invalid", "true");
-    result.textContent = "Enter a workspace name with 2–48 non-padding characters.";
-    result.className = "prototype-result error";
+    state.formResult = "error";
+    renderFormResult();
     input.focus();
     return;
   }
   input.removeAttribute("aria-invalid");
-  result.textContent = `“${value}” is ready in this local demo. Nothing was saved or sent.`;
-  result.className = "prototype-result success";
+  state.formResult = "success";
+  state.formName = value;
+  renderFormResult();
 });
 $("#workspace-name").setAttribute("aria-describedby", "workspace-hint prototype-result");
+$("#workspace-name").addEventListener("invalid", event => {
+  if (event.target.validity.valueMissing) event.target.setCustomValidity(t("Enter a workspace name."));
+});
+$("#workspace-name").addEventListener("input", event => event.target.setCustomValidity(""));
 
+$("#language-toggle").addEventListener("click", () => setLanguage(language === "en" ? "es" : "en"));
 $("#previous").addEventListener("click", () => navigate(state.index - 1));
 $("#next").addEventListener("click", advanceReview);
 $("#notes-toggle").addEventListener("click", () => toggleNotes());
@@ -731,6 +836,11 @@ document.addEventListener("keydown", (event) => {
     return;
   }
   if (event.target.closest("input, textarea, select, [contenteditable='true']")) return;
+  if (event.key.toLowerCase() === "l") {
+    event.preventDefault();
+    if (!event.repeat) setLanguage(language === "en" ? "es" : "en");
+    return;
+  }
   if (event.key.toLowerCase() === "s") {
     event.preventDefault();
     if (event.repeat) return;
@@ -773,9 +883,9 @@ document.addEventListener("keydown", (event) => {
 
 document.addEventListener("fullscreenchange", () => {
   const active = Boolean(document.fullscreenElement);
+  state.fullscreen = "";
   if (!active && stageReview) setStageMode(false);
-  $("#fullscreen").textContent = active ? "Exit fullscreen" : "Fullscreen";
-  $("#fullscreen").setAttribute("aria-label", active ? "Exit fullscreen" : "Enter fullscreen");
+  renderFullscreen();
 });
 window.addEventListener("hashchange", () => renderSlide(readHash()));
 new ResizeObserver(fitStage).observe($("#viewport"));
@@ -793,16 +903,23 @@ slides.forEach((slide, index) => {
 });
 selectLife(0);
 buildMetrics();
-document.querySelectorAll(".loop-node").forEach((node) => {
-  const item = document.createElement("li");
-  item.textContent = [...node.querySelectorAll("text")].map((text) => text.textContent).join(" — ");
-  $("#loop-reading").append(item);
-});
-document.querySelectorAll(".definitions tbody tr").forEach((row) => {
-  [...row.cells].forEach((cell, index) => {
-    cell.dataset.label = ["Metric", "Definition / unit", "Collection method"][index];
+function renderLoopLabels() {
+  document.querySelectorAll(".loop-node").forEach((node, index) => {
+    const item = $("#loop-reading").children[index] || document.createElement("li");
+    item.textContent = [...node.querySelectorAll("text")].map((text) => text.textContent).join(" — ");
+    if (!item.parentElement) $("#loop-reading").append(item);
   });
-});
+}
+
+function renderDefinitions() {
+  document.querySelectorAll(".definitions tbody tr").forEach((row) => {
+    [...row.cells].forEach((cell, index) => {
+      cell.dataset.label = [t("Metric"), t("Definition / unit"), t("Collection method")][index];
+    });
+  });
+}
+renderLoopLabels();
+renderDefinitions();
 markCurrent("#causal-chain li", 0);
 renderStack();
 setPair(0);

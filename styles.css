@@ -338,6 +338,7 @@ main { flex: 1; min-height: 0; display: flex; align-items: center; justify-conte
 .model-swap span { padding: 22px 35px; background: var(--panel); font: 24px var(--mono); }
 .model-swap b { color: var(--muted); font-size: 30px; font-weight: 400; }
 .model-swap p { color: var(--muted); font-size: 20px; line-height: 1.5; margin-left: 30px; }
+:lang(es) .model-swap span { white-space: nowrap; }
 .definitions { border-collapse: collapse; width: 100%; margin-top: 20px; font-size: 23px; line-height: 1.25; }
 .definitions caption { text-align: left; color: var(--muted); font: 13px var(--mono); padding-bottom: 12px; }
 .definitions th { color: var(--cyan); font: 19px var(--mono); text-align: left; padding: 10px; border-bottom: 1px solid var(--line); }
@@ -466,6 +467,8 @@ dialog::backdrop { background: #05090dea; }
   .stage-mode .network-links { stroke: var(--cyan); stroke-dasharray: none; opacity: 1; animation: none; }
   .stage-mode .network-hub, .stage-mode .network-node rect { stroke: var(--cyan); }
   .stage-mode .network-hub { x: 175px; width: 400px; }
+  :lang(es) .stage-mode .alignment-band { width: 96px; }
+  :lang(es) .stage-mode .network-hub { x: 155px; width: 440px; }
   .stage-mode :is(.network-node text, .hub-subtitle, .hub-detail) { font: 24px sans-serif; }
   .stage-mode .network-caption { font: 25px/1.4 sans-serif; margin-top: 26px; }
   .stage-mode #loop-reading { display: block; padding-left: 40px; margin: 0; font-size: 27px; line-height: 1.45; }

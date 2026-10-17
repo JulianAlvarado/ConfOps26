@@ -6,6 +6,8 @@ Keynote v2. Primary source: the supplied **DesignOps as AI Infrastructure Presen
 
 Generated from the presenter-note data in app.js. To update this document after editing those notes: `node check.mjs --write-notes`.
 
+The same index.html includes English and Spanish. Use the toolbar's Español / English button, or L outside forms, notes, and dialogs (including on Stage), to switch without losing the current slide or demo progress. English starts on reload. Spanish notes are in speaker-notes-es.md; update their translations in spanish.js before generating both documents with the command above.
+
 ## Pacing
 
 | Act | Slides | Window | Duration |
