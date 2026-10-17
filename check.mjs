@@ -10,6 +10,8 @@ const titles = [...html.matchAll(/<section class="slide[^"]*" id="slide-(\d+)"[^
 const catalogSource = readFileSync(new URL("./spanish.js", import.meta.url), "utf8");
 const languageSource = readFileSync(new URL("./language.js", import.meta.url), "utf8");
 const catalog = vm.runInNewContext(`${catalogSource}; spanish;`);
+assert(!html.includes('class="version"') && !css.includes(".version"), "Toolbar version badge and unused styles are removed");
+assert(!catalog.copy.some(item => JSON.stringify(item).includes("CONFERENCIA V2 · ES")), "Removed badge has no dangling translation");
 const spanishData = vm.runInNewContext(`${catalogSource}
 ${languageSource.slice(0, languageSource.indexOf("const translatedElements"))}
 ${js.slice(0, js.indexOf("const slides ="))}
@@ -45,7 +47,7 @@ Keynote v2. Primary source: the supplied **DesignOps as AI Infrastructure Presen
 
 Generated from the presenter-note data in app.js. To update this document after editing those notes: \`node check.mjs --write-notes\`.
 
-The same index.html includes English and Spanish. Use the toolbar's Español / English button, or L outside forms, notes, and dialogs (including on Stage), to switch without losing the current slide or demo progress. English starts on reload. Spanish notes are in speaker-notes-es.md; update their translations in spanish.js before generating both documents with the command above.
+The same index.html includes English and Spanish. Use the toolbar's ES / EN button to switch to Spanish / English, or L outside forms, notes, and dialogs (including on Stage), without losing the current slide or demo progress. English starts on reload. Spanish notes are in speaker-notes-es.md; update their translations in spanish.js before generating both documents with the command above.
 
 ## Pacing
 
@@ -170,7 +172,7 @@ Gobernanza, sistemas y el nuevo papel de DesignOps en los equipos de producto
 
 Documento generado a partir de app.js y spanish.js. Edita allí las notas y ejecuta \`node check.mjs --write-notes\`; no edites este archivo generado.
 
-El mismo index.html reúne inglés y español. El botón Español / English de la barra, o L fuera del formulario, las notas y los diálogos (también en Escenario), cambia el idioma sin perder la diapositiva ni el paso de la demo. Al recargar se inicia en inglés. Las notas inglesas están en speaker-notes.md. El comando anterior genera ambos documentos.
+El mismo index.html reúne inglés y español. El botón ES / EN de la barra cambia a español / inglés; L fuera del formulario, las notas y los diálogos (también en Escenario) cambia el idioma sin perder la diapositiva ni el paso de la demo. Al recargar se inicia en inglés. Las notas inglesas están en speaker-notes.md. El comando anterior genera ambos documentos.
 
 ## Ritmo
 

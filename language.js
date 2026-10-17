@@ -26,13 +26,13 @@ function translateMarkup() {
   document.documentElement.lang = language;
   const variant = language === "es" ? 1 : 0;
   for (const { element, text, attributes, html } of translatedElements) {
-    // Only the static Q&A heading changes structure; interactive nodes stay mounted.
+    // Static headings may change line breaks; interactive nodes stay mounted.
     if (html) element.innerHTML = html[variant];
     for (const [index, values] of Object.entries(text)) element.childNodes[index].textContent = values[variant];
     for (const [name, values] of Object.entries(attributes)) element.setAttribute(name, values[variant]);
   }
   const button = document.getElementById("language-toggle");
-  button.textContent = language === "en" ? "Español" : "English";
+  button.textContent = language === "en" ? "ES" : "EN";
   button.lang = language === "en" ? "es" : "en";
   button.setAttribute("aria-label", language === "en" ? "Language: English. Switch to Spanish" : "Idioma: español. Cambiar a inglés");
 }

@@ -14,6 +14,47 @@ const { mkdirSync, readFileSync } = require("node:fs");
     page.on("request", request => { if (/^https?:/.test(request.url())) errors.push(`Remote request: ${request.url()}`); });
     await page.goto(pathToFileURL(path.join(__dirname, "index.html")).href);
     await page.waitForFunction(() => document.querySelectorAll(".metric-card").length === 4);
+    assert.equal(await page.locator("#language-toggle").textContent(), "ES", "English starts with Spanish target abbreviation");
+    for (const language of ["es", "en"]) {
+      await page.evaluate(language => setLanguage(language), language);
+      for (const width of [1680, 1201, 1200, 1100, 1000, 901, 900, 701, 700, 390, 320]) {
+        await page.setViewportSize({ width, height: 1000 });
+        await page.waitForFunction(() => document.body.classList.contains("reading") === smallScreen.matches);
+        const issues = await page.evaluate(() => {
+          const issues = [];
+          const toolbar = document.querySelector(".toolbar");
+          const brand = toolbar.querySelector(".wordmark").getBoundingClientRect();
+          const buttons = [...toolbar.querySelectorAll("button")];
+          if (buttons.length !== 6) issues.push("Expected all six actions");
+          if (document.querySelector(".version")) issues.push("Version badge must be removed");
+          const centers = [];
+          for (const button of buttons) {
+            const rect = button.getBoundingClientRect();
+            centers.push((rect.top + rect.bottom) / 2);
+            if (rect.left < 0 || rect.right > innerWidth || rect.width === 0) issues.push("Action clipped");
+            if (innerWidth > 700 && rect.left < brand.right + 8) issues.push("Brand overlaps menu");
+            if (innerWidth <= 700 && rect.height < 44) issues.push("Mobile target too small");
+            const text = [];
+            const walker = document.createTreeWalker(button, NodeFilter.SHOW_TEXT);
+            while (walker.nextNode()) {
+              if (!walker.currentNode.textContent.trim()) continue;
+              const range = document.createRange();
+              range.selectNodeContents(walker.currentNode);
+              text.push(...[...range.getClientRects()].filter(box => box.width > 0 && box.height > 0));
+            }
+            if (!text.length) issues.push("Missing action text");
+            if (text.some(box => box.left < rect.left || box.right > rect.right || box.top < rect.top || box.bottom > rect.bottom)) issues.push("Action text clipped");
+            if (text.length && Math.max(...text.map(box => box.top)) >= Math.min(...text.map(box => box.bottom))) issues.push("Label and shortcut wrap onto different lines");
+          }
+          if (innerWidth > 700 && Math.max(...centers) - Math.min(...centers) > 1) issues.push("Desktop menu has multiple rows");
+          if (document.documentElement.scrollWidth > innerWidth) issues.push("Page horizontal overflow");
+          return issues;
+        });
+        assert.deepEqual(issues, [], `${language} toolbar at ${width}px`);
+      }
+    }
+    await page.setViewportSize({ width: 1680, height: 1080 });
+    await page.waitForFunction(() => !document.body.classList.contains("reading"));
     assert.deepEqual(await page.evaluate(html => {
       const source = new DOMParser().parseFromString(html, "text/html");
       const errors = [];
@@ -712,6 +753,14 @@ const { mkdirSync, readFileSync } = require("node:fs");
       await page.evaluate(language => setLanguage(language), language);
       assert.deepEqual(await page.evaluate(interactionState), before, "Language changes copy, not state");
       assert.equal(await page.locator("html").getAttribute("lang"), language);
+      assert.equal(await page.locator("#language-toggle").textContent(), language === "en" ? "ES" : "EN");
+      assert.equal(await page.locator("#language-toggle").getAttribute("lang"), language === "en" ? "es" : "en");
+      assert.equal(await page.locator("#language-toggle").getAttribute("aria-keyshortcuts"), "L");
+      assert.equal(await page.locator("#language-toggle").getAttribute("aria-label"), language === "en" ? "Language: English. Switch to Spanish" : "Idioma: español. Cambiar a inglés");
+      assert.equal(await page.locator("#title-7 > em").textContent(), language === "en" ? "One accountable judgment." : "Una decisión informada");
+      assert.equal(await page.locator("#title-8").innerHTML(), language === "en" ? "Don't just<br>save the output.<br><em>Capture<br>the learning.</em>" : "No te enfoques<br>en el output,<br><em>Aprende</em>");
+      assert.equal(await page.locator("#title-8 > em").textContent(), language === "en" ? "Capturethe learning." : "Aprende");
+      assert.equal(await page.locator("#title-9").innerHTML(), language === "en" ? "Same foundations.<br><em>A larger operating system.</em>" : "Las mismas bases,<br><em>un alcance actualizado.</em>");
       assert.equal(await page.locator(".slide").count(), 23);
       assert.equal(await page.locator("#slide-index a").count(), 23);
       assert.equal(await page.locator("#loop-reading li").count(), 5);
@@ -855,6 +904,7 @@ const { mkdirSync, readFileSync } = require("node:fs");
     ]) {
       await page.setViewportSize({ width: size.width, height: size.height });
       await page.evaluate(stage => setStageMode(stage), Boolean(size.stage));
+      await page.waitForFunction(() => document.body.classList.contains("reading") === (!stageReview && smallScreen.matches));
       const reading = await page.locator("body").evaluate(node => node.classList.contains("reading"));
       await page.evaluate(() => { setAligned(true); setClosing(true); setPair(5); });
       for (let i = 1; i <= 23; i++) {

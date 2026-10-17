@@ -6,7 +6,7 @@ Gobernanza, sistemas y el nuevo papel de DesignOps en los equipos de producto
 
 Documento generado a partir de app.js y spanish.js. Edita allí las notas y ejecuta `node check.mjs --write-notes`; no edites este archivo generado.
 
-El mismo index.html reúne inglés y español. El botón Español / English de la barra, o L fuera del formulario, las notas y los diálogos (también en Escenario), cambia el idioma sin perder la diapositiva ni el paso de la demo. Al recargar se inicia en inglés. Las notas inglesas están en speaker-notes.md. El comando anterior genera ambos documentos.
+El mismo index.html reúne inglés y español. El botón ES / EN de la barra cambia a español / inglés; L fuera del formulario, las notas y los diálogos (también en Escenario) cambia el idioma sin perder la diapositiva ni el paso de la demo. Al recargar se inicia en inglés. Las notas inglesas están en speaker-notes.md. El comando anterior genera ambos documentos.
 
 ## Ritmo
 

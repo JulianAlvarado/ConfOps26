@@ -8,7 +8,7 @@ The original `ConfOps26_Julian-Alvarado_DesignOps-as-AI-Infrastructure_v1.pdf` i
 
 ## English / Español
 
-Open the same `index.html` for both languages. **English is the default on every load.** The toolbar's **Español / English** button switches all 23 slides, notes, menus, accessible labels, metrics, and demo copy in place. **L** switches languages without leaving Stage; like other shortcuts, it does not intercept typing in the form, notes, or an open dialog.
+Open the same `index.html` for both languages. **English is the default on every load.** The toolbar's **ES / EN** button shows the target language: ES switches to Spanish, EN to English. It switches all 23 slides, notes, menus, accessible labels, metrics, and demo copy in place. Its accessible name spells out the current and target languages. **L** switches languages without leaving Stage; like other shortcuts, it does not intercept typing in the form, notes, or an open dialog.
 
 Switching keeps the current slide, demo step, entered form value and feedback, closing reveal, diagram selections, Stage/Reading mode, open notes, and review-state snapshot. It does not restart builds or reload the page. All content ships in local classic scripts, so switching works with `file://` and no network. The language choice and demo input are never stored; reload starts a fresh English presentation.
 
@@ -53,11 +53,11 @@ Open `http://127.0.0.1:8080`. Stop the server with Ctrl+C.
 
 **Presentation view** preserves the 1600 × 900 (16:9) stage. **Reading view** reflows the same slide into a scrollable layout with readable text, 44px-minimum controls, and text equivalents for complex SVG diagrams. Reading view starts automatically at widths of 900px or less, or heights of 560px or less. The toolbar toggle lets you choose either view at any size; your choice lasts until reload. For larger text on a laptop, turn Reading view on rather than shrinking the stage.
 
-The review toolbar uses borderless, text-style controls with understated shortcut hints. Hover underlines the action; active Reading view and open Notes use a cyan underline. Keyboard focus retains its visible outline, and mobile controls retain their 44px minimum height.
+The review toolbar uses borderless, text-style controls with understated shortcut hints and no version badge. Desktop actions stay on one line, including each label and shortcut; at widths up to 1200px, the secondary brand tagline yields space to the menu. At phone widths, complete buttons wrap with 44px minimum height. Hover underlines the action; active Reading view and open Notes use a cyan underline. Keyboard focus retains its visible outline.
 
 ## Stage delivery
 
-Choose **Stage** or press **S** before sharing the screen. Stage removes the review toolbar, version label, navigation hints, notes, and open dialogs. **F** optionally enters native fullscreen; Stage also works in a window. The visible **Exit stage · Esc** control stays in the bottom-left footer area.
+Choose **Stage** or press **S** before sharing the screen. Stage removes the review toolbar, navigation hints, notes, and open dialogs. **F** optionally enters native fullscreen; Stage also works in a window. The visible **Exit stage · Esc** control stays in the bottom-left footer area.
 
 Only three slides have builds:
 
@@ -86,7 +86,7 @@ Small reference-only text remains in act/topic eyebrows, slide numbers, decorati
 | Control | Action |
 | --- | --- |
 | S / Stage | Start clean stage delivery |
-| Español / English, or L | Switch language in place; L also works on Stage outside the form |
+| ES / EN, or L | Switch to Spanish / English in place; L also works on Stage outside the form |
 | Next / previous, Left / Right arrows | Navigate slides in either view; slide 15's first forward action reveals the answer, the next opens Q&A |
 | Up / Down, Page Up / Down, Space | Navigate in presentation view; scroll in reading view |
 | Home / End | First / last slide in presentation view; scroll in reading view |
