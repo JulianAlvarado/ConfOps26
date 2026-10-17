@@ -1,154 +1,150 @@
-# DesignOps as AI Infrastructure
+# DesignOps como infraestructura de IA
 
-**Keynote v2.** A local, dependency-free HTML/CSS/JavaScript keynote: 15 main slides (20 minutes), a Q&A menu (10 minutes), and seven optional backups.
+**Conferencia V2 · edición independiente en español estándar.** Presentación local en HTML/CSS/JavaScript, sin dependencias de ejecución: **15 diapositivas principales (20 minutos), Preguntas (10 minutos) y 7 apoyos**, 23 en total. Conserva los diseños, la biografía solo con texto, la navegación y las interacciones de la V2 inglesa; no incorpora un selector de idioma.
 
-V2 reduces competing content in both review and Stage. Slide **05** has three strong words and three questions; slide **06** has a current-step indicator and one large example surface instead of a permanent checklist, badges, repeated explanation, and window/code chrome; slide **14** has four timeline outputs and an explicit **adopt / revise / stop** decision. Framework examples, stewardship/systems/enablement, and team/product-area/enterprise ownership remain in speaker notes. The six demo states, local form, approved metrics, biography, slide count, timing, and three Stage build moments are unchanged.
+Los PDF ingleses heredados `ConfOps26_Julian-Alvarado_DesignOps-as-AI-Infrastructure_v1.pdf` y `ConfOps26_Julian-Alvarado_DesignOps-as-AI-Infrastructure_v2.pdf` permanecen intactos. La exportación española es **`ConfOps26_Julian-Alvarado_DesignOps-as-AI-Infrastructure_v2_es.pdf`**, con 23 páginas de 1200×675 puntos, 16:9.
 
-The original `ConfOps26_Julian-Alvarado_DesignOps-as-AI-Infrastructure_v1.pdf` is preserved unchanged. The new static conference export is `ConfOps26_Julian-Alvarado_DesignOps-as-AI-Infrastructure_v2.pdf` (23 widescreen pages).
+## Relato y tiempos
 
-## Conference story
-
-Govern / Context / Evaluate follows the acceleration paradox at **3:00**. The retained interactive demonstration, **“Fix the form. Keep the lesson.”**, is now slide **6**, beginning at **4:00**. Its **270 seconds (4 minutes 30 seconds)** include the removed overview slide's 90 seconds as explanation, audience-reading, form-interaction, and review pauses—not new steps or an extra exercise. The keynote remains exactly **1,200 seconds**. The detailed stack and lifecycle remain available in backups.
-
-| Slides | Story | Timing |
+| Diapositivas | Recorrido | Tiempo |
 | --- | --- | --- |
-| 1–4 | Opening → distributed generation → About me → acceleration paradox | 0:00–3:00 |
-| 5–8 | Govern / Context / Evaluate → decision demo → accountable evaluation → learning loop | 3:00–10:40 |
-| 9–14 | Expanded role → control plane → collaborative journey → reusable standards → measures → 30-day pilot | 10:40–18:30 |
-| 15 | Who designs the system? | 18:30–20:00 |
-| 16 | Q&A and contact links | 20:00–30:00 |
-| 17–23 | Ownership, role, AI-ready system, model changes, measurement, context stack, lifecycle | Optional backups |
+| 1–4 | Apertura → generación distribuida → Sobre mí → paradoja de la aceleración | 0:00–3:00 |
+| 5–8 | Gobernar / Contexto / Evaluar → demo → evaluación responsable → aprendizaje | 3:00–10:40 |
+| 9–14 | Papel ampliado → plano de control → colaboración → criterios → métricas → piloto | 10:40–18:30 |
+| 15 | ¿Quién diseña el sistema? | 18:30–20:00 |
+| 16 | Preguntas y contactos | 20:00–30:00 |
+| 17–23 | Responsables, papel, sistema, modelos, medición, contexto y ciclo de vida | Apoyos opcionales |
 
-The six demo steps tell one story: **user need → AI mistake → team decision → working fix → saved lesson → next result**. Someone needs to start alone, but the first form requires an invitation. The team moves invitations after setup; DesignOps keeps the reason in shared guidance for the next team and its AI tools. The lesson retains a source, scope, version, owner, and review trigger without document codes on the slide. All examples are pre-authored and illustrative; no actual research, organizational policy, or measured improvement is implied.
+La presentación personal de Julian Alvarado, Xbox Design Ops, ocupa **30 segundos** (1:30–2:00). Resume su papel y relación con la charla, sin leer toda la biografía. El cierre ocupa **90 segundos**. Edita la biografía en `.about-slide` de `index.html` y mantén sus notas sincronizadas en `app.js`; es solo texto.
 
-The same vocabulary continues through the learning loop and documentation slides: **decision** is what the team changed, **saved lesson** includes why, and **shared guidance** makes it available for reuse. The next result still needs review. Stage, review, Reading view, live announcements, and speaker notes use these terms rather than invented document identifiers.
+La demo **«Corrige el formulario. Conserva lo aprendido.»** empieza en 4:00 y dura **270 segundos (4:30)**. Sus seis pasos son **necesidad → error de IA → decisión → solución funcional → lección guardada → siguiente revisión**. Los 90 segundos de la antigua diapositiva de resumen se mantienen como pausas de explicación, lectura, validación y revisión; no hay pasos nuevos. La conferencia suma exactamente **1.200 segundos** y Preguntas, **600**.
 
-## Speaker introduction
+V2 reduce contenido que compite: la diapositiva 5 contiene tres palabras y tres preguntas; la 6, un indicador y una superficie grande; la 14, cuatro resultados y **adoptar / revisar / detener**. Las bases operativas y responsabilidades de equipo, área de producto y empresa permanecen en las notas. Se conserva la alineación de etiquetas y leyendas de la apertura.
 
-Slide **3**, **About me**, is a text-only introduction to **Julian Alvarado — Xbox Design Ops**, with his supplied biography translated into English and personal interests. Its **30 seconds (1:30–2:00)** come from the closing, now **90 seconds** rather than 120; the keynote remains 1,200 seconds, demo 270 seconds, and Q&A 600 seconds. Summarize the role and connection to the talk rather than reading the entire biography aloud.
+## Abrir
 
-Edit the biography directly in `index.html` under `.about-slide` and keep its speaker notes in `app.js` synchronized.
+Abre `index.html` en un navegador moderno. No requiere compilación, instalación, fuentes externas, claves, red ni servicio de IA. Los contactos de LinkedIn y GitHub se abren en otra pestaña y solo necesitan internet al seguirlos.
 
-## Run
-
-Open `index.html` directly in a modern desktop browser. No build, installation, external fonts, API keys, network access, or AI service is required.
-
-The Q&A slide includes LinkedIn and personal GitHub links. They open in a new tab and require internet access only when followed.
-
-Alternatively, from this folder:
+También puedes servir esta carpeta:
 
 ```sh
 python3 -m http.server 8080 --bind 127.0.0.1
 ```
 
-Open `http://127.0.0.1:8080`. Stop the server with Ctrl+C.
+Abre `http://127.0.0.1:8080`; Ctrl+C detiene el servidor.
 
-**Presentation view** preserves the 1600 × 900 (16:9) stage. **Reading view** reflows the same slide into a scrollable layout with readable text, 44px-minimum controls, and text equivalents for complex SVG diagrams. Reading view starts automatically at widths of 900px or less, or heights of 560px or less. The toolbar toggle lets you choose either view at any size; your choice lasts until reload. For larger text on a laptop, turn Reading view on rather than shrinking the stage.
+**Revisión** mantiene un lienzo de 1600×900. **Lectura** reorganiza la diapositiva en una página desplazable, con texto legible, controles de al menos 44 px y equivalentes textuales para diagramas complejos. Se activa automáticamente con ancho ≤900 px o alto ≤560 px. El botón permite elegir cualquier modo; la preferencia dura hasta recargar. Para leer texto mayor en un portátil, usa Lectura en vez de reducir la tipografía de proyección.
 
-The review toolbar uses borderless, text-style controls with understated shortcut hints. Hover underlines the action; active Reading view and open Notes use a cyan underline. Keyboard focus retains its visible outline, and mobile controls retain their 44px minimum height.
+## Presentar en Escenario
 
-## Stage delivery
+Pulsa **Escenario** o **S** antes de compartir. Oculta barra de revisión, versión, navegación, notas y diálogos. **F** activa pantalla completa si el navegador lo permite; Escenario también funciona en una ventana. **Salir de Escenario · Esc** queda en el pie inferior izquierdo.
 
-Choose **Stage** or press **S** before sharing the screen. Stage removes the review toolbar, version label, navigation hints, notes, and open dialogs. **F** optionally enters native fullscreen; Stage also works in a window. The visible **Exit stage · Esc** control stays in the bottom-left footer area.
+Solo tres diapositivas requieren pasos:
 
-Only three slides have builds:
-
-| Slide | Stage build sequence |
+| Diapositiva | Secuencia |
 | --- | --- |
-| 4 | Fully visible fragmentation → apply shared standards → next slide |
-| 6 | Six unchanged plain-language demo steps → next slide |
-| 15 | Question → answer → Q&A |
+| 4 | Fragmentación completa → criterios comunes → siguiente |
+| 6 | Seis estados de la demo → siguiente |
+| 15 | Pregunta → respuesta → Preguntas |
 
-**Right / Down / Page Down / Space** advances the current build before moving to the next slide. **Left / Up / Page Up** reverses a build, then moves to the previous slide. Returning to a slide retains its stage build. Home / End jumps to the first / last slide. Keys never auto-repeat through builds.
+**Derecha / Abajo / Av Pág / Espacio** avanza un paso antes de cambiar de diapositiva. **Izquierda / Arriba / Re Pág** retrocede un paso y luego una diapositiva. Al regresar se conserva el paso. **Inicio / Fin** salta a primera / última. Mantener pulsada una tecla no salta pasos.
 
-The demo's buttons and form remain keyboard accessible. **Tab** reaches its labeled input and submit button; native typing, arrows, Space, and Enter remain native within the form. Tab beyond the form (or focus the slide background) to resume presentation keys. **Escape** exits Stage even from the input. **S**, the exit button, or leaving browser fullscreen also returns to review. The current slide stays selected.
+**Tab** llega al campo y al botón del formulario. Escritura, flechas, Espacio e Intro conservan su comportamiento dentro del formulario; sal con Tab o enfoca el fondo para volver a navegar. **Escape** sale incluso desde el campo. También salen S, el botón de salida o abandonar pantalla completa. La diapositiva actual no cambia.
 
-Entering Stage starts its three build sequences afresh but snapshots the review builds and form. Exiting restores those states, diagram selections, and the manual Reading view preference. Notes and dialogs stay closed on exit; **N/G are inactive on stage**, so they cannot accidentally appear to the audience. Fullscreen permission failures are announced and leave windowed Stage usable.
+Entrar en Escenario inicia de nuevo sus tres secuencias y guarda los estados de revisión y formulario. Salir los restaura, junto con selecciones y preferencia de Lectura. Las notas y los diálogos siguen cerrados. **N/G no funcionan en Escenario**, para no exponerlos por accidente. Si falla pantalla completa, se anuncia el error y se puede seguir en ventana.
 
-Other diagrams are resolved and static: all roles generating; the complete learning loop; the original control-plane hub-and-spoke diagram with every connection visible; both journey paths; all stack layers; the lifecycle overview; and the four-part pilot timeline. Slide 10 keeps its diagram in Stage and desktop review, with larger stage labels and no stage connection toggle; Reading view retains the text equivalent. Lifecycle choices and the ten-measure dialog remain available in review. Organizational-altitude guidance is in slide 14's notes rather than a competing selector.
+Los demás diagramas se muestran completos y estáticos: funciones, ciclo de aprendizaje, red de control, recorridos, capas y ciclo de vida. La diapositiva 10 conserva el diagrama radial y etiquetas grandes; Lectura usa su equivalente textual. Los detalles del ciclo y las diez métricas siguen disponibles en revisión.
 
-### Projection typography
+### Tipografía de proyección
 
-Stage uses the full available 16:9 area, not the smaller review viewport. The established system sans and semantic monospace stay unchanged. Decision-bearing body/diagram text uses a minimum **23px design-space size**: measured **18.4px at 1280×720** and **24.15px at 1680×1080** after the actual stage transform. Framework words/questions are 62/34px; demo headings/details are 42/29px; documentation mappings and rule content remain 29/27px. The framework now shows only its three questions, with examples in notes. The documentation model still shows four mappings and a concise rule summary; full provenance and the other three mappings remain in review and notes.
+Escenario usa toda el área 16:9 disponible. Conserva las fuentes de sistema, la jerarquía y el mínimo de **23 px de diseño** para el texto principal de decisión y diagramas: **18,4 px efectivos a 1280×720** y **24,15 px a 1680×1080**. Las palabras y preguntas del marco mantienen 62/34 px; títulos y detalles de la demo, 42/29 px; transformaciones y reglas, 29/27 px.
 
-Small reference-only text remains in act/topic eyebrows, slide numbers, decorative output labels, and role ordinals. The dense measurement appendix remains a reference table (18.4px cells at 1280×720); its captions/column labels and some backup category labels are smaller, not the primary spoken argument. Approximate-value and rule-scope qualifications remain visible. Use Reading view for reference reading or smaller displays; Stage is intended for projection at 1280×720 or larger, not phone-scale delivery.
+Las etiquetas de referencia, números, ordinales decorativos y metadatos de apoyos son menores. La tabla de medición es material de consulta. Las advertencias sobre aproximaciones y alcance siguen visibles. Usa Lectura para consultar en pantallas pequeñas; Escenario está pensado para proyección desde 1280×720, no para teléfonos.
 
-## Review controls
+## Controles de revisión
 
-| Control | Action |
+| Control | Acción |
 | --- | --- |
-| S / Stage | Start clean stage delivery |
-| Next / previous, Left / Right arrows | Navigate slides in either view; slide 15's first forward action reveals the answer, the next opens Q&A |
-| Up / Down, Page Up / Down, Space | Navigate in presentation view; scroll in reading view |
-| Home / End | First / last slide in presentation view; scroll in reading view |
-| Reading view | Toggle the reflowed reading layout |
-| N / Notes | Toggle the readable notes panel |
-| G / Slides | Open the slide index |
-| F / Fullscreen | Toggle native fullscreen when supported |
-| Escape | Close index or notes; browser also handles fullscreen exit |
-| Topic links on Q&A | Open the relevant backup |
-| `#13`, for example | Link directly to a slide |
+| S / Escenario | Iniciar presentación sin herramientas de revisión |
+| Anterior / Siguiente, Izquierda / Derecha | Navegar; en 15, el primer avance revela y el segundo abre Preguntas |
+| Arriba / Abajo, Re Pág / Av Pág, Espacio | Navegar en revisión; desplazar en Lectura |
+| Inicio / Fin | Primera / última en revisión; desplazar en Lectura |
+| Lectura | Cambiar al diseño adaptable |
+| N / Notas | Abrir o cerrar las notas |
+| G / Diapositivas | Abrir el índice |
+| F / Pantalla completa | Alternar pantalla completa |
+| Escape | Cerrar índice o notas; el navegador también gestiona pantalla completa |
+| Temas de Preguntas | Abrir el apoyo correspondiente |
+| `#13` | Enlace directo a una diapositiva |
 
-All animations are finite and respect `prefers-reduced-motion`. Slides never advance automatically. In review, in-slide buttons are separate from slide navigation; press Tab and Enter/Space to operate them. Reveal steps expose their current state and announce updates. Interaction state is preserved while navigating within the page and resets on reload. Keynote progress reaches 100% at slide 15; Q&A and backups have separate labels and no keynote progress bar.
+Las animaciones son finitas y respetan `prefers-reduced-motion`. No hay avance automático. En revisión, Tab e Intro/Espacio operan los botones internos por separado de la navegación. Los estados se conservan al navegar y se reinician al recargar. El progreso llega al 100% en 15; Preguntas y apoyos no muestran esa barra.
 
-Opening Notes focuses its scrollable panel. Arrow, Page Up/Down, Home/End, and Space keys operate the panel instead of advancing slides; N or Escape closes it. Text-input controls retain their native keyboard behavior. The notes panel is part of the same display, **not a private presenter window**; close it before audience screen sharing.
+Las notas reciben el foco al abrirse y sus teclas desplazan el panel, no la charla. N o Escape lo cierra. **No son una ventana privada del ponente**: ciérralas antes de compartir pantalla.
 
-## Review interactions
+## Interacciones
 
-- **2:** distribute generation across four roles.
-- **4:** trace the acceleration chain and toggle shared standards.
-- **6:** follow the user's need, AI mistake, team decision, working fix, saved lesson, and next result. The form is interactive at step 4; Reset clears it and restarts the example.
-- **8:** follow the closed organizational learning loop.
-- **10:** connect/disconnect the shared control plane.
-- **11:** replay sequential handoffs versus collaborative production.
-- **13:** compare four approximate baseline/pilot measures informed by early experimentation; open all ten in a detail dialog or jump to operational definitions.
-- **14:** static four-week pilot timeline; open Notes for team, product-area, and enterprise ownership.
-- **15:** pause, then use bottom navigation **Next** to reveal the answer; use Next again for Q&A. Forward navigation keys behave identically. The Next control's accessible label and tooltip identify its current action; the reveal is announced without moving keyboard focus. There is no on-slide reveal button. Reading view retains its native scroll keys; Right still advances. Stage retains its reveal/reverse build and restores review's prior answer state on exit.
-- **22 (backup):** build the organizational-memory stack.
-- **23 (backup):** inspect AI assistance, infrastructure, and review at each lifecycle stage.
+- **2:** distribuir generación entre cuatro funciones.
+- **4:** recorrer la cadena y activar criterios comunes.
+- **6:** seis pasos; formulario local en el cuarto; Reiniciar borra el campo y vuelve al inicio.
+- **8:** recorrer el ciclo de aprendizaje.
+- **10:** conectar o desconectar el plano de control.
+- **11:** animar traspasos frente a colaboración.
+- **13:** cuatro comparaciones aproximadas; detalle de diez métricas y enlace a definiciones.
+- **14:** línea temporal estática; responsabilidades por ámbito en las notas.
+- **15:** Siguiente revela la respuesta y otro avance abre Preguntas. Su nombre accesible y ayuda describen la acción actual. Se anuncia sin mover el foco. No hay botón de revelado aparte. Lectura conserva desplazamiento nativo; Derecha avanza. Escenario mantiene reversión y restauración.
+- **22:** construir capas de contexto.
+- **23:** consultar aporte de IA, infraestructura y control humano por etapa.
 
-## Files and editing
+Los contactos y los siete apoyos conservan navegación de ida y vuelta.
 
-- `index.html`: discrete semantic slide sections, editable content, inline SVG diagrams.
-- `styles.css`: shared palette, typography, 16:9 layouts, transitions, responsive chrome, reduced-motion and print rules.
-- `app.js`: navigation, local interactions, metric dataset, and presenter notes displayed in the UI.
-- `speaker-notes.md`: standalone rehearsal script, timings, takeaways, visuals, transitions, assumptions, and source traceability.
-- `check.mjs`: zero-dependency source consistency check and notes exporter. Run `node check.mjs`.
-- `browser-check.cjs`: optional browser regression checks for all slides and six demo states across six review viewports, plus Stage at 1280×720 and 1680×1080. Covers build/slide keys, form isolation, clean entry/exit, fullscreen, review restoration, effective font thresholds, and overflow. With Playwright available, run `node browser-check.cjs`. If Playwright is installed outside this folder, set `PLAYWRIGHT_MODULE` to its module path. Set `SNAPSHOT_DIR` to an artifact directory to capture stage/desktop/mobile screenshots during the same run. The presentation itself still has no dependencies.
+## Archivos y comprobaciones
 
-Each slide has a contiguous numeric ID, descriptive `data-title`, and `data-act`. IDs follow the revised DOM order, so old numeric links may now point to different content. The `notes` array uses that same order; `keynoteCount` defines the talk boundary. Edit presenter notes in `app.js`, then run `node check.mjs --write-notes` to regenerate `speaker-notes.md` and verify consistency. Shared colors are CSS custom properties. Metric values and axis bounds live in the `metrics` array. There is no external data collection, analytics, persistence, or live AI call.
+`index.html` contiene texto y SVG; `styles.css`, diseño, tipografía, adaptación e impresión; `app.js`, comportamiento local, métricas y notas. `speaker-notes.md` es el guion generado, con tiempos, transiciones, supuestos y trazabilidad.
 
-## Assumptions and qualifications
+Los ID numéricos son consecutivos y coinciden con las notas. `keynoteCount` delimita la conferencia. Los valores y escalas están en `metrics`. No hay analítica, recogida externa, persistencia de entradas ni llamadas a IA.
 
-1. English is the presentation language. The supplied outline, including Spanish review notes, is the primary narrative source. No outside evidence or unverified source attribution is added.
-2. All ten dashboard comparisons are labeled **“Early experimentation · approximate values.”** The presenter supplied **Design production rate: ~3–4/wk baseline → ~1–2/wk pilot**, with **≈−2/wk** explicitly a **midpoint estimate** (1.5 − 3.5), not a separately observed change. Its context is **accepted artifacts / in a team with 8w E2E Cycle**: a weekly rate, not a rate per eight-week cycle. The decrease uses the warning color, not an improvement indication. The other nine synthetic comparisons are unchanged; the presenter reports they are close to informal experimentation data. Underlying records, sample sizes, and methods have not been supplied. Do not present these as validated results, benchmarks, causal evidence, or forecasts. The slide highlights four measures; the dialog and notes preserve all ten. Percentage changes use percentage points (pp), not relative percentages.
-3. Leading/process signals: production effort, review effort, system compliance, context reuse, experimentation cadence. Workflow outcomes: concept cycle time, accepted production rate, major rework, open accessibility/quality defects, and design-to-code divergence. These categories are an operational framing, not universal classifications. Actual user outcomes require separate evidence.
-4. The before/after journey is a simplified comparison and a proposed operating model to validate. Animation durations are not delivery-time measurements. The first-30-days plan is a suggested sequence, not a delivery promise.
-5. The decision example is self-contained and pre-authored. Solo setup is an assumed scenario, not research; optional invitations are an illustrative requirement, not a universal onboarding rule. The saved lesson illustrates accountable judgment, source, scope, ownership, and review after the pilot or source change. Meeting that requirement does not prove accessibility or user benefit. The real local form performs no account creation and sends or stores no user input; there is no live code generation or invented Paper/Figma integration.
-6. Stewardship grounds GOVERN; Systems carry CONTEXT; Enablement activates GOVERN, CONTEXT, and EVALUATE through prompts, training, workflows, and rubrics. Evaluation remains a shared expert capability, not an AI score.
-7. Graphite, warm off-white, cyan, lime, and coral distinguish shared systems, alignment, and drift. System fonts keep the deck offline. A consistent branching/connecting motif ties output to coherence without stock AI imagery.
-
-Metric definitions, denominators, collection methods, and pilot caveats are on backup 5 and in the notes. No fabricated citations or performance claims are used.
-
-## PowerPoint readiness
-
-This is the HTML deliverable, not a `.pptx`. The content uses fixed-ratio sections, selectable text, CSS primitives, and inline vectors with stable layouts. A future conversion can map each section to a 16:9 slide and recreate text, lines, nodes, and tables as native PowerPoint objects.
-
-- **Branch/network/loop diagrams:** preserve inline SVG as vectors, or recreate nodes and connectors as editable shapes.
-- **Interactions:** export initial and resolved states as separate slides or use native Appear/Fade builds. Preserve the labels and explicit human checkpoints.
-- **Metrics:** recreate native comparison cards/tables from `metrics`; retain both scenarios, units, percentage-point changes, and the increased review effort. Use the full ten-measure comparison as a backup.
-- **Decision demo:** preserve user need → AI mistake → team decision → working fix → saved lesson → next result as six frames and link to the HTML prototype. Keep the reason, source, owner, and illustrative qualification visible. PowerPoint cannot reproduce the live form as editable slide content.
-- **Lifecycle selector:** use a static summary layout or duplicate slides for each state. Pilot ownership guidance remains in notes.
-- **Closing:** retain the question and answer as two builds. Speaker notes remain separate editable text.
-
-Print CSS provides a browser handout of all 23 slides, including the closing answer. Use landscape, background graphics on, no browser headers/footers, and 100% scale; PDF print behavior varies by browser. Printing is not a PowerPoint conversion. A printout uses current interaction states; prepare those before printing if a particular state is desired.
-
-### Reproduce the v2 PDF
-
-Use the existing Playwright installation (the deck has no runtime dependencies). This export-only stylesheet reuses Stage typography without altering screen or Reading behavior. It resolves diagrams and uses the demo's final, explicitly reviewed example; the interactive HTML and notes retain all six steps.
+Después de editar notas:
 
 ```sh
-PLAYWRIGHT_MODULE=/path/to/playwright node --input-type=commonjs <<'NODE'
+node check.mjs --write-notes
+node --check app.js
+node check.mjs
+```
+
+La regresión de navegador cubre las 23 diapositivas, seis estados de demo, seis tamaños en revisión/Lectura y Escenario a 1280×720 y 1680×1080. Comprueba teclas, foco, restauración, formulario seguro, métricas, contactos, apoyos, tipografía, traducción visible y recortes. Requiere una instalación existente de Playwright:
+
+```sh
+PLAYWRIGHT_MODULE=/ruta/a/playwright \
+SNAPSHOT_DIR=/ruta/a/capturas \
+node browser-check.cjs
+```
+
+`SNAPSHOT_DIR` es opcional. No instales dependencias para abrir la presentación.
+
+## Supuestos y límites
+
+La fuente principal es el esquema facilitado y sus observaciones. Esta edición usa español neutro, conserva nombres propios y DesignOps, y emplea IA en la prosa. No añade fuentes externas sin verificar.
+
+Las diez comparaciones se identifican como **«Experimentación inicial · valores aproximados»**. El ponente facilitó **~3–4/sem → ~1–2/sem** para producción de diseño. **≈−2/sem** es una estimación por puntos medios (1,5 − 3,5), no un cambio observado aparte. Son entregables aceptados por semana en un equipo con **ciclo integral de 8 semanas**; no una tasa por ciclo. El descenso usa el color de advertencia, no el de mejora.
+
+Las otras nueve comparaciones sintéticas no cambian; el ponente las considera cercanas a su experimentación informal. No hay registros, muestras ni métodos facilitados. No son resultados validados, referencias de rendimiento, evidencia causal ni previsiones. Los porcentajes cambian en puntos porcentuales. La revisión aumenta; generar más rápido no garantiza revisar menos. Los indicadores anticipados/de proceso y los resultados del flujo son categorías operativas, no universales. Los resultados reales de usuarios necesitan evidencia aparte; no se inventan aquí.
+
+El recorrido anterior es simplificado; el nuevo modelo es una hipótesis. La animación no mide plazos y los 30 días no prometen una fecha de entrega. El ejemplo y sus atribuciones a IA son ficticios y están preparados, **sin IA en directo**. El alta individual es un supuesto, no investigación; las invitaciones opcionales no son una regla universal. La lección conserva razón, fuente, alcance, versión, responsable y revisión tras piloto o cambios. **Validación con usuarios pendiente**: cumplir el requisito no prueba accesibilidad ni beneficio.
+
+El formulario no crea cuentas ni guarda o envía datos. No hay generación de código en directo ni integraciones inventadas con Paper/Figma. La gestión responsable sostiene Gobernar; los sistemas, Contexto; la habilitación activa las tres funciones con flujos, prompts, formación y criterios. Evaluar sigue siendo una capacidad experta compartida, no una puntuación de IA.
+
+## PDF y futura conversión
+
+El entregable es HTML y PDF, no `.pptx`. La impresión muestra el estado preparado de cada interacción y no incluye notas. El PDF español utiliza el último estado de la demo, explícitamente revisado; el HTML y las notas conservan los seis.
+
+Para una futura conversión a PowerPoint, conserva texto editable, relación 16:9 y vectores. Recrea diagramas con formas, pasos con apariciones nativas y métricas con sus escenarios, unidades y advertencias. Para la demo usa seis fotogramas y un enlace al HTML: una diapositiva no reproduce el formulario local. Mantén las notas como texto separado.
+
+### Reproducir el PDF V2 español
+
+Ejecuta desde esta carpeta con Playwright ya instalado. La hoja de exportación reutiliza la tipografía de Escenario sin cambiar los modos en pantalla; resuelve los diagramas, la respuesta final y el último estado ilustrativo de la demo.
+
+```sh
+PLAYWRIGHT_MODULE=/ruta/a/playwright node --input-type=commonjs <<'NODE'
 const { chromium } = require(process.env.PLAYWRIGHT_MODULE);
 const { readFileSync } = require("node:fs");
 const { pathToFileURL } = require("node:url");
@@ -168,7 +164,7 @@ const path = require("node:path");
     await page.addStyleTag({ content: readFileSync("styles.css", "utf8").replaceAll("@media screen {", "@media all {") });
     await page.addStyleTag({ content: "@media print { @page { size: 1600px 900px; margin: 0; } .slide, .slide[hidden] { zoom: 1 !important; } }" });
     await page.pdf({
-      path: "ConfOps26_Julian-Alvarado_DesignOps-as-AI-Infrastructure_v2.pdf",
+      path: "ConfOps26_Julian-Alvarado_DesignOps-as-AI-Infrastructure_v2_es.pdf",
       preferCSSPageSize: true, printBackground: true, displayHeaderFooter: false
     });
   } finally {
@@ -176,4 +172,28 @@ const path = require("node:path");
   }
 })().catch(error => { console.error(error); process.exitCode = 1; });
 NODE
+
+# macOS: normalizar el redondeo de Chromium (675,12 pt) a 675 pt exactos.
+# PDFKit y Swift ya están disponibles en el entorno de exportación.
+swift -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk - ConfOps26_Julian-Alvarado_DesignOps-as-AI-Infrastructure_v2_es.pdf <<'SWIFT'
+import PDFKit
+import Foundation
+let url = URL(fileURLWithPath: CommandLine.arguments[1])
+guard let pdf = PDFDocument(url: url), pdf.pageCount == 23 else {
+    fatalError("Se esperaban 23 páginas")
+}
+for index in 0..<pdf.pageCount {
+    guard let page = pdf.page(at: index) else { fatalError("Página no disponible") }
+    let box = page.bounds(for: .mediaBox)
+    guard abs(box.width - 1200) < 0.2, abs(box.height - 675) < 0.2 else {
+        fatalError("Tamaño de página inesperado")
+    }
+    let exact = CGRect(x: 0, y: 0, width: 1200, height: 675)
+    page.setBounds(exact, for: .mediaBox)
+    page.setBounds(exact, for: .cropBox)
+}
+guard pdf.write(to: url) else { fatalError("No se pudo guardar el PDF") }
+SWIFT
 ```
+
+Comprueba el PDF renderizado: **23 páginas, 1200×675 puntos**, textos y avisos completos, sin recortes. No sobrescribas los PDF ingleses. Para imprimir manualmente usa orientación horizontal, fondos, sin cabeceras ni pies del navegador y escala 100%; la impresión varía según el navegador.

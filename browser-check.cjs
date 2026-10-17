@@ -7,13 +7,31 @@ const { mkdirSync } = require("node:fs");
 (async () => {
   const browser = await chromium.launch();
   try {
-    const page = await browser.newPage({ viewport: { width: 1680, height: 1080 }, reducedMotion: "reduce" });
+    const page = await browser.newPage({ viewport: { width: 1680, height: 1080 }, reducedMotion: "reduce", locale: "es" });
     const errors = [];
     page.on("pageerror", error => errors.push(error.message));
     page.on("console", message => { if (message.type() === "error") errors.push(message.text()); });
     page.on("request", request => { if (/^https?:/.test(request.url())) errors.push(`Remote request: ${request.url()}`); });
     await page.goto(pathToFileURL(path.join(__dirname, "index.html")).href);
     await page.waitForFunction(() => document.querySelectorAll(".metric-card").length === 4);
+    assert.equal(await page.locator("html").getAttribute("lang"), "es");
+    const checkSpanish = async () => {
+      const english = await page.evaluate(() => {
+        const forbidden = /\b(?:AI|the|with|without|your|this|next|previous|workspace|required|baseline|outcomes|guidance|shared|govern|evaluate|fullscreen|stage|reading|backup|handoffs|mocks|release|pending|learn|review|seconds)\b/i;
+        const copy = [];
+        for (const node of document.querySelectorAll("body *")) {
+          if (!node.checkVisibility() && !node.matches('[role="status"], #stage-help')) continue;
+          for (const child of node.childNodes) {
+            if (child.nodeType === Node.TEXT_NODE && child.textContent.trim()) copy.push(child.textContent.trim());
+          }
+          for (const attribute of ["aria-label", "aria-valuetext", "title", "placeholder", "data-label"]) {
+            if (node.hasAttribute(attribute)) copy.push(node.getAttribute(attribute));
+          }
+        }
+        return copy.filter(text => forbidden.test(text));
+      });
+      assert.deepEqual(english, [], "Visible runtime copy and accessibility announcements are Spanish");
+    };
     const go = async number => {
       await page.evaluate(number => { location.hash = String(number); }, number);
       await page.waitForFunction(number => !document.getElementById(`slide-${number}`).hidden, number);
@@ -37,7 +55,7 @@ const { mkdirSync } = require("node:fs");
     assert.equal(await page.locator("#fullscreen").evaluate(node => getComputedStyle(node).outlineWidth), "3px", "Keyboard focus stays visible");
     await page.locator("#presentation").focus();
     assert.equal(await page.locator(".slide").count(), 23);
-    assert.deepEqual(await page.locator(".opening-labels span").allTextContents(), ["CAPACITY ↑", "COHERENCE ?"]);
+    assert.deepEqual(await page.locator(".opening-labels span").allTextContents(), ["CAPACIDAD ↑", "COHERENCIA ?"]);
     assert.equal(await page.locator(".opening-art svg text").count(), 0);
     assert.deepEqual(await page.evaluate(() => ({
       keynoteCount,
@@ -50,38 +68,38 @@ const { mkdirSync } = require("node:fs");
     })), { keynoteCount: 15, duration: 1200, bio: 30, closing: 90, demo: 270, qa: 600, backups: [0, 0, 0, 0, 0, 0, 0] });
     assert.equal(await page.locator(".conflict-slide").count(), 0);
     for (const label of await page.locator(".scenario-label").allTextContents()) {
-      assert.equal(label.trim(), "EARLY EXPERIMENTATION · APPROXIMATE VALUES");
+      assert.equal(label.trim(), "EXPERIMENTACIÓN INICIAL · VALORES APROXIMADOS");
     }
     await go(2);
     assert.equal(await page.locator(".ai-label").count(), 0);
-    assert.equal(await page.locator("#title-2").innerText(), "The AI production floor\nis everywhere.");
-    assert.deepEqual(await page.locator("#roles h3").allTextContents(), ["Product", "Research", "Design", "Engineering"]);
+    assert.equal(await page.locator("#title-2").innerText(), "Con IA se produce\nen todas partes.");
+    assert.deepEqual(await page.locator("#roles h3").allTextContents(), ["Producto", "Investigación", "Diseño", "Ingeniería"]);
     assert.deepEqual(await page.locator(".role-output").evaluateAll(groups => groups.map(group => [...group.children].map(item => item.textContent))),
-      [["Brief", "Requirements", "Hypotheses"], ["Synthesis", "Insights", "Questions"], ["Concepts", "Prototypes", "Patterns"], ["Components", "Code", "Tests"]]);
+      [["Encargo", "Requisitos", "Hipótesis"], ["Síntesis", "Hallazgos", "Preguntas"], ["Conceptos", "Prototipos", "Patrones"], ["Componentes", "Código", "Pruebas"]]);
     await page.locator("#presentation").focus();
     await page.keyboard.press("ArrowRight");
     await page.waitForFunction(() => !document.getElementById("slide-3").hidden);
     assert.equal(await page.locator("#title-3").innerText(), "Julian Alvarado");
     assert.equal(await page.locator(".about-role").innerText(), "Xbox Design Ops");
     assert.equal(await page.locator(".about-bio p").count(), 3);
-    assert.match(await page.locator(".about-bio").innerText(), /Senior Program Manager and Design Operations leader at Microsoft/);
-    assert.match(await page.locator(".about-bio").innerText(), /better systems, clearer processes, and responsible AI/);
-    assert.match(await page.locator(".about-bio").innerText(), /deliver—building resilient, people-centered creative organizations/);
-    assert.equal(await page.locator(".about-bio p").last().innerText(), "Outside work, Julian is a daily CrossFit devotee and a “forever blue belt” in jiu-jitsu. A retired musician, he still loves live shows and enjoys drawing at home. Currently in rotation: Radiohead, Lenny Kravitz, Oasis, and Crosses.");
+    assert.match(await page.locator(".about-bio").innerText(), /gerente sénior de programas y líder de operaciones de diseño en Microsoft/);
+    assert.match(await page.locator(".about-bio").innerText(), /mejores sistemas, procesos más claros y un uso responsable de la IA/);
+    assert.match(await page.locator(".about-bio").innerText(), /organizaciones creativas resilientes y centradas en las personas/);
+    assert.equal(await page.locator(".about-bio p").last().innerText(), "Fuera del trabajo, practica CrossFit a diario y se define como un «eterno cinturón azul» de jiu-jitsu. Músico retirado, sigue disfrutando de los conciertos y de dibujar en casa. Ahora escucha a Radiohead, Lenny Kravitz, Oasis y Crosses.");
     assert.equal(await page.locator(".about-slide button, .about-slide input, .about-slide img").count(), 0);
-    assert.match(await page.locator(".note-time").innerText(), /1:30–2:00 · 30 seconds/);
+    assert.match(await page.locator(".note-time").innerText(), /1:30–2:00 · 30 segundos/);
     await page.keyboard.press("ArrowRight");
     await page.waitForFunction(() => !document.getElementById("slide-4").hidden);
     await page.keyboard.press("ArrowRight");
     await page.waitForFunction(() => !document.getElementById("slide-5").hidden);
-    assert.equal(await page.locator(".slide:not([hidden])").getAttribute("data-title"), "Govern. Context. Evaluate.");
+    assert.equal(await page.locator(".slide:not([hidden])").getAttribute("data-title"), "Gobernar. Contexto. Evaluar.");
     await page.keyboard.press("ArrowRight");
     await page.waitForFunction(() => !document.getElementById("slide-6").hidden);
-    assert.equal(await page.locator(".slide:not([hidden])").getAttribute("data-title"), "Fix the form. Keep the lesson.");
-    assert.match(await page.locator(".note-time").innerText(), /4:00–8:30 · 270 seconds/);
-    assert.match(await page.locator("#slide-9").textContent(), /Scale design systems/);
+    assert.equal(await page.locator(".slide:not([hidden])").getAttribute("data-title"), "Corrige el formulario. Conserva lo aprendido.");
+    assert.match(await page.locator(".note-time").innerText(), /4:00–8:30 · 270 segundos/);
+    assert.match(await page.locator("#slide-9").textContent(), /Ampliar sistemas de diseño/);
     assert.equal(await page.locator(".fundamentals p").count(), 0);
-    assert.match(await page.locator("#slide-22 .lead").textContent(), /allow the model to know/);
+    assert.match(await page.locator("#slide-22 .lead").textContent(), /que sepa el modelo/);
     for (const number of [1, 7, 9, 10, 11]) {
       assert.equal(await page.locator(`#slide-${number} .slide-footer span`).count(), 1, "Removed footer taglines remain absent");
       assert.equal(await page.locator(`#slide-${number} .slide-footer`).evaluate(node => getComputedStyle(node).justifyContent), "flex-end");
@@ -95,6 +113,7 @@ const { mkdirSync } = require("node:fs");
     const failures = [];
     assert.equal(await page.locator("#slide-6 > .eyebrow > span").evaluate(node => getComputedStyle(node).fontSize), "14px", "Demo caption uses shared review eyebrow sizing");
     const checkLayout = async (reading, label) => {
+      await checkSpanish();
       const issues = await page.evaluate(reading => {
         const slide = document.querySelector(".slide:not([hidden])");
         const bounds = slide.getBoundingClientRect();
@@ -102,6 +121,18 @@ const { mkdirSync } = require("node:fs");
         const stageMode = document.body.classList.contains("stage-mode");
         const exit = document.getElementById("stage-exit").getBoundingClientRect();
         const issues = [];
+        for (const diagram of slide.querySelectorAll(".network svg, .learning-loop svg")) {
+          if (!diagram.checkVisibility()) continue;
+          const texts = [...diagram.querySelectorAll("text")];
+          if (!texts.length) issues.push("Visible diagram has no labels to inspect");
+          for (const text of texts) {
+            const group = text.closest(".network-node, .loop-node");
+            const frame = group ? group.querySelector("rect").getBBox() : diagram.closest(".network") ? diagram.querySelector(".network-hub").getBBox() : diagram.viewBox.baseVal;
+            const box = text.getBBox();
+            if (box.x < frame.x + 2 || box.x + box.width > frame.x + frame.width - 2 ||
+                box.y < frame.y || box.y + box.height > frame.y + frame.height) issues.push(`${text.textContent}: outside diagram frame`);
+          }
+        }
         if (!reading && slide.id === "slide-1") {
           const labels = slide.querySelector(".opening-labels").getBoundingClientRect();
           const title = slide.querySelector("h1").getBoundingClientRect();
@@ -138,15 +169,19 @@ const { mkdirSync } = require("node:fs");
           if (!rect.width || !rect.height) continue;
           if (rect.left < bounds.left - 1 || rect.right > bounds.right + 1) issues.push(`${node.className || node.tagName}: outside horizontal slide bounds`);
           if (!reading && !node.closest(".slide-footer") && rect.bottom > footer.top - 4) issues.push(`${node.className || node.tagName}: overlaps footer`);
-          if (stageMode && !node.closest(".slide-footer") && node.childNodes.length && [...node.childNodes].some(child => child.nodeType === Node.TEXT_NODE && child.textContent.trim())) {
-            if (rect.left < exit.right && rect.right > exit.left && rect.top < exit.bottom && rect.bottom > exit.top) issues.push(`${node.className || node.tagName}: overlaps stage exit`);
+          if (!node.closest(".slide-footer") && node.childNodes.length && [...node.childNodes].some(child => child.nodeType === Node.TEXT_NODE && child.textContent.trim())) {
+            if (stageMode && rect.left < exit.right && rect.right > exit.left && rect.top < exit.bottom && rect.bottom > exit.top) issues.push(`${node.className || node.tagName}: overlaps stage exit`);
             for (const child of node.childNodes) {
               if (child.nodeType !== Node.TEXT_NODE || !child.textContent.trim()) continue;
               const range = document.createRange();
               range.selectNodeContents(child);
               for (const text of range.getClientRects()) {
-                if (text.right > rect.right + 1 || text.left < rect.left - 1) issues.push(`${node.className || node.tagName}: text overflows its container`);
+                if (text.right > rect.right + 2 || text.left < rect.left - 2) issues.push(`${node.className || node.tagName}: text overflows its container`);
+                if (!reading && text.bottom > footer.top - 2) issues.push(`${node.className || node.tagName}: text crosses footer`);
               }
+              const style = getComputedStyle(node);
+              if (["hidden", "clip"].includes(style.overflowY) && node.scrollHeight > node.clientHeight + 1) issues.push(`${node.className || node.tagName}: vertically clipped content`);
+              if (["hidden", "clip"].includes(style.overflowX) && node.scrollWidth > node.clientWidth + 1) issues.push(`${node.className || node.tagName}: horizontally clipped content`);
             }
           }
           if (reading && node.matches("button:not(:disabled), input") && rect.height < 44) issues.push(`${node.tagName}: target under 44px`);
@@ -166,19 +201,19 @@ const { mkdirSync } = require("node:fs");
     const exerciseDemo = async (reading, label) => {
       await go(6);
       await click('[data-action="pair-reset"]');
-      const expected = [/start on my own/, /asks for someone else/, /Create first/, null, /Do not fix this twice/, /next person start alone/];
+      const expected = [/empezar por mi cuenta/, /exige otra persona/, /Crear primero/, null, /No resuelvas esto dos veces/, /siguiente persona puede empezar sola/];
       for (let i = 0; i < 6; i++) {
         if (i) await click('[data-action="pair"]');
         assert.equal(await page.locator("#prototype-scene").getAttribute("data-step"), String(i));
-        assert.equal(await page.locator("#pair-count").innerText(), `STEP ${i + 1} OF 6`);
+        assert.equal(await page.locator("#pair-count").innerText(), `PASO ${i + 1} DE 6`);
         assert.equal(await page.locator("#pair-label").innerText(), await page.evaluate(i => pairLabels[i], i));
         assert.equal(await page.locator("#pair-step").getAttribute("aria-atomic"), "true");
         assert.equal(await page.locator("#prototype-form").isVisible(), i === 3);
         if (expected[i]) assert.match(await page.locator("#evidence-title").innerText(), expected[i]);
-        if (i === 0) assert.match(await page.locator("#evidence-details").innerText(), /do not have a teammate[\s\S]*start working/);
-        if (i === 1) assert.match(await page.locator("#evidence-verdict").innerText(), /I am stuck/);
+        if (i === 0) assert.match(await page.locator("#evidence-details").innerText(), /no tengo a quién invitar[\s\S]*empezar a trabajar/);
+        if (i === 1) assert.match(await page.locator("#evidence-verdict").innerText(), /No puedo continuar/);
         if (i === 2) {
-          assert.match(await page.locator("#evidence-details").innerText(), /Designer \+ engineer/);
+          assert.match(await page.locator("#evidence-details").innerText(), /Diseño \+ ingeniería/);
           await go(7);
           await go(6);
           assert.equal(await page.locator("#prototype-scene").getAttribute("data-step"), "2", "Navigating preserves demo state");
@@ -188,25 +223,29 @@ const { mkdirSync } = require("node:fs");
           await page.locator("#workspace-name").fill("");
           await click("#prototype-form button");
           assert(await page.locator("#workspace-name").evaluate(node => node.matches(":invalid")), "Empty name remains required");
+          assert.equal(await page.locator("#workspace-name").evaluate(node => node.validationMessage), "Escribe un nombre para el espacio de trabajo.");
+          await page.evaluate(() => { setStageMode(true); setStageMode(false); });
+          assert.equal(await page.locator("#workspace-name").evaluate(node => node.validationMessage), "Escribe un nombre para el espacio de trabajo.", "Stage restores Spanish native validation");
           await page.locator("#workspace-name").fill(" ");
           await click("#prototype-form button");
           assert.equal(await page.locator("#workspace-name").getAttribute("aria-invalid"), "true");
           await page.locator("#workspace-name").fill("<b>Team</b>" + "W".repeat(38));
           await click("#prototype-form button");
           assert.equal(await page.locator("#prototype-result b").count(), 0);
-          assert.match(await page.locator("#prototype-result").innerText(), /Nothing was saved or sent/);
+          assert.match(await page.locator("#prototype-result").innerText(), /No se ha guardado ni enviado nada/);
           assert.equal(await page.locator("#workspace-name").getAttribute("aria-invalid"), null);
+          assert.equal(await page.locator("#workspace-name").evaluate(node => node.validity.customError), false, "Editing clears custom validity");
           assert.equal((await page.locator("#workspace-name").inputValue()).length, 48);
           await page.locator("#workspace-name").focus();
           await page.keyboard.press("ArrowRight");
           assert.equal(await slideNumber(), "slide-6");
         }
         if (i === 4) {
-          assert.match(await page.locator("#evidence-details").innerText(), /from the brief[\s\S]*product lead[\s\S]*after the pilot/);
-          assert.match(await page.locator("#evidence-verdict").innerText(), /user validation pending/);
+          assert.match(await page.locator("#evidence-details").innerText(), /según el encargo[\s\S]*líder de producto[\s\S]*tras el piloto/);
+          assert.match(await page.locator("#evidence-verdict").innerText(), /validación con usuarios pendiente/);
         }
         if (i === 5) {
-          assert.match(await page.locator("#evidence-details").innerText(), /without a teammate email[\s\S]*real users/);
+          assert.match(await page.locator("#evidence-details").innerText(), /sin el correo de otra persona[\s\S]*usuarios reales/);
           assert(await page.locator('[data-action="pair"]').isDisabled());
         }
         await checkLayout(reading, `${label}/pair-${i}`);
@@ -232,30 +271,31 @@ const { mkdirSync } = require("node:fs");
           assert.match(await page.locator(`#slide-${i} .slide-footer span:last-child`).innerText(), new RegExp(`^${String(i).padStart(2, "0")} / 15`));
           assert.equal(await page.locator("#counter").innerText(), `${String(i).padStart(2, "0")} / 15`);
         }
-        if (width === 1200 && [3, 5, 8, 12, 13, 14, 16, 22, 23].includes(i)) await capture(`1200-slide-${i}`);
+        if (width === 1200) await capture(`1200-slide-${i}`);
       }
       await exerciseDemo(false, String(width));
     }
     await go(13);
-    assert.equal(await page.locator(".metric-foot > p").innerText(), "More review—better outcomes?");
-    assert.deepEqual(await page.locator(".metric-comparison > div:last-child dd").allTextContents(), ["−3 d", "≈−2/wk", "+2 h", "+12 pp"]);
+    assert.equal(await page.locator(".metric-foot > p").innerText(), "¿Más revisión, mejores resultados?");
+    assert.deepEqual(await page.locator(".metric-comparison > div:last-child dd").allTextContents(), ["−3 d", "≈−2/sem", "+2 h", "+12 pp"]);
     assert.equal(await page.locator('.metric-card[data-metric="1"] .metric-comparison dd').nth(1).innerText(), "6h");
-    const productionCard = page.locator(".metric-card").filter({ has: page.getByRole("heading", { name: "Design production rate", exact: true }) });
-    assert.equal(await productionCard.locator(".metric-category").innerText(), "WORKFLOW OUTCOME");
-    assert.deepEqual(await productionCard.locator(".metric-comparison dd").allTextContents(), ["~3–4/wk", "~1–2/wk", "≈−2/wk"]);
-    assert.equal(await productionCard.locator(".metric-unit").innerText(), "accepted artifacts / in a team with 8w E2E Cycle");
-    assert.equal(await productionCard.locator(".metric-estimate").innerText(), "Change: midpoint estimate");
+    const productionCard = page.locator(".metric-card").filter({ has: page.getByRole("heading", { name: "Ritmo de producción de diseño", exact: true }) });
+    assert.equal(await productionCard.locator(".metric-category").innerText(), "RESULTADO DEL FLUJO");
+    assert.deepEqual(await productionCard.locator(".metric-comparison dd").allTextContents(), ["~3–4/sem", "~1–2/sem", "≈−2/sem"]);
+    assert.equal(await productionCard.locator(".metric-unit").innerText(), "entregables aceptados / equipo con ciclo integral de 8 semanas");
+    assert.equal(await productionCard.locator(".metric-estimate").innerText(), "Cambio: estimación por puntos medios");
     assert(await productionCard.evaluate(node => node.classList.contains("warning")));
     assert.equal(await productionCard.locator(".metric-comparison > div:last-child dd").evaluate(node => getComputedStyle(node).color),
       await page.locator('.metric-card[data-metric="1"] .metric-comparison > div:last-child dd').evaluate(node => getComputedStyle(node).color), "Production decrease uses the warning color");
     await click("#metrics-open");
+    await checkSpanish();
     assert.equal(await page.locator(".metric-table tbody tr").count(), 10);
-    const productionRow = page.locator(".metric-table tr").filter({ has: page.getByRole("rowheader", { name: /Design production rate/ }) });
-    assert.deepEqual(await productionRow.locator("td").allTextContents(), ["~3–4/wk", "~1–2/wk", "≈−2/wkMidpoint estimate"]);
-    assert.match(await productionRow.locator("th").innerText(), /accepted artifacts \/ in a team with 8w E2E Cycle/);
+    const productionRow = page.locator(".metric-table tr").filter({ has: page.getByRole("rowheader", { name: /Ritmo de producción de diseño/ }) });
+    assert.deepEqual(await productionRow.locator("td").allTextContents(), ["~3–4/sem", "~1–2/sem", "≈−2/semEstimación por puntos medios"]);
+    assert.match(await productionRow.locator("th").innerText(), /entregables aceptados \/ equipo con ciclo integral de 8 semanas/);
     await capture("metrics-detail-ranges");
     assert.deepEqual(await page.evaluate(() => {
-      const metric = metrics.find(item => item.name === "Design production rate");
+      const metric = metrics.find(item => item.name === "Ritmo de producción de diseño");
       return { baseline: metric.baseline, pilot: metric.pilot, delta: metricDelta(metric) };
     }), { baseline: [3, 4], pilot: [1, 2], delta: -2 });
     await page.keyboard.press("ArrowRight");
@@ -278,12 +318,12 @@ const { mkdirSync } = require("node:fs");
       await click('[data-action="generate"]');
       assert.equal(await page.locator(".role.generated").count(), i);
       assert.equal(await page.locator(".role[aria-current='step']").count(), 1);
-      assert.match(await page.locator("#generation-status").innerText(), new RegExp(`${i} of 4`));
+      assert.match(await page.locator("#generation-status").innerText(), new RegExp(`${i} de 4`));
     }
     await click('[data-action="generate"]');
     assert.equal(await page.locator(".role.generated").count(), 0);
     await go(4);
-    const causes = ["More output", "More variation", "More decisions", "More inconsistency"];
+    const causes = ["Más producción", "Más variación", "Más decisiones", "Más incoherencia"];
     assert.deepEqual(await page.locator("#causal-chain li").allTextContents(), causes);
     for (let i = 0; i < 8; i++) {
       if (i) await click('[data-action="cause"]');
@@ -291,17 +331,17 @@ const { mkdirSync } = require("node:fs");
       assert.equal(await page.locator("#causal-chain .current").count(), step + 1);
       assert.equal(await page.locator("#causal-chain [aria-current='step']").count(), 1);
       assert.equal(await page.locator("#causal-chain [aria-current='step']").innerText(), causes[step]);
-      assert.equal(await page.locator("#cause-status").innerText(), `Stage ${step + 1} of 4: ${causes[step]}.`);
+      assert.equal(await page.locator("#cause-status").innerText(), `Paso ${step + 1} de 4: ${causes[step]}.`);
       assert.equal(await page.locator(".branch-outputs .lit").count(), step === 3 ? 5 : step + 1);
       assert.equal(await page.locator(".branch-lines .lit").count(), step === 3 ? 5 : step + 1);
-      assert.equal(await page.locator('[data-action="cause"]').innerText(), step === 3 ? "Restart the chain" : "Trace the chain");
+      assert.equal(await page.locator('[data-action="cause"]').innerText(), step === 3 ? "Reiniciar la cadena" : "Seguir la cadena");
     }
     await click('[data-action="align"]');
     assert.equal(await page.locator('[data-action="align"]').getAttribute("aria-pressed"), "true");
     await checkLayout(false, "aligned");
     await go(11);
     await click('[data-action="journey"]');
-    assert.match(await page.locator("#journey-status").innerText(), /Run 1:/);
+    assert.match(await page.locator("#journey-status").innerText(), /Recorrido 1:/);
     await go(10);
     const contrast = await page.evaluate(() => {
       const luminance = color => {
@@ -326,7 +366,7 @@ const { mkdirSync } = require("node:fs");
     for (let i = 0; i < 4; i++) await click('[data-action="stack"]');
     assert.notEqual(await page.locator("#stack").ariaSnapshot(), before);
     assert.equal(await page.locator(".stack-layer.revealed").count(), 5);
-    assert.match(await page.locator("#stack-status").innerText(), /Layer 5 of 5/);
+    assert.match(await page.locator("#stack-status").innerText(), /Capa 5 de 5/);
     await go(23);
     for (let i = 0; i < 5; i++) {
       await click(`[data-life="${i}"]`);
@@ -339,8 +379,8 @@ const { mkdirSync } = require("node:fs");
       return [style.fontSize, style.paddingTop, style.paddingLeft];
     }), ["19px", "14px", "22px"]);
     await go(8);
-    assert.equal(await page.locator("#slide-8 .lead").innerText(), "Keep the decision and its reason.\nShare them with the next team.");
-    const loopLabels = ["AI proposes a design", "The team reviews it", "Save the lesson", "Update the guidance", "Check the next result"];
+    assert.equal(await page.locator("#slide-8 .lead").innerText(), "Conserva la decisión y su razón.\nCompártelas con el siguiente equipo.");
+    const loopLabels = ["La IA propone", "El equipo revisa", "Guardar la lección", "Actualizar la guía", "Revisar el resultado"];
     for (let i = 0; i < 6; i++) {
       await click('[data-action="loop"]');
       assert((await page.locator("#loop-status").innerText()).startsWith(loopLabels[i % 5]));
@@ -349,27 +389,27 @@ const { mkdirSync } = require("node:fs");
     assert.equal(await page.locator(".loop-node.current").count(), 1);
     assert.equal(await page.locator("#loop-reading [aria-current='step']").count(), 1);
     await go(14);
-    assert.deepEqual(await page.locator(".thirty-days h3").allTextContents(), ["Map", "Select", "Define", "Pilot"]);
-    assert.deepEqual(await page.locator(".pilot-decision strong").allTextContents(), ["Adopt", "Revise", "Stop"]);
+    assert.deepEqual(await page.locator(".thirty-days h3").allTextContents(), ["Mapear", "Elegir", "Definir", "Piloto"]);
+    assert.deepEqual(await page.locator(".pilot-decision strong").allTextContents(), ["Adoptar", "Revisar", "Detener"]);
     assert.equal(await page.locator("#slide-14 button, .thirty-days b").count(), 0);
-    assert.match(await page.locator("#notes-content").innerText(), /At team level[\s\S]*At product-area level[\s\S]*At enterprise level/);
+    assert.match(await page.locator("#notes-content").innerText(), /En el equipo[\s\S]*En el área de producto[\s\S]*En la empresa/);
     await go(15);
     assert.equal(await page.locator("#progress").evaluate(node => node.value / node.max), 1);
     assert.equal(await page.locator("#slide-15 button").count(), 0);
-    assert.equal(await page.locator("#next").getAttribute("aria-label"), "Reveal the answer");
+    assert.equal(await page.locator("#next").getAttribute("aria-label"), "Mostrar la respuesta");
     assert.equal(await page.locator("#next").getAttribute("aria-expanded"), "false");
     await click("#next");
     assert.equal(await slideNumber(), "slide-15");
     assert(await page.locator("#closing-reveal").isVisible());
     assert.equal(await page.locator("#next").getAttribute("aria-expanded"), "true");
-    assert.equal(await page.locator("#next").getAttribute("aria-label"), "Next slide: Q&A");
+    assert.equal(await page.locator("#next").getAttribute("aria-label"), "Siguiente diapositiva: Preguntas");
     assert(await page.locator("#next").evaluate(node => node === document.activeElement));
-    assert.match(await page.locator("#announcement").innerText(), /DesignOps.*infrastructure/);
+    assert.match(await page.locator("#announcement").innerText(), /DesignOps.*infraestructura/);
     await checkLayout(false, "closing");
     await capture("review-closing-next");
     await click("#next");
     await page.waitForFunction(() => !document.getElementById("slide-16").hidden);
-    assert.equal(await page.locator("#next").getAttribute("aria-label"), "Next slide");
+    assert.equal(await page.locator("#next").getAttribute("aria-label"), "Siguiente diapositiva");
     assert.equal(await page.locator("#next").getAttribute("aria-expanded"), null);
     for (const key of ["ArrowRight", "ArrowDown", "PageDown", "Space", "Enter"]) {
       await go(15);
@@ -400,8 +440,8 @@ const { mkdirSync } = require("node:fs");
     await go(16);
     assert(!(await page.locator("#progress").isVisible()));
     assert.equal(await page.locator(".qa-links a").count(), 7);
-    assert.equal(await page.locator("#slide-16 .lead").count(), 0, "Selected Q&A prompt stays removed");
-    assert.equal(await page.locator("#title-16").innerText(), "Let's\ntalk.");
+    assert.equal(await page.locator("#slide-16 .lead").count(), 0, "Selected Preguntas prompt stays removed");
+    assert.equal(await page.locator("#title-16").innerText(), "Hablemos.");
     for (let number = 17; number <= 23; number++) {
       await click(`.qa-links a[href="#${number}"]`);
       await page.waitForFunction(number => !document.getElementById(`slide-${number}`).hidden, number);
@@ -438,7 +478,7 @@ const { mkdirSync } = require("node:fs");
       await go(6);
       await click('[data-action="pair-reset"]');
       for (let i = 0; i < 3; i++) await click('[data-action="pair"]');
-      await page.locator("#workspace-name").fill("Saved review");
+      await page.locator("#workspace-name").fill("Revisión guardada");
       await click("#prototype-form button");
       const beforeStage = await reviewState();
       await click("#notes-toggle");
@@ -463,13 +503,16 @@ const { mkdirSync } = require("node:fs");
         ];
         const scale = document.getElementById("stage").getBoundingClientRect().width / 1600;
         // Hidden slides still inherit stage type; omit deliberately reduced review-only details.
-        return selectors.map(selector => ({
-          selector,
-          pixels: Math.min(...[...document.querySelectorAll(selector)].filter(node => !node.classList.contains("review-detail")).map(node => parseFloat(getComputedStyle(node).fontSize) * scale))
-        }));
+        return selectors.map(selector => {
+          const nodes = [...document.querySelectorAll(selector)].filter(node => !node.classList.contains("review-detail"));
+          return { selector, count: nodes.length, pixels: Math.min(...nodes.map(node => parseFloat(getComputedStyle(node).fontSize) * scale)) };
+        });
       });
       stageFonts.push({ viewport: size, minimum: Math.min(...fontResults.map(item => item.pixels)) });
-      for (const result of fontResults) assert(result.pixels >= 18.4 - 0.001, `${size.width}: ${result.selector} projects at ${result.pixels}px`);
+      for (const result of fontResults) {
+        assert(result.count > 0 && Number.isFinite(result.pixels), `Font selector must match: ${result.selector}`);
+        assert(result.pixels >= 18.4 - 0.001, `${size.width}: ${result.selector} projects at ${result.pixels}px`);
+      }
       for (let i = 1; i <= 23; i++) {
         await go(i);
         await checkLayout(false, `stage-${size.width}/slide-${i}`);
@@ -494,9 +537,9 @@ const { mkdirSync } = require("node:fs");
             }
             return issues;
           });
-          assert.deepEqual(diagramIssues, [], `Stage diagram labels at ${size.width}`);
+          if (diagramIssues.length) failures.push({ label: `stage-${size.width}/network`, issues: diagramIssues });
         }
-        if ([3, 4, 5, 8, 10, 12, 13, 14, 22, 23].includes(i)) await capture(`stage-${size.width}-slide-${i}`);
+        await capture(`stage-${size.width}-slide-${i}`);
       }
       await go(2);
       await page.locator("#presentation").focus();
@@ -541,7 +584,7 @@ const { mkdirSync } = require("node:fs");
           await page.locator("#workspace-name").fill("<b>Team</b>" + "W".repeat(38));
           await page.keyboard.press("Tab");
           await page.keyboard.press("Enter");
-          assert.match(await page.locator("#prototype-result").innerText(), /Nothing was saved or sent/);
+          assert.match(await page.locator("#prototype-result").innerText(), /No se ha guardado ni enviado nada/);
           assert.equal(await page.locator("#prototype-result b").count(), 0);
           await page.keyboard.press("ArrowRight");
           assert.equal(await page.locator("#prototype-scene").getAttribute("data-step"), "3", "Form buttons keep native keys");
@@ -603,9 +646,18 @@ const { mkdirSync } = require("node:fs");
     await page.keyboard.press("s");
     await page.evaluate(() => Object.defineProperty(document, "fullscreenEnabled", { configurable: true, value: false }));
     await page.keyboard.press("f");
-    assert.match(await page.locator("#stage-exit").innerText(), /Fullscreen unavailable/);
+    assert.match(await page.locator("#stage-exit").innerText(), /Pantalla completa no disponible/);
     await page.evaluate(() => { delete document.fullscreenEnabled; });
     await page.keyboard.press("Escape");
+    const errorCount = errors.length;
+    await page.evaluate(async () => {
+      const original = document.documentElement.requestFullscreen;
+      document.documentElement.requestFullscreen = async () => { throw new Error("Permission denied"); };
+      try { await fullscreen(); } finally { document.documentElement.requestFullscreen = original; }
+    });
+    assert.equal(await page.locator("#announcement").innerText(), "No se pudo activar la pantalla completa. Puedes continuar en Escenario dentro de la ventana.");
+    assert.equal(errors.length, errorCount + 1, "Fullscreen failures are logged, not silently ignored");
+    assert.match(errors.pop(), /Error al solicitar pantalla completa/);
     await click("#fullscreen");
     await page.waitForFunction(() => Boolean(document.fullscreenElement));
     await click("#fullscreen");
@@ -668,6 +720,7 @@ const { mkdirSync } = require("node:fs");
     await page.emulateMedia({ media: "print" });
     assert.equal(await page.locator(".slide:visible").count(), 23);
     assert.deepEqual(errors, [], "No browser errors or remote requests");
+    if (failures.length) console.error(JSON.stringify(failures, null, 2));
     assert.deepEqual(failures, [], "Layout and legibility regressions");
     console.log("PASS: all 23 slides, six review viewports plus two stage sizes, every demo state, preserved review edits, stage builds/back/exit/fullscreen, form key isolation, review restoration, projected type/overflow, reading/notes, accessibility, metrics, backup links, and print.");
   } finally {

@@ -1,471 +1,447 @@
-# DesignOps as AI Infrastructure
+# DesignOps como infraestructura de IA
 
-Governance, systems, and the new role of DesignOps in product teams
+Gobernanza, sistemas y el nuevo papel de DesignOps en los equipos de producto
 
-Keynote v2. Primary source: the supplied **DesignOps as AI Infrastructure Presentation Outline ConfOps 2026**, including the original brief, frameworks, review notes, and FAQ. The conference revision keeps the interactive onboarding demo instead of a redundant conflict overview, keeps Govern / Context / Evaluate central, and moves the detailed stack and lifecycle to backups. V2 simplifies slides 5, 6, and 14 in both Stage and review: three questions, one demo surface per step, and a four-part pilot timeline. Supporting operational detail remains in these notes. There are 15 keynote slides, Q&A, and 7 backups (23 slides total).
+**Conferencia v2 · edición independiente en español estándar.** Fuente principal: el esquema facilitado «DesignOps as AI Infrastructure Presentation Outline ConfOps 2026», con el encargo, marcos, observaciones de revisión y preguntas frecuentes. Esta edición conserva el relato y el diseño de V2; no añade evidencia externa ni integraciones. Son 15 diapositivas principales, Preguntas y 7 apoyos: 23 en total.
 
-Generated from the presenter-note data in app.js. To update this document after editing those notes: `node check.mjs --write-notes`.
+Documento generado a partir de app.js. Edita allí las notas y ejecuta `node check.mjs --write-notes`; no edites este archivo generado.
 
-## Pacing
+## Ritmo
 
-| Act | Slides | Window | Duration |
+| Acto | Diapositivas | Intervalo | Duración |
 | --- | --- | --- | --- |
-| I: Introduction and the acceleration paradox | 1–4 | 0:00–3:00 | 3 minutes |
-| II: The fix and the saved lesson | 5–8 | 3:00–10:40 | 7 minutes 40 seconds |
-| III: Make the operating model repeatable | 9–14 | 10:40–18:30 | 7 minutes 50 seconds |
-| IV: Closing | 15 | 18:30–20:00 | 1 minute 30 seconds |
-| Q&A | 16, with optional 17–23 | 20:00–30:00 | 10 minutes |
+| I: Presentación y paradoja de la aceleración | 1–4 | 0:00–3:00 | 3 minutos |
+| II: La solución y la lección guardada | 5–8 | 3:00–10:40 | 7 minutos 40 segundos |
+| III: Hacer repetible el modelo operativo | 9–14 | 10:40–18:30 | 7 minutos 50 segundos |
+| IV: Cierre | 15 | 18:30–20:00 | 1 minuto 30 segundos |
+| Preguntas | 16, con 17–23 opcionales | 20:00–30:00 | 10 minutos |
 
-The timing is a rehearsal guide, not an auto-advance schedule. Keep on-screen examples short enough to preserve discussion time. Read the full notes before presenting; the slides intentionally omit nuance that belongs in the spoken narrative.
+El tiempo orienta el ensayo; no hay avance automático. Sobre mí ocupa 1:30–2:00 (30 segundos); resume el papel del ponente sin leer toda la biografía. El cierre conserva 90 segundos. La demo de seis pasos ocupa 4:00–8:30 (270 segundos). Los 90 segundos de la antigua diapositiva de resumen se dedican a pausas: 30 para comprender la necesidad bloqueada, 30 para validación y teclado, y 30 para responsable y revisión de la lección. No se añaden pasos ni ejercicios. Total: 1.200 segundos de conferencia y 600 de preguntas.
 
-Slide 3's text-only **About me** introduction occupies **1:30–2:00 (30 seconds)**. It presents Julian Alvarado's supplied biography in English and personal interests, with Xbox Design Ops as the role line. Summarize the role and connection to the talk instead of reading the full biography aloud. The closing on slide 15 is shortened from 120 to **90 seconds**, preserving the 20-minute slot.
+## Presentación en Escenario y ensayo
 
-Slide 6's retained six-step demo runs from **4:00–8:30**, for **270 seconds**. The removed overview's 90 seconds are reassigned to explanation and interaction pauses: 30 seconds for the audience to absorb the blocked need, 30 seconds for form validation/keyboard feedback, and 30 seconds to review the saved lesson's owner and review trigger. No steps or exercises were added. The keynote remains exactly 1,200 seconds; Q&A remains 600 seconds.
+Pulsa **Escenario** o **S** antes de compartir. Se cierran notas y diálogos y se ocultan las herramientas de revisión. **F** activa pantalla completa, opcional. Solo hay tres secuencias: diapositiva 4, fragmentación y alineación; 6, seis pasos; 15, pregunta y respuesta. Los demás diagramas se muestran completos.
 
-## Stage delivery and rehearsal
+**Derecha / Abajo / Av Pág / Espacio** avanza un paso antes de cambiar de diapositiva. **Izquierda / Arriba / Re Pág** retrocede un paso antes de volver. Los pasos se conservan al regresar. Inicio / Fin salta a primera / última. Tab entra en el formulario; las teclas del campo y del botón conservan su comportamiento. Sal con Tab para navegar. Escape, S, **Salir de Escenario · Esc** o salir de pantalla completa devuelve a revisión sin cambiar la diapositiva. Escape funciona dentro del formulario; N/G no abren notas ni índice en Escenario.
 
-Choose **Stage** or press **S** before sharing. Stage closes notes and dialogs and hides review chrome; **F** optionally enters fullscreen. Only three moments need builds: slide 4 fragmentation → alignment, slide 6's six existing demo steps, and slide 15 question → answer. All other diagrams are resolved static summaries. This changes delivery, not slide order or timing.
+Al salir se restauran pasos de revisión, datos y respuesta del formulario, selecciones y preferencia de Lectura. Notas y diálogos permanecen cerrados. Entrar otra vez inicia un ensayo nuevo. Usa solo datos ficticios: el formulario no guarda ni envía nada.
 
-**Right / Down / Page Down / Space** advances a build before the next slide; **Left / Up / Page Up** reverses a build before the previous slide. Builds are retained when revisiting slides. Home / End jumps to the first / last slide. Tab into the demo to type and submit; input and form-button keys retain native behavior. Tab beyond the form to resume slide keys. **Escape**, **S**, **Exit stage · Esc**, or leaving native fullscreen returns to review on the current slide. Escape works from the form too. N/G cannot open notes or the index on stage.
+Escenario mantiene la jerarquía para proyección: texto principal y diagramas comprobados desde 18,4 px efectivos a 1280×720 y 24,15 px a 1680×1080. Etiquetas de referencia, números y metadatos pueden ser menores. Usa Lectura para consultar en pantallas pequeñas. Las diapositivas 5, 6 y 14 conservan la limpieza de V2: tres preguntas, una superficie por paso y cuatro resultados de piloto. Las bases operativas y responsabilidades por ámbito permanecen en estas notas.
 
-Review's build states, form value/feedback, diagram selections, and manual Reading preference are restored on exit; notes and dialogs remain closed. Entering Stage again starts a new rehearsal of the three build moments. Use the form only for fictional input: it sends and saves nothing.
+## Decisión ilustrativa y límites
 
-Stage prioritizes projected labels: the tested decision-bearing body and diagram text is at least 18.4px effective at 1280×720, and 24.15px at 1680×1080. The framework shows only its three questions; the documentation model shows four mappings and a concise scoped rule. Framework examples and team/product-area/enterprise operating guidance remain in these notes. Seven transformations, detailed rule provenance, lifecycle panels, and all ten measures remain in review and these notes. Act/topic labels, counters, decorative ordinals, and reference-appendix metadata remain smaller. Reading view remains the appropriate reference-reading surface on small screens.
+El alta individual es un supuesto, no un hallazgo de investigación. El formulario exige inicialmente una invitación; diseño e ingeniería la trasladan después del alta. DesignOps conserva la razón, fuente, alcance, versión, responsable de producto y revisión tras el piloto o cambio del encargo. El siguiente formulario cumple el requisito, pero aún requiere comprobar accesibilidad y resultados con usuarios.
 
-## Illustrative decision trail
+Todos los estados, decisiones y atribuciones a IA están preparados de antemano. No son IA en directo, políticas reales ni mejoras medidas. La validación con usuarios está pendiente. Los expertos de producto siguen decidiendo si la guía y cada resultado son adecuados.
 
-The assumed user needs to start a workspace alone. The first generated form requires a teammate email and blocks that task. Designer and engineer move invitations after setup. DesignOps saves the lesson and its reason in shared guidance, scoped to solo workspace setup, with a product lead owner and review after the pilot or a source change. The next proposed form meets that requirement, but still needs accessibility and user-outcome review.
+## 1. La IA nos acelera. ¿Quién mantiene la coherencia?
 
-The example, AI-produced forms, team decisions, and ownership are all pre-authored and illustrative. They are not research findings, actual organizational policy, live model output, or measured improvements. User validation is pending. DesignOps keeps the user's need, the team's decision, its reason, and its owner together in shared guidance. Product experts still decide whether the guidance and each new result are appropriate.
+**Tiempo:** 0:00–0:45 (45 segundos)
 
-## 1. AI makes us faster. Who keeps us coherent?
+**Idea clave:** La IA aumenta la capacidad de producción. DesignOps mantiene la coherencia de la organización.
 
-**Timing:** 0:00–0:45 (45 seconds)
+**Concepto visual:** Una fuente común se ramifica en formas distintas: más producción, menos uniformidad.
 
-**Takeaway:** AI increases production capacity. DesignOps maintains organizational coherence.
+**Interacción / revelado:** Un breve trazado inicial presenta el motivo del flujo. Las diapositivas nunca avanzan solas.
 
-**Visual concept:** One shared source fans out into different shapes: more output, less consistency.
+**Notas del ponente:** Abre con la tensión, no con una lista de herramientas. Los equipos generan encargos, conceptos, resúmenes de investigación y código más rápido. Crear más deprisa no garantiza una experiencia coherente para el cliente. Seguiremos un problema ilustrativo de incorporación: un formulario funcional impide empezar a una persona que está sola. Veremos cómo el equipo lo corrige, guarda la lección en una guía compartida y comprueba el siguiente resultado. Después plantearemos qué debe mantener DesignOps alrededor de ese trabajo y cómo un piloto acotado podría comprobar su valor. El ejemplo está preparado de antemano; no informa de resultados de una organización.
 
-**Interaction / reveal:** A short entrance trace establishes the flow motif. No automatic slide advancement.
-
-**Speaker notes:** Open with the tension, not a list of tools. Teams can generate briefs, concepts, research summaries, and code faster than before. Faster creation does not automatically produce a coherent customer experience. We will follow one illustrative onboarding problem: a working form stops someone from starting alone. Watch how the team fixes it, saves the lesson in shared guidance, and checks the next result. Then ask what DesignOps must maintain around that work and how a bounded pilot could test its value. The example is pre-authored, not a report of organizational results.
-
-**Transition:** What changes when production becomes distributed across the whole team?
+**Transición:** ¿Qué cambia cuando la producción se distribuye por todo el equipo?
 
 ---
 
-## 2. Everyone can generate
+## 2. Todos podemos generar
 
-**Timing:** 0:45–1:30 (45 seconds)
+**Tiempo:** 0:45–1:30 (45 segundos)
 
-**Takeaway:** Distributed generation moves the bottleneck toward alignment, quality, and governance.
+**Idea clave:** La generación distribuida desplaza el cuello de botella hacia la alineación, la calidad y la gobernanza.
 
-**Visual concept:** Four parallel lanes: product, research, design, and engineering.
+**Concepto visual:** Cuatro carriles paralelos: producto, investigación, diseño e ingeniería.
 
-**Interaction / reveal:** Stage: all four roles are resolved and visible. Review: Distribute generation activates one role per click; a fifth click resets the example.
+**Interacción / revelado:** Escenario: las cuatro funciones están visibles y completas. Revisión: Distribuir la generación activa una función por clic; el quinto clic reinicia el ejemplo.
 
-**Speaker notes:** Each discipline gains production capacity. PMs generate briefs and hypotheses; researchers synthesize evidence; designers explore concepts; engineers generate components and tests. Generation is more distributed, but expertise is not interchangeable. The same language model can interpret the product differently in each lane. These are categories of assistance, not guarantees that outputs are accurate. Ask the room to imagine all four lanes producing simultaneously. The new constraint is agreeing on what to produce, what fits the system, and who evaluates it.
+**Notas del ponente:** Cada disciplina gana capacidad de producción. Producto genera encargos e hipótesis; investigación sintetiza evidencia; diseño explora conceptos; ingeniería genera componentes y pruebas. La generación se distribuye, pero la experiencia no es intercambiable. El mismo modelo de lenguaje puede interpretar el producto de forma distinta en cada carril. Son categorías de apoyo, no garantías de exactitud. Invita al público a imaginar los cuatro carriles produciendo a la vez. El nuevo límite es acordar qué producir, qué encaja en el sistema y quién lo evalúa.
 
-**Transition:** Before we look at that variation, a brief introduction to the person sharing this perspective.
-
----
-
-## 3. About me
-
-**Timing:** 1:30–2:00 (30 seconds)
-
-**Takeaway:** Introduce yourself and the perspective you bring to DesignOps and AI.
-
-**Visual concept:** A text-only introduction to Julian Alvarado, Xbox Design Ops, with his supplied biography and personal interests.
-
-**Interaction / reveal:** No builds or controls.
-
-**Speaker notes:** Julian Alvarado is a Senior Program Manager and Design Operations leader at Microsoft, helping Xbox Design scale through better systems, clearer processes, and responsible AI. He works across teams and studios to improve how designers plan, learn, and deliver—building resilient, people-centered creative organizations. Outside work, Julian is a daily CrossFit devotee and a “forever blue belt” in jiu-jitsu. A retired musician, he still loves live shows and enjoys drawing at home. Currently in rotation: Radiohead, Lenny Kravitz, Oasis, and Crosses. This is a concise English version of the speaker's supplied biography, with his supplied personal interests. Keep the spoken introduction to 30 seconds by summarizing your role and its connection to this talk rather than reading the full biography aloud. The keynote remains 1,200 seconds, the demo remains 270 seconds, closing remains 90 seconds, and Q&A remains 600 seconds.
-
-**Transition:** Now return to the shared challenge: without common conditions, more output can create more variation.
+**Transición:** Antes de explorar esa variación, una breve presentación de quien comparte esta perspectiva.
 
 ---
 
-## 4. The acceleration paradox
+## 3. Sobre mí
 
-**Timing:** 2:00–3:00 (60 seconds)
+**Tiempo:** 1:30–2:00 (30 segundos)
 
-**Takeaway:** Shared context and evaluation govern variation without eliminating useful exploration.
+**Idea clave:** Preséntate y explica la perspectiva que aportas sobre DesignOps e IA.
 
-**Visual concept:** A causal chain sits above diverging output branches; a shared standards band aligns their treatment.
+**Concepto visual:** Presentación solo con texto de Julian Alvarado, Xbox Design Ops, con la biografía y los intereses personales facilitados.
 
-**Interaction / reveal:** Stage moment 1: the complete chain starts fragmented. Right advances to shared standards, then to the next slide; Left reverses it. Review retains the four-stage trace and alignment toggle.
+**Interacción / revelado:** Sin pasos ni controles.
 
-**Speaker notes:** Read the chain deliberately: more output, more variation, more decisions, more opportunities for inconsistency. This is a conceptual mechanism, not a statistical forecast. Variation is useful during exploration; unmanaged variation becomes expensive at system boundaries. Examples include conflicting terminology, duplicated research, inaccessible patterns, undocumented AI decisions, and design-system drift. The source's '17 versions of a pattern' is rhetorical, not a measured statistic, so we do not chart it. Apply shared context and evaluation: options can remain different while obeying common constraints. A green state is an explanatory metaphor, not a claim that standards automatically eliminate defects.
+**Notas del ponente:** Julian Alvarado es gerente sénior de programas y líder de operaciones de diseño en Microsoft. Ayuda a Xbox Design a crecer con mejores sistemas, procesos más claros y un uso responsable de la IA. Colabora con equipos y estudios para mejorar cómo los diseñadores planifican, aprenden y entregan su trabajo, y construir organizaciones creativas resilientes y centradas en las personas. Fuera del trabajo, practica CrossFit a diario y se define como un «eterno cinturón azul» de jiu-jitsu. Músico retirado, sigue disfrutando de los conciertos y de dibujar en casa. Ahora escucha a Radiohead, Lenny Kravitz, Oasis y Crosses. Esta edición en español conserva la biografía y los intereses facilitados por el ponente. Resume tu función y su relación con la charla en 30 segundos, sin leer la biografía completa. La conferencia conserva 1.200 segundos; la demo, 270; el cierre, 90; y las preguntas, 600.
 
-**Transition:** Three questions help us govern that variation. Then we will apply them to one workspace-setup example.
-
----
-
-## 5. Govern. Context. Evaluate.
-
-**Timing:** 3:00–4:00 (60 seconds)
-
-**Takeaway:** GOVERN: what can AI do? CONTEXT: what does it know? EVALUATE: what does good look like?
-
-**Visual concept:** Three strong words and three questions, with space to absorb each distinction.
-
-**Interaction / reveal:** Static in Stage and review. The solo-setup examples and operating foundations are spoken from these notes, not competing lists on screen.
-
-**Speaker notes:** Use one model throughout. The next demo follows someone starting a workspace alone; use that need to ground the three questions. Govern asks what AI may do and who can accept it: in this illustrative case, no real contact data enters the demo, a designer and engineer review, and a product lead owns the scoped rule. Context carries the solo-setup brief, the requirement to make invitations optional, and the supported form pattern together. Evaluate asks whether setup completes without email, while checking labels, errors, focus, and feasibility. Meeting that requirement alone cannot establish user value. These concrete checks sit within broader tool, data, privacy, risk, and release boundaries. Stewardship grounds governance; systems carry context; enablement puts all three into practice through workflows, prompts, rubrics, and training. This is the core model, not another framework to memorize.
-
-**Transition:** Now follow those three responsibilities through the actual decision.
+**Transición:** Volvamos al reto común: sin condiciones compartidas, producir más puede generar más variación.
 
 ---
 
-## 6. Fix the form. Keep the lesson.
+## 4. La paradoja de la aceleración
 
-**Timing:** 4:00–8:30 (270 seconds)
+**Tiempo:** 2:00–3:00 (60 segundos)
 
-**Takeaway:** The team fixes the form. DesignOps makes the lesson available to the next team and its AI tools.
+**Idea clave:** El contexto y la evaluación compartidos gobiernan la variación sin eliminar la exploración útil.
 
-**Visual concept:** One current-step label and one large example surface. Six states follow the user's need, AI mistake, team decision, working form, saved lesson, and next review.
+**Concepto visual:** Una cadena causal sobre ramas divergentes; una banda de criterios comunes alinea su tratamiento.
 
-**Interaction / reveal:** Stage moment 2: Right advances the six steps, then the slide; Left reverses them. At step 4, Tab into the name-only form; native field and submit keys never advance the deck. Tab out to resume. Review keeps its buttons; Reset clears the form in either mode.
+**Interacción / revelado:** Momento de Escenario 1: la cadena completa empieza fragmentada. Derecha aplica criterios comunes y después avanza; Izquierda los retira. Revisión conserva los cuatro pasos y el control de alineación.
 
-**Speaker notes:** Introduce the fictional example here: someone wants to start a workspace alone. Allow 270 seconds (4 minutes 30 seconds) for the six existing steps. The 90 seconds recovered from the removed overview slide are explanation and interaction pauses, not extra UI or an exercise: 30 seconds to let the audience absorb the blocked user need, 30 seconds for the form's validation and keyboard feedback, and 30 seconds to review why the saved lesson needs an owner and a review trigger. First: the person wants to start a workspace alone. Second: the AI-produced form requires someone else's email, so the person gets stuck. Third: the designer and engineer move invitations after workspace creation. Fourth: try the revised local form with just a workspace name; show validation and keyboard feedback if useful. Nothing is saved or sent. Fifth: explain why fixing one screen is not enough. DesignOps records the lesson with the original solo-setup assumption, the team's reason, a product lead owner, and a review date after the pilot. Put that guidance where the next team and its AI tools can use it. Sixth: the next proposed form allows setup without inviting anyone. A reviewer verifies that behavior and still checks accessibility and user outcomes. Do not claim the rule guarantees future results or that this is a real user study. Every state is pre-authored and illustrative. The distinction is simple: product experts decide what the experience should do; DesignOps helps that decision survive beyond this one screen.
+**Notas del ponente:** Lee la cadena con calma: más producción, más variación, más decisiones, más oportunidades de incoherencia. Es un mecanismo conceptual, no una previsión estadística. La variación ayuda a explorar; sin gestión, encarece las conexiones entre sistemas. Puede generar términos contradictorios, investigación duplicada, patrones inaccesibles, decisiones de IA sin documentar y desviaciones del sistema de diseño. Las «17 versiones de un patrón» de la fuente son un recurso retórico, no una estadística; por eso no se representan como datos. Aplica contexto y evaluación comunes: las opciones pueden ser distintas y respetar los mismos límites. El verde es una metáfora explicativa, no una garantía de que los criterios eliminen todos los defectos.
 
-**Transition:** The person can now finish setup alone. What else must the team check?
-
----
-
-## 7. When generation is cheap, evaluation is strategic
-
-**Timing:** 8:30–9:30 (60 seconds)
-
-**Takeaway:** Automated checks support accountable human judgment; they cannot prove design quality.
-
-**Visual concept:** Multiple candidates flow through a six-part rubric to an explicit human decision.
-
-**Interaction / reveal:** Static flow; no fabricated AI score or automatic approval.
-
-**Speaker notes:** Walk through the rubric: approved components and tokens; identified user needs without unnecessary complexity; accessibility; brand and content principles; product strategy; and engineering feasibility. Domain experts define the standard together. Automated checks can detect specific violations, but a passing score cannot establish usefulness, coherence, or user success. A human reviewer accepts, revises, or rejects and records reasons. Keep evidence linked to decisions. Designers increasingly direct and evaluate alternatives, but craft and domain expertise remain indispensable.
-
-**Transition:** Once we record the judgment, how do we keep it useful rather than bury it in an archive?
+**Transición:** Tres preguntas nos ayudan a gobernar esa variación. Las aplicaremos al alta de un espacio de trabajo.
 
 ---
 
-## 8. The organizational learning loop
+## 5. Gobernar. Contexto. Evaluar.
 
-**Timing:** 9:30–10:40 (70 seconds)
+**Tiempo:** 3:00–4:00 (60 segundos)
 
-**Takeaway:** Keep the decision and its reason in shared guidance, then check the next result.
+**Idea clave:** GOBERNAR: ¿qué puede hacer la IA? CONTEXTO: ¿qué sabe? EVALUAR: ¿qué consideramos aceptable?
 
-**Visual concept:** A complete five-stage learning sequence on stage; a closed loop around organizational memory in review.
+**Concepto visual:** Tres palabras con peso y tres preguntas, con espacio para asimilar cada diferencia.
 
-**Interaction / reveal:** Stage: the whole sequence is static, ending with re-evaluation. Review: Follow one learning cycle highlights a stage per click, wrapping back to generation.
+**Interacción / revelado:** Estática en Escenario y revisión. Los ejemplos del alta individual y las bases operativas se explican con estas notas, sin listas que compitan en pantalla.
 
-**Speaker notes:** Return to the decision to offer invitations after setup. Do not save only the corrected form: save why the team changed it and who will review that guidance. Follow the same sequence on screen: AI proposes a design using shared guidance; the team checks it against the user's need; they save the lesson, including the decision, reason, and owner; DesignOps updates the guidance available to the next team and its AI tools; a reviewer checks the next result. The example does not prove that one field is always best or that guidance automatically prevents mistakes. It is fictional and user validation is pending. If the solo-setup assumption changes, the product lead revisits the guidance. DesignOps keeps its source, version, access, and review date current. Retire lessons that no longer apply instead of turning every observation into universal policy.
+**Notas del ponente:** Mantén un único modelo. La demo sigue a alguien que crea un espacio de trabajo por su cuenta: usa esa necesidad para concretar las tres preguntas. Gobernar pregunta qué puede hacer la IA y quién puede aceptarlo: en este caso ilustrativo no se introducen datos reales de contacto; diseño e ingeniería revisan; y un líder de producto responde por la regla acotada. El contexto reúne el encargo de alta individual, las invitaciones opcionales y el patrón de formulario admitido. Evaluar pregunta si el alta termina sin correo, y comprueba etiquetas, errores, foco y viabilidad. Cumplir ese requisito no demuestra valor para el usuario. Estas pruebas se enmarcan en límites de herramientas, datos, privacidad, riesgo y lanzamiento. La gestión responsable sostiene la gobernanza; los sistemas transportan el contexto; la habilitación pone las tres funciones en práctica mediante flujos, prompts, criterios y formación. Este es el modelo central, no otro marco que memorizar.
 
-**Transition:** That maintenance is recognizable DesignOps work—with a wider scope.
-
----
-
-## 9. The role expands; the fundamentals remain
-
-**Timing:** 10:40–11:30 (50 seconds)
-
-**Takeaway:** People, process, and systems remain the foundations; their scope expands.
-
-**Visual concept:** The familiar foundations sit beside six traditional-to-expanded responsibilities.
-
-**Interaction / reveal:** Static comparison; the expanded scope is immediately visible.
-
-**Speaker notes:** Refresh the fundamentals. DesignOps improves the conditions for effective design through people, process, and systems. Staffing, onboarding, rituals, tooling, and collaboration do not disappear. AI broadens the reach: from enabling designers to enabling the product ecosystem; from documenting procedures to making knowledge usable at the moment of generation; from efficiency alone to quality and outcomes. This is a scope expansion, not a dismissal of traditional operations or a mandate to reorganize.
-
-**Transition:** A useful metaphor for that expanded role is the control plane.
+**Transición:** Sigamos esas tres responsabilidades a través de una decisión concreta.
 
 ---
 
-## 10. DesignOps as the control plane
+## 6. Corrige el formulario. Conserva lo aprendido.
 
-**Timing:** 11:30–12:20 (50 seconds)
+**Tiempo:** 4:00–8:30 (270 segundos)
 
-**Takeaway:** DesignOps connects distributed actors through shared rules, context, and evaluation.
+**Idea clave:** El equipo corrige el formulario. DesignOps pone lo aprendido a disposición del siguiente equipo y sus herramientas de IA.
 
-**Visual concept:** Five AI-enabled actors connect through a common operating layer.
+**Concepto visual:** Un indicador del paso actual y una superficie grande. Seis estados: necesidad, error de IA, decisión del equipo, formulario funcional, lección guardada y siguiente revisión.
 
-**Interaction / reveal:** Stage: the original hub-and-spoke diagram stays fully connected, with larger labels and no extra control. Review: Connect the control plane toggles the network links. Reading view retains the accessible text summary.
+**Interacción / revelado:** Momento de Escenario 2: Derecha avanza los seis pasos y luego la diapositiva; Izquierda retrocede. En el paso 4, Tab entra en el formulario de nombre; las teclas del campo y del envío no avanzan la charla. Sal con Tab para volver a navegar. Revisión conserva sus botones; Reiniciar borra el formulario en ambos modos.
 
-**Speaker notes:** The control plane metaphor distinguishes defining the conditions of work from doing everyone's work. PM, research, design, prototyping, and engineering keep their domain responsibilities. DesignOps coordinates reusable context, risk-based guardrails, evaluation criteria, ownership, and enablement. It should not become a central approval queue. Security, Legal, IT, platform teams, and domain experts remain essential partners. Clear boundaries can allow teams to move without repeatedly asking permission for known-safe tasks.
+**Notas del ponente:** Presenta aquí el ejemplo ficticio: una persona quiere crear un espacio de trabajo sola. Dedica 270 segundos, 4 minutos y 30 segundos, a los seis pasos. Los 90 segundos recuperados de la diapositiva de resumen eliminada son pausas de explicación e interacción, no más interfaz ni un ejercicio: 30 segundos para comprender la necesidad bloqueada, 30 para la validación y la respuesta del teclado, y 30 para explicar por qué la lección necesita responsable y condición de revisión. Primero: la persona quiere empezar sola. Segundo: el formulario atribuido a la IA exige el correo de otra persona y la bloquea. Tercero: diseño e ingeniería trasladan las invitaciones a después de crear el espacio. Cuarto: prueba el formulario local revisado solo con un nombre; muestra validación y teclado si resulta útil. No se guarda ni envía nada. Quinto: corregir una pantalla no basta. DesignOps registra la lección con el supuesto de alta individual, la razón del equipo, un líder de producto responsable y revisión tras el piloto. La guía debe estar donde el siguiente equipo y sus herramientas de IA puedan usarla. Sexto: el siguiente formulario propuesto permite el alta sin invitar a nadie. Una persona verifica ese comportamiento y sigue revisando accesibilidad y resultados para usuarios. No afirmes que la regla garantiza resultados futuros ni que es un estudio real. Todos los estados son ilustrativos y están preparados de antemano. Los expertos de producto deciden cómo debe funcionar la experiencia; DesignOps ayuda a que la decisión sobreviva a esta pantalla.
 
-**Transition:** Shared guidance also changes how work moves between these people.
-
----
-
-## 11. Before AI / a proposed AI-enabled journey
-
-**Timing:** 12:20–13:20 (60 seconds)
-
-**Takeaway:** Pilot collaborative production and use any capacity gained for customer learning.
-
-**Visual concept:** Two journeys connect customer need to customer feedback: sequential handoffs and a collaborative experiment loop.
-
-**Interaction / reveal:** Stage: both journeys are fully resolved and static. Review can animate sequencing versus collaboration; motion is illustrative, not measured duration.
-
-**Speaker notes:** The before journey is a deliberately simplified pattern, not a claim that all pre-AI teams worked sequentially. Research informs a brief, design produces mocks, engineering builds, and customers finally respond. The proposed alternative starts with Mission, Milestones, and Metrics—the source's MMM. PM, research, design, and engineering share intent; specification, concepts, feasibility, and HTML/CSS prototypes evolve together. Releases can become experiments that inform another iteration. AI may reduce production effort, but review, integration, and dependency costs still count. Do not promise a one-week release or universal acceleration. Measure elapsed production time, person-hours, waiting time, customer validation, and experimentation cadence. The animation contrasts sequencing, not numeric speed. A prototype is not a production release; user evidence remains necessary.
-
-**Transition:** Shared guidance can start with documentation the team already has.
+**Transición:** La persona ya puede completar el alta sola. ¿Qué más debe comprobar el equipo?
 
 ---
 
-## 12. From documentation to executable standards
+## 7. Cuando generar cuesta poco, evaluar es estratégico
 
-**Timing:** 13:20–14:35 (75 seconds)
+**Tiempo:** 8:30–9:30 (60 segundos)
 
-**Takeaway:** Turn domain knowledge into versioned, reusable context and verifiable standards.
+**Idea clave:** Las pruebas automáticas apoyan el juicio humano responsable; no demuestran la calidad del diseño.
 
-**Visual concept:** Four documentation transformations and the saved solo-setup lesson on stage; all seven transformations and the full shared guidance in review.
+**Concepto visual:** Varios candidatos atraviesan seis criterios hasta llegar a una decisión humana explícita.
 
-**Interaction / reveal:** Static transformation. Stage emphasizes lesson, reason, owner/version, review date, and pending user evidence; review and notes retain the full detail.
+**Interacción / revelado:** Flujo estático, sin puntuaciones de IA inventadas ni aprobación automática.
 
-**Speaker notes:** Use the saved solo-setup lesson as the concrete artifact rather than narrating seven new frameworks. Its source is explicitly assumed, the requirement and decision are readable, its scope is solo setup, and its owner and review trigger are visible. User evidence remains pending. The seven transformations preserve the broader source material: guidelines to machine-readable rules, design systems to consumable systems, templates to canonical prompts, documentation to context packages, critique to rubrics, SOPs to human–AI workflows, efficiency measures to speed plus quality and outcomes. A YAML-like package does not enforce itself. Integration, permissions, validation, and human review are still required. DesignOps maintains the package; domain experts author, approve, and revisit its validity.
+**Notas del ponente:** Recorre los criterios: componentes y tokens aprobados; necesidades identificadas sin complejidad innecesaria; accesibilidad; principios de marca y contenido; estrategia de producto; y viabilidad técnica. Los expertos definen juntos el estándar. Las pruebas automáticas detectan incumplimientos concretos, pero superarlas no demuestra utilidad, coherencia ni éxito del usuario. Una persona acepta, revisa o rechaza y registra sus razones. Mantén la evidencia vinculada a las decisiones. Los diseñadores dirigen y evalúan cada vez más alternativas, pero el oficio y el conocimiento del área siguen siendo indispensables.
 
-**Transition:** Maintaining this guidance costs time. How would we know the workflow is worth adopting?
-
----
-
-## 13. Measure speed and coherence
-
-**Timing:** 14:35–16:15 (100 seconds)
-
-**Takeaway:** Evaluate the whole workflow: speed, review cost, quality, coherence, and customer outcomes.
-
-**Visual concept:** Four large comparisons show baseline, pilot, and change together: concept time, production rate, review effort, and system compliance.
-
-**Interaction / reveal:** Stage: four static, paired comparisons. Review: All 10 measures opens the complete comparison dialog; Definitions links to the measurement backup, also accessible from Q&A.
-
-**Speaker notes:** These are approximate comparison values informed by the presenter's early experimentation, not exact measurements, benchmarks, or a forecast. The presenter supplied design production-rate ranges; the other nine comparisons remain unchanged from the earlier synthetic values, reported as close to informal observations. Underlying records, sample sizes, and methods have not been supplied, so do not claim validated results or causal ROI. Baseline to pilot: median brief-to-validated-concept time 9 to 6 days; design production rate ~3–4/wk to ~1–2/wk, accepted artifacts / in a team with 8w E2E Cycle. The change ≈−2/wk is a midpoint estimate: 1.5 minus 3.5, not an independently observed change. Weekly rate and the team's eight-week end-to-end cycle are different concepts; do not divide by eight or infer an eight-week total. Production rate decreases, so do not frame it as an improvement. Production effort is 18 to 11 hours per concept; review effort 4 to 6 hours; rework 35% to 24%; applicable system checks passed 78% to 90%; open accessibility/quality defects 6 to 4 per 10 screens; design-to-code divergence 28% to 18%; experiments 1 to 2 per week; approved-context reuse 25% to 70%. Review effort rises in this comparison: faster generation does not imply less review. Leading/process measures signal behavior and readiness; outcome measures test delivered workflow results. System compliance is a leading quality signal, not proof of user benefit. Both sets of approximate values and their changes appear together, without competing bar scales. Percentage measures use percentage-point changes, not relative percentages. Match work scope, staffing, artifact definition, and evaluation criteria; include sample sizes and dispersion before presenting a validated comparison. Track customer task success separately. No customer outcome data is supplied.
-
-**Transition:** Use those measures in one bounded pilot before scaling the operating model.
+**Transición:** Una vez registrado el juicio, ¿cómo lo mantenemos útil sin enterrarlo en un archivo?
 
 ---
 
-## 14. Your first 30 days
+## 8. El ciclo de aprendizaje de la organización
 
-**Timing:** 16:15–18:30 (135 seconds)
+**Tiempo:** 9:30–10:40 (70 segundos)
 
-**Takeaway:** A 30-day pilot can begin at team, product-area, or enterprise level with clear ownership.
+**Idea clave:** Conserva la decisión y su razón en una guía común; después comprueba el siguiente resultado.
 
-**Visual concept:** Four verbs on a timeline, one concrete output per week, and an explicit adopt / revise / stop decision.
+**Concepto visual:** En Escenario, secuencia completa de cinco pasos; en revisión, ciclo cerrado alrededor de la memoria de la organización.
 
-**Interaction / reveal:** Static in Stage and review, with no extra presenter clicks. Team, product-area, and enterprise ownership guidance remains in these notes.
+**Interacción / revelado:** Escenario: secuencia estática completa que termina en reevaluación. Revisión: Seguir un ciclo de aprendizaje destaca una etapa por clic y vuelve a la generación.
 
-**Speaker notes:** Days 1–7: map actual AI use and identify inconsistency, quality gaps, and risk. Days 8–14: select one useful, bounded workflow and package relevant organizational knowledge. Days 15–21: name decision owners, define human checkpoints and evaluation criteria, and establish a baseline before the pilot. Days 22–30: run comparable work and decide whether to adopt, revise, or stop. Avoid sensitive or high-risk first pilots unless the appropriate governance is already in place. At team level, design and engineering leads can own a single workflow with DesignOps facilitation. At product-area level, PM, research, design, engineering, and a system owner coordinate shared patterns and cross-team outcomes. At enterprise level, federated product ownership works within Security, Legal, IT, and platform guardrails. DesignOps connects the altitudes; it does not unilaterally own policy or product decisions. Calendar windows are a suggested starting plan, not promised delivery dates.
+**Notas del ponente:** Retoma la decisión de ofrecer invitaciones después del alta. No guardes solo el formulario corregido: guarda por qué cambió y quién revisará la guía. Sigue la secuencia: la IA propone con la guía común; el equipo revisa según la necesidad del usuario; guarda la decisión, la razón y el responsable; DesignOps actualiza la guía para el siguiente equipo y su IA; una persona comprueba el siguiente resultado. El ejemplo no demuestra que un único campo sea siempre mejor ni que la guía evite errores automáticamente. Es ficticio y la validación con usuarios está pendiente. Si cambia el supuesto del alta individual, el líder de producto revisa la guía. DesignOps mantiene fuente, versión, acceso y fecha de revisión. Retira las lecciones que ya no sirven, en vez de convertir cada observación en una política universal.
 
-**Transition:** Return to the central question: if AI participates in design, who designs its operating environment?
-
----
-
-## 15. Who designs the system?
-
-**Timing:** 18:30–20:00 (90 seconds)
-
-**Takeaway:** AI doesn't eliminate the need for DesignOps. It makes DesignOps infrastructure.
-
-**Visual concept:** A quiet question, a deliberate answer reveal, and three concluding statements.
-
-**Interaction / reveal:** Stage moment 3: pause, press Right to reveal DesignOps, then Right for Q&A. Left hides the answer before moving back. In review, Next or a forward navigation key reveals the answer first, then advances to Q&A. Reading view keeps its native scroll keys. There is no separate reveal button.
-
-**Speaker notes:** Use 90 seconds for the closing; its former 30 seconds now introduce the speaker on slide 3. Slow down. Read the question and leave space: if AI becomes part of how we design products, who designs the system in which AI operates? Reveal DesignOps. This is not a territorial claim that one function owns all AI. It is an invitation for DesignOps to connect domain expertise, governance, knowledge, workflows, and evaluation. AI creates capacity. Systems create consistency. Stewardship creates trust. DesignOps connects all three. The future is not merely managing work around design; it is designing the infrastructure through which humans and AI create products together. The practical challenge is one workflow, a baseline, a maintained context package, named human checkpoints, and evidence that quality has not been traded for speed. End on the thesis and pause rather than adding more tools.
-
-**Transition:** Let's talk. Where is your team generating faster than it can maintain coherence?
+**Transición:** Ese mantenimiento es trabajo reconocible de DesignOps, con un alcance mayor.
 
 ---
 
-## 16. Let's talk — Q&A
+## 9. El papel se amplía; las bases permanecen
 
-**Timing:** 10-minute Q&A, outside keynote timing
+**Tiempo:** 10:40–11:30 (50 segundos)
 
-**Takeaway:** Use the conversation to connect the operating model to the audience's constraints.
+**Idea clave:** Personas, procesos y sistemas siguen siendo las bases; lo que se amplía es su alcance.
 
-**Visual concept:** Seven backup topics and LinkedIn/GitHub contact links beside the Q&A invitation.
+**Concepto visual:** Las bases conocidas junto a seis responsabilidades tradicionales y su ampliación.
 
-**Interaction / reveal:** Select a topic to open a backup; each backup links back to Q&A.
+**Interacción / revelado:** Comparación estática; el alcance ampliado está visible desde el principio.
 
-**Speaker notes:** Reserve ten minutes for discussion. Invite specific workflow examples rather than abstract predictions. Seven backups cover governance ownership, the evolving role, AI-ready design systems, model-agnostic workflows, measurement, the full context stack, and the product lifecycle. The stack and lifecycle are supporting lenses, not new models the audience needs to memorize during the keynote. If asked whether this is just AI governance, return to the decision trail: governance is one component; context, workflows, evaluation, and enablement make it useful in the product ecosystem. If asked what to do tomorrow: map, identify, codify, standardize, and measure.
+**Notas del ponente:** Recuerda los fundamentos. DesignOps mejora las condiciones para diseñar mediante personas, procesos y sistemas. Dotación, incorporación, rituales, herramientas y colaboración no desaparecen. La IA amplía el alcance: de apoyar a diseñadores a apoyar al ecosistema de producto; de documentar procedimientos a hacer utilizable el conocimiento al generar; de medir solo eficiencia a medir calidad y resultados. Es una ampliación, no un rechazo de las operaciones tradicionales ni un mandato de reorganización.
 
-**Transition:** Choose a backup only when it helps answer a question.
-
----
-
-## 17. Backup: shared governance ownership
-
-**Timing:** Optional backup, outside keynote timing
-
-**Takeaway:** Risk boundaries, access, operating-model design, and product judgment need explicit owners.
-
-**Visual concept:** Four ownership domains; none claims the entire AI operating model.
-
-**Interaction / reveal:** Back to Q&A returns to the topic menu.
-
-**Speaker notes:** Security and Legal establish organizational risk boundaries; IT and platform teams manage technology and access. DesignOps translates policy into useful workflow conditions with domain experts. Product, research, design, and engineering own their decisions and release quality. Good governance removes repetitive ambiguity through approved paths, risk-based human checkpoints, escalation, and documented exceptions. Bad governance creates an unnecessary approval queue. Specific accountabilities must be agreed locally; the slide is a discussion model, not a universal RACI.
-
-**Transition:** Return to Q&A.
+**Transición:** Una metáfora útil para ese papel ampliado es el plano de control.
 
 ---
 
-## 18. Backup: operating-environment architect, not AI factory
+## 10. DesignOps como plano de control
 
-**Timing:** Optional backup, outside keynote timing
+**Tiempo:** 11:30–12:20 (50 segundos)
 
-**Takeaway:** DesignOps architects the operating environment rather than building everyone's AI tools.
+**Idea clave:** DesignOps conecta actores distribuidos mediante reglas, contexto y evaluación compartidos.
 
-**Visual concept:** Six responsibilities and five kinds of product work.
+**Concepto visual:** Cinco actores que usan IA se conectan mediante una capa operativa común.
 
-**Interaction / reveal:** Back to Q&A returns to the topic menu.
+**Interacción / revelado:** Escenario: se conserva el diagrama radial, conectado, con etiquetas grandes y sin otro control. Revisión: Conectar el plano de control activa o desactiva enlaces. Lectura conserva el resumen textual accesible.
 
-**Speaker notes:** The emerging role includes governance, design intelligence, workflow architecture with subject-matter experts, quality systems, enablement, and measurement. 'AI Ops Systems Architect' is a possible direction, not a prescribed title. The source's prototyper, builder, sweeper, grower, and maintainer archetypes are retained as kinds of work: prototype, build, simplify/improve, grow, and maintain. Their risk and evaluation needs differ. The source includes an unverified external attribution; this deck makes no authorship claim for the archetypes. Do not turn this model into a requirement for DesignOps to become an AI engineering team.
+**Notas del ponente:** El plano de control distingue definir las condiciones del trabajo de hacer el trabajo de todos. Producto, investigación, diseño, prototipado e ingeniería conservan sus responsabilidades. DesignOps coordina contexto reutilizable, límites según el riesgo, criterios de evaluación, responsables y habilitación. No debe convertirse en una cola central de aprobaciones. Seguridad, Legal, TI, plataformas y expertos siguen siendo socios esenciales. Unos límites claros permiten avanzar sin pedir repetidamente permiso para tareas conocidas y seguras.
 
-**Transition:** Return to Q&A.
-
----
-
-## 19. Backup: an AI-ready design system
-
-**Timing:** Optional backup, outside keynote timing
-
-**Takeaway:** AI readiness adds meaning, constraints, examples, and evaluation to an existing design system.
-
-**Visual concept:** Foundation plus machine-consumable reasoning, with shared-context ownership underneath.
-
-**Interaction / reveal:** Back to Q&A returns to the topic menu.
-
-**Speaker notes:** Keep tokens, components, patterns, and guidelines. Add semantic metadata, usage rules, examples, constraints, accessibility requirements, relationships, code equivalents, and evaluation criteria. Start with one pattern rather than translating the whole library. Include valid and invalid examples, allowed data access, provenance, version, freshness, and a named owner. AI-readable does not mean publicly accessible, indiscriminately retrievable, or automatically correct. Research and existing product experiences remain important context beyond the component library.
-
-**Transition:** Return to Q&A.
+**Transición:** La guía compartida también cambia cómo pasa el trabajo entre estas personas.
 
 ---
 
-## 20. Backup: model-agnostic workflows and canonical prompts
+## 11. Antes de la IA / una propuesta de trabajo con IA
 
-**Timing:** Optional backup, outside keynote timing
+**Tiempo:** 12:20–13:20 (60 segundos)
 
-**Takeaway:** Build durable knowledge, rules, workflows, and evaluation around replaceable models.
+**Idea clave:** Prueba la producción colaborativa y dedica la capacidad que ganes a aprender del cliente.
 
-**Visual concept:** Shared knowledge, rules, workflows, and evaluation remain as models change.
+**Concepto visual:** Dos recorridos unen necesidad y opinión del cliente: traspasos secuenciales y un ciclo colaborativo de experimentación.
 
-**Interaction / reveal:** Back to Q&A returns to the topic menu.
+**Interacción / revelado:** Escenario: ambos recorridos completos y estáticos. Revisión permite animar secuencia y colaboración; el movimiento es ilustrativo, no una duración medida.
 
-**Speaker notes:** Models and tools will change. Preserve the institutional knowledge, permissions, workflows, examples, and acceptance criteria that define how the organization operates. Model-agnostic does not mean zero adaptation: tool capabilities, context limits, privacy controls, and behavior differ. Re-run a representative evaluation set before a model switch. Canonical prompts are co-authored by domain experts and governed as versioned knowledge artifacts, not selected by DesignOps alone. Standardization creates an informed starting point, not a ban on exploration.
+**Notas del ponente:** El recorrido anterior es una simplificación deliberada, no una afirmación de que todos los equipos trabajaban secuencialmente antes de la IA. La investigación informa el encargo, diseño crea propuestas, ingeniería construye y el cliente responde al final. La alternativa propuesta parte de Misión, Metas y Métricas: las MMM de la fuente, donde Metas recoge los hitos. PM, investigación, diseño e ingeniería comparten propósito; especificación, conceptos, viabilidad y prototipos HTML/CSS evolucionan juntos. Los lanzamientos pueden convertirse en experimentos que informan otra iteración. La IA puede reducir producción, pero siguen contando revisión, integración y dependencias. No prometas lanzamientos en una semana ni aceleración universal. Mide tiempo transcurrido, horas-persona, esperas, validación con clientes y ritmo experimental. La animación compara secuencias, no velocidades numéricas. Un prototipo no es un lanzamiento de producción; la evidencia de usuarios sigue siendo necesaria.
 
-**Transition:** Return to Q&A.
-
----
-
-## 21. Backup: metric definitions and measurement plan
-
-**Timing:** Optional backup, outside keynote timing
-
-**Takeaway:** Operational definitions, comparable work, and evidence qualifications matter more than dashboard polish.
-
-**Visual concept:** Definitions, units, and collection methods beside a concise pilot protocol.
-
-**Interaction / reveal:** Dashboard returns to slide 13 with baseline and pilot visible together. Q&A returns to the topic menu.
-
-**Speaker notes:** Define 'validated concept' before collecting time: reviewer acceptance plus the agreed user-evidence threshold. Count accepted artifacts, not raw generations. Separate elapsed days from person-hours, production from review, and quality defects from severity. Define denominators for compliance, rework, reuse, and divergence. Complete experiments include a recorded learning decision, not just a release. Compare similar tasks and staffing; document sample size, spread, exclusions, and complexity. Use approved data collection with appropriate privacy controls. Review effort may increase while total effort falls, but a small observational pilot cannot establish causality. Set decision thresholds in advance and track customer task success or other relevant product outcomes. Dashboard values are preliminary approximations informed by the presenter's early experimentation, not validated measurements.
-
-**Transition:** Return to the dashboard or Q&A.
+**Transición:** La guía compartida puede partir de la documentación que el equipo ya tiene.
 
 ---
 
-## 22. Backup: Organizational memory is the advantage
+## 12. De la documentación a los criterios ejecutables
 
-**Timing:** Optional backup, outside keynote timing
+**Tiempo:** 13:20–14:35 (75 segundos)
 
-**Takeaway:** The differentiator is governed organizational knowledge, not loyalty to a model.
+**Idea clave:** Convierte el conocimiento del área en contexto versionado y reutilizable, con criterios verificables.
 
-**Visual concept:** A five-layer AI design stack, built from models to connecting DesignOps infrastructure.
+**Concepto visual:** Escenario muestra cuatro transformaciones y la lección del alta individual; revisión conserva las siete y la guía completa.
 
-**Interaction / reveal:** Stage: all five layers are resolved. Review: Build the context stack adds one highlighted layer per click; after all layers it resets to the foundation.
+**Interacción / revelado:** Transformación estática. Escenario destaca lección, razón, responsable y versión, revisión y evidencia pendiente; revisión y notas conservan el detalle.
 
-**Speaker notes:** Models provide capabilities. Agents and tools connect capabilities to tasks. Organizational context provides what models do not inherently know: tokens, components, research, product knowledge, brand, accessibility, terminology, workflows, repositories, PRs, existing experiences, and past decisions. Stewardship adds guardrails, exclusions, evaluation, and human checkpoints. DesignOps connects the layers. The diagram is a responsibility model, not a mandatory software architecture. Do not feed all organizational data into a model: permissions, privacy, provenance, source quality, freshness, and ownership determine what context may be used. A design system is one part of organizational memory, not the whole memory.
+**Notas del ponente:** Usa la lección del alta individual como artefacto concreto, no como excusa para narrar siete marcos nuevos. Su fuente se declara como supuesto; requisito y decisión se pueden leer; alcance, responsable y condición de revisión son visibles. La evidencia de usuarios sigue pendiente. Las siete transformaciones conservan la fuente: guías a reglas legibles por máquinas; sistemas de diseño a sistemas utilizables por IA; plantillas a prompts canónicos; documentación a paquetes de contexto; crítica a criterios de evaluación; procedimientos a flujos de personas e IA; métricas de eficiencia a rapidez, calidad y resultados. Un paquete parecido a YAML no se aplica solo. Siguen siendo necesarias integración, permisos, validación y revisión humana. DesignOps mantiene el paquete; los expertos lo redactan, aprueban y revisan su validez.
 
-**Transition:** Return to Q&A, or use the lifecycle backup to locate these responsibilities in the work.
+**Transición:** Mantener esta guía cuesta tiempo. ¿Cómo sabríamos si conviene adoptar el flujo?
 
 ---
 
-## 23. Backup: DesignOps across the product lifecycle
+## 13. Medir rapidez y coherencia
 
-**Timing:** Optional backup, outside keynote timing
+**Tiempo:** 14:35–16:15 (100 segundos)
 
-**Takeaway:** Governance, context, and evaluation follow the work across every lifecycle stage.
+**Idea clave:** Evalúa el flujo completo: rapidez, coste de revisión, calidad, coherencia y resultados para el cliente.
 
-**Visual concept:** Five lifecycle phases above a persistent shared-infrastructure rail; detailed per-phase panels remain in review.
+**Concepto visual:** Cuatro comparaciones grandes muestran referencia, piloto y cambio: tiempo de concepto, ritmo de producción, revisión y cumplimiento.
 
-**Interaction / reveal:** Stage: a static five-phase overview. Review: select a phase to reveal AI assistance, DesignOps infrastructure, and the human checkpoint.
+**Interacción / revelado:** Escenario: cuatro comparaciones estáticas. Revisión: Las 10 métricas abre el detalle; Definiciones enlaza al apoyo de medición, también accesible desde Preguntas.
 
-**Speaker notes:** Discover: AI can cluster and retrieve research; DesignOps supports consent, traceability, source quality, and reusable knowledge. Define: AI can draft briefs and identify gaps; shared brief structure, product vocabulary, and source context keep framing grounded. Design: alternatives and prototypes rely on system rules, prompts, accessibility constraints, and critique. Build: generated code needs component metadata, supported patterns, tokens, validation, and paired review. Measure: AI can summarize observations, but people interpret outcomes, record caveats, and decide what should change. Do not turn this into a tool catalog. Discuss one or two phases with the persistent rail; use review mode only when the detailed panels are needed.
+**Notas del ponente:** Son valores aproximados orientados por la experimentación inicial del ponente, no mediciones exactas, referencias de rendimiento ni previsiones. El ponente facilitó los rangos de producción de diseño; las otras nueve comparaciones conservan los valores sintéticos anteriores, que considera próximos a observaciones informales. No se han facilitado registros, tamaños de muestra ni métodos: no afirmes resultados validados ni retorno causal de la inversión. De referencia a piloto: mediana del encargo al concepto validado, 9 a 6 días; producción de diseño, ~3–4/sem a ~1–2/sem, entregables aceptados en un equipo con ciclo integral de 8 semanas. El cambio ≈−2/sem es una estimación por puntos medios: 1,5 menos 3,5, no un cambio observado de forma independiente. La tasa semanal y el ciclo integral de ocho semanas son conceptos distintos: no dividas por ocho ni infieras un total de ocho semanas. La producción disminuye: no la presentes como mejora. Esfuerzo de producción, 18 a 11 horas por concepto; revisión, 4 a 6 horas; retrabajo, 35% a 24%; comprobaciones aplicables superadas, 78% a 90%; defectos abiertos de accesibilidad/calidad, 6 a 4 por 10 pantallas; divergencia diseño-código, 28% a 18%; experimentos, 1 a 2 por semana; reutilización de contexto aprobado, 25% a 70%. La revisión aumenta: generar más rápido no implica revisar menos. Los indicadores anticipados y de proceso reflejan comportamiento y preparación; los de resultado comprueban lo que entrega el flujo. El cumplimiento es una señal anticipada de calidad, no prueba de beneficio para el usuario. Se muestran ambos valores aproximados y sus cambios, sin escalas de barras que compitan. Los porcentajes cambian en puntos porcentuales, no en porcentajes relativos. Iguala alcance, dotación, definición de entregable y criterios; incluye muestra y dispersión antes de presentar una comparación validada. Registra por separado el éxito del cliente en sus tareas. No se aportan datos de resultados de clientes.
 
-**Transition:** Return to Q&A. The keynote's onboarding decision is one example at the design-to-build boundary.
+**Transición:** Usa esas métricas en un piloto acotado antes de ampliar el modelo operativo.
 
-## Early experimentation: approximate values
+---
 
-**Early experimentation · approximate values.** The presenter reports that the comparison values are close to informal experimentation data and has supplied approximate ranges for design production rate. They are approximations, not exact measurements, benchmarks, validated results, causal evidence, or a forecast. Baseline, pilot, and change are shown together. Changes use each metric's units; percentage measures use percentage points.
+## 14. Tus primeros 30 días
 
-| Metric | Baseline | Pilot | Change | Unit / context | Category |
+**Tiempo:** 16:15–18:30 (135 segundos)
+
+**Idea clave:** Un piloto de 30 días puede empezar en un equipo, un área de producto o la empresa, con responsables claros.
+
+**Concepto visual:** Cuatro verbos en una línea temporal, un resultado por semana y una decisión explícita: adoptar, revisar o detener.
+
+**Interacción / revelado:** Estática en Escenario y revisión, sin clics extra. Estas notas conservan las responsabilidades de equipo, área de producto y empresa.
+
+**Notas del ponente:** Días 1–7: mapea el uso real de IA e identifica incoherencias, carencias de calidad y riesgos. Días 8–14: elige un flujo útil y acotado y reúne conocimiento pertinente. Días 15–21: nombra responsables, define controles humanos y criterios de evaluación, y establece la referencia antes del piloto. Días 22–30: realiza trabajo comparable y decide adoptar, revisar o detener. Evita empezar con datos sensibles o alto riesgo salvo que exista la gobernanza adecuada. En el equipo, los líderes de diseño e ingeniería pueden asumir un flujo con facilitación de DesignOps. En el área de producto, PM, investigación, diseño, ingeniería y un responsable del sistema coordinan patrones y resultados entre equipos. En la empresa, la responsabilidad federada de producto opera dentro de los límites de Seguridad, Legal, TI y plataformas. DesignOps conecta esos ámbitos; no decide unilateralmente políticas ni producto. Las ventanas de calendario son una propuesta inicial, no fechas de entrega prometidas.
+
+**Transición:** Volvamos a la pregunta central: si la IA participa en el diseño, ¿quién diseña su entorno operativo?
+
+---
+
+## 15. ¿Quién diseña el sistema?
+
+**Tiempo:** 18:30–20:00 (90 segundos)
+
+**Idea clave:** La IA no elimina la necesidad de DesignOps. Lo convierte en infraestructura.
+
+**Concepto visual:** Una pregunta con espacio, una respuesta que se revela con intención y tres afirmaciones finales.
+
+**Interacción / revelado:** Momento de Escenario 3: pausa, Derecha revela DesignOps y otra Derecha abre Preguntas. Izquierda oculta la respuesta antes de retroceder. En revisión, Siguiente o una tecla de avance revela primero y luego avanza. Lectura conserva sus teclas de desplazamiento. No hay botón aparte para revelar.
+
+**Notas del ponente:** Dedica 90 segundos al cierre; los otros 30 presentan al ponente en la diapositiva 3. Baja el ritmo. Lee la pregunta y deja espacio: si la IA forma parte de cómo diseñamos productos, ¿quién diseña el sistema en el que opera? Revela DesignOps. No es una reivindicación de control de toda la IA por una función. Es una invitación a conectar experiencia, gobernanza, conocimiento, flujos y evaluación. La IA crea capacidad. Los sistemas crean coherencia. La gestión responsable crea confianza. DesignOps conecta las tres. El futuro no consiste solo en gestionar trabajo alrededor del diseño, sino en diseñar la infraestructura con la que personas e IA crean productos juntas. El reto práctico es un flujo, una referencia, un paquete de contexto mantenido, controles humanos con responsable y evidencia de que no se ha cambiado calidad por rapidez. Termina con la tesis y una pausa, no con más herramientas.
+
+**Transición:** Conversemos. ¿Dónde genera tu equipo más rápido de lo que puede mantener la coherencia?
+
+---
+
+## 16. Conversemos — Preguntas
+
+**Tiempo:** 10 minutos de preguntas, fuera del tiempo de conferencia
+
+**Idea clave:** Usa la conversación para relacionar el modelo operativo con las limitaciones del público.
+
+**Concepto visual:** Siete temas de apoyo y enlaces a LinkedIn y GitHub junto a la invitación a conversar.
+
+**Interacción / revelado:** Selecciona un tema para abrir su apoyo; todos permiten volver a Preguntas.
+
+**Notas del ponente:** Reserva diez minutos para conversar. Invita a compartir flujos concretos, no predicciones abstractas. Los siete apoyos cubren responsables de gobernanza, evolución del papel, sistemas preparados para IA, flujos independientes del modelo, medición, capas de contexto y ciclo de vida. Las capas y el ciclo son perspectivas complementarias, no nuevos modelos que memorizar durante la charla. Si preguntan si esto es solo gobernanza de IA, vuelve a la decisión: la gobernanza es una parte; contexto, flujos, evaluación y habilitación la hacen útil en el ecosistema de producto. Si preguntan qué hacer mañana: mapear, identificar, codificar, estandarizar y medir.
+
+**Transición:** Abre un apoyo solo si ayuda a responder una pregunta.
+
+---
+
+## 17. Apoyo: responsabilidad compartida de gobernanza
+
+**Tiempo:** Apoyo opcional, fuera del tiempo de conferencia
+
+**Idea clave:** Los límites de riesgo, el acceso, el modelo operativo y el criterio de producto necesitan responsables explícitos.
+
+**Concepto visual:** Cuatro ámbitos de responsabilidad; ninguno reclama todo el modelo operativo de IA.
+
+**Interacción / revelado:** Volver a Preguntas regresa al menú de temas.
+
+**Notas del ponente:** Seguridad y Legal fijan los límites de riesgo; TI y plataformas gestionan tecnología y acceso. DesignOps traduce políticas en condiciones útiles de trabajo con los expertos. Producto, investigación, diseño e ingeniería responden por sus decisiones y la calidad del lanzamiento. Una buena gobernanza elimina ambigüedades repetitivas mediante rutas aprobadas, controles humanos según el riesgo, escalado y excepciones documentadas. Una mala gobernanza crea una cola innecesaria de aprobaciones. Las responsabilidades concretas se acuerdan localmente: la diapositiva es un modelo de conversación, no una matriz RACI universal.
+
+**Transición:** Volver a Preguntas.
+
+---
+
+## 18. Apoyo: diseñar el entorno, no ser una fábrica de IA
+
+**Tiempo:** Apoyo opcional, fuera del tiempo de conferencia
+
+**Idea clave:** DesignOps diseña el entorno operativo, en lugar de construir las herramientas de IA de todos.
+
+**Concepto visual:** Seis responsabilidades y cinco tipos de trabajo de producto.
+
+**Interacción / revelado:** Volver a Preguntas regresa al menú de temas.
+
+**Notas del ponente:** El papel emergente incluye gobernanza, inteligencia de diseño, arquitectura de flujos con expertos, sistemas de calidad, habilitación y medición. «Arquitecto de sistemas operativos de IA» es una posible dirección, no un cargo prescrito. Los arquetipos de la fuente se conservan como tipos de trabajo: prototipar, construir, simplificar o mejorar, crecer y mantener. Sus riesgos y necesidades de evaluación son distintos. La fuente incluye una atribución externa no verificada; esta edición no atribuye autoría a esos arquetipos. No conviertas el modelo en la obligación de que DesignOps sea un equipo de ingeniería de IA.
+
+**Transición:** Volver a Preguntas.
+
+---
+
+## 19. Apoyo: un sistema de diseño preparado para IA
+
+**Tiempo:** Apoyo opcional, fuera del tiempo de conferencia
+
+**Idea clave:** Prepararse para IA añade significado, límites, ejemplos y evaluación al sistema de diseño existente.
+
+**Concepto visual:** Las bases más razones utilizables por máquinas, con responsabilidad sobre el contexto común.
+
+**Interacción / revelado:** Volver a Preguntas regresa al menú de temas.
+
+**Notas del ponente:** Conserva tokens, componentes, patrones y guías. Añade metadatos semánticos, reglas de uso, ejemplos, límites, requisitos de accesibilidad, relaciones, equivalentes de código y criterios. Empieza por un patrón, no por toda la biblioteca. Incluye ejemplos válidos e inválidos, acceso permitido a datos, origen, versión, vigencia y responsable. Legible para IA no significa público, recuperable sin restricciones ni automáticamente correcto. La investigación y las experiencias existentes siguen siendo contexto importante más allá de la biblioteca.
+
+**Transición:** Volver a Preguntas.
+
+---
+
+## 20. Apoyo: flujos independientes del modelo y prompts canónicos
+
+**Tiempo:** Apoyo opcional, fuera del tiempo de conferencia
+
+**Idea clave:** Construye conocimiento, reglas, flujos y evaluación duraderos alrededor de modelos sustituibles.
+
+**Concepto visual:** Conocimiento, reglas, flujos y evaluación compartidos permanecen mientras cambian los modelos.
+
+**Interacción / revelado:** Volver a Preguntas regresa al menú de temas.
+
+**Notas del ponente:** Modelos y herramientas cambiarán. Conserva conocimiento institucional, permisos, flujos, ejemplos y criterios de aceptación. Independencia del modelo no significa adaptación cero: capacidades, límites de contexto, privacidad y comportamiento varían. Repite una evaluación representativa antes de cambiar de modelo. Los expertos crean juntos los prompts canónicos y los gestionan como conocimiento versionado; DesignOps no los elige en solitario. Estandarizar ofrece un punto de partida informado, no prohíbe explorar.
+
+**Transición:** Volver a Preguntas.
+
+---
+
+## 21. Apoyo: definiciones de métricas y plan de medición
+
+**Tiempo:** Apoyo opcional, fuera del tiempo de conferencia
+
+**Idea clave:** Definiciones operativas, trabajo comparable y límites de la evidencia importan más que el acabado del panel.
+
+**Concepto visual:** Definiciones, unidades y métodos junto a un protocolo breve de piloto.
+
+**Interacción / revelado:** Panel vuelve a la diapositiva 13 con referencia y piloto juntos. Preguntas regresa al menú de temas.
+
+**Notas del ponente:** Define «concepto validado» antes de medir tiempo: aceptación del revisor más el umbral acordado de evidencia de usuarios. Cuenta entregables aceptados, no generaciones en bruto. Separa días transcurridos de horas-persona, producción de revisión, y número de defectos de gravedad. Define denominadores de cumplimiento, retrabajo, reutilización y divergencia. Un experimento completo registra aprendizaje y decisión, no solo un lanzamiento. Compara tareas y dotaciones similares; documenta muestra, dispersión, exclusiones y complejidad. Usa recogida de datos aprobada con controles de privacidad. La revisión puede aumentar aunque baje el esfuerzo total, pero un pequeño piloto observacional no establece causalidad. Fija umbrales de decisión antes de ver resultados y mide éxito en tareas u otros resultados relevantes. Los valores del panel son aproximaciones preliminares de experimentación inicial, no mediciones validadas.
+
+**Transición:** Volver al panel o a Preguntas.
+
+---
+
+## 22. Apoyo: la ventaja es la memoria de la organización
+
+**Tiempo:** Apoyo opcional, fuera del tiempo de conferencia
+
+**Idea clave:** La diferencia está en el conocimiento de la organización bien gobernado, no en la fidelidad a un modelo.
+
+**Concepto visual:** Cinco capas de diseño con IA, desde modelos hasta la infraestructura conectiva de DesignOps.
+
+**Interacción / revelado:** Escenario: las cinco capas completas. Revisión: Construir las capas de contexto destaca una capa por clic; al completarlas vuelve a la base.
+
+**Notas del ponente:** Los modelos aportan capacidades. Agentes y herramientas las conectan con tareas. El contexto aporta lo que el modelo no sabe por sí mismo: tokens, componentes, investigación, producto, marca, accesibilidad, terminología, flujos, repositorios, solicitudes de cambios, experiencias y decisiones previas. La gestión responsable añade límites, exclusiones, evaluación y controles humanos. DesignOps conecta las capas. Es un modelo de responsabilidades, no una arquitectura de software obligatoria. No introduzcas todos los datos de la organización en un modelo: permisos, privacidad, origen, calidad de fuentes, vigencia y responsables determinan qué contexto puede usarse. El sistema de diseño es parte de la memoria, no toda ella.
+
+**Transición:** Volver a Preguntas o usar el apoyo del ciclo de vida para situar las responsabilidades.
+
+---
+
+## 23. Apoyo: DesignOps en el ciclo de vida del producto
+
+**Tiempo:** Apoyo opcional, fuera del tiempo de conferencia
+
+**Idea clave:** Gobernanza, contexto y evaluación acompañan al trabajo en cada etapa del ciclo de vida.
+
+**Concepto visual:** Cinco fases sobre una banda persistente de infraestructura común; revisión conserva los paneles por fase.
+
+**Interacción / revelado:** Escenario: resumen estático de cinco fases. Revisión: selecciona una para ver aporte de IA, infraestructura de DesignOps y control humano.
+
+**Notas del ponente:** Descubrir: la IA puede agrupar y recuperar investigación; DesignOps apoya consentimiento, trazabilidad, calidad de fuentes y reutilización. Definir: la IA redacta encargos e identifica carencias; estructura, vocabulario y fuentes compartidas fundamentan el problema. Diseñar: alternativas y prototipos se apoyan en reglas, prompts, accesibilidad y crítica. Construir: el código generado necesita metadatos de componentes, patrones admitidos, tokens, validación y revisión conjunta. Medir: la IA resume observaciones, pero las personas interpretan resultados, registran límites y deciden qué cambiar. No lo conviertas en un catálogo de herramientas. Comenta una o dos fases con la banda persistente; usa revisión solo si necesitas el detalle.
+
+**Transición:** Volver a Preguntas. La decisión de alta de la charla ejemplifica la conexión entre diseño y construcción.
+
+## Experimentación inicial: valores aproximados
+
+**Experimentación inicial · valores aproximados.** No son mediciones exactas, resultados validados, referencias de rendimiento, evidencia causal ni previsiones. Se muestran referencia, piloto y cambio juntos; los porcentajes usan puntos porcentuales.
+
+| Métrica | Referencia | Piloto | Cambio | Unidad / contexto | Categoría |
 | --- | --- | --- | --- | --- | --- |
-| Production effort | 18h | 11h | −7 h | person-hours / accepted concept | Leading / process |
-| Review effort | 4h | 6h | +2 h | person-hours / accepted concept | Leading / process |
-| Design-system compliance | 78% | 90% | +12 pp | % applicable checks passed | Leading / process |
-| Approved-context reuse | 25% | 70% | +45 pp | % artifacts citing approved context | Leading / process |
-| Experimentation cadence | 1/wk | 2/wk | +1 /wk | completed experiments / week | Leading / process |
-| Brief → validated concept | 9d | 6d | −3 d | median elapsed days | Workflow outcome |
-| Design production rate | ~3–4/wk | ~1–2/wk | ≈−2/wk (midpoint estimate) | accepted artifacts / in a team with 8w E2E Cycle | Workflow outcome |
-| Rework / revision rate | 35% | 24% | −11 pp | % artifacts needing major revision | Workflow outcome |
-| Accessibility / quality defects | 6/10 | 4/10 | −2 /10 | open defects / 10 reviewed screens | Workflow outcome |
-| Design-to-code divergence | 28% | 18% | −10 pp | % audited UI instances divergent | Workflow outcome |
+| Esfuerzo de producción | 18h | 11h | −7 h | horas-persona / concepto aceptado | Anticipado / proceso |
+| Esfuerzo de revisión | 4h | 6h | +2 h | horas-persona / concepto aceptado | Anticipado / proceso |
+| Cumplimiento del sistema de diseño | 78% | 90% | +12 pp | % de comprobaciones aplicables superadas | Anticipado / proceso |
+| Reutilización de contexto aprobado | 25% | 70% | +45 pp | % de entregables que citan contexto aprobado | Anticipado / proceso |
+| Ritmo de experimentación | 1/sem | 2/sem | +1 /sem | experimentos terminados / semana | Anticipado / proceso |
+| Encargo → concepto validado | 9d | 6d | −3 d | mediana de días transcurridos | Resultado del flujo |
+| Ritmo de producción de diseño | ~3–4/sem | ~1–2/sem | ≈−2/sem (estimación por puntos medios) | entregables aceptados / equipo con ciclo integral de 8 semanas | Resultado del flujo |
+| Tasa de retrabajo / revisión | 35% | 24% | −11 pp | % de entregables que requieren cambios importantes | Resultado del flujo |
+| Defectos de accesibilidad / calidad | 6/10 | 4/10 | −2 /10 | defectos abiertos / 10 pantallas revisadas | Resultado del flujo |
+| Divergencia entre diseño y código | 28% | 18% | −10 pp | % de instancias de interfaz auditadas divergentes | Resultado del flujo |
 
-Design production rate is **~3–4/wk baseline → ~1–2/wk pilot**, with **≈−2/wk** computed from the range midpoints (1.5 − 3.5), not a separately observed change. The rate decreases; it is not colored as an improvement. The context is **accepted artifacts / in a team with 8w E2E Cycle**. The rate is per week; the team's eight-week end-to-end cycle is context, not a replacement denominator.
+El ritmo de producción pasa de **~3–4/sem a ~1–2/sem**. **≈−2/sem** se calcula con puntos medios (1,5 − 3,5), no como observación independiente. Disminuye y no se presenta como mejora. Son entregables aceptados por semana en un equipo cuyo ciclo integral dura 8 semanas: no se divide por ocho ni se infiere un total del ciclo.
 
-The other nine synthetic comparisons remain unchanged as approximations informed by the presenter's early experimentation. Underlying records, sample sizes, and methods have not been supplied. Review effort increases in the comparison. Leading/process classifications are useful for this workflow, not universal definitions. No actual customer-outcome evidence has been supplied.
+Las otras nueve comparaciones conservan los valores sintéticos que el ponente considera próximos a su experimentación informal. No se han facilitado registros, muestras ni métodos. La revisión aumenta. Las categorías anticipado/proceso y resultado son operativas para este flujo, no universales. No se aportan resultados reales de clientes.
 
-## Operational definitions and collection
+## Definiciones y recogida
 
-- **Brief → validated concept:** median elapsed days from a time-stamped brief to agreed reviewer acceptance and user-evidence criteria. Define the validation threshold first; do not count only a visually completed prototype.
-- **Production rate:** accepted artifacts per team-week, holding artifact class, scope, staffing, and acceptance criteria comparable.
-- **Production and review effort:** person-hours per accepted concept, reported separately. Include critique, re-evaluation, and validation. These are not elapsed days.
-- **Rework:** percentage of reviewed artifacts requiring major revision. Agree on the definition of major and log revision reasons.
-- **Design-system compliance:** passed applicable token, component, and interaction-pattern checks divided by all applicable checks. Track exclusions and sampling.
-- **Accessibility and quality defects:** deduplicated open defects per 10 reviewed screens, accompanied by severity. Combine manual and automated assessment; a count does not establish accessibility conformance.
-- **Design-to-code divergence:** audited UI instances that violate approved design intent divided by all audited instances in the defined sample.
-- **Experimentation cadence:** completed experiments per week, each with a recorded interpretation and decision, not simply releases.
-- **Context reuse:** artifacts citing a current, approved context package divided by all reviewed artifacts. A citation alone does not prove appropriate use.
-- **Customer outcomes:** collect separately, for example task success and observed friction on comparable tasks. None is fabricated in this deck.
+- **Encargo → concepto validado:** mediana de días desde el encargo registrado hasta la aceptación del revisor y el umbral acordado de evidencia de usuarios. Un prototipo visualmente terminado no basta.
+- **Producción:** entregables aceptados por equipo y semana, con tipo, alcance, dotación y criterios comparables.
+- **Esfuerzo:** horas-persona por concepto aceptado; producción y revisión por separado, incluidas crítica, reevaluación y validación. No equivale a días transcurridos.
+- **Retrabajo:** porcentaje de entregables revisados que requieren cambios importantes. Define «importante» antes y registra las razones.
+- **Cumplimiento:** comprobaciones aplicables de tokens, componentes y patrones superadas entre todas las aplicables. Registra exclusiones y muestreo.
+- **Defectos:** defectos abiertos sin duplicados por 10 pantallas revisadas y su gravedad. Combina pruebas manuales y automáticas; el recuento no demuestra conformidad de accesibilidad.
+- **Divergencia:** instancias auditadas que incumplen el diseño aprobado entre todas las de la muestra definida.
+- **Experimentación:** experimentos terminados por semana con interpretación y decisión registradas, no solo lanzamientos.
+- **Reutilización:** entregables que citan contexto vigente y aprobado entre todos los revisados. Citar no demuestra uso adecuado.
+- **Resultados de clientes:** recoger aparte éxito en tareas y fricciones observadas en tareas comparables. Esta presentación no los inventa.
 
-Record sample size, spread, staffing, complexity, exclusions, and data-collection limitations. A small observational pilot cannot establish causality. Set adoption, revision, and stop criteria before inspecting results. Apply organizational privacy and access policies to measurement.
+Documenta muestra, dispersión, dotación, complejidad, exclusiones y límites de recogida. Un piloto observacional pequeño no establece causalidad. Fija criterios de adoptar, revisar y detener antes de ver resultados. Aplica las políticas de privacidad y acceso.
 
-## Source coverage and editorial decisions
+## Cobertura y decisiones editoriales
 
-| Source idea / review request | Where preserved |
-| --- | --- |
-| Core thesis, central question, capacity versus coherence | 1–2, 4, 15 |
-| Speaker introduction: supplied name, role, translated biography, personal interests | 3 |
-| Illustrative onboarding problem and user requirement, within the interactive demo | 6 |
-| Product/customer journey before and after AI; Mission, Milestones, Metrics | 11 |
-| DesignOps fundamentals and expanding responsibilities | 9, 14, 18 |
-| AI control plane; domain ownership | 10, 17 |
-| Stewardship × Systems × Enablement reconciled with Govern / Context / Evaluate | 5 and its notes |
-| Organizational memory and five-layer AI design stack | 8, 19, 22 (backup) |
-| Evaluation scarcity and six-part quality rubric | 7 |
-| Discover → Define → Design → Build → Measure | 23 (backup) and its notes |
-| Designer–engineer pairing; user need → fix → saved lesson, with local HTML/CSS | 6 |
-| Learning captured into context and standards | 8, 12 |
-| Production time, rate, review, rework, consistency, and measurement | 13, 21 |
-| Canonical prompts and seven artifact transformations | 12 (four on stage; all seven in review and notes), 20 |
-| Team, product-area, and enterprise altitudes | 14 speaker notes (all three); the timeline stays static in Stage and review |
-| Evolving role and work archetypes | 18 |
-| Risks if infrastructure is absent | 4, 6 and their notes |
-| Shared governance, AI-team concern, AI-ready systems, model change, prompt ownership | 16–23 |
-| Tomorrow's actions: map, identify, codify, standardize, measure | 14, 16 |
+La tesis se conserva en 1–2, 4 y 15; la biografía en 3; la decisión en 6; los criterios de evaluación en 7; la memoria en 8 y 22; fundamentos y funciones en 9, 14 y 18; plano de control y responsables en 10 y 17; recorrido del cliente y MMM en 11; siete transformaciones y prompts canónicos en 12 y 20; medición en 13 y 21; sistema preparado para IA en 19; ciclo de vida en 23. Gobernar / Contexto / Evaluar sigue siendo el modelo central de 5. Gestión responsable, sistemas y habilitación lo sostienen, no lo sustituyen.
 
-The Spanish review notes are implemented in English. Traditional DesignOps work is expanded, not erased. The proposed workflow is explicitly a hypothesis to validate. The source's tool mentions do not imply integrations; the demonstration uses local HTML/CSS. The source's unverified external archetype attribution is not reproduced as a factual attribution. Rhetorical counts are not converted into statistical claims. The stack and lifecycle walkthroughs are preserved in backups to avoid competing with the central operating model. The keynote now has 15 slides. The standalone conflict overview was removed at the user's request; its 90 seconds now support explanation and interaction pauses within the retained demo, without changing the six-step behavior or plain-language copy.
+El trabajo tradicional se amplía, no desaparece. El flujo propuesto es una hipótesis. Las menciones de herramientas no implican integraciones: la demo usa HTML/CSS local. No se reproduce como hecho una atribución externa sin verificar ni se transforman recursos retóricos en estadísticas. Las capas y el ciclo quedan en apoyos. Se mantiene la presentación del ponente solo con texto.
 
-## Conversion and delivery notes
+## Exportación y entrega
 
-Keep slide text editable and vector diagrams separate from surrounding copy when recreating in PowerPoint. Use static before/after states or native appearance builds for branches, networks, stacks, and learning loops. Replace the live pair-programming form with concept-to-prototype frames and a link to this HTML presentation. Keep metric scenario labels and human-review qualifications visible in every exported state. The README documents full conversion assumptions and local navigation.
+El README contiene el comando reproducible del PDF español, con 23 páginas de 1200×675 puntos, 16:9, usando Escenario y estados resueltos. Los PDF ingleses heredados no se modifican. El PDF no sustituye las seis interacciones ni estas notas. Para una futura conversión a PowerPoint, conserva texto editable y vectores, pasos nativos de aparición, nombres de escenarios y límites de la evidencia. Sustituye el formulario por seis fotogramas y un enlace al HTML; no atribuyas al PDF ni a PowerPoint un formulario funcional.

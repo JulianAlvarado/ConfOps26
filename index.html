@@ -1,41 +1,41 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="dark">
   <meta name="theme-color" content="#111516">
-  <title>DesignOps as AI Infrastructure — Keynote v2</title>
+  <title>DesignOps como infraestructura de IA — Conferencia v2 en español</title>
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
 </head>
 <body>
   <header class="toolbar">
-    <a class="wordmark" href="#1" aria-label="Go to opening slide"><span class="brand-mark" aria-hidden="true">◈</span> DESIGNOPS <span class="toolbar-muted">/ AI INFRASTRUCTURE</span></a>
+    <a class="wordmark" href="#1" aria-label="Ir a la primera diapositiva"><span class="brand-mark" aria-hidden="true">◈</span> DESIGNOPS <span class="toolbar-muted">/ INFRAESTRUCTURA DE IA</span></a>
     <div class="toolbar-actions">
-      <span class="version">KEYNOTE V2</span>
-      <button id="stage-toggle" aria-pressed="false" aria-describedby="stage-help">Stage <kbd>S</kbd></button>
-      <button id="reading-toggle" aria-pressed="false" aria-controls="presentation">Reading view</button>
-      <button id="overview-toggle" aria-haspopup="dialog">Slides <kbd>G</kbd></button>
-      <button id="notes-toggle" aria-expanded="false" aria-controls="notes">Notes <kbd>N</kbd></button>
-      <button id="fullscreen" aria-label="Enter fullscreen">Fullscreen <kbd>F</kbd></button>
+      <span class="version">CONFERENCIA V2 · ES</span>
+      <button id="stage-toggle" aria-pressed="false" aria-describedby="stage-help">Escenario <kbd>S</kbd></button>
+      <button id="reading-toggle" aria-pressed="false" aria-controls="presentation">Lectura</button>
+      <button id="overview-toggle" aria-haspopup="dialog">Diapositivas <kbd>G</kbd></button>
+      <button id="notes-toggle" aria-expanded="false" aria-controls="notes">Notas <kbd>N</kbd></button>
+      <button id="fullscreen" aria-label="Activar pantalla completa">Pantalla completa <kbd>F</kbd></button>
     </div>
   </header>
-  <p id="stage-help" class="sr-only">Stage hides review tools. Right arrow advances a build, then the slide. Left arrow reverses it. F toggles fullscreen. Escape or S returns to review. Tab operates the demo form; focus outside it to resume slide keys.</p>
+  <p id="stage-help" class="sr-only">Escenario oculta las herramientas de revisión. La flecha derecha avanza un paso y después la diapositiva; la izquierda retrocede. F activa o desactiva la pantalla completa. Escape o S vuelve a revisión. Tab permite usar el formulario; sal de él para volver a navegar.</p>
 
-  <main id="presentation" tabindex="0" aria-label="DesignOps as AI Infrastructure">
+  <main id="presentation" tabindex="0" aria-label="DesignOps como infraestructura de IA">
     <div id="viewport">
       <div id="stage">
-        <section class="slide opening active" id="slide-1" aria-labelledby="title-1" data-act="ACT I" data-title="AI makes us faster. Who keeps us coherent?">
-          <div class="eyebrow">DESIGNOPS AS AI INFRASTRUCTURE <span>CONFOPS / 2026</span></div>
+        <section class="slide opening active" id="slide-1" aria-labelledby="title-1" data-act="ACTO I" data-title="La IA nos acelera. ¿Quién mantiene la coherencia?">
+          <div class="eyebrow">DESIGNOPS COMO INFRAESTRUCTURA DE IA <span>CONFOPS / 2026</span></div>
           <div class="opening-layout">
             <div>
-              <h1 id="title-1">AI makes<br>us faster.<br><em>Who keeps<br>us coherent?</em></h1>
-              <p class="subtitle">Governance, systems, and the new role<br>of DesignOps in product teams</p>
+              <h1 id="title-1">La IA nos<br>acelera.<br><em>¿Quién nos da<br>coherencia?</em></h1>
+              <p class="subtitle">Gobernanza, sistemas y el nuevo papel<br>de DesignOps en los equipos de producto</p>
             </div>
             <div class="opening-art">
-              <div class="opening-labels"><span>CAPACITY ↑</span><span>COHERENCE ?</span></div>
-              <svg viewBox="0 0 620 580" role="img" aria-label="One source branches into many different outputs; a shared system is needed for coherence.">
+              <div class="opening-labels"><span>CAPACIDAD ↑</span><span>COHERENCIA ?</span></div>
+              <svg viewBox="0 0 620 580" role="img" aria-label="Una fuente se ramifica en resultados diversos; hace falta un sistema compartido para mantener la coherencia.">
                 <defs><pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#354043"/></pattern></defs>
                 <rect width="620" height="580" fill="url(#dots)"/>
                 <g class="opening-lines" fill="none" stroke="#76e3e3" stroke-width="2">
@@ -52,95 +52,95 @@
                   <rect x="445" y="398" width="98" height="44" rx="5"/><rect x="433" y="498" width="76" height="44" rx="22"/>
                 </g>
               </svg>
-              <div class="art-caption"><span class="caption-item"><span class="dot cyan" aria-hidden="true"></span>More possibility.</span><span class="caption-item"><span class="dot coral" aria-hidden="true"></span>More responsibility.</span></div>
+              <div class="art-caption"><span class="caption-item"><span class="dot cyan" aria-hidden="true"></span>Más posibilidades.</span><span class="caption-item"><span class="dot coral" aria-hidden="true"></span>Más responsabilidad.</span></div>
             </div>
           </div>
           <footer class="slide-footer"><span>01 / 15</span></footer>
         </section>
 
-        <section class="slide" id="slide-2" aria-labelledby="title-2" data-act="ACT I" data-title="Everyone can generate" hidden>
-          <div class="eyebrow">ACT I <span>01 — THE ACCELERATION PARADOX</span></div>
-          <h2 id="title-2">The AI production floor<br>is <em>everywhere.</em></h2>
+        <section class="slide" id="slide-2" aria-labelledby="title-2" data-act="ACTO I" data-title="Todos podemos generar" hidden>
+          <div class="eyebrow">ACTO I <span>01 — LA PARADOJA DE LA ACELERACIÓN</span></div>
+          <h2 id="title-2">Con IA se produce<br>en <em>todas partes.</em></h2>
           <div class="role-grid" id="roles">
-            <article class="role"><span class="role-number">01</span><h3>Product</h3><div class="role-output"><span>Brief</span><span>Requirements</span><span>Hypotheses</span></div></article>
-            <article class="role"><span class="role-number">02</span><h3>Research</h3><div class="role-output"><span>Synthesis</span><span>Insights</span><span>Questions</span></div></article>
-            <article class="role"><span class="role-number">03</span><h3>Design</h3><div class="role-output"><span>Concepts</span><span>Prototypes</span><span>Patterns</span></div></article>
-            <article class="role"><span class="role-number">04</span><h3>Engineering</h3><div class="role-output"><span>Components</span><span>Code</span><span>Tests</span></div></article>
+            <article class="role"><span class="role-number">01</span><h3>Producto</h3><div class="role-output"><span>Encargo</span><span>Requisitos</span><span>Hipótesis</span></div></article>
+            <article class="role"><span class="role-number">02</span><h3>Investigación</h3><div class="role-output"><span>Síntesis</span><span>Hallazgos</span><span>Preguntas</span></div></article>
+            <article class="role"><span class="role-number">03</span><h3>Diseño</h3><div class="role-output"><span>Conceptos</span><span>Prototipos</span><span>Patrones</span></div></article>
+            <article class="role"><span class="role-number">04</span><h3>Ingeniería</h3><div class="role-output"><span>Componentes</span><span>Código</span><span>Pruebas</span></div></article>
           </div>
-          <div class="bottom-line"><p>The bottleneck moves: <strong>production → alignment → quality.</strong></p><button data-action="generate">Distribute generation <span aria-hidden="true">↗</span></button></div>
-          <p id="generation-status" class="sr-only" role="status">Generation has not started.</p>
-          <footer class="slide-footer"><span>DISTRIBUTED OUTPUT NEEDS SHARED INTENT</span><span>02 / 15</span></footer>
+          <div class="bottom-line"><p>El cuello de botella cambia: <strong>producción → alineación → calidad.</strong></p><button data-action="generate">Distribuir la generación <span aria-hidden="true">↗</span></button></div>
+          <p id="generation-status" class="sr-only" role="status">La generación no ha comenzado.</p>
+          <footer class="slide-footer"><span>LA PRODUCCIÓN DISTRIBUIDA NECESITA UN PROPÓSITO COMÚN</span><span>02 / 15</span></footer>
         </section>
 
-        <section class="slide about-slide" id="slide-3" aria-labelledby="title-3" data-act="ACT I" data-title="About me" hidden>
-          <div class="eyebrow">ABOUT ME <span>XBOX DESIGN OPS</span></div>
+        <section class="slide about-slide" id="slide-3" aria-labelledby="title-3" data-act="ACTO I" data-title="Sobre mí" hidden>
+          <div class="eyebrow">SOBRE MÍ <span>XBOX DESIGN OPS</span></div>
           <div class="about-layout">
             <div class="about-copy">
               <h2 id="title-3">Julian Alvarado</h2>
               <p class="about-role">Xbox Design Ops</p>
               <div class="about-bio">
-                <p>Julian Alvarado is a Senior Program Manager and Design Operations leader at Microsoft, helping Xbox Design scale through better systems, clearer processes, and responsible AI.</p>
-                <p>He works across teams and studios to improve how designers plan, learn, and deliver—building resilient, people-centered creative organizations.</p>
-                <p>Outside work, Julian is a daily CrossFit devotee and a “forever blue belt” in jiu-jitsu. A retired musician, he still loves live shows and enjoys drawing at home. Currently in rotation: Radiohead, Lenny Kravitz, Oasis, and Crosses.</p>
+                <p>Julian Alvarado es gerente sénior de programas y líder de operaciones de diseño en Microsoft. Ayuda a Xbox Design a crecer con mejores sistemas, procesos más claros y un uso responsable de la IA.</p>
+                <p>Colabora con equipos y estudios para mejorar cómo los diseñadores planifican, aprenden y entregan su trabajo, y construir organizaciones creativas resilientes y centradas en las personas.</p>
+                <p>Fuera del trabajo, practica CrossFit a diario y se define como un «eterno cinturón azul» de jiu-jitsu. Músico retirado, sigue disfrutando de los conciertos y de dibujar en casa. Ahora escucha a Radiohead, Lenny Kravitz, Oasis y Crosses.</p>
               </div>
             </div>
           </div>
           <footer class="slide-footer"><span>03 / 15</span></footer>
         </section>
 
-        <section class="slide" id="slide-4" aria-labelledby="title-4" data-act="ACT I" data-title="The acceleration paradox" hidden>
-          <div class="eyebrow">ACT I <span>03 — CAPACITY ≠ COHERENCE</span></div>
-          <h2 id="title-4">AI doesn't just accelerate work.<br>It accelerates <em class="coral-text">variation.</em></h2>
+        <section class="slide" id="slide-4" aria-labelledby="title-4" data-act="ACTO I" data-title="La paradoja de la aceleración" hidden>
+          <div class="eyebrow">ACTO I <span>03 — CAPACIDAD ≠ COHERENCIA</span></div>
+          <h2 id="title-4">La IA no solo acelera el trabajo.<br>Acelera la <em class="coral-text">variación.</em></h2>
           <ol class="causal-chain" id="causal-chain">
-            <li class="current">More output</li><li>More variation</li><li>More decisions</li><li>More inconsistency</li>
+            <li class="current">Más producción</li><li>Más variación</li><li>Más decisiones</li><li>Más incoherencia</li>
           </ol>
           <div id="fragmentation" class="fragmentation">
-            <div class="source-node">SHARED<br>INTENT</div>
-            <svg viewBox="0 0 1120 250" role="img" aria-label="Output branches diverge without shared context and evaluation; alignment brings them back into a common system.">
+            <div class="source-node">PROPÓSITO<br>COMÚN</div>
+            <svg viewBox="0 0 1120 250" role="img" aria-label="Los resultados divergen sin contexto y evaluación compartidos; la alineación los devuelve a un sistema común.">
               <g class="branch-lines" fill="none" stroke-width="2">
                 <path class="lit" d="M0 125H110C230 125 230 25 370 25H1100"/><path d="M0 125H110C230 125 230 75 370 75H1100"/>
                 <path d="M0 125H1100"/><path d="M0 125H110C230 125 230 175 370 175H1100"/><path d="M0 125H110C230 125 230 225 370 225H1100"/>
               </g>
             </svg>
-            <div class="branch-outputs"><span class="lit">Pattern A</span><span>Pattern B</span><span>Pattern C</span><span>Pattern D</span><span>Pattern E</span></div>
-            <div class="alignment-band">CONTEXT + EVALUATION</div>
+            <div class="branch-outputs"><span class="lit">Patrón A</span><span>Patrón B</span><span>Patrón C</span><span>Patrón D</span><span>Patrón E</span></div>
+            <div class="alignment-band">CONTEXTO + EVALUACIÓN</div>
           </div>
-          <div class="bottom-line"><p id="fragment-caption" aria-live="polite">Different patterns. Conflicting terminology. Unowned decisions.</p><div class="button-group"><button data-action="cause">Trace the chain</button><button data-action="align" aria-pressed="false">Apply shared standards</button></div></div>
-          <p id="cause-status" class="sr-only" role="status">Stage 1 of 4: More output.</p>
-          <footer class="slide-footer"><span>CONCEPTUAL SYSTEM</span><span>04 / 15</span></footer>
+          <div class="bottom-line"><p id="fragment-caption" aria-live="polite">Patrones dispares. Términos en conflicto. Decisiones sin responsable.</p><div class="button-group"><button data-action="cause">Seguir la cadena</button><button data-action="align" aria-pressed="false">Aplicar criterios comunes</button></div></div>
+          <p id="cause-status" class="sr-only" role="status">Paso 1 de 4: Más producción.</p>
+          <footer class="slide-footer"><span>SISTEMA CONCEPTUAL</span><span>04 / 15</span></footer>
         </section>
 
-        <section class="slide framework-slide" id="slide-5" aria-labelledby="title-5" data-act="ACT II" data-title="Govern. Context. Evaluate." hidden>
-          <div class="eyebrow">ACT II <span>04 — THE CORE OPERATING MODEL</span></div>
-          <h2 id="title-5">Three questions.<br><em>One coherent system.</em></h2>
+        <section class="slide framework-slide" id="slide-5" aria-labelledby="title-5" data-act="ACTO II" data-title="Gobernar. Contexto. Evaluar." hidden>
+          <div class="eyebrow">ACTO II <span>04 — EL MODELO OPERATIVO CENTRAL</span></div>
+          <h2 id="title-5">Tres preguntas.<br><em>Un sistema coherente.</em></h2>
           <div class="framework">
-            <article><h3>GOVERN</h3><p>Who can accept the choice?</p></article>
-            <article><h3>CONTEXT</h3><p>What must the choice respect?</p></article>
-            <article><h3>EVALUATE</h3><p>What makes it acceptable?</p></article>
+            <article><h3>GOBERNAR</h3><p>¿Quién puede aprobarlo?</p></article>
+            <article><h3>CONTEXTO</h3><p>¿Qué debe respetar?</p></article>
+            <article><h3>EVALUAR</h3><p>¿Qué lo hace aceptable?</p></article>
           </div>
           <footer class="slide-footer"><span>05 / 15</span></footer>
         </section>
 
-        <section class="slide" id="slide-6" aria-labelledby="title-6" data-act="ACT II" data-title="Fix the form. Keep the lesson." hidden>
-          <div class="eyebrow">ACT II <span>ILLUSTRATIVE CASE · PRE-AUTHORED, NOT LIVE AI</span></div>
-          <h2 class="compact-title" id="title-6">Fix the form. <em>Keep the lesson.</em></h2>
+        <section class="slide" id="slide-6" aria-labelledby="title-6" data-act="ACTO II" data-title="Corrige el formulario. Conserva lo aprendido." hidden>
+          <div class="eyebrow">ACTO II <span>CASO ILUSTRATIVO · PREPARADO, SIN IA EN DIRECTO</span></div>
+          <h2 class="compact-title" id="title-6">Corrige el formulario. <em>Conserva lo aprendido.</em></h2>
           <div class="pair-layout">
             <div class="pair-process">
               <div id="pair-step" role="status" aria-live="polite" aria-atomic="true"><p id="pair-count"></p><h3 id="pair-label"></h3></div>
-              <div class="button-group"><button data-action="pair">See the problem →</button><button data-action="pair-reset" aria-label="Restart decision demonstration">Reset</button></div>
+              <div class="button-group"><button data-action="pair">Ver el problema →</button><button data-action="pair-reset" aria-label="Reiniciar la demostración de decisiones">Reiniciar</button></div>
             </div>
             <div class="prototype-window">
               <div class="prototype-scene" id="prototype-scene" data-step="0">
-                <div class="decision-evidence" id="decision-evidence" role="group" aria-label="Current example step">
+                <div class="decision-evidence" id="decision-evidence" role="group" aria-label="Paso actual del ejemplo">
                   <h3 id="evidence-title"></h3>
                   <dl id="evidence-details"></dl>
                   <p id="evidence-verdict"></p>
                 </div>
                 <form class="prototype-form" id="prototype-form" hidden>
-                  <h3>Create your workspace.</h3><p>Invite teammates later.</p>
-                  <label for="workspace-name">Workspace name</label><input id="workspace-name" name="workspace" maxlength="48" placeholder="e.g. Product experience" required autocomplete="off">
-                  <p class="field-hint" id="workspace-hint">2–48 characters. You can rename it later.</p>
-                  <button type="submit">Create workspace <span aria-hidden="true">→</span></button><p id="prototype-result" class="prototype-result" role="status">Prototype only. No account or network request.</p>
+                  <h3>Crea tu espacio de trabajo.</h3><p>Invita a otras personas después.</p>
+                  <label for="workspace-name">Nombre del espacio</label><input id="workspace-name" name="workspace" maxlength="48" placeholder="p. ej., Experiencia de producto" required autocomplete="off">
+                  <p class="field-hint" id="workspace-hint">2–48 caracteres. Puedes cambiarlo después.</p>
+                  <button type="submit">Crear espacio <span aria-hidden="true">→</span></button><p id="prototype-result" class="prototype-result" role="status">Solo un prototipo. No crea cuentas ni envía datos.</p>
                 </form>
               </div>
             </div>
@@ -148,279 +148,279 @@
           <footer class="slide-footer"><span>06 / 15</span></footer>
         </section>
 
-        <section class="slide" id="slide-7" aria-labelledby="title-7" data-act="ACT II" data-title="When generation is cheap, evaluation is strategic" hidden>
-          <div class="eyebrow">ACT II <span>06 — FROM GENERATING TO EVALUATING</span></div>
-          <h2 id="title-7">Many possible outputs.<br><em>One accountable judgment.</em></h2>
+        <section class="slide" id="slide-7" aria-labelledby="title-7" data-act="ACTO II" data-title="Cuando generar cuesta poco, evaluar es estratégico" hidden>
+          <div class="eyebrow">ACTO II <span>06 — DE GENERAR A EVALUAR</span></div>
+          <h2 id="title-7">Muchos resultados posibles.<br><em>Un juicio con responsable.</em></h2>
           <div class="evaluation-flow">
-            <div class="output-pile"><span>Concept 01</span><span>Concept 02</span><span>Concept 03</span><span>Concept 04</span><p>Possibility is abundant.</p></div>
+            <div class="output-pile"><span>Concepto 01</span><span>Concepto 02</span><span>Concepto 03</span><span>Concepto 04</span><p>Abundan las posibilidades.</p></div>
             <span class="big-arrow" aria-hidden="true">→</span>
-            <div class="rubric"><h3>SHARED QUALITY RUBRIC</h3><div><span>System compliance</span><span>User needs</span><span>Accessibility</span><span>Brand</span><span>Product strategy</span><span>Engineering feasibility</span></div><p>Evidence + checks + expert critique</p></div>
+            <div class="rubric"><h3>CRITERIOS DE CALIDAD COMUNES</h3><div><span>Cumplimiento del sistema</span><span>Necesidades del usuario</span><span>Accesibilidad</span><span>Marca</span><span>Estrategia de producto</span><span>Viabilidad técnica</span></div><p>Evidencia + pruebas + revisión experta</p></div>
             <span class="big-arrow" aria-hidden="true">→</span>
-            <div class="human-gate"><span class="human-symbol" aria-hidden="true">◎</span><h3>Human<br>decision</h3><p>Accept, revise,<br>or reject—with reasons.</p><span class="tag lime-tag">OWNERSHIP STAYS HUMAN</span></div>
+            <div class="human-gate"><span class="human-symbol" aria-hidden="true">◎</span><h3>Decisión<br>humana</h3><p>Aceptar, revisar<br>o rechazar, con razones.</p><span class="tag lime-tag">LA RESPONSABILIDAD ES HUMANA</span></div>
           </div>
-          <div class="bottom-line"><p>Automated checks inform judgment. <strong>They do not prove a design is good.</strong></p></div>
+          <div class="bottom-line"><p>Las pruebas automáticas orientan el juicio. <strong>No demuestran la calidad del diseño.</strong></p></div>
           <footer class="slide-footer"><span>07 / 15</span></footer>
         </section>
 
-        <section class="slide" id="slide-8" aria-labelledby="title-8" data-act="ACT II" data-title="The organizational learning loop" hidden>
-          <div class="eyebrow">ACT II <span>07 — MAKE LEARNING COMPOUND</span></div>
+        <section class="slide" id="slide-8" aria-labelledby="title-8" data-act="ACTO II" data-title="El ciclo de aprendizaje de la organización" hidden>
+          <div class="eyebrow">ACTO II <span>07 — ACUMULAR Y APLICAR LO APRENDIDO</span></div>
           <div class="loop-layout">
-            <div><h2 id="title-8">Don't just<br>save the output.<br><em>Capture<br>the learning.</em></h2><p class="lead">Keep the decision and its reason.<br>Share them with the next team.</p><button data-action="loop">Follow one learning cycle</button></div>
+            <div><h2 id="title-8">No guardes solo<br>el resultado.<br><em>Conserva<br>lo aprendido.</em></h2><p class="lead">Conserva la decisión y su razón.<br>Compártelas con el siguiente equipo.</p><button data-action="loop">Seguir un ciclo de aprendizaje</button></div>
             <div class="learning-loop" id="learning-loop">
-              <svg viewBox="0 0 760 570" role="img" aria-label="A learning loop: AI proposes a design, the team reviews it, saves the lesson, updates shared guidance, and checks the next result.">
+              <svg viewBox="0 0 760 570" role="img" aria-label="Ciclo de aprendizaje: la IA propone un diseño, el equipo lo revisa, guarda la lección, actualiza la guía común y comprueba el siguiente resultado.">
                 <defs><marker id="loop-arrow" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="none" stroke="#76e3e3" stroke-width="1.5"/></marker></defs>
                 <g fill="none" stroke="#76e3e3" stroke-width="2" marker-end="url(#loop-arrow)"><path d="M430 65Q660 65 666 210"/><path d="M675 310Q660 470 520 484"/><path d="M373 491Q200 565 110 414"/><path d="M78 318Q25 130 225 83"/><path d="M280 74H320"/></g>
-                <g class="loop-node"><rect x="285" y="26" width="210" height="80" rx="8"/><text x="390" y="59">AI proposes a design</text><text x="390" y="84" class="loop-sub">using shared guidance</text></g>
-                <g class="loop-node"><rect x="530" y="220" width="220" height="80" rx="8"/><text x="640" y="253">The team reviews it</text><text x="640" y="278" class="loop-sub">against the user's need</text></g>
-                <g class="loop-node"><rect x="338" y="448" width="250" height="80" rx="8"/><text x="463" y="481">Save the lesson</text><text x="463" y="506" class="loop-sub">decision + reason + owner</text></g>
-                <g class="loop-node"><rect x="0" y="328" width="244" height="80" rx="8"/><text x="122" y="361">Update the guidance</text><text x="122" y="386" class="loop-sub">for the next team + AI</text></g>
-                <g class="loop-node"><rect x="25" y="91" width="230" height="80" rx="8"/><text x="140" y="124">Check the next result</text><text x="140" y="149" class="loop-sub">do not assume success</text></g>
-                <text class="loop-center" x="380" y="262">ORGANIZATIONAL</text><text class="loop-center" x="380" y="295">MEMORY</text>
+                <g class="loop-node"><rect x="285" y="26" width="210" height="80" rx="8"/><text x="390" y="59">La IA propone</text><text x="390" y="84" class="loop-sub">con la guía común</text></g>
+                <g class="loop-node"><rect x="530" y="220" width="220" height="80" rx="8"/><text x="640" y="253">El equipo revisa</text><text x="640" y="278" class="loop-sub">según la necesidad</text></g>
+                <g class="loop-node"><rect x="338" y="448" width="250" height="80" rx="8"/><text x="463" y="481">Guardar la lección</text><text x="463" y="506" class="loop-sub">decisión + razón + responsable</text></g>
+                <g class="loop-node"><rect x="0" y="328" width="244" height="80" rx="8"/><text x="122" y="361">Actualizar la guía</text><text x="122" y="386" class="loop-sub">para otro equipo + IA</text></g>
+                <g class="loop-node"><rect x="25" y="91" width="230" height="80" rx="8"/><text x="140" y="124">Revisar el resultado</text><text x="140" y="149" class="loop-sub">sin dar el éxito por hecho</text></g>
+                <text class="loop-center" x="380" y="262">MEMORIA</text><text class="loop-center" x="380" y="295">DE LA ORGANIZACIÓN</text>
               </svg>
               <ol id="loop-reading" class="reading-only"></ol>
-              <p class="micro" id="loop-status" aria-live="polite">A saved lesson is useful only if someone applies it.</p>
+              <p class="micro" id="loop-status" aria-live="polite">Una lección guardada solo sirve si alguien la aplica.</p>
             </div>
           </div>
-          <footer class="slide-footer"><span>LEARNING → DESIGNOPS → SYSTEM → AI-ASSISTED WORK → LEARNING</span><span>08 / 15</span></footer>
+          <footer class="slide-footer"><span>APRENDIZAJE → DESIGNOPS → SISTEMA → TRABAJO CON IA → APRENDIZAJE</span><span>08 / 15</span></footer>
         </section>
 
-        <section class="slide" id="slide-9" aria-labelledby="title-9" data-act="ACT III" data-title="The role expands; the fundamentals remain" hidden>
-          <div class="eyebrow">ACT III <span>08 — THE NEW ROLE OF DESIGNOPS</span></div>
-          <h2 id="title-9">Same foundations.<br><em>A larger operating system.</em></h2>
+        <section class="slide" id="slide-9" aria-labelledby="title-9" data-act="ACTO III" data-title="El papel se amplía; las bases permanecen" hidden>
+          <div class="eyebrow">ACTO III <span>08 — EL NUEVO PAPEL DE DESIGNOPS</span></div>
+          <h2 id="title-9">Las mismas bases.<br><em>Un sistema operativo más amplio.</em></h2>
           <div class="shift-layout">
-            <div class="fundamentals"><span>PEOPLE</span><span>PROCESS</span><span>SYSTEMS</span></div>
+            <div class="fundamentals"><span>PERSONAS</span><span>PROCESOS</span><span>SISTEMAS</span></div>
             <div class="shift-table">
-              <div class="table-heading"><span>TRADITIONAL FOCUS</span><span>EXPANDED AI-ERA SCOPE</span></div>
-              <div><span>Optimize workflows</span><strong>Architect human–AI workflows</strong></div>
-              <div><span>Document processes</span><strong>Encode organizational knowledge</strong></div>
-              <div><span>Scale design systems</span><strong>Make systems AI-readable</strong></div>
-              <div><span>Enable designers</span><strong>Enable product teams</strong></div>
-              <div><span>Measure efficiency</span><strong>Measure quality + outcomes</strong></div>
-              <div><span>Facilitate consistency</span><strong>Govern generated variation</strong></div>
+              <div class="table-heading"><span>ENFOQUE TRADICIONAL</span><span>ALCANCE EN LA ERA DE LA IA</span></div>
+              <div><span>Optimizar flujos de trabajo</span><strong>Diseñar flujos de personas e IA</strong></div>
+              <div><span>Documentar procesos</span><strong>Estructurar el conocimiento</strong></div>
+              <div><span>Ampliar sistemas de diseño</span><strong>Hacerlos legibles para la IA</strong></div>
+              <div><span>Apoyar a los diseñadores</span><strong>Apoyar a equipos de producto</strong></div>
+              <div><span>Medir la eficiencia</span><strong>Medir calidad + resultados</strong></div>
+              <div><span>Facilitar la coherencia</span><strong>Gobernar la variación generada</strong></div>
             </div>
           </div>
           <footer class="slide-footer"><span>09 / 15</span></footer>
         </section>
 
-        <section class="slide" id="slide-10" aria-labelledby="title-10" data-act="ACT III" data-title="DesignOps as the control plane" hidden>
-          <div class="eyebrow">ACT III <span>09 — SHARED INFRASTRUCTURE, DISTRIBUTED OWNERSHIP</span></div>
+        <section class="slide" id="slide-10" aria-labelledby="title-10" data-act="ACTO III" data-title="DesignOps como plano de control" hidden>
+          <div class="eyebrow">ACTO III <span>09 — INFRAESTRUCTURA COMÚN, RESPONSABILIDAD DISTRIBUIDA</span></div>
           <div class="network-layout">
-            <div><h2 id="title-10">Not doing<br>all the work.<br><em>Connecting<br>the system.</em></h2><p class="lead">DesignOps defines the conditions<br>under which the work happens.</p><button data-action="connect" aria-pressed="false">Connect the control plane</button><p class="micro" id="network-status" aria-live="polite">Isolated tools. Local rules. Fragmented context.</p></div>
+            <div><h2 id="title-10">No hacer<br>todo el trabajo.<br><em>Conectar<br>el sistema.</em></h2><p class="lead">DesignOps define las condiciones<br>en las que se trabaja.</p><button data-action="connect" aria-pressed="false">Conectar el plano de control</button><p class="micro" id="network-status" aria-live="polite">Herramientas aisladas. Reglas locales. Contexto fragmentado.</p></div>
             <div class="network" id="network">
-              <svg viewBox="0 0 750 580" role="img" aria-label="PM, research, design, prototype and engineering AI share DesignOps governance, context and evaluation, while retaining domain ownership.">
+              <svg viewBox="0 0 750 580" role="img" aria-label="Producto, investigación, diseño, prototipado e ingeniería con IA comparten gobernanza, contexto y evaluación de DesignOps, sin ceder su responsabilidad.">
                 <g class="network-links" fill="none" stroke-width="2"><path d="M145 85L375 255L600 85"/><path d="M125 395L375 255L625 395"/><path d="M375 255V520"/></g>
-                <g class="network-node"><rect x="50" y="45" width="190" height="80" rx="8"/><text x="145" y="94">PM + AI</text></g>
-                <g class="network-node"><rect x="495" y="45" width="205" height="80" rx="8"/><text x="598" y="94">RESEARCH + AI</text></g>
-                <g class="network-node"><rect x="30" y="355" width="190" height="80" rx="8"/><text x="125" y="404">DESIGN + AI</text></g>
-                <g class="network-node"><rect x="510" y="355" width="230" height="80" rx="8"/><text x="625" y="404">PROTOTYPE + AI</text></g>
-                <g class="network-node"><rect x="260" y="485" width="230" height="80" rx="8"/><text x="375" y="534">ENGINEERING + AI</text></g>
+                <g class="network-node"><rect x="50" y="45" width="190" height="80" rx="8"/><text x="145" y="94">PM + IA</text></g>
+                <g class="network-node"><rect x="463" y="45" width="270" height="80" rx="8"/><text x="598" y="94">INVESTIGACIÓN + IA</text></g>
+                <g class="network-node"><rect x="30" y="355" width="190" height="80" rx="8"/><text x="125" y="404">DISEÑO + IA</text></g>
+                <g class="network-node"><rect x="500" y="355" width="250" height="80" rx="8"/><text x="625" y="404">PROTOTIPADO + IA</text></g>
+                <g class="network-node"><rect x="260" y="485" width="230" height="80" rx="8"/><text x="375" y="534">INGENIERÍA + IA</text></g>
                 <rect class="network-hub" x="200" y="181" width="350" height="148" rx="12"/>
-                <text class="hub-title" x="375" y="232">DESIGNOPS</text><text class="hub-subtitle" x="375" y="273">GOVERN · CONTEXT · EVALUATE</text>
-                <text class="hub-detail" x="375" y="305">A shared control plane</text>
+                <text class="hub-title" x="375" y="232">DESIGNOPS</text><text class="hub-subtitle" x="375" y="273">GOBERNAR · CONTEXTO · EVALUAR</text>
+                <text class="hub-detail" x="375" y="305">Un plano de control común</text>
               </svg>
-              <div class="reading-only network-summary"><h3>Shared DesignOps infrastructure</h3><p>GOVERN · CONTEXT · EVALUATE</p><ul><li>PM + AI</li><li>Research + AI</li><li>Design + AI</li><li>Prototype + AI</li><li>Engineering + AI</li></ul><p>Each role connects to common rules, context, and evaluation—not a central approval queue.</p></div>
-              <p class="network-caption">Domain experts still own product decisions.</p>
+              <div class="reading-only network-summary"><h3>Infraestructura compartida de DesignOps</h3><p>GOBERNAR · CONTEXTO · EVALUAR</p><ul><li>PM + IA</li><li>Investigación + IA</li><li>Diseño + IA</li><li>Prototipado + IA</li><li>Ingeniería + IA</li></ul><p>Cada función comparte reglas, contexto y evaluación; no una cola central de aprobaciones.</p></div>
+              <p class="network-caption">Los expertos del área deciden sobre el producto.</p>
             </div>
           </div>
           <footer class="slide-footer"><span>10 / 15</span></footer>
         </section>
 
-        <section class="slide" id="slide-11" aria-labelledby="title-11" data-act="ACT III" data-title="Before AI / a proposed AI-enabled journey" hidden>
-          <div class="eyebrow">ACT III <span>10 — REDESIGN THE JOURNEY, NOT JUST THE TASK</span></div>
-          <h2 id="title-11">Less waiting.<br><em>More learning, together.</em></h2>
+        <section class="slide" id="slide-11" aria-labelledby="title-11" data-act="ACTO III" data-title="Antes de la IA / una propuesta de trabajo con IA" hidden>
+          <div class="eyebrow">ACTO III <span>10 — REDISEÑAR EL RECORRIDO, NO SOLO LA TAREA</span></div>
+          <h2 id="title-11">Menos esperas.<br><em>Más aprendizaje compartido.</em></h2>
           <div class="journeys" id="journeys">
             <article class="journey sequential">
-              <div class="journey-label"><h3>Sequential handoffs</h3><span class="tag">SIMPLIFIED BEFORE</span></div>
-              <div class="workflow-track"><span>Research</span><b>→</b><span>Brief</span><b>→</b><span>Mocks</span><b>→</b><span>Build</span><b>→</b><span>Release</span></div>
-              <p>Customer need <span>→ handoff → wait → handoff → wait →</span> customer feedback</p>
+              <div class="journey-label"><h3>Traspasos secuenciales</h3><span class="tag">ANTES, SIMPLIFICADO</span></div>
+              <div class="workflow-track"><span>Investigación</span><b>→</b><span>Encargo</span><b>→</b><span>Maquetas</span><b>→</b><span>Construcción</span><b>→</b><span>Lanzamiento</span></div>
+              <p>Necesidad del cliente <span>→ traspaso → espera → traspaso → espera →</span> opinión del cliente</p>
             </article>
             <article class="journey collaborative">
-              <div class="journey-label"><h3>Shared intent. Joint execution.</h3><span class="tag lime-tag">PROPOSED PILOT</span></div>
-              <div class="workflow-track"><span>Mission · Milestones · Metrics</span><b>→</b><span>Spec ↔ concept ↔ HTML/CSS</span><b>→</b><span>Experiment ↔ learn</span></div>
-              <p>Customer need <span>→ PM + research + design + engineering →</span> customer feedback</p>
+              <div class="journey-label"><h3>Propósito común. Trabajo conjunto.</h3><span class="tag lime-tag">PILOTO PROPUESTO</span></div>
+              <div class="workflow-track"><span>Misión · Metas · Métricas</span><b>→</b><span>Especificación ↔ concepto ↔ HTML/CSS</span><b>→</b><span>Experimentar ↔ aprender</span></div>
+              <p>Necesidad del cliente <span>→ PM + investigación + diseño + ingeniería →</span> opinión del cliente</p>
             </article>
           </div>
-          <div class="bottom-line"><p>Measure production time, review effort, and learning cadence.<br><small>Hypothesis: production can shrink; experimentation can expand. Validate it.</small></p><button data-action="journey">Animate both journeys <span aria-hidden="true">↗</span></button></div>
-          <p id="journey-status" class="sr-only" role="status">Compare sequential handoffs with collaborative production and learning.</p>
+          <div class="bottom-line"><p>Mide tiempo de producción, esfuerzo de revisión y ritmo de aprendizaje.<br><small>Hipótesis: producir puede llevar menos; experimentar, más. Valídalo.</small></p><button data-action="journey">Animar ambos recorridos <span aria-hidden="true">↗</span></button></div>
+          <p id="journey-status" class="sr-only" role="status">Compara los traspasos secuenciales con la producción y el aprendizaje colaborativos.</p>
           <footer class="slide-footer"><span>11 / 15</span></footer>
         </section>
 
-        <section class="slide" id="slide-12" aria-labelledby="title-12" data-act="ACT III" data-title="From documentation to executable standards" hidden>
-          <div class="eyebrow">ACT III <span>11 — ENCODE HOW THE ORGANIZATION THINKS</span></div>
-          <h2 id="title-12">Your next infrastructure<br>is already <em>in your documentation.</em></h2>
+        <section class="slide" id="slide-12" aria-labelledby="title-12" data-act="ACTO III" data-title="De la documentación a los criterios ejecutables" hidden>
+          <div class="eyebrow">ACTO III <span>11 — ESTRUCTURAR CÓMO PIENSA LA ORGANIZACIÓN</span></div>
+          <h2 id="title-12">Tu próxima infraestructura<br>ya está <em>en tu documentación.</em></h2>
           <div class="standards-layout">
             <div class="standards-table">
-              <div><span>Guidelines</span><b>→</b><strong>Machine-readable rules</strong></div>
-              <div><span>Design system</span><b>→</b><strong>AI-readable design system</strong></div>
-              <div class="review-detail"><span>Templates</span><b>→</b><strong>Canonical prompts</strong></div>
-              <div><span>Documentation</span><b>→</b><strong>Reusable context packages</strong></div>
-              <div><span>Critique</span><b>→</b><strong>Evaluation rubrics</strong></div>
-              <div class="review-detail"><span>SOPs</span><b>→</b><strong>Human–AI workflows</strong></div>
-              <div class="review-detail"><span>Efficiency metrics</span><b>→</b><strong>Speed + quality + outcomes</strong></div>
+              <div><span>Guías</span><b>→</b><strong>Reglas legibles por máquinas</strong></div>
+              <div><span>Sistema de diseño</span><b>→</b><strong>Sistema legible para la IA</strong></div>
+              <div class="review-detail"><span>Plantillas</span><b>→</b><strong>Prompts canónicos</strong></div>
+              <div><span>Documentación</span><b>→</b><strong>Paquetes de contexto reutilizables</strong></div>
+              <div><span>Revisión crítica</span><b>→</b><strong>Criterios de evaluación</strong></div>
+              <div class="review-detail"><span>Procedimientos</span><b>→</b><strong>Flujos de personas e IA</strong></div>
+              <div class="review-detail"><span>Métricas de eficiencia</span><b>→</b><strong>Rapidez + calidad + resultados</strong></div>
             </div>
-            <aside class="context-package"><div class="code-label">SHARED GUIDANCE / ILLUSTRATIVE</div><pre><code><span>source:</span> solo-setup brief (assumed)
-<span>check:</span> finish setup alone
-<span>decision:</span> invite after setup
-<span>scope:</span> solo workspace setup
-<span>lesson:</span> invitations are optional
-<span>owner:</span> product lead
-<span>version:</span> 1, reviewed by the team
-<span>review:</span> after pilot / change
-<span>evidence:</span> user test pending</code></pre>
-              <dl class="stage-only stage-rule"><dt>Lesson · solo setup</dt><dd>Invitations after setup</dd><dt>Reason · from the brief</dt><dd>The person may be starting alone.</dd><dt>Owner · product lead</dt><dd>Version 1, reviewed by the team</dd><dt>Review · after pilot / change</dt><dd>User test pending</dd></dl>
-              <p>DesignOps maintains the guidance.<br>The team checks it still applies.</p></aside>
+            <aside class="context-package"><div class="code-label">GUÍA COMÚN / ILUSTRATIVA</div><pre><code><span>fuente:</span> encargo individual (supuesto)
+<span>comprobar:</span> completar el alta a solas
+<span>decisión:</span> invitar después del alta
+<span>alcance:</span> alta individual de espacio
+<span>lección:</span> invitaciones opcionales
+<span>responsable:</span> líder de producto
+<span>versión:</span> 1, revisada por el equipo
+<span>revisión:</span> tras el piloto / cambios
+<span>evidencia:</span> prueba con usuarios pendiente</code></pre>
+              <dl class="stage-only stage-rule"><dt>Lección · alta individual</dt><dd>Invitar después del alta</dd><dt>Razón · según el encargo</dt><dd>La persona puede empezar sola.</dd><dt>Responsable · líder de producto</dt><dd>Versión 1, revisada por el equipo</dd><dt>Revisión · tras piloto / cambios</dt><dd>Prueba con usuarios pendiente</dd></dl>
+              <p>DesignOps mantiene la guía.<br>El equipo comprueba su vigencia.</p></aside>
           </div>
-          <footer class="slide-footer"><span>EXECUTABLE STANDARDS REQUIRE IMPLEMENTATION + VALIDATION, NOT JUST A PROMPT</span><span>12 / 15</span></footer>
+          <footer class="slide-footer"><span>LOS CRITERIOS EJECUTABLES EXIGEN IMPLEMENTACIÓN + VALIDACIÓN, NO SOLO UN PROMPT</span><span>12 / 15</span></footer>
         </section>
 
-        <section class="slide" id="slide-13" aria-labelledby="title-13" data-act="ACT III" data-title="Measure speed and coherence" hidden>
-          <div class="eyebrow">ACT III <span>12 — MEASURE THE OPERATING MODEL</span></div>
-          <div class="metrics-heading"><h2 class="compact-title" id="title-13">Faster is not<br><em>the whole score.</em></h2><span class="scenario-label">EARLY EXPERIMENTATION · APPROXIMATE VALUES</span></div>
+        <section class="slide" id="slide-13" aria-labelledby="title-13" data-act="ACTO III" data-title="Medir rapidez y coherencia" hidden>
+          <div class="eyebrow">ACTO III <span>12 — MEDIR EL MODELO OPERATIVO</span></div>
+          <div class="metrics-heading"><h2 class="compact-title" id="title-13">La rapidez no<br><em>lo mide todo.</em></h2><span class="scenario-label">EXPERIMENTACIÓN INICIAL · VALORES APROXIMADOS</span></div>
           <div class="metric-dashboard" id="metric-dashboard"></div>
-          <div class="metric-foot"><p><strong>More review—better outcomes?</strong></p><div class="button-group"><button id="metrics-open" aria-haspopup="dialog">All 10 measures</button><button data-action="metric-definitions">Definitions <span aria-hidden="true">↗</span></button></div></div>
-          <footer class="slide-footer"><span>ARE WE INCREASING SPEED WITHOUT INCREASING ENTROPY?</span><span>13 / 15</span></footer>
+          <div class="metric-foot"><p><strong>¿Más revisión, mejores resultados?</strong></p><div class="button-group"><button id="metrics-open" aria-haspopup="dialog">Las 10 métricas</button><button data-action="metric-definitions">Definiciones <span aria-hidden="true">↗</span></button></div></div>
+          <footer class="slide-footer"><span>¿GANAMOS RAPIDEZ SIN AUMENTAR LA ENTROPÍA?</span><span>13 / 15</span></footer>
         </section>
 
-        <section class="slide" id="slide-14" aria-labelledby="title-14" data-act="ACT III" data-title="Your first 30 days" hidden>
-          <div class="eyebrow">ACT III <span>13 — START AT THE ALTITUDE YOU CAN INFLUENCE</span></div>
-          <h2 id="title-14">One workflow.<br><em>Thirty days. A measurable pilot.</em></h2>
+        <section class="slide" id="slide-14" aria-labelledby="title-14" data-act="ACTO III" data-title="Tus primeros 30 días" hidden>
+          <div class="eyebrow">ACTO III <span>13 — EMPIEZA EN EL ÁMBITO DONDE PUEDAS INFLUIR</span></div>
+          <h2 id="title-14">Un flujo de trabajo.<br><em>Treinta días. Un piloto medible.</em></h2>
           <div class="thirty-days">
-            <article><span>DAYS 01–07</span><h3>Map</h3><p>A map of AI use, gaps, and risk.</p></article>
-            <article><span>DAYS 08–14</span><h3>Select</h3><p>One workflow with shared context.</p></article>
-            <article><span>DAYS 15–21</span><h3>Define</h3><p>A review plan: owner, criteria, baseline.</p></article>
-            <article><span>DAYS 22–30</span><h3>Pilot</h3><p>Comparable work, reviewed evidence.</p></article>
+            <article><span>DÍAS 01–07</span><h3>Mapear</h3><p>Un mapa del uso de IA, carencias y riesgos.</p></article>
+            <article><span>DÍAS 08–14</span><h3>Elegir</h3><p>Un flujo de trabajo con contexto común.</p></article>
+            <article><span>DÍAS 15–21</span><h3>Definir</h3><p>Un plan: responsable, criterios y referencia.</p></article>
+            <article><span>DÍAS 22–30</span><h3>Piloto</h3><p>Trabajo comparable y evidencia revisada.</p></article>
           </div>
-          <p class="pilot-decision"><span>THEN DECIDE</span> <strong>Adopt</strong> / <strong>Revise</strong> / <strong>Stop</strong></p>
+          <p class="pilot-decision"><span>DESPUÉS, DECIDE</span> <strong>Adoptar</strong> / <strong>Revisar</strong> / <strong>Detener</strong></p>
           <footer class="slide-footer"><span>14 / 15</span></footer>
         </section>
 
-        <section class="slide closing" id="slide-15" aria-labelledby="title-15" data-act="ACT IV" data-title="Who designs the system?" hidden>
-          <div class="eyebrow">ACT IV <span>14 — THE QUESTION WE STARTED WITH</span></div>
-          <p class="closing-setup">If AI becomes part of how we design products,</p>
-          <h2 id="title-15">who designs the system<br>in which AI operates?</h2>
-          <div id="closing-reveal" hidden><p class="answer-word">DesignOps.</p><p class="closing-thesis">AI doesn't eliminate the need for DesignOps.<br><strong>It makes DesignOps infrastructure.</strong></p></div>
-          <div class="closing-triad"><span>AI creates <strong>capacity.</strong></span><span>Systems create <strong>consistency.</strong></span><span>Stewardship creates <strong>trust.</strong></span></div>
-          <footer class="slide-footer"><span>DESIGNOPS CONNECTS ALL THREE.</span><span>15 / 15 → Q&A</span></footer>
+        <section class="slide closing" id="slide-15" aria-labelledby="title-15" data-act="ACTO IV" data-title="¿Quién diseña el sistema?" hidden>
+          <div class="eyebrow">ACTO IV <span>14 — LA PREGUNTA INICIAL</span></div>
+          <p class="closing-setup">Si la IA forma parte de cómo diseñamos productos,</p>
+          <h2 id="title-15">¿quién diseña el sistema<br>en el que opera la IA?</h2>
+          <div id="closing-reveal" hidden><p class="answer-word">DesignOps.</p><p class="closing-thesis">La IA no elimina la necesidad de DesignOps.<br><strong>Lo convierte en infraestructura.</strong></p></div>
+          <div class="closing-triad"><span>La IA crea <strong>capacidad.</strong></span><span>Los sistemas crean <strong>coherencia.</strong></span><span>La gestión responsable crea <strong>confianza.</strong></span></div>
+          <footer class="slide-footer"><span>DESIGNOPS CONECTA LAS TRES.</span><span>15 / 15 → Preguntas</span></footer>
         </section>
 
-        <section class="slide qa" id="slide-16" aria-labelledby="title-16" data-act="Q&A" data-title="Let's talk — Q&A" hidden>
-          <div class="eyebrow">Q&A <span>10 MINUTES / FOLLOW THE CONVERSATION</span></div>
-          <div class="qa-layout"><div><p class="kicker">DESIGNOPS AS AI INFRASTRUCTURE</p><h2 id="title-16">Let's<br><em>talk.</em></h2>
-            <nav class="contact-links" aria-label="Connect with Julian Alvarado">
-              <a href="https://www.linkedin.com/in/alvaradolj1/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn: alvaradolj1 (opens in a new tab)">LinkedIn · alvaradolj1 <span aria-hidden="true">↗</span></a>
-              <a href="https://github.com/JulianAlvarado" target="_blank" rel="noopener noreferrer" aria-label="GitHub: JulianAlvarado (opens in a new tab)">GitHub · JulianAlvarado <span aria-hidden="true">↗</span></a>
+        <section class="slide qa" id="slide-16" aria-labelledby="title-16" data-act="Preguntas" data-title="Conversemos — Preguntas" hidden>
+          <div class="eyebrow">Preguntas <span>10 MINUTOS / SIGUE LA CONVERSACIÓN</span></div>
+          <div class="qa-layout"><div><p class="kicker">DESIGNOPS COMO INFRAESTRUCTURA DE IA</p><h2 id="title-16"><em>Hablemos.</em></h2>
+            <nav class="contact-links" aria-label="Contactar con Julian Alvarado">
+              <a href="https://www.linkedin.com/in/alvaradolj1/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn: alvaradolj1 (se abre en una pestaña nueva)">LinkedIn · alvaradolj1 <span aria-hidden="true">↗</span></a>
+              <a href="https://github.com/JulianAlvarado" target="_blank" rel="noopener noreferrer" aria-label="GitHub: JulianAlvarado (se abre en una pestaña nueva)">GitHub · JulianAlvarado <span aria-hidden="true">↗</span></a>
             </nav>
           </div>
-            <nav class="qa-links" aria-label="Q&A backup slides"><a href="#17">01 <span>Who owns governance?</span> ↗</a><a href="#18">02 <span>Do we become an AI team?</span> ↗</a><a href="#19">03 <span>What is an AI-ready design system?</span> ↗</a><a href="#20">04 <span>What happens when models change?</span> ↗</a><a href="#21">05 <span>How do we prove value?</span> ↗</a><a href="#22">06 <span>How does the context stack fit?</span> ↗</a><a href="#23">07 <span>Where does this fit in the lifecycle?</span> ↗</a></nav>
+            <nav class="qa-links" aria-label="Diapositivas de apoyo para preguntas"><a href="#17">01 <span>¿Quién asume la gobernanza?</span> ↗</a><a href="#18">02 <span>¿Nos convertimos en un equipo de IA?</span> ↗</a><a href="#19">03 <span>¿Cómo es un sistema de diseño preparado para IA?</span> ↗</a><a href="#20">04 <span>¿Qué ocurre cuando cambian los modelos?</span> ↗</a><a href="#21">05 <span>¿Cómo demostramos el valor?</span> ↗</a><a href="#22">06 <span>¿Cómo encajan las capas de contexto?</span> ↗</a><a href="#23">07 <span>¿Cómo encaja en el ciclo de vida?</span> ↗</a></nav>
           </div>
-          <footer class="slide-footer"><span>GOVERN · CONTEXT · EVALUATE</span><span>Q&A / BACKUPS FOLLOW</span></footer>
+          <footer class="slide-footer"><span>GOBERNAR · CONTEXTO · EVALUAR</span><span>PREGUNTAS / APOYOS</span></footer>
         </section>
 
-        <section class="slide backup" id="slide-17" aria-labelledby="title-17" data-act="BACKUP" data-title="Backup: shared governance ownership" hidden>
-          <div class="eyebrow">BACKUP 01 <a href="#16">↖ BACK TO Q&A</a></div>
-          <h2 id="title-17">Shared governance.<br><em>Explicit decision rights.</em></h2>
-          <div class="ownership-grid"><article><span>BOUNDARIES</span><h3>Security + Legal</h3><p>Data, privacy, risk, and policy.<br>Set non-negotiable constraints.</p></article><article><span>ACCESS</span><h3>IT + platform teams</h3><p>Approved technology and access.<br>Maintain secure capabilities.</p></article><article><span>OPERATING MODEL</span><h3>DesignOps</h3><p>Translate policy into workflows.<br>Facilitate context and evaluation.</p></article><article><span>PRODUCT JUDGMENT</span><h3>Domain experts</h3><p>PM, research, design, engineering.<br>Own quality and release decisions.</p></article></div>
-          <p class="backup-takeaway">Good governance pre-approves safe paths—not every individual click.</p>
-          <footer class="slide-footer"><span>RISK-BASED CHECKPOINTS · NAMED OWNERS · DOCUMENTED EXCEPTIONS</span><span>APPENDIX / 01</span></footer>
+        <section class="slide backup" id="slide-17" aria-labelledby="title-17" data-act="APOYO" data-title="Apoyo: responsabilidad compartida de gobernanza" hidden>
+          <div class="eyebrow">APOYO 01 <a href="#16">↖ VOLVER A PREGUNTAS</a></div>
+          <h2 id="title-17">Gobernanza compartida.<br><em>Autoridad para decidir, clara.</em></h2>
+          <div class="ownership-grid"><article><span>LÍMITES</span><h3>Seguridad + Legal</h3><p>Datos, privacidad, riesgo y políticas.<br>Fijan límites no negociables.</p></article><article><span>ACCESO</span><h3>TI + plataformas</h3><p>Tecnología y acceso aprobados.<br>Mantienen capacidades seguras.</p></article><article><span>MODELO OPERATIVO</span><h3>DesignOps</h3><p>Traducen políticas en flujos.<br>Facilitan contexto y evaluación.</p></article><article><span>CRITERIO DE PRODUCTO</span><h3>Expertos del área</h3><p>PM, investigación, diseño e ingeniería.<br>Deciden sobre calidad y lanzamiento.</p></article></div>
+          <p class="backup-takeaway">Una buena gobernanza aprueba rutas seguras, no cada clic.</p>
+          <footer class="slide-footer"><span>CONTROLES SEGÚN EL RIESGO · RESPONSABLES · EXCEPCIONES DOCUMENTADAS</span><span>APÉNDICE / 01</span></footer>
         </section>
 
-        <section class="slide backup" id="slide-18" aria-labelledby="title-18" data-act="BACKUP" data-title="Backup: operating-environment architect, not AI factory" hidden>
-          <div class="eyebrow">BACKUP 02 <a href="#16">↖ BACK TO Q&A</a></div>
-          <h2 id="title-18">Architect the environment.<br><em>Don't become the AI factory.</em></h2>
-          <div class="role-responsibilities"><span>Governance <small>Rules + risk</small></span><span>Design intelligence <small>Consumable knowledge</small></span><span>Workflow architecture <small>With domain experts</small></span><span>Quality systems <small>Rubrics + evidence</small></span><span>Enablement <small>Playbooks + training</small></span><span>Measurement <small>Quality + outcomes</small></span></div>
-          <div class="archetypes"><strong>ENABLE DIFFERENT KINDS OF WORK</strong><p>Prototype → Build → Improve → Grow → Maintain</p><small>Exploration, production, simplification, experimentation, and reliability need different controls.</small></div>
-          <footer class="slide-footer"><span>A ROLE DIRECTION, NOT A MANDATED TITLE OR REORGANIZATION</span><span>APPENDIX / 02</span></footer>
+        <section class="slide backup" id="slide-18" aria-labelledby="title-18" data-act="APOYO" data-title="Apoyo: diseñar el entorno, no ser una fábrica de IA" hidden>
+          <div class="eyebrow">APOYO 02 <a href="#16">↖ VOLVER A PREGUNTAS</a></div>
+          <h2 id="title-18">Diseña el entorno.<br><em>No seas una fábrica de IA.</em></h2>
+          <div class="role-responsibilities"><span>Gobernanza <small>Reglas + riesgo</small></span><span>Inteligencia de diseño <small>Conocimiento utilizable</small></span><span>Arquitectura de flujos <small>Con expertos del área</small></span><span>Sistemas de calidad <small>Criterios + evidencia</small></span><span>Habilitación <small>Guías + formación</small></span><span>Medición <small>Calidad + resultados</small></span></div>
+          <div class="archetypes"><strong>FACILITAR DISTINTOS TIPOS DE TRABAJO</strong><p>Prototipar → Construir → Mejorar → Crecer → Mantener</p><small>Exploración, producción, simplificación, experimentación y fiabilidad necesitan controles distintos.</small></div>
+          <footer class="slide-footer"><span>UNA ORIENTACIÓN DEL PAPEL, NO UN CARGO NI UNA REORGANIZACIÓN OBLIGATORIOS</span><span>APÉNDICE / 02</span></footer>
         </section>
 
-        <section class="slide backup" id="slide-19" aria-labelledby="title-19" data-act="BACKUP" data-title="Backup: an AI-ready design system" hidden>
-          <div class="eyebrow">BACKUP 03 <a href="#16">↖ BACK TO Q&A</a></div>
-          <h2 id="title-19">A component library<br><em>with the reasoning attached.</em></h2>
-          <div class="system-readiness"><article><span>KEEP THE FOUNDATION</span><h3>Tokens<br>Components<br>Patterns<br>Guidelines</h3></article><b aria-hidden="true">+</b><article><span>MAKE IT CONSUMABLE</span><h3>Semantic metadata<br>Usage rules + constraints<br>Examples + code equivalents<br>Evaluation criteria</h3></article></div>
-          <div class="infrastructure-rail"><span>SHARED CONTEXT</span><strong>Owner</strong><strong>Version</strong><strong>Source</strong><strong>Freshness</strong><strong>Access</strong></div>
-          <p class="backup-takeaway">Start with one pattern: its intent, code, valid uses, forbidden uses, and checks.</p>
-          <footer class="slide-footer"><span>READABLE BY HUMANS AND MACHINES · EXISTING PRODUCT EXPERIENCES ARE CONTEXT TOO</span><span>APPENDIX / 03</span></footer>
+        <section class="slide backup" id="slide-19" aria-labelledby="title-19" data-act="APOYO" data-title="Apoyo: un sistema de diseño preparado para IA" hidden>
+          <div class="eyebrow">APOYO 03 <a href="#16">↖ VOLVER A PREGUNTAS</a></div>
+          <h2 id="title-19">Una biblioteca de componentes<br><em>con sus razones incluidas.</em></h2>
+          <div class="system-readiness"><article><span>CONSERVAR LAS BASES</span><h3>Tokens<br>Componentes<br>Patrones<br>Guías</h3></article><b aria-hidden="true">+</b><article><span>HACERLO UTILIZABLE</span><h3>Metadatos semánticos<br>Reglas de uso + límites<br>Ejemplos + código equivalente<br>Criterios de evaluación</h3></article></div>
+          <div class="infrastructure-rail"><span>CONTEXTO COMPARTIDO</span><strong>Responsable</strong><strong>Versión</strong><strong>Fuente</strong><strong>Vigencia</strong><strong>Acceso</strong></div>
+          <p class="backup-takeaway">Empieza por un patrón: propósito, código, usos válidos, usos prohibidos y pruebas.</p>
+          <footer class="slide-footer"><span>LEGIBLE PARA PERSONAS Y MÁQUINAS · LAS EXPERIENCIAS EXISTENTES TAMBIÉN SON CONTEXTO</span><span>APÉNDICE / 03</span></footer>
         </section>
 
-        <section class="slide backup" id="slide-20" aria-labelledby="title-20" data-act="BACKUP" data-title="Backup: model-agnostic workflows and canonical prompts" hidden>
-          <div class="eyebrow">BACKUP 04 <a href="#16">↖ BACK TO Q&A</a></div>
-          <h2 id="title-20">Models change.<br><em>Your operating principles endure.</em></h2>
-          <div class="stable-contract"><span>KNOWLEDGE</span><span>RULES</span><span>WORKFLOWS</span><span>EVALUATION</span></div>
-          <div class="model-swap"><span>Model A</span><b>↔</b><span>Model B</span><b>↔</b><span>Model C</span><p>Re-run evaluation before switching.<br>Model-agnostic does not mean behavior-identical.</p></div>
-          <p class="backup-takeaway">Canonical prompts encode domain knowledge—not one person's clever phrasing.</p>
-          <p class="lead">Co-author with PMs, researchers, designers, and engineers.<br>Version context, permissions, examples, and acceptance criteria together.</p>
-          <footer class="slide-footer"><span>DESIGNOPS FACILITATES · DOMAIN EXPERTS AUTHOR + REVIEW</span><span>APPENDIX / 04</span></footer>
+        <section class="slide backup" id="slide-20" aria-labelledby="title-20" data-act="APOYO" data-title="Apoyo: flujos independientes del modelo y prompts canónicos" hidden>
+          <div class="eyebrow">APOYO 04 <a href="#16">↖ VOLVER A PREGUNTAS</a></div>
+          <h2 id="title-20">Los modelos cambian.<br><em>Tus principios permanecen.</em></h2>
+          <div class="stable-contract"><span>CONOCIMIENTO</span><span>REGLAS</span><span>FLUJOS</span><span>EVALUACIÓN</span></div>
+          <div class="model-swap"><span>Modelo A</span><b>↔</b><span>Modelo B</span><b>↔</b><span>Modelo C</span><p>Repite la evaluación antes de cambiar.<br>Independencia del modelo no significa comportamiento idéntico.</p></div>
+          <p class="backup-takeaway">Los prompts canónicos recogen conocimiento del área, no el ingenio de una persona.</p>
+          <p class="lead">Créelos con PM, investigadores, diseñadores e ingenieros.<br>Versiona juntos contexto, permisos, ejemplos y criterios de aceptación.</p>
+          <footer class="slide-footer"><span>DESIGNOPS FACILITA · LOS EXPERTOS REDACTAN + REVISAN</span><span>APÉNDICE / 04</span></footer>
         </section>
 
-        <section class="slide backup measurement-backup" id="slide-21" aria-labelledby="title-21" data-act="BACKUP" data-title="Backup: metric definitions and measurement plan" hidden>
-          <div class="eyebrow">BACKUP 05 <div><a href="#13">↖ DASHBOARD</a> <a href="#16">↖ Q&A</a></div></div>
-          <h2 class="compact-title" id="title-21">Measure the workflow.<br><em>Not the number of prompts.</em></h2>
-          <table class="definitions"><caption>Operational definitions for a scoped baseline and pilot</caption><thead><tr><th>Metric</th><th>Definition / unit</th><th>Collection method</th></tr></thead><tbody>
-            <tr><td>Brief → validated concept</td><td>Median elapsed days; fixed validation criteria</td><td>Brief timestamp → review + user evidence</td></tr>
-            <tr><td>Design production rate</td><td>Accepted artifacts per team-week</td><td>Same artifact class, scope, and acceptance rubric</td></tr>
-            <tr><td>Production / review effort</td><td>Person-hours per accepted concept; report separately</td><td>Time log including critique + validation</td></tr>
-            <tr><td>Rework / revision rate</td><td>% reviewed artifacts requiring a major revision</td><td>Revision log; agree “major” before starting</td></tr>
-            <tr><td>System compliance</td><td>% applicable design-system checks passed</td><td>Token, component, and interaction-pattern audit</td></tr>
-            <tr><td>Accessibility / quality defects</td><td>Open defects per 10 reviewed screens + severity</td><td>Manual and automated checks, deduplicated</td></tr>
-            <tr><td>Design-to-code divergence</td><td>% audited UI instances violating approved intent</td><td>Paired design/code review of a defined sample</td></tr>
-            <tr><td>Experimentation / reuse</td><td>Completed experiments/week; % work citing approved context</td><td>Decision log; context provenance in artifacts</td></tr>
+        <section class="slide backup measurement-backup" id="slide-21" aria-labelledby="title-21" data-act="APOYO" data-title="Apoyo: definiciones de métricas y plan de medición" hidden>
+          <div class="eyebrow">APOYO 05 <div><a href="#13">↖ PANEL</a> <a href="#16">↖ Preguntas</a></div></div>
+          <h2 class="compact-title" id="title-21">Mide el flujo de trabajo.<br><em>No el número de prompts.</em></h2>
+          <table class="definitions"><caption>Definiciones operativas para una referencia y un piloto acotados</caption><thead><tr><th>Métrica</th><th>Definición / unidad</th><th>Método de recogida</th></tr></thead><tbody>
+            <tr><td>Encargo → concepto validado</td><td>Mediana en días; validación acordada</td><td>Fecha del encargo → revisión + evidencia de usuarios</td></tr>
+            <tr><td>Ritmo de producción</td><td>Entregables aceptados/equipo-semana</td><td>Mismo tipo, alcance y criterios de aceptación</td></tr>
+            <tr><td>Producción / revisión</td><td>Horas-persona/concepto; por separado</td><td>Registrar crítica y validación</td></tr>
+            <tr><td>Tasa de retrabajo</td><td>% revisado con cambios importantes</td><td>Registrar cambios; definir «importante» antes</td></tr>
+            <tr><td>Cumplimiento del sistema</td><td>% de pruebas aplicables superadas</td><td>Auditar tokens, componentes y patrones</td></tr>
+            <tr><td>Accesibilidad / calidad</td><td>Defectos abiertos/10 pantallas + gravedad</td><td>Pruebas manuales y automáticas, sin duplicados</td></tr>
+            <tr><td>Divergencia diseño-código</td><td>% auditado que incumple el diseño</td><td>Revisión conjunta en una muestra definida</td></tr>
+            <tr><td>Experimentos / reutilización</td><td>Terminados/sem; % que cita contexto aprobado</td><td>Registrar decisiones y origen del contexto</td></tr>
           </tbody></table>
-          <p class="measurement-note">Match scope + staffing. Record sample size + spread. Audit sampling bias. Track customer task success separately.<br>Small pilots are directional—not causal proof. Set adoption / revise / stop criteria before seeing results.</p>
-          <footer class="slide-footer"><span>LEADING INDICATORS SIGNAL READINESS · OUTCOMES TEST WHETHER IT WORKED</span><span>APPENDIX / 05</span></footer>
+          <p class="measurement-note">Iguala alcance y dotación. Registra muestra y dispersión. Revisa sesgos. Mide aparte el éxito del usuario.<br>Un piloto pequeño orienta; no prueba causalidad. Define antes cuándo adoptar, revisar o detener.</p>
+          <footer class="slide-footer"><span>LOS INDICADORES ANTICIPAN LA PREPARACIÓN · LOS RESULTADOS PRUEBAN SI FUNCIONÓ</span><span>APÉNDICE / 05</span></footer>
         </section>
 
-        <section class="slide backup" id="slide-22" aria-labelledby="title-22" data-act="BACKUP" data-title="Backup: Organizational memory is the advantage" hidden>
-          <div class="eyebrow">BACKUP 06 <a href="#16">↖ BACK TO Q&A</a></div>
+        <section class="slide backup" id="slide-22" aria-labelledby="title-22" data-act="APOYO" data-title="Apoyo: la ventaja es la memoria de la organización" hidden>
+          <div class="eyebrow">APOYO 06 <a href="#16">↖ VOLVER A PREGUNTAS</a></div>
           <div class="stack-layout">
-            <div><h2 id="title-22">The advantage<br>isn't the model.<br><em>It's the memory.</em></h2><p class="lead">What does your organization<br>allow the model to know?</p><button data-action="stack" aria-controls="stack">Build the context stack</button><p class="micro" id="stack-status" role="status">Layer 1 of 5: Models. Build from the foundation up.</p></div>
+            <div><h2 id="title-22">La ventaja<br>no es el modelo.<br><em>Es la memoria.</em></h2><p class="lead">¿Qué permite tu organización<br>que sepa el modelo?</p><button data-action="stack" aria-controls="stack">Construir las capas de contexto</button><p class="micro" id="stack-status" role="status">Capa 1 de 5: Modelos. Construye desde la base.</p></div>
             <div class="stack" id="stack">
-              <div class="stack-layer ops-layer" data-layer="4"><b>05</b><div><h3>DesignOps</h3><p>Connects the system · enables adoption</p></div></div>
-              <div class="stack-layer" data-layer="3"><b>04</b><div><h3>Stewardship</h3><p>Guardrails · exclusions · human checkpoints</p></div></div>
-              <div class="stack-layer context-layer" data-layer="2"><b>03</b><div><h3>Organizational context</h3><p>Tokens · components · research · brand · accessibility<br>Terminology · workflows · repos · product experiences</p></div></div>
-              <div class="stack-layer" data-layer="1"><b>02</b><div><h3>Agents + tools</h3><p>Design assistants · coding agents · research tools</p></div></div>
-              <div class="stack-layer revealed" data-layer="0"><b>01</b><div><h3>Models</h3><p>Replaceable capabilities, not institutional knowledge</p></div></div>
+              <div class="stack-layer ops-layer" data-layer="4"><b>05</b><div><h3>DesignOps</h3><p>Conecta el sistema · facilita la adopción</p></div></div>
+              <div class="stack-layer" data-layer="3"><b>04</b><div><h3>Gestión responsable</h3><p>Límites · exclusiones · controles humanos</p></div></div>
+              <div class="stack-layer context-layer" data-layer="2"><b>03</b><div><h3>Contexto de la organización</h3><p>Tokens · componentes · investigación · marca · accesibilidad<br>Terminología · flujos · repositorios · experiencias de producto</p></div></div>
+              <div class="stack-layer" data-layer="1"><b>02</b><div><h3>Agentes + herramientas</h3><p>Asistentes de diseño · agentes de código · investigación</p></div></div>
+              <div class="stack-layer revealed" data-layer="0"><b>01</b><div><h3>Modelos</h3><p>Capacidades sustituibles, no conocimiento institucional</p></div></div>
             </div>
           </div>
-          <footer class="slide-footer"><span>AI-READY = HUMAN-UNDERSTANDABLE + MACHINE-CONSUMABLE</span><span>APPENDIX / 06</span></footer>
+          <footer class="slide-footer"><span>PREPARADO PARA IA = COMPRENSIBLE PARA PERSONAS + UTILIZABLE POR MÁQUINAS</span><span>APÉNDICE / 06</span></footer>
         </section>
 
-        <section class="slide backup" id="slide-23" aria-labelledby="title-23" data-act="BACKUP" data-title="Backup: DesignOps across the product lifecycle" hidden>
-          <div class="eyebrow">BACKUP 07 <a href="#16">↖ BACK TO Q&A</a></div>
-          <h2 id="title-23">Same infrastructure.<br><em>Every stage of the journey.</em></h2>
-          <div class="lifecycle" role="group" aria-label="Choose a product lifecycle stage">
-            <button data-life="0" aria-pressed="true">01 <strong>DISCOVER</strong><span>Synthesize research</span></button>
-            <button data-life="1" aria-pressed="false">02 <strong>DEFINE</strong><span>Frame the problem</span></button>
-            <button data-life="2" aria-pressed="false">03 <strong>DESIGN</strong><span>Explore concepts</span></button>
-            <button data-life="3" aria-pressed="false">04 <strong>BUILD</strong><span>Generate components</span></button>
-            <button data-life="4" aria-pressed="false">05 <strong>MEASURE</strong><span>Interpret outcomes</span></button>
+        <section class="slide backup" id="slide-23" aria-labelledby="title-23" data-act="APOYO" data-title="Apoyo: DesignOps en el ciclo de vida del producto" hidden>
+          <div class="eyebrow">APOYO 07 <a href="#16">↖ VOLVER A PREGUNTAS</a></div>
+          <h2 id="title-23">La misma infraestructura.<br><em>En cada etapa del recorrido.</em></h2>
+          <div class="lifecycle" role="group" aria-label="Elegir una etapa del ciclo de vida del producto">
+            <button data-life="0" aria-pressed="true">01 <strong>DESCUBRIR</strong><span>Sintetizar investigación</span></button>
+            <button data-life="1" aria-pressed="false">02 <strong>DEFINIR</strong><span>Delimitar el problema</span></button>
+            <button data-life="2" aria-pressed="false">03 <strong>DISEÑAR</strong><span>Explorar conceptos</span></button>
+            <button data-life="3" aria-pressed="false">04 <strong>CONSTRUIR</strong><span>Generar componentes</span></button>
+            <button data-life="4" aria-pressed="false">05 <strong>MEDIR</strong><span>Interpretar resultados</span></button>
           </div>
           <div class="life-detail" id="life-detail" aria-live="polite"></div>
-          <div class="infrastructure-rail"><span>SHARED INFRASTRUCTURE</span><strong>GOVERN</strong><strong>CONTEXT</strong><strong>EVALUATE</strong></div>
-          <footer class="slide-footer"><span>SELECT A STAGE TO INSPECT ITS AI CONTRIBUTION + DESIGNOPS SUPPORT</span><span>APPENDIX / 07</span></footer>
+          <div class="infrastructure-rail"><span>INFRAESTRUCTURA COMÚN</span><strong>GOBERNAR</strong><strong>CONTEXTO</strong><strong>EVALUAR</strong></div>
+          <footer class="slide-footer"><span>ELIGE UNA ETAPA PARA VER EL APORTE DE IA + EL APOYO DE DESIGNOPS</span><span>APÉNDICE / 07</span></footer>
         </section>
       </div>
     </div>
   </main>
-  <button id="stage-exit" hidden>Exit stage · Esc</button>
+  <button id="stage-exit" hidden>Salir de Escenario · Esc</button>
 
-  <aside id="notes" class="notes-panel" aria-label="Presenter notes" tabindex="0" hidden>
-    <div class="notes-header"><h2>Presenter notes</h2><button id="notes-close" aria-label="Close presenter notes">Close ×</button></div>
+  <aside id="notes" class="notes-panel" aria-label="Notas del ponente" tabindex="0" hidden>
+    <div class="notes-header"><h2>Notas del ponente</h2><button id="notes-close" aria-label="Cerrar notas del ponente">Cerrar ×</button></div>
     <div id="notes-content"></div>
   </aside>
   <footer class="navigation">
-    <div class="nav-context"><span id="act-label">ACT I</span><span id="slide-title">Opening</span></div>
-    <div class="nav-controls"><button id="previous" aria-label="Previous slide">←</button><span id="counter" aria-live="polite" aria-atomic="true">01 / 15</span><button id="next" aria-label="Next slide">→</button></div>
-    <div class="nav-hint">← → navigate <span>·</span> N notes <span>·</span> G index</div>
-    <progress id="progress" max="15" value="1" aria-label="Keynote progress"></progress>
+    <div class="nav-context"><span id="act-label">ACTO I</span><span id="slide-title">Apertura</span></div>
+    <div class="nav-controls"><button id="previous" aria-label="Diapositiva anterior">←</button><span id="counter" aria-live="polite" aria-atomic="true">01 / 15</span><button id="next" aria-label="Siguiente diapositiva">→</button></div>
+    <div class="nav-hint">← → navegar <span>·</span> N notas <span>·</span> G índice</div>
+    <progress id="progress" max="15" value="1" aria-label="Progreso de la conferencia"></progress>
   </footer>
-  <dialog id="overview" aria-labelledby="overview-title"><div class="dialog-header"><div><p class="kicker">20 MIN KEYNOTE + 10 MIN Q&A</p><h2 id="overview-title">The story at a glance</h2></div><button id="overview-close" aria-label="Close slide index">Close ×</button></div><div id="slide-index"></div></dialog>
+  <dialog id="overview" aria-labelledby="overview-title"><div class="dialog-header"><div><p class="kicker">20 MIN DE CONFERENCIA + 10 MIN DE PREGUNTAS</p><h2 id="overview-title">La historia de un vistazo</h2></div><button id="overview-close" aria-label="Cerrar índice de diapositivas">Cerrar ×</button></div><div id="slide-index"></div></dialog>
   <dialog id="metrics-detail" aria-labelledby="metrics-title">
-    <div class="dialog-header"><h2 id="metrics-title">Speed + coherence: all 10 measures</h2><button id="metrics-close" aria-label="Close metric details">Close ×</button></div>
-    <p class="scenario-label">EARLY EXPERIMENTATION · APPROXIMATE VALUES</p>
-    <p class="detail-intro">Approximate baseline and pilot values are shown together, informed by early experimentation. Changes use each metric's own units; percentage measures show percentage-point changes. These are preliminary estimates, not validated improvements.</p>
+    <div class="dialog-header"><h2 id="metrics-title">Rapidez + coherencia: las 10 métricas</h2><button id="metrics-close" aria-label="Cerrar detalles de métricas">Cerrar ×</button></div>
+    <p class="scenario-label">EXPERIMENTACIÓN INICIAL · VALORES APROXIMADOS</p>
+    <p class="detail-intro">Los valores aproximados de referencia y piloto se muestran juntos, a partir de experimentación inicial. Los cambios usan la unidad de cada métrica; los porcentajes, puntos porcentuales. Son estimaciones preliminares, no mejoras validadas.</p>
     <div id="metric-tables"></div>
-    <p class="detail-intro">Match scope, staffing, and acceptance criteria. Record sample size, spread, and defect severity. Compliance does not prove user benefit.</p>
+    <p class="detail-intro">Iguala alcance, dotación y criterios de aceptación. Registra el tamaño de la muestra, la dispersión y la gravedad de los defectos. El cumplimiento no demuestra beneficio para el usuario.</p>
   </dialog>
   <div id="announcement" class="sr-only" role="status"></div>
-  <noscript>This interactive presentation requires JavaScript. Enable JavaScript, or read speaker-notes.md for the complete narrative.</noscript>
+  <noscript>Esta presentación interactiva requiere JavaScript. Actívalo o consulta speaker-notes.md para leer el relato completo.</noscript>
 </body>
 </html>
