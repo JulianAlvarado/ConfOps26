@@ -19,19 +19,19 @@ Inter is used for both primary and secondary typography, including diagrams and 
 | Slide | V3 treatment |
 | --- | --- |
 | 1 | Inter and existing palette; aligned capacity/coherence labels, matching captions and opening animation retained |
-| 2 | Four disciplines separated by vertical rules, meaningful line icons and vertical semantic bullet lists of deliverables in both languages |
+| 2 | Four disciplines separated by vertical rules, meaningful line icons and vertical semantic bullet lists; generation activates automatically on entry without a button |
 | 3 | 50/50 neutral collage placeholders and condensed supplied biography; full biography retained in notes |
-| 4 | Cleaner branching diagram with a horizontal shared-context boundary; fragmentation and alignment remain distinct |
-| 5 | Three equal questions, separated rather than boxed; not a sequential dependency model |
-| 6 | Six persistent, accessible tabs, one content surface, and main Next progression; no Reset or duplicate Next |
-| 7 | Alternatives at equal visual weight, shared rubric and original evaluation icon **◎**; judgment stays human |
-| 8 | Entire cycle visible without a progress button, including return to shared guidance |
+| 4 | Cleaner branching diagram with V2's vertical context/evaluation band placement restored; fragmentation and alignment remain distinct |
+| 5 | Three equal coral headings: what to use and how, context as the intelligence layer for right choices, and what is good enough; separated rather than boxed, not a sequential dependency model |
+| 6 | Six persistent, accessible tabs, one content surface, and main Next progression; left step heading and right evidence/form share a top-aligned grid row across every tab; no Reset or duplicate Next |
+| 7 | V2's stacked-concept composition and enclosed rubric restored by request, retaining V3 Inter, approved wording and original evaluation icon **◎**; judgment stays human |
+| 8 | V2's learning-loop diagram restored without its progress button; complete cycle visible, with V2 Reading/Stage text equivalents and V3 Inter |
 | 9 | People / Process / Systems explicitly connect current responsibilities with expanded AI scope |
-| 10 | AI-assisted work appears once as a shared layer; distinct actors keep responsibility and DesignOps connects them |
+| 10 | V2's original hub/spoke geometry and role-card positions, with one true AI/IA circle passing behind opaque role cards; shared-layer summary in Reading |
 | 11 | Before: simplified sequential handoffs |
-| 12 | After: proposed shared purpose, synchronized collaboration and AI-assisted production; link to pilot appendix 24 |
+| 12 | After: proposed shared purpose, synchronized collaboration and AI-assisted production; existing green animation starts on entry, without a replay control or pilot badge; link to pilot appendix 24 |
 | 13 | Documentation inputs → reusable guidance outputs → packaged AI context, with provenance and caveats |
-| 14 | Shared Baseline / Pilot / Change headings, grouped categories; all ten measures and definitions remain accessible |
+| 14 | Shared Baseline / Pilot / Change headings, grouped categories; heading badge and footer question removed, while approximate values, evidence caveats, all ten measures and definitions remain accessible |
 | 15 | Main Next reveals the answer; next advance opens Q&A; reverse hides before moving back |
 | 16 | Topic hierarchy, eight appendix links and coral contact actions; removed lead question stays removed |
 | 17–23 | Existing backup content retained, with Inter and related consistency adjustments |
@@ -73,7 +73,7 @@ The removed keynote pilot's 135 seconds join the original journey's 60 seconds, 
 | G / Slides | Open the 24-slide index |
 | ES / EN, or L | In-place language switching |
 
-Stage has only three builds: slide 4 fragmentation/alignment, slide 6's six states, and slide 15's answer. Other diagrams are complete without extra clicks. Optional generation, connection and journey replay controls remain in review. Animations are finite and respect reduced-motion preferences.
+Stage has only three builds: slide 4 fragmentation/alignment, slide 6's six states, and slide 15's answer. Other diagrams are complete without extra clicks. Slide 2's generation sequence and slide 12's green collaboration animation start on entry, without controls or automatic slide advancement. Slide 2 uses native CSS animations, with no timers/listeners to accumulate on revisits; Stage, Reading and reduced-motion views show all four outputs complete. Optional connection and before-journey replay controls remain in review. Animations are finite and respect reduced-motion preferences. Slide 4's context/evaluation band retains its V2 vertical placement in review/Stage and horizontal Reading equivalent.
 
 The form's native input, validation and submit keys never advance the presentation. Tab outside the form to resume presentation keys. Revisiting the first demo tab does not erase entered input. Reload resets the demo; entering Stage starts its own clean rehearsal, and exiting restores review. Use fictional input only.
 

@@ -53,7 +53,7 @@ The reference on 12 opens pilot 24 and returns to its origin. Definitions from 1
 
 **Visual concept:** Four parallel lanes: product, research, design, and engineering.
 
-**Interaction:** Stage: all four roles are resolved and visible. Review: Distribute generation activates one role per click; a fifth click resets the example.
+**Interaction:** Review: the four roles activate automatically on slide entry, with staggered output and bullet-color transitions. No generation control or slide auto-advance. Stage, Reading, and reduced-motion views show the complete static state.
 
 **Speaker notes:** Each discipline gains production capacity. PMs generate briefs and hypotheses; researchers synthesize evidence; designers explore concepts; engineers generate components and tests. Generation is more distributed, but expertise is not interchangeable. The same language model can interpret the product differently in each lane. These are categories of assistance, not guarantees that outputs are accurate. Ask the room to imagine all four lanes producing simultaneously. The new constraint is agreeing on what to produce, what fits the system, and who evaluates it.
 
@@ -97,13 +97,13 @@ The reference on 12 opens pilot 24 and returns to its origin. Definitions from 1
 
 **Timing:** 3:00–4:00 (60 seconds)
 
-**Takeaway:** GOVERN: what can AI do? CONTEXT: what does it know? EVALUATE: what does good look like?
+**Takeaway:** GOVERN: What should we use and how should we use it? CONTEXT: The intelligence layer for the right choices. EVALUATE: What makes it good enough?
 
-**Visual concept:** Three strong words and three questions, with space to absorb each distinction.
+**Visual concept:** Three coral headings with supporting copy, with space to absorb each distinction.
 
 **Interaction:** Static in Stage and review. The solo-setup examples and operating foundations are spoken from these notes, not competing lists on screen.
 
-**Speaker notes:** Use one model throughout. The next demo follows someone starting a workspace alone; use that need to ground the three questions. Govern asks what AI may do and who can accept it: in this illustrative case, no real contact data enters the demo, a designer and engineer review, and a product lead owns the scoped rule. Context carries the solo-setup brief, the requirement to make invitations optional, and the supported form pattern together. Evaluate asks whether setup completes without email, while checking labels, errors, focus, and feasibility. Meeting that requirement alone cannot establish user value. These concrete checks sit within broader tool, data, privacy, risk, and release boundaries. Stewardship grounds governance; systems carry context; enablement puts all three into practice through workflows, prompts, rubrics, and training. This is the core model, not another framework to memorize.
+**Speaker notes:** Use one model throughout. The next demo follows someone starting a workspace alone; use that need to ground the three responsibilities. Govern asks what we should use and how we should use it: in this illustrative case, no real contact data enters the demo, a designer and engineer review, and a product lead owns the scoped rule. Context is the intelligence layer for the right choices: it carries the solo-setup brief, the requirement to make invitations optional, and the supported form pattern together. Evaluate asks what makes it good enough: whether setup completes without email, while checking labels, errors, focus, and feasibility. Meeting that requirement alone cannot establish user value. These concrete checks sit within broader tool, data, privacy, risk, and release boundaries. Stewardship grounds governance; systems carry context; enablement puts all three into practice through workflows, prompts, rubrics, and training. This is the core model, not another framework to memorize.
 
 **Transition:** Now follow those three responsibilities through the actual decision.
 
@@ -181,7 +181,7 @@ The reference on 12 opens pilot 24 and returns to its origin. Definitions from 1
 
 **Visual concept:** AI-assisted work is a single shared layer around distinct actors; DesignOps remains the connective operating layer, not the AI itself.
 
-**Interaction:** Stage: the original hub-and-spoke diagram stays fully connected, with larger labels and no extra control. Review: Connect the control plane toggles the network links. Reading view retains the accessible text summary.
+**Interaction:** The original hub-and-spoke geometry is preserved, with one shared AI circle passing behind opaque role cards. Stage shows all connections without an extra control. Review: Connect the control plane toggles the spokes, not the AI circle. Reading retains the shared-AI layer and accessible text summary.
 
 **Speaker notes:** The control plane metaphor distinguishes defining the conditions of work from doing everyone's work. PM, research, design, prototyping, and engineering keep their domain responsibilities. DesignOps coordinates reusable context, risk-based guardrails, evaluation criteria, ownership, and enablement. It should not become a central approval queue. Security, Legal, IT, platform teams, and domain experts remain essential partners. Clear boundaries can allow teams to move without repeatedly asking permission for known-safe tasks.
 
@@ -213,7 +213,7 @@ The reference on 12 opens pilot 24 and returns to its origin. Definitions from 1
 
 **Visual concept:** One proposed after journey: shared purpose, synchronized collaborative work, AI-assisted production, and experiments with customer feedback.
 
-**Interaction:** Optional collaboration replay. The 30-day pilot reference opens appendix 24; its return link brings you here. The pilot is outside keynote timing.
+**Interaction:** The existing green collaboration animation runs on entry without a replay control. Stage and reduced-motion views remain fully readable without animation. The 30-day pilot reference opens appendix 24; its return link brings you here. The pilot is outside keynote timing.
 
 **Speaker notes:** The before journey is a deliberately simplified pattern, not a claim that all pre-AI teams worked sequentially. Research informs a brief, design produces mocks, engineering builds, and customers finally respond. The proposed alternative starts with Mission, Milestones, and Metrics—the source's MMM. PM, research, design, and engineering share intent; specification, concepts, feasibility, and HTML/CSS prototypes evolve together. Releases can become experiments that inform another iteration. AI may reduce production effort, but review, integration, and dependency costs still count. Do not promise a one-week release or universal acceleration. Measure elapsed production time, person-hours, waiting time, customer validation, and experimentation cadence. The animation contrasts sequencing, not numeric speed. A prototype is not a production release; user evidence remains necessary.
 

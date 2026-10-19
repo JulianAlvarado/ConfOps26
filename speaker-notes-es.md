@@ -53,7 +53,7 @@ La referencia en la 12 abre el piloto 24 y vuelve a su origen. Definiciones desd
 
 **Concepto visual:** Cuatro carriles paralelos: producto, investigación, diseño e ingeniería.
 
-**Interacción:** Escenario: las cuatro funciones están visibles y completas. Revisión: Distribuir la generación activa una función por clic; el quinto clic reinicia el ejemplo.
+**Interacción:** Revisión: las cuatro funciones se activan al entrar en la diapositiva, con cambios de color escalonados en los entregables y las viñetas. Sin control de generación ni avance automático. Escenario, Lectura y movimiento reducido muestran el estado completo y estático.
 
 **Notas del ponente:** Cada disciplina gana capacidad de producción. Producto genera encargos e hipótesis; investigación sintetiza evidencia; diseño explora conceptos; ingeniería genera componentes y pruebas. La generación se distribuye, pero la experiencia no es intercambiable. El mismo modelo de lenguaje puede interpretar el producto de forma distinta en cada carril. Son categorías de apoyo, no garantías de exactitud. Invita al público a imaginar los cuatro carriles produciendo a la vez. El nuevo límite es acordar qué producir, qué encaja en el sistema y quién lo evalúa.
 
@@ -97,13 +97,13 @@ La referencia en la 12 abre el piloto 24 y vuelve a su origen. Definiciones desd
 
 **Tiempo:** 3:00–4:00 (60 segundos)
 
-**Idea clave:** GOBERNAR: ¿qué puede hacer la IA? CONTEXTO: ¿qué sabe? EVALUAR: ¿qué consideramos aceptable?
+**Idea clave:** GOBERNAR: ¿Qué debemos usar y cómo debemos usarlo? CONTEXTO: La capa de inteligencia para tomar las decisiones correctas. EVALUAR: ¿Qué lo hace suficientemente bueno?
 
-**Concepto visual:** Tres palabras con peso y tres preguntas, con espacio para asimilar cada diferencia.
+**Concepto visual:** Tres encabezados en coral con texto de apoyo, con espacio para asimilar cada diferencia.
 
 **Interacción:** Estática en Escenario y revisión. Los ejemplos del alta individual y las bases operativas se explican con estas notas, sin listas que compitan en pantalla.
 
-**Notas del ponente:** Mantén un único modelo. La demo sigue a alguien que crea un espacio de trabajo por su cuenta: usa esa necesidad para concretar las tres preguntas. Gobernar pregunta qué puede hacer la IA y quién puede aceptarlo: en este caso ilustrativo no se introducen datos reales de contacto; diseño e ingeniería revisan; y un líder de producto responde por la regla acotada. El contexto reúne el encargo de alta individual, las invitaciones opcionales y el patrón de formulario admitido. Evaluar pregunta si el alta termina sin correo, y comprueba etiquetas, errores, foco y viabilidad. Cumplir ese requisito no demuestra valor para el usuario. Estas pruebas se enmarcan en límites de herramientas, datos, privacidad, riesgo y lanzamiento. La gestión responsable sostiene la gobernanza; los sistemas transportan el contexto; la habilitación pone las tres funciones en práctica mediante flujos, prompts, criterios y formación. Este es el modelo central, no otro marco que memorizar.
+**Notas del ponente:** Mantén un único modelo. La demo sigue a alguien que crea un espacio de trabajo por su cuenta: usa esa necesidad para concretar las tres responsabilidades. Gobernar pregunta qué debemos usar y cómo debemos usarlo: en este caso ilustrativo no se introducen datos reales de contacto; diseño e ingeniería revisan; y un líder de producto responde por la regla acotada. El contexto es la capa de inteligencia para tomar las decisiones correctas: reúne el encargo de alta individual, las invitaciones opcionales y el patrón de formulario admitido. Evaluar pregunta qué lo hace suficientemente bueno: si el alta termina sin correo, y comprueba etiquetas, errores, foco y viabilidad. Cumplir ese requisito no demuestra valor para el usuario. Estas pruebas se enmarcan en límites de herramientas, datos, privacidad, riesgo y lanzamiento. La gestión responsable sostiene la gobernanza; los sistemas transportan el contexto; la habilitación pone las tres funciones en práctica mediante flujos, prompts, criterios y formación. Este es el modelo central, no otro marco que memorizar.
 
 **Transición:** Sigamos esas tres responsabilidades a través de una decisión concreta.
 
@@ -181,7 +181,7 @@ La referencia en la 12 abre el piloto 24 y vuelve a su origen. Definiciones desd
 
 **Concepto visual:** El trabajo con IA es una sola capa compartida entre actores distintos; DesignOps sigue siendo la capa operativa que conecta, no la IA.
 
-**Interacción:** Escenario: se conserva el diagrama radial, conectado, con etiquetas grandes y sin otro control. Revisión: Conectar el plano de control activa o desactiva enlaces. Lectura conserva el resumen textual accesible.
+**Interacción:** Se conserva la geometría radial original, con un único círculo compartido de IA que pasa por detrás de las tarjetas opacas de las funciones. Escenario muestra todas las conexiones sin otro control. Revisión: Conectar el plano de control activa o desactiva los enlaces radiales, no el círculo de IA. Lectura conserva la capa compartida de IA y el resumen textual accesible.
 
 **Notas del ponente:** El plano de control distingue definir las condiciones del trabajo de hacer el trabajo de todos. Producto, investigación, diseño, prototipado e ingeniería conservan sus responsabilidades. DesignOps coordina contexto reutilizable, límites según el riesgo, criterios de evaluación, responsables y habilitación. No debe convertirse en una cola central de aprobaciones. Seguridad, Legal, TI, plataformas y expertos siguen siendo socios esenciales. Unos límites claros permiten avanzar sin pedir repetidamente permiso para tareas conocidas y seguras.
 
@@ -213,7 +213,7 @@ La referencia en la 12 abre el piloto 24 y vuelve a su origen. Definiciones desd
 
 **Concepto visual:** Un recorrido posterior propuesto: propósito común, trabajo colaborativo sincronizado, producción con IA y experimentos con opinión del cliente.
 
-**Interacción:** Repetición opcional de la colaboración. La referencia al piloto de 30 días abre el apéndice 24; su enlace de regreso vuelve aquí. El piloto queda fuera del tiempo de conferencia.
+**Interacción:** La animación verde de colaboración se inicia al entrar, sin control de repetición. Escenario y movimiento reducido mantienen todo legible sin animación. La referencia al piloto de 30 días abre el apéndice 24; su enlace de regreso vuelve aquí. El piloto queda fuera del tiempo de conferencia.
 
 **Notas del ponente:** El recorrido anterior es una simplificación deliberada, no una afirmación de que todos los equipos trabajaban secuencialmente antes de la IA. La investigación informa el encargo, diseño crea propuestas, ingeniería construye y el cliente responde al final. La alternativa propuesta parte de Misión, Metas y Métricas: las MMM de la fuente, donde Metas recoge los hitos. PM, investigación, diseño e ingeniería comparten propósito; especificación, conceptos, viabilidad y prototipos HTML/CSS evolucionan juntos. Los lanzamientos pueden convertirse en experimentos que informan otra iteración. La IA puede reducir producción, pero siguen contando revisión, integración y dependencias. No prometas lanzamientos en una semana ni aceleración universal. Mide tiempo transcurrido, horas-persona, esperas, validación con clientes y ritmo experimental. La animación compara secuencias, no velocidades numéricas. Un prototipo no es un lanzamiento de producción; la evidencia de usuarios sigue siendo necesaria.
 

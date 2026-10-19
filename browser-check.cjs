@@ -49,25 +49,53 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
     assert.equal(await page.locator("#metric-dashboard thead th").count(), 4);
     assert.equal(await page.locator("#metric-dashboard .metric-category").count(), 2);
     assert.equal(await page.locator("#metric-tables tbody tr").count(), 10);
+    for (const [locale, copy] of [
+      ["es", ["¿Qué debemos usar y cómo debemos usarlo?", "La capa de inteligencia para tomar las decisiones correctas.", "¿Qué lo hace suficientemente bueno?"]],
+      ["en", ["What should we use and how should we use it?", "The intelligence layer for the right choices.", "What makes it good enough?"]]
+    ]) {
+      await page.evaluate(locale => setLanguage(locale), locale);
+      assert.deepEqual(await page.locator("#slide-5 .framework p").allTextContents(), copy);
+      const takeaway = await page.evaluate(() => notes[4].takeaway);
+      for (const text of copy) assert(takeaway.includes(text), "Framework summary quotes the current supporting copy");
+    }
     const roleOutputs = {
       en: [["Brief", "Requirements", "Hypotheses"], ["Synthesis", "Insights", "Questions"], ["Concepts", "Prototypes", "Patterns"], ["Components", "Code", "Tests"]],
       es: [["Encargo", "Requisitos", "Hipótesis"], ["Síntesis", "Hallazgos", "Preguntas"], ["Conceptos", "Prototipos", "Patrones"], ["Componentes", "Código", "Pruebas"]]
     };
     await go(2);
-    for (let generated = 0; generated <= 4; generated++) {
-      for (const locale of ["es", "en"]) {
-        await click("#language-toggle");
-        assert.equal(await page.locator("html").getAttribute("lang"), locale);
-        assert.equal(await page.locator("#roles > article.role > ul.role-output").count(), 4);
-        assert.deepEqual(await page.locator("#roles .role-output").evaluateAll(lists => lists.map(list => [...list.children].map(item => {
-          if (item.tagName !== "LI") throw new Error("Role outputs must be semantic list items");
-          return item.textContent;
-        }))), roleOutputs[locale]);
-        assert.equal(await page.locator(".role.generated").count(), generated, "Language switching preserves generation state");
-      }
-      await click('[data-action="generate"]');
-      assert.equal(await page.locator(".role.generated").count(), (generated + 1) % 5, "Four generation steps then reset");
+    for (const locale of ["es", "en"]) {
+      await click("#language-toggle");
+      assert.equal(await page.locator("html").getAttribute("lang"), locale);
+      assert.equal(await page.locator("#roles > article.role > ul.role-output").count(), 4);
+      assert.deepEqual(await page.locator("#roles .role-output").evaluateAll(lists => lists.map(list => [...list.children].map(item => {
+        if (item.tagName !== "LI") throw new Error("Role outputs must be semantic list items");
+        return item.textContent;
+      }))), roleOutputs[locale]);
+      assert(await page.locator(".role-output li").evaluateAll(items => items.every(item => getComputedStyle(item).color === "rgb(241, 240, 232)" && getComputedStyle(item).animationName === "none")), "Reduced motion resolves all output lists immediately");
     }
+    assert.equal(await page.locator('[data-action="generate"]').count(), 0);
+    await page.emulateMedia({ reducedMotion: "no-preference" });
+    await page.goto(`${pathToFileURL(path.join(__dirname, "index.html")).href}#2`);
+    await page.evaluate(() => document.fonts.ready);
+    assert.equal(await current(), 2, "Direct hash load starts on slide 2");
+    assert.deepEqual(await page.locator(".role-output li:first-child").evaluateAll(items => items.map(item => getComputedStyle(item).animationDelay)), ["0s", "0.65s", "1.3s", "1.95s"]);
+    for (const locale of ["es", "en"]) {
+      const starts = await page.locator(".role-output li").evaluateAll(items => items.flatMap(item => item.getAnimations().map(animation => animation.startTime)));
+      await page.evaluate(locale => setLanguage(locale), locale);
+      assert.deepEqual(await page.locator(".role-output li").evaluateAll(items => items.flatMap(item => item.getAnimations().map(animation => animation.startTime))), starts, "Language changes do not restart or duplicate generation");
+    }
+    await page.waitForFunction(() => [...document.querySelectorAll(".role-output li")].every(item => getComputedStyle(item).color === "rgb(241, 240, 232)" && getComputedStyle(item, "::marker").color === "rgb(255, 151, 127)"));
+    assert.equal(await current(), 2, "Generation never advances the slide");
+    for (let visit = 0; visit < 2; visit++) {
+      await go(1);
+      assert.equal(await page.locator("#roles").evaluate(node => node.getAnimations({ subtree: true }).length), 0, "Leaving cancels native generation animations");
+      await go(2);
+      assert.equal(await page.locator("#roles").evaluate(node => node.getAnimations({ subtree: true }).length), 24, "One output and one bullet animation per item");
+      await page.evaluate(() => setStageMode(true));
+      assert.equal(await page.locator("#roles").evaluate(node => node.getAnimations({ subtree: true }).length), 0);
+      await page.evaluate(() => setStageMode(false));
+    }
+    await page.emulateMedia({ reducedMotion: "reduce" });
     assert.deepEqual(await page.locator(".contact-links a").evaluateAll(links => links.map(link => link.href)),
       ["https://www.linkedin.com/in/alvaradolj1/", "https://github.com/JulianAlvarado"]);
     assert.deepEqual(await page.evaluate(source => {
@@ -284,8 +312,7 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
     assert.equal(await page.locator("#title-9").textContent(), "Las mismas bases,un alcance actualizado.");
     assert.equal(await page.locator("#title-7 em").textContent(), "Una decisión informada");
     await go(2);
-    for (let i = 0; i < 5; i++) await click('[data-action="generate"]');
-    assert.equal(await page.locator(".role.generated").count(), 0);
+    assert.equal(await page.locator("#roles .role-output li").count(), 12);
     await go(4);
     await click('[data-action="align"]');
     assert(await page.locator("#fragmentation").evaluate(node => node.classList.contains("aligned")));
@@ -303,8 +330,27 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
     await click('#slide-11 [data-action="journey"]');
     assert(await page.locator("#journeys").evaluate(node => node.classList.contains("running")));
     await go(12);
-    await click('#slide-12 [data-action="journey"]');
     assert(await page.locator("#journeys-after").evaluate(node => node.classList.contains("running")));
+    assert.equal(await page.locator('#slide-12 [data-action="journey"], #slide-12 .journey-label .tag').count(), 0);
+    assert.equal(await page.locator('#slide-14 .scenario-label, #slide-14 .metric-foot > p').count(), 0);
+    assert.equal(await page.locator("#metrics-detail .scenario-label").count(), 1, "Detail evidence badge remains");
+    await page.emulateMedia({ reducedMotion: "no-preference" });
+    for (const locale of ["en", "es"]) {
+      await page.evaluate(locale => setLanguage(locale), locale);
+      await go(11);
+      await go(12);
+      assert.deepEqual(await page.locator("#journeys-after .workflow-track span").evaluateAll(nodes => nodes.map(node => ({
+        name: getComputedStyle(node).animationName,
+        delay: getComputedStyle(node).animationDelay
+      }))), [{ name: "teamwork", delay: "0s" }, { name: "teamwork", delay: "0s" }, { name: "teamwork", delay: "1.6s" }]);
+      await page.waitForFunction(() => [...document.querySelectorAll("#journeys-after .workflow-track span")].every(node => getComputedStyle(node).backgroundColor === "rgb(40, 56, 31)"));
+      await page.evaluate(() => setLanguage(language === "en" ? "es" : "en"));
+      assert(await page.locator("#journeys-after .workflow-track span").evaluateAll(nodes => nodes.every(node => getComputedStyle(node).backgroundColor === "rgb(40, 56, 31)")), "Language switching preserves completed green animation");
+      await page.evaluate(() => setStageMode(true));
+      assert(await page.locator("#journeys-after .workflow-track span").evaluateAll(nodes => nodes.every(node => getComputedStyle(node).animationName === "none")), "Stage stays static");
+      await page.evaluate(() => setStageMode(false));
+    }
+    await page.emulateMedia({ reducedMotion: "reduce" });
     await go(10);
     await click('[data-action="connect"]');
     assert.equal(await page.locator('[data-action="connect"]').getAttribute("aria-pressed"), "true");
@@ -348,6 +394,77 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
         const bounds = slide.getBoundingClientRect();
         const footer = slide.querySelector(".slide-footer").getBoundingClientRect();
         const issues = [];
+        if (slide.id === "slide-5") {
+          const headings = [...slide.querySelectorAll(".framework h3")];
+          if (headings.length !== 3 || headings.some(node => getComputedStyle(node).color !== "rgb(255, 151, 127)")) issues.push("All framework headings must use existing coral");
+          for (const paragraph of slide.querySelectorAll(".framework p")) {
+            if (parseFloat(getComputedStyle(paragraph).fontSize) < (reading ? 18 : 35)) issues.push("Framework supporting copy lost its readable size");
+            const parent = paragraph.parentElement.getBoundingClientRect();
+            const rect = paragraph.getBoundingClientRect();
+            if (rect.bottom > parent.bottom + 1 || rect.right > parent.right + 1) issues.push("Framework copy clips within its column");
+          }
+        }
+        if (slide.id === "slide-6" && !reading) {
+          const label = slide.querySelector("#pair-label").getBoundingClientRect();
+          const content = slide.querySelector("#decision-evidence:not([hidden]), #prototype-form:not([hidden])");
+          for (const node of [content, content.querySelector("h3")]) {
+            if (Math.abs(label.top - node.getBoundingClientRect().top) > 1) issues.push("Demo current-step heading and visible content are not top-aligned");
+          }
+        }
+        if (slide.id === "slide-7") {
+          const rubric = getComputedStyle(slide.querySelector(".rubric"));
+          if (rubric.borderTopWidth !== "1px" || rubric.backgroundColor !== "rgb(21, 33, 35)") issues.push("V2 enclosed rubric must remain restored");
+          const concepts = [...slide.querySelectorAll(".output-pile > span")];
+          if (concepts.length !== 4) issues.push("All four original concepts must remain");
+          for (const concept of concepts) {
+            const style = getComputedStyle(concept);
+            if (style.backgroundColor !== "rgb(34, 43, 45)" || style.borderTopWidth !== "1px") issues.push("V2 concept surfaces must remain restored");
+            if ((style.transform === "none") !== reading) issues.push("Concept rotation follows V2 desktop/Reading behavior");
+          }
+        }
+        if (slide.id === "slide-8") {
+          const textMode = reading || document.body.classList.contains("stage-mode");
+          if (slide.querySelector(".learning-loop svg").checkVisibility() === textMode) issues.push("V2 learning-loop diagram belongs in desktop review");
+          if (slide.querySelector("#loop-reading").checkVisibility() !== textMode) issues.push("Reading/Stage must retain the complete textual cycle");
+          if (slide.querySelectorAll(".loop-node").length !== 5 || slide.querySelectorAll("#loop-reading li").length !== 5) issues.push("All five learning-cycle stages must remain");
+          if (slide.querySelector('button[data-action="loop"]')) issues.push("No cycle-progress button");
+        }
+        if (slide.id === "slide-10") {
+          const ring = slide.querySelector("circle.ai-ring");
+          if (!ring || slide.querySelector(".ai-ring-label").textContent !== (document.documentElement.lang === "es" ? "IA" : "AI")) issues.push("Shared circle must be labeled in the active language");
+          if (!reading && ring) {
+            const { cx, cy, r } = ring;
+            const bounds = ring.getBoundingClientRect();
+            if (Math.abs(bounds.width - bounds.height) > 1) issues.push("AI ring must render as a true circle");
+            for (const node of slide.querySelectorAll(".network-node rect")) {
+              const { x, y, width, height } = node.getBBox();
+              const distances = [];
+              for (const px of [x, x + width]) for (const py of [y, y + height]) {
+                distances.push(Math.hypot(px - cx.baseVal.value, py - cy.baseVal.value));
+              }
+              const nearest = Math.hypot(Math.max(x - cx.baseVal.value, 0, cx.baseVal.value - x - width), Math.max(y - cy.baseVal.value, 0, cy.baseVal.value - y - height));
+              if (nearest >= r.baseVal.value || Math.max(...distances) <= r.baseVal.value) issues.push("AI circle must pass behind each role card, not enclose them");
+              if (getComputedStyle(node).fill !== "rgb(27, 34, 36)" || !(ring.compareDocumentPosition(node) & Node.DOCUMENT_POSITION_FOLLOWING)) issues.push("Opaque role cards must paint in front of the ring");
+            }
+            const expected = document.documentElement.lang === "es"
+              ? [[50, 45, 190, 80], [463, 45, 270, 80], [30, 355, 190, 80], [500, 355, 250, 80], [260, 485, 230, 80]]
+              : [[50, 45, 190, 80], [495, 45, 205, 80], [30, 355, 190, 80], [510, 355, 230, 80], [260, 485, 230, 80]];
+            const actual = [...slide.querySelectorAll(".network-node rect")].map(node => ["x", "y", "width", "height"].map(name => Number(node.getAttribute(name))));
+            if (JSON.stringify(actual) !== JSON.stringify(expected) || slide.querySelector(".network svg").getAttribute("viewBox") !== "0 0 750 580") issues.push("Original V2 role geometry must remain");
+          }
+          if (reading && !slide.querySelector(".ai-layer").checkVisibility()) issues.push("Reading must describe the shared AI layer");
+        }
+        if (slide.id === "slide-4") {
+          const band = slide.querySelector(".alignment-band");
+          const style = getComputedStyle(band);
+          const stage = document.body.classList.contains("stage-mode");
+          if (style.writingMode !== (reading ? "horizontal-tb" : "vertical-rl")) issues.push("V2 alignment-band orientation");
+          if (!reading) {
+            if (style.right !== (stage ? "240px" : "190px") || style.top !== (stage ? "-30px" : "2px")) issues.push("V2 alignment-band anchoring");
+            const edge = band.getBoundingClientRect().right;
+            for (const output of slide.querySelectorAll(".branch-outputs span")) if (edge > output.getBoundingClientRect().left) issues.push("Alignment band overlaps pattern labels");
+          }
+        }
         if (slide.id === "slide-2") {
           for (const list of slide.querySelectorAll("ul.role-output")) {
             const items = [...list.children];
@@ -399,11 +516,11 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
           }
           if (!getComputedStyle(node).fontFamily.includes("Inter")) issues.push(`${node.className || node.tagName}: not Inter`);
         }
-        for (const text of slide.querySelectorAll(".network-node text")) {
+        for (const text of slide.querySelectorAll(".network-node text, .loop-node text")) {
           if (!text.checkVisibility() || reading) continue;
           const frame = text.parentElement.querySelector("rect").getBBox();
           const box = text.getBBox();
-          if (box.x < frame.x || box.x + box.width > frame.x + frame.width) issues.push(`SVG overflow: ${text.textContent}`);
+          if (box.x < frame.x || box.x + box.width > frame.x + frame.width || box.y < frame.y || box.y + box.height > frame.y + frame.height) issues.push(`SVG overflow: ${text.textContent}`);
           if (!getComputedStyle(text).fontFamily.includes("Inter")) issues.push("SVG not Inter");
         }
         if (document.querySelector("#presentation").scrollWidth > document.querySelector("#presentation").clientWidth + 1 && reading) issues.push("Reading horizontal overflow");
