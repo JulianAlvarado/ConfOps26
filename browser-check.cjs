@@ -540,14 +540,17 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
           const box = image.getBoundingClientRect();
           const scale = slide.getBoundingClientRect().width / slide.offsetWidth;
           if (link.getAttribute("href") !== "https://confops26.vercel.app" || !image.complete || !image.naturalWidth) issues.push("Presentation QR must load locally and link to the exact URL");
-          if (Math.abs(box.width - box.height) > 1 || box.width / scale < 239) issues.push("Presentation QR must remain square and at least 240px");
+          if (Math.abs(box.width - box.height) > 1 || Math.abs(box.width / scale - 224) > 1) issues.push("Presentation QR must remain square and 224px");
           const qr = link.getBoundingClientRect();
+          const github = slide.querySelector(".contact-links > a:last-child").getBoundingClientRect();
+          if (Math.abs(qr.left - github.left) > 1 || (qr.top - github.bottom) / scale < 23) issues.push("QR must align directly below GitHub with a 24px gap");
           for (const selector of [".contact-links", ".qa-links", "#title-16", ".slide-footer"]) {
             const other = slide.querySelector(selector).getBoundingClientRect();
             if (qr.left < other.right && qr.right > other.left && qr.top < other.bottom && qr.bottom > other.top) issues.push(`QR overlaps ${selector}`);
           }
           const caption = document.documentElement.lang === "es" ? "Ver la presentación" : "View the presentation";
-          if (link.querySelector(".qr-caption").textContent !== caption || !link.getAttribute("aria-label").startsWith(caption)) issues.push("QR caption and accessible label must match the locale");
+          if (slide.querySelector(".qr-caption, .qr-url") || link.textContent.trim()) issues.push("QR must not have a visible caption or URL");
+          if (!link.getAttribute("aria-label").startsWith(caption) || !image.alt.startsWith(document.documentElement.lang === "es" ? "Código QR:" : "QR code:")) issues.push("QR accessible name and alternative must match the locale");
         }
         if (slide.id === "slide-7") {
           const rubric = getComputedStyle(slide.querySelector(".rubric"));

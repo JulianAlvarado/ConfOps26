@@ -10,7 +10,7 @@ Open `index.html` directly in a modern desktop browser. No build, package instal
 
 English starts on reload. The single **ES / EN** toolbar button displays the target language; **L** also switches languages outside form fields, notes and dialogs, including in Stage. All slides, notes, menus, evidence, form feedback and accessible labels switch in place. Input, selected tabs, diagram states, the closing reveal and the Stage review snapshot survive switching. No language preference or user data is stored or sent.
 
-Outbound LinkedIn, GitHub and presentation links are the only intended network use, when explicitly followed. Q&A includes a locally generated, bundled QR image (`presentation-qr.png`) encoding exactly `https://confops26.vercel.app`, with a clickable link and readable URL in both languages. The black-on-white code includes a four-module white margin beyond the generator's border; it requires no QR service or runtime network access. No photos have been retrieved: slide 3 contains three deliberately neutral, localized placeholders for the photos the speaker will supply.
+Outbound LinkedIn, GitHub and presentation links are the only intended network use, when explicitly followed. Q&A includes a locally generated, bundled QR image (`presentation-qr.png`) encoding exactly `https://confops26.vercel.app`. The clickable 224px code sits below GitHub, without a visible caption or URL; its accessible name and image alternative are localized. The black-on-white code includes a four-module white margin beyond the generator's border; it requires no QR service or runtime network access. No photos have been retrieved: slide 3 contains three deliberately neutral, localized placeholders for the photos the speaker will supply.
 
 ## Approved V3 changes
 

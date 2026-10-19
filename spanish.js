@@ -280,7 +280,6 @@ const spanish = {
     {"selector":"#slide-16 .contact-links","text":{},"attributes":{"aria-label":["Connect with Julian Alvarado","Contactar con Julian Alvarado"]}},
     {"selector":".presentation-qr","text":{},"attributes":{"aria-label":["View the presentation at confops26.vercel.app","Ver la presentación en confops26.vercel.app"]}},
     {"selector":".presentation-qr img","text":{},"attributes":{"alt":["QR code: https://confops26.vercel.app","Código QR: https://confops26.vercel.app"]}},
-    {"selector":".qr-caption","text":{"0":["View the presentation","Ver la presentación"]},"attributes":{}},
     {"selector":"#slide-16 > div:nth-child(2) > nav:nth-child(2) > a:nth-child(1) > span:nth-child(1)","text":{"0":["Who owns governance?","¿Quién asume la gobernanza?"]},"attributes":{}},
     {"selector":"#slide-16 > div:nth-child(2) > nav:nth-child(2) > a:nth-child(2) > span:nth-child(1)","text":{"0":["Do we become an AI team?","¿Nos convertimos en un equipo de IA?"]},"attributes":{}},
     {"selector":"#slide-16 > div:nth-child(2) > nav:nth-child(2) > a:nth-child(3) > span:nth-child(1)","text":{"0":["What is an AI-ready design system?","¿Cómo es un sistema de diseño preparado para IA?"]},"attributes":{}},
