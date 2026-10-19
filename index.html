@@ -1,15 +1,14 @@
 <!doctype html>
-<html lang="en">
-<head>
+<html lang="en"><head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="dark">
   <meta name="theme-color" content="#111516">
-  <title>DesignOps as AI Infrastructure — Keynote v2</title>
+  <title>DesignOps as AI Infrastructure — V3 review</title>
   <link rel="stylesheet" href="styles.css">
-  <script src="spanish.js" defer></script>
-  <script src="language.js" defer></script>
-  <script src="app.js" defer></script>
+  <script src="spanish.js" defer=""></script>
+  <script src="language.js" defer=""></script>
+  <script src="app.js" defer=""></script>
 </head>
 <body>
   <header class="toolbar">
@@ -38,20 +37,20 @@
             <div class="opening-art">
               <div class="opening-labels"><span>CAPACITY ↑</span><span>COHERENCE ?</span></div>
               <svg viewBox="0 0 620 580" role="img" aria-label="One source branches into many different outputs; a shared system is needed for coherence.">
-                <defs><pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#354043"/></pattern></defs>
-                <rect width="620" height="580" fill="url(#dots)"/>
+                <defs><pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#354043"></circle></pattern></defs>
+                <rect width="620" height="580" fill="url(#dots)"></rect>
                 <g class="opening-lines" fill="none" stroke="#76e3e3" stroke-width="2">
-                  <path d="M35 290H130C220 290 210 70 320 70H560"/><path d="M35 290H130C230 290 210 160 320 160H490"/>
-                  <path d="M35 290H560"/><path d="M35 290H130C230 290 210 420 320 420H540"/><path d="M35 290H130C220 290 210 520 320 520H480"/>
-                  <path d="M320 160C400 160 390 220 460 220H580"/><path d="M320 420C400 420 390 355 460 355H580"/>
+                  <path d="M35 290H130C220 290 210 70 320 70H560"></path><path d="M35 290H130C230 290 210 160 320 160H490"></path>
+                  <path d="M35 290H560"></path><path d="M35 290H130C230 290 210 420 320 420H540"></path><path d="M35 290H130C220 290 210 520 320 520H480"></path>
+                  <path d="M320 160C400 160 390 220 460 220H580"></path><path d="M320 420C400 420 390 355 460 355H580"></path>
                 </g>
-                <circle cx="35" cy="290" r="10" fill="#76e3e3"/>
+                <circle cx="35" cy="290" r="10" fill="#76e3e3"></circle>
                 <g fill="#111516" stroke="#76e3e3" stroke-width="2">
-                  <rect x="460" y="48" width="98" height="44" rx="5"/><rect x="440" y="138" width="76" height="44" rx="22"/><rect x="494" y="268" width="85" height="44" rx="5"/>
+                  <rect x="460" y="48" width="98" height="44" rx="5"></rect><rect x="440" y="138" width="76" height="44" rx="22"></rect><rect x="494" y="268" width="85" height="44" rx="5"></rect>
                 </g>
                 <g fill="#111516" stroke="#ff977f" stroke-width="2">
-                  <path d="M536 198h44v44h-44z" transform="rotate(12 558 220)"/><path d="M537 334h44v44h-44z" transform="rotate(-12 559 356)"/>
-                  <rect x="445" y="398" width="98" height="44" rx="5"/><rect x="433" y="498" width="76" height="44" rx="22"/>
+                  <path d="M536 198h44v44h-44z" transform="rotate(12 558 220)"></path><path d="M537 334h44v44h-44z" transform="rotate(-12 559 356)"></path>
+                  <rect x="445" y="398" width="98" height="44" rx="5"></rect><rect x="433" y="498" width="76" height="44" rx="22"></rect>
                 </g>
               </svg>
               <div class="art-caption"><span class="caption-item"><span class="dot cyan" aria-hidden="true"></span>More possibility.</span><span class="caption-item"><span class="dot coral" aria-hidden="true"></span>More responsibility.</span></div>
@@ -60,37 +59,33 @@
           <footer class="slide-footer"><span>01 / 15</span></footer>
         </section>
 
-        <section class="slide" id="slide-2" aria-labelledby="title-2" data-act="ACT I" data-title="Everyone can generate" hidden>
+        <section class="slide" id="slide-2" aria-labelledby="title-2" data-act="ACT I" data-title="Everyone can generate" hidden="">
           <div class="eyebrow">ACT I <span>01 — THE ACCELERATION PARADOX</span></div>
           <h2 id="title-2">The AI production floor<br>is <em>everywhere.</em></h2>
           <div class="role-grid" id="roles">
-            <article class="role"><span class="role-number">01</span><h3>Product</h3><div class="role-output"><span>Brief</span><span>Requirements</span><span>Hypotheses</span></div></article>
-            <article class="role"><span class="role-number">02</span><h3>Research</h3><div class="role-output"><span>Synthesis</span><span>Insights</span><span>Questions</span></div></article>
-            <article class="role"><span class="role-number">03</span><h3>Design</h3><div class="role-output"><span>Concepts</span><span>Prototypes</span><span>Patterns</span></div></article>
-            <article class="role"><span class="role-number">04</span><h3>Engineering</h3><div class="role-output"><span>Components</span><span>Code</span><span>Tests</span></div></article>
+            <article class="role"><span class="role-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 4h16v24H6zM10 10h8M10 16h8M10 22h5"></path></svg></span><h3>Product</h3><div class="role-output"><span>Brief</span><span>Requirements</span><span>Hypotheses</span></div></article>
+            <article class="role"><span class="role-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="13" cy="13" r="8"></circle><path d="m19 19 9 9"></path></svg></span><h3>Research</h3><div class="role-output"><span>Synthesis</span><span>Insights</span><span>Questions</span></div></article>
+            <article class="role"><span class="role-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m5 25 2-8L21 3l8 8-14 14-10 2zm2-8 8 8M18 6l8 8"></path></svg></span><h3>Design</h3><div class="role-output"><span>Concepts</span><span>Prototypes</span><span>Patterns</span></div></article>
+            <article class="role"><span class="role-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m11 7-8 9 8 9m10-18 8 9-8 9M18 3l-5 26"></path></svg></span><h3>Engineering</h3><div class="role-output"><span>Components</span><span>Code</span><span>Tests</span></div></article>
           </div>
           <div class="bottom-line"><p>The bottleneck moves: <strong>production → alignment → quality.</strong></p><button data-action="generate">Distribute generation <span aria-hidden="true">↗</span></button></div>
           <p id="generation-status" class="sr-only" role="status">Generation has not started.</p>
           <footer class="slide-footer"><span>DISTRIBUTED OUTPUT NEEDS SHARED INTENT</span><span>02 / 15</span></footer>
         </section>
 
-        <section class="slide about-slide" id="slide-3" aria-labelledby="title-3" data-act="ACT I" data-title="About me" hidden>
+        <section class="slide about-slide" id="slide-3" aria-labelledby="title-3" data-act="ACT I" data-title="About me" hidden="">
           <div class="eyebrow">ABOUT ME <span>XBOX DESIGN OPS</span></div>
-          <div class="about-layout">
+          <div class="about-layout"><div class="about-collage" role="group" aria-label="Photo placeholders"><div class="photo-placeholder photo-1"><span class="photo-caption">At work</span><small>Photo to come</small></div><div class="photo-placeholder photo-2"><span class="photo-caption">Movement</span><small>Photo to come</small></div><div class="photo-placeholder photo-3"><span class="photo-caption">Music + drawing</span><small>Photo to come</small></div></div>
             <div class="about-copy">
               <h2 id="title-3">Julian Alvarado</h2>
               <p class="about-role">Xbox Design Ops</p>
-              <div class="about-bio">
-                <p>Julian Alvarado is a Senior Program Manager and Design Operations leader at Microsoft, helping Xbox Design scale through better systems, clearer processes, and responsible AI.</p>
-                <p>He works across teams and studios to improve how designers plan, learn, and deliver—building resilient, people-centered creative organizations.</p>
-                <p>Outside work, Julian is a daily CrossFit devotee and a “forever blue belt” in jiu-jitsu. A retired musician, he still loves live shows and enjoys drawing at home. Currently in rotation: Radiohead, Lenny Kravitz, Oasis, and Crosses.</p>
-              </div>
+              <div class="about-bio"><ul><li>Senior Program Manager and Design Operations leader at Microsoft. Better systems, clearer processes, responsible AI for Xbox Design.</li><li>Across teams and studios: plan, learn, deliver. Resilient, people-centered creative organizations.</li><li>Daily CrossFit. Jiu-jitsu “forever blue belt.” Retired musician; live shows and drawing at home.</li><li>In rotation: Radiohead, Lenny Kravitz, Oasis, Crosses.</li></ul></div>
             </div>
           </div>
           <footer class="slide-footer"><span>03 / 15</span></footer>
         </section>
 
-        <section class="slide" id="slide-4" aria-labelledby="title-4" data-act="ACT I" data-title="The acceleration paradox" hidden>
+        <section class="slide" id="slide-4" aria-labelledby="title-4" data-act="ACT I" data-title="The acceleration paradox" hidden="">
           <div class="eyebrow">ACT I <span>03 — CAPACITY ≠ COHERENCE</span></div>
           <h2 id="title-4">AI doesn't just accelerate work.<br>It accelerates <em class="coral-text">variation.</em></h2>
           <ol class="causal-chain" id="causal-chain">
@@ -100,8 +95,8 @@
             <div class="source-node">SHARED<br>INTENT</div>
             <svg viewBox="0 0 1120 250" role="img" aria-label="Output branches diverge without shared context and evaluation; alignment brings them back into a common system.">
               <g class="branch-lines" fill="none" stroke-width="2">
-                <path class="lit" d="M0 125H110C230 125 230 25 370 25H1100"/><path d="M0 125H110C230 125 230 75 370 75H1100"/>
-                <path d="M0 125H1100"/><path d="M0 125H110C230 125 230 175 370 175H1100"/><path d="M0 125H110C230 125 230 225 370 225H1100"/>
+                <path class="lit" d="M0 125H110C230 125 230 25 370 25H1100"></path><path d="M0 125H110C230 125 230 75 370 75H1100"></path>
+                <path d="M0 125H1100"></path><path d="M0 125H110C230 125 230 175 370 175H1100"></path><path d="M0 125H110C230 125 230 225 370 225H1100"></path>
               </g>
             </svg>
             <div class="branch-outputs"><span class="lit">Pattern A</span><span>Pattern B</span><span>Pattern C</span><span>Pattern D</span><span>Pattern E</span></div>
@@ -112,7 +107,7 @@
           <footer class="slide-footer"><span>CONCEPTUAL SYSTEM</span><span>04 / 15</span></footer>
         </section>
 
-        <section class="slide framework-slide" id="slide-5" aria-labelledby="title-5" data-act="ACT II" data-title="Govern. Context. Evaluate." hidden>
+        <section class="slide framework-slide" id="slide-5" aria-labelledby="title-5" data-act="ACT II" data-title="Govern. Context. Evaluate." hidden="">
           <div class="eyebrow">ACT II <span>04 — THE CORE OPERATING MODEL</span></div>
           <h2 id="title-5">Three questions.<br><em>One coherent system.</em></h2>
           <div class="framework">
@@ -123,24 +118,24 @@
           <footer class="slide-footer"><span>05 / 15</span></footer>
         </section>
 
-        <section class="slide" id="slide-6" aria-labelledby="title-6" data-act="ACT II" data-title="Fix the form. Keep the lesson." hidden>
+        <section class="slide" id="slide-6" aria-labelledby="title-6" data-act="ACT II" data-title="Fix the form. Keep the lesson." hidden="">
           <div class="eyebrow">ACT II <span>ILLUSTRATIVE CASE · PRE-AUTHORED, NOT LIVE AI</span></div>
           <h2 class="compact-title" id="title-6">Fix the form. <em>Keep the lesson.</em></h2>
-          <div class="pair-layout">
+          <div class="pair-layout"><div class="pair-tabs" id="pair-tabs" role="tablist" aria-label="Six states of the illustrative example"></div>
             <div class="pair-process">
               <div id="pair-step" role="status" aria-live="polite" aria-atomic="true"><p id="pair-count"></p><h3 id="pair-label"></h3></div>
-              <div class="button-group"><button data-action="pair">See the problem →</button><button data-action="pair-reset" aria-label="Restart decision demonstration">Reset</button></div>
+
             </div>
-            <div class="prototype-window">
+            <div class="prototype-window" id="pair-panel" role="tabpanel" tabindex="0">
               <div class="prototype-scene" id="prototype-scene" data-step="0">
                 <div class="decision-evidence" id="decision-evidence" role="group" aria-label="Current example step">
                   <h3 id="evidence-title"></h3>
                   <dl id="evidence-details"></dl>
                   <p id="evidence-verdict"></p>
                 </div>
-                <form class="prototype-form" id="prototype-form" hidden>
+                <form class="prototype-form" id="prototype-form" hidden="">
                   <h3>Create your workspace.</h3><p>Invite teammates later.</p>
-                  <label for="workspace-name">Workspace name</label><input id="workspace-name" name="workspace" maxlength="48" placeholder="e.g. Product experience" required autocomplete="off">
+                  <label for="workspace-name">Workspace name</label><input id="workspace-name" name="workspace" maxlength="48" placeholder="e.g. Product experience" required="" autocomplete="off">
                   <p class="field-hint" id="workspace-hint">2–48 characters. You can rename it later.</p>
                   <button type="submit">Create workspace <span aria-hidden="true">→</span></button><p id="prototype-result" class="prototype-result" role="status">Prototype only. No account or network request.</p>
                 </form>
@@ -150,7 +145,7 @@
           <footer class="slide-footer"><span>06 / 15</span></footer>
         </section>
 
-        <section class="slide" id="slide-7" aria-labelledby="title-7" data-act="ACT II" data-title="When generation is cheap, evaluation is strategic" hidden>
+        <section class="slide" id="slide-7" aria-labelledby="title-7" data-act="ACT II" data-title="When generation is cheap, evaluation is strategic" hidden="">
           <div class="eyebrow">ACT II <span>06 — FROM GENERATING TO EVALUATING</span></div>
           <h2 id="title-7">Many possible outputs.<br><em>One accountable judgment.</em></h2>
           <div class="evaluation-flow">
@@ -164,94 +159,83 @@
           <footer class="slide-footer"><span>07 / 15</span></footer>
         </section>
 
-        <section class="slide" id="slide-8" aria-labelledby="title-8" data-act="ACT II" data-title="The organizational learning loop" hidden>
+        <section class="slide" id="slide-8" aria-labelledby="title-8" data-act="ACT II" data-title="The organizational learning loop" hidden="">
           <div class="eyebrow">ACT II <span>07 — MAKE LEARNING COMPOUND</span></div>
           <div class="loop-layout">
-            <div><h2 id="title-8">Don't just<br>save the output.<br><em>Capture<br>the learning.</em></h2><p class="lead">Keep the decision and its reason.<br>Share them with the next team.</p><button data-action="loop">Follow one learning cycle</button></div>
+            <div><h2 id="title-8">Don't just<br>save the output.<br><em>Capture<br>the learning.</em></h2><p class="lead">Keep the decision and its reason.<br>Share them with the next team.</p></div>
             <div class="learning-loop" id="learning-loop">
               <svg viewBox="0 0 760 570" role="img" aria-label="A learning loop: AI proposes a design, the team reviews it, saves the lesson, updates shared guidance, and checks the next result.">
-                <defs><marker id="loop-arrow" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="none" stroke="#76e3e3" stroke-width="1.5"/></marker></defs>
-                <g fill="none" stroke="#76e3e3" stroke-width="2" marker-end="url(#loop-arrow)"><path d="M430 65Q660 65 666 210"/><path d="M675 310Q660 470 520 484"/><path d="M373 491Q200 565 110 414"/><path d="M78 318Q25 130 225 83"/><path d="M280 74H320"/></g>
-                <g class="loop-node"><rect x="285" y="26" width="210" height="80" rx="8"/><text x="390" y="59">AI proposes a design</text><text x="390" y="84" class="loop-sub">using shared guidance</text></g>
-                <g class="loop-node"><rect x="530" y="220" width="220" height="80" rx="8"/><text x="640" y="253">The team reviews it</text><text x="640" y="278" class="loop-sub">against the user's need</text></g>
-                <g class="loop-node"><rect x="338" y="448" width="250" height="80" rx="8"/><text x="463" y="481">Save the lesson</text><text x="463" y="506" class="loop-sub">decision + reason + owner</text></g>
-                <g class="loop-node"><rect x="0" y="328" width="244" height="80" rx="8"/><text x="122" y="361">Update the guidance</text><text x="122" y="386" class="loop-sub">for the next team + AI</text></g>
-                <g class="loop-node"><rect x="25" y="91" width="230" height="80" rx="8"/><text x="140" y="124">Check the next result</text><text x="140" y="149" class="loop-sub">do not assume success</text></g>
+                <defs><marker id="loop-arrow" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="none" stroke="#76e3e3" stroke-width="1.5"></path></marker></defs>
+                <g fill="none" stroke="#76e3e3" stroke-width="2" marker-end="url(#loop-arrow)"><path d="M430 65Q660 65 666 210"></path><path d="M675 310Q660 470 520 484"></path><path d="M373 491Q200 565 110 414"></path><path d="M78 318Q25 130 225 83"></path><path d="M280 74H320"></path></g>
+                <g class="loop-node"><rect x="285" y="26" width="210" height="80" rx="8"></rect><text x="390" y="59">AI proposes a design</text><text x="390" y="84" class="loop-sub">using shared guidance</text></g>
+                <g class="loop-node"><rect x="530" y="220" width="220" height="80" rx="8"></rect><text x="640" y="253">The team reviews it</text><text x="640" y="278" class="loop-sub">against the user's need</text></g>
+                <g class="loop-node"><rect x="338" y="448" width="250" height="80" rx="8"></rect><text x="463" y="481">Save the lesson</text><text x="463" y="506" class="loop-sub">decision + reason + owner</text></g>
+                <g class="loop-node"><rect x="0" y="328" width="244" height="80" rx="8"></rect><text x="122" y="361">Update the guidance</text><text x="122" y="386" class="loop-sub">for the next team + AI</text></g>
+                <g class="loop-node"><rect x="25" y="91" width="230" height="80" rx="8"></rect><text x="140" y="124">Check the next result</text><text x="140" y="149" class="loop-sub">do not assume success</text></g>
                 <text class="loop-center" x="380" y="262">ORGANIZATIONAL</text><text class="loop-center" x="380" y="295">MEMORY</text>
               </svg>
               <ol id="loop-reading" class="reading-only"></ol>
-              <p class="micro" id="loop-status" aria-live="polite">A saved lesson is useful only if someone applies it.</p>
+              <p class="micro" id="loop-status">↺ Feed the review back into shared guidance.</p>
             </div>
           </div>
           <footer class="slide-footer"><span>LEARNING → DESIGNOPS → SYSTEM → AI-ASSISTED WORK → LEARNING</span><span>08 / 15</span></footer>
         </section>
 
-        <section class="slide" id="slide-9" aria-labelledby="title-9" data-act="ACT III" data-title="The role expands; the fundamentals remain" hidden>
+        <section class="slide" id="slide-9" aria-labelledby="title-9" data-act="ACT III" data-title="The role expands; the fundamentals remain" hidden="">
           <div class="eyebrow">ACT III <span>08 — THE NEW ROLE OF DESIGNOPS</span></div>
           <h2 id="title-9">Same foundations.<br><em>A larger operating system.</em></h2>
-          <div class="shift-layout">
-            <div class="fundamentals"><span>PEOPLE</span><span>PROCESS</span><span>SYSTEMS</span></div>
-            <div class="shift-table">
-              <div class="table-heading"><span>TRADITIONAL FOCUS</span><span>EXPANDED AI-ERA SCOPE</span></div>
-              <div><span>Optimize workflows</span><strong>Architect human–AI workflows</strong></div>
-              <div><span>Document processes</span><strong>Encode organizational knowledge</strong></div>
-              <div><span>Scale design systems</span><strong>Make systems AI-readable</strong></div>
-              <div><span>Enable designers</span><strong>Enable product teams</strong></div>
-              <div><span>Measure efficiency</span><strong>Measure quality + outcomes</strong></div>
-              <div><span>Facilitate consistency</span><strong>Govern generated variation</strong></div>
-            </div>
-          </div>
+          <div class="shift-layout"><div class="shift-heading"><span>FOUNDATION</span><span>TRADITIONAL FOCUS</span><span>EXPANDED AI-ERA SCOPE</span></div><div class="shift-group"><span>PEOPLE</span><div class="shift-rows"><div><span>Enable designers</span><strong>Enable product teams</strong></div></div></div><div class="shift-group"><span>PROCESS</span><div class="shift-rows"><div><span>Optimize workflows</span><strong>Architect human–AI workflows</strong></div><div><span>Measure efficiency</span><strong>Measure quality + outcomes</strong></div><div><span>Facilitate consistency</span><strong>Govern generated variation</strong></div></div></div><div class="shift-group"><span>SYSTEMS</span><div class="shift-rows"><div><span>Document processes</span><strong>Encode organizational knowledge</strong></div><div><span>Scale design systems</span><strong>Make systems AI-readable</strong></div></div></div></div>
           <footer class="slide-footer"><span>09 / 15</span></footer>
         </section>
 
-        <section class="slide" id="slide-10" aria-labelledby="title-10" data-act="ACT III" data-title="DesignOps as the control plane" hidden>
+        <section class="slide" id="slide-10" aria-labelledby="title-10" data-act="ACT III" data-title="DesignOps as the control plane" hidden="">
           <div class="eyebrow">ACT III <span>09 — SHARED INFRASTRUCTURE, DISTRIBUTED OWNERSHIP</span></div>
           <div class="network-layout">
             <div><h2 id="title-10">Not doing<br>all the work.<br><em>Connecting<br>the system.</em></h2><p class="lead">DesignOps defines the conditions<br>under which the work happens.</p><button data-action="connect" aria-pressed="false">Connect the control plane</button><p class="micro" id="network-status" aria-live="polite">Isolated tools. Local rules. Fragmented context.</p></div>
-            <div class="network" id="network">
-              <svg viewBox="0 0 750 580" role="img" aria-label="PM, research, design, prototype and engineering AI share DesignOps governance, context and evaluation, while retaining domain ownership.">
-                <g class="network-links" fill="none" stroke-width="2"><path d="M145 85L375 255L600 85"/><path d="M125 395L375 255L625 395"/><path d="M375 255V520"/></g>
-                <g class="network-node"><rect x="50" y="45" width="190" height="80" rx="8"/><text x="145" y="94">PM + AI</text></g>
-                <g class="network-node"><rect x="495" y="45" width="205" height="80" rx="8"/><text x="598" y="94">RESEARCH + AI</text></g>
-                <g class="network-node"><rect x="30" y="355" width="190" height="80" rx="8"/><text x="125" y="404">DESIGN + AI</text></g>
-                <g class="network-node"><rect x="510" y="355" width="230" height="80" rx="8"/><text x="625" y="404">PROTOTYPE + AI</text></g>
-                <g class="network-node"><rect x="260" y="485" width="230" height="80" rx="8"/><text x="375" y="534">ENGINEERING + AI</text></g>
-                <rect class="network-hub" x="200" y="181" width="350" height="148" rx="12"/>
+            <div class="network" id="network"><p class="ai-layer">AI-ASSISTED WORK · SHARED ACROSS ROLES</p>
+              <svg viewBox="0 0 750 580" role="img" aria-label="Product, research, design, prototyping and engineering share AI-assisted work. DesignOps connects their governance, context and evaluation; each keeps domain ownership.">
+                <g class="network-links" fill="none" stroke-width="2"><path d="M145 85L375 255L600 85"></path><path d="M125 395L375 255L625 395"></path><path d="M375 255V520"></path></g>
+                <g class="network-node"><rect x="50" y="45" width="190" height="80" rx="8"></rect><text x="145" y="94">PM</text></g>
+                <g class="network-node"><rect x="495" y="45" width="205" height="80" rx="8"></rect><text x="598" y="94">RESEARCH</text></g>
+                <g class="network-node"><rect x="30" y="355" width="190" height="80" rx="8"></rect><text x="125" y="404">DESIGN</text></g>
+                <g class="network-node"><rect x="510" y="355" width="230" height="80" rx="8"></rect><text x="625" y="404">PROTOTYPE</text></g>
+                <g class="network-node"><rect x="260" y="485" width="230" height="80" rx="8"></rect><text x="375" y="534">ENGINEERING</text></g>
+                <rect class="network-hub" x="200" y="181" width="350" height="148" rx="12"></rect>
                 <text class="hub-title" x="375" y="232">DESIGNOPS</text><text class="hub-subtitle" x="375" y="273">GOVERN · CONTEXT · EVALUATE</text>
                 <text class="hub-detail" x="375" y="305">A shared control plane</text>
               </svg>
-              <div class="reading-only network-summary"><h3>Shared DesignOps infrastructure</h3><p>GOVERN · CONTEXT · EVALUATE</p><ul><li>PM + AI</li><li>Research + AI</li><li>Design + AI</li><li>Prototype + AI</li><li>Engineering + AI</li></ul><p>Each role connects to common rules, context, and evaluation—not a central approval queue.</p></div>
+              <div class="reading-only network-summary"><h3>Shared DesignOps infrastructure</h3><p>GOVERN · CONTEXT · EVALUATE</p><ul><li>PM</li><li>RESEARCH</li><li>DESIGN</li><li>PROTOTYPE</li><li>ENGINEERING</li></ul><p>Each role connects to common rules, context, and evaluation—not a central approval queue.</p></div>
               <p class="network-caption">Domain experts still own product decisions.</p>
             </div>
           </div>
           <footer class="slide-footer"><span>10 / 15</span></footer>
         </section>
 
-        <section class="slide" id="slide-11" aria-labelledby="title-11" data-act="ACT III" data-title="Before AI / a proposed AI-enabled journey" hidden>
-          <div class="eyebrow">ACT III <span>10 — REDESIGN THE JOURNEY, NOT JUST THE TASK</span></div>
-          <h2 id="title-11">Less waiting.<br><em>More learning, together.</em></h2>
+        <section class="slide journey-before" id="slide-11" aria-labelledby="title-11" data-act="ACT III" data-title="Before AI: sequential handoffs" hidden="">
+          <div class="eyebrow">ACT III <span>BEFORE · SIMPLIFIED WORKFLOW</span></div><h2 id="title-11">Before accelerated production.<br><em>Work moves by handoff.</em></h2>
+
           <div class="journeys" id="journeys">
             <article class="journey sequential">
               <div class="journey-label"><h3>Sequential handoffs</h3><span class="tag">SIMPLIFIED BEFORE</span></div>
               <div class="workflow-track"><span>Research</span><b>→</b><span>Brief</span><b>→</b><span>Mocks</span><b>→</b><span>Build</span><b>→</b><span>Release</span></div>
               <p>Customer need <span>→ handoff → wait → handoff → wait →</span> customer feedback</p>
             </article>
-            <article class="journey collaborative">
+
+          </div><div class="bottom-line"><p>A simplified pattern—not a universal history.<br>Waiting and late feedback can limit learning.</p><button data-action="journey" data-journey="journeys">Replay handoffs</button></div>
+
+          <p id="journey-status" class="sr-only" role="status">Workflow animations are illustrative, not measured durations.</p>
+          <footer class="slide-footer"><span>11 / 15</span></footer>
+        </section><section class="slide journey-after" id="slide-12" hidden="" aria-labelledby="title-12" data-act="ACT III" data-title="With AI: shared purpose and synchronized work"><div class="eyebrow">ACT III <span>WITH AI · PROPOSED WORKFLOW</span></div><h2 id="title-12">Less waiting.<br><em>More learning, together.</em></h2><div class="journeys" id="journeys-after"><article class="journey collaborative"><p class="journey-context">Shared purpose → synchronized work → AI-assisted production</p>
               <div class="journey-label"><h3>Shared intent. Joint execution.</h3><span class="tag lime-tag">PROPOSED PILOT</span></div>
               <div class="workflow-track"><span>Mission · Milestones · Metrics</span><b>→</b><span>Spec ↔ concept ↔ HTML/CSS</span><b>→</b><span>Experiment ↔ learn</span></div>
               <p>Customer need <span>→ PM + research + design + engineering →</span> customer feedback</p>
-            </article>
-          </div>
-          <div class="bottom-line"><p>Measure production time, review effort, and learning cadence.<br><small>Hypothesis: production can shrink; experimentation can expand. Validate it.</small></p><button data-action="journey">Animate both journeys <span aria-hidden="true">↗</span></button></div>
-          <p id="journey-status" class="sr-only" role="status">Compare sequential handoffs with collaborative production and learning.</p>
-          <footer class="slide-footer"><span>11 / 15</span></footer>
-        </section>
+            </article><button data-action="journey" data-journey="journeys-after">Replay collaboration</button></div><div class="bottom-line"><p>Measure production time, review effort, and learning cadence.<br><small>Hypothesis: production can shrink; experimentation can expand. Validate it.</small></p><a class="action-link" id="pilot-reference" href="#24">Explore the 30-day pilot ↗</a></div><footer class="slide-footer"><span>12 / 15</span></footer></section>
 
-        <section class="slide" id="slide-12" aria-labelledby="title-12" data-act="ACT III" data-title="From documentation to executable standards" hidden>
+        <section class="slide" id="slide-13" aria-labelledby="title-13" data-act="ACT III" data-title="From documentation to executable standards" hidden="">
           <div class="eyebrow">ACT III <span>11 — ENCODE HOW THE ORGANIZATION THINKS</span></div>
-          <h2 id="title-12">Your next infrastructure<br>is already <em>in your documentation.</em></h2>
+          <h2 id="title-13">Your next infrastructure<br>is already <em>in your documentation.</em></h2>
           <div class="standards-layout">
-            <div class="standards-table">
+            <div class="standards-table"><div class="standards-heading"><span>DOCUMENTATION · INPUTS</span><span>REUSABLE GUIDANCE · OUTPUTS</span></div>
               <div><span>Guidelines</span><b>→</b><strong>Machine-readable rules</strong></div>
               <div><span>Design system</span><b>→</b><strong>AI-readable design system</strong></div>
               <div class="review-detail"><span>Templates</span><b>→</b><strong>Canonical prompts</strong></div>
@@ -260,7 +244,7 @@
               <div class="review-detail"><span>SOPs</span><b>→</b><strong>Human–AI workflows</strong></div>
               <div class="review-detail"><span>Efficiency metrics</span><b>→</b><strong>Speed + quality + outcomes</strong></div>
             </div>
-            <aside class="context-package"><div class="code-label">SHARED GUIDANCE / ILLUSTRATIVE</div><pre><code><span>source:</span> solo-setup brief (assumed)
+            <span class="package-arrow">→</span><aside class="context-package"><div class="code-label">PACKAGED CONTEXT FOR AI</div><pre><code><span>source:</span> solo-setup brief (assumed)
 <span>check:</span> finish setup alone
 <span>decision:</span> invite after setup
 <span>scope:</span> solo workspace setup
@@ -272,70 +256,59 @@
               <dl class="stage-only stage-rule"><dt>Lesson · solo setup</dt><dd>Invitations after setup</dd><dt>Reason · from the brief</dt><dd>The person may be starting alone.</dd><dt>Owner · product lead</dt><dd>Version 1, reviewed by the team</dd><dt>Review · after pilot / change</dt><dd>User test pending</dd></dl>
               <p>DesignOps maintains the guidance.<br>The team checks it still applies.</p></aside>
           </div>
-          <footer class="slide-footer"><span>EXECUTABLE STANDARDS REQUIRE IMPLEMENTATION + VALIDATION, NOT JUST A PROMPT</span><span>12 / 15</span></footer>
+          <footer class="slide-footer"><span>EXECUTABLE STANDARDS REQUIRE IMPLEMENTATION + VALIDATION, NOT JUST A PROMPT</span><span>13 / 15</span></footer>
         </section>
 
-        <section class="slide" id="slide-13" aria-labelledby="title-13" data-act="ACT III" data-title="Measure speed and coherence" hidden>
+        <section class="slide" id="slide-14" aria-labelledby="title-14" data-act="ACT III" data-title="Measure speed and coherence" hidden="">
           <div class="eyebrow">ACT III <span>12 — MEASURE THE OPERATING MODEL</span></div>
-          <div class="metrics-heading"><h2 class="compact-title" id="title-13">Faster is not<br><em>the whole score.</em></h2><span class="scenario-label">EARLY EXPERIMENTATION · APPROXIMATE VALUES</span></div>
+          <div class="metrics-heading"><h2 class="compact-title" id="title-14">Faster is not<br><em>the whole score.</em></h2><span class="scenario-label">EARLY EXPERIMENTATION · APPROXIMATE VALUES</span></div>
           <div class="metric-dashboard" id="metric-dashboard"></div>
           <div class="metric-foot"><p><strong>More review—better outcomes?</strong></p><div class="button-group"><button id="metrics-open" aria-haspopup="dialog">All 10 measures</button><button data-action="metric-definitions">Definitions <span aria-hidden="true">↗</span></button></div></div>
-          <footer class="slide-footer"><span>ARE WE INCREASING SPEED WITHOUT INCREASING ENTROPY?</span><span>13 / 15</span></footer>
+          <footer class="slide-footer"><span>ARE WE INCREASING SPEED WITHOUT INCREASING ENTROPY?</span><span>14 / 15</span></footer>
         </section>
 
-        <section class="slide" id="slide-14" aria-labelledby="title-14" data-act="ACT III" data-title="Your first 30 days" hidden>
-          <div class="eyebrow">ACT III <span>13 — START AT THE ALTITUDE YOU CAN INFLUENCE</span></div>
-          <h2 id="title-14">One workflow.<br><em>Thirty days. A measurable pilot.</em></h2>
-          <div class="thirty-days">
-            <article><span>DAYS 01–07</span><h3>Map</h3><p>A map of AI use, gaps, and risk.</p></article>
-            <article><span>DAYS 08–14</span><h3>Select</h3><p>One workflow with shared context.</p></article>
-            <article><span>DAYS 15–21</span><h3>Define</h3><p>A review plan: owner, criteria, baseline.</p></article>
-            <article><span>DAYS 22–30</span><h3>Pilot</h3><p>Comparable work, reviewed evidence.</p></article>
-          </div>
-          <p class="pilot-decision"><span>THEN DECIDE</span> <strong>Adopt</strong> / <strong>Revise</strong> / <strong>Stop</strong></p>
-          <footer class="slide-footer"><span>14 / 15</span></footer>
-        </section>
 
-        <section class="slide closing" id="slide-15" aria-labelledby="title-15" data-act="ACT IV" data-title="Who designs the system?" hidden>
+
+        <section class="slide closing" id="slide-15" aria-labelledby="title-15" data-act="ACT IV" data-title="Who designs the system?" hidden="">
           <div class="eyebrow">ACT IV <span>14 — THE QUESTION WE STARTED WITH</span></div>
           <p class="closing-setup">If AI becomes part of how we design products,</p>
           <h2 id="title-15">who designs the system<br>in which AI operates?</h2>
-          <div id="closing-reveal" hidden><p class="answer-word">DesignOps.</p><p class="closing-thesis">AI doesn't eliminate the need for DesignOps.<br><strong>It makes DesignOps infrastructure.</strong></p></div>
+          <div id="closing-reveal" hidden=""><p class="answer-word">DesignOps.</p><p class="closing-thesis">AI doesn't eliminate the need for DesignOps.<br><strong>It makes DesignOps infrastructure.</strong></p></div>
           <div class="closing-triad"><span>AI creates <strong>capacity.</strong></span><span>Systems create <strong>consistency.</strong></span><span>Stewardship creates <strong>trust.</strong></span></div>
-          <footer class="slide-footer"><span>DESIGNOPS CONNECTS ALL THREE.</span><span>15 / 15 → Q&A</span></footer>
+          <footer class="slide-footer"><span>DESIGNOPS CONNECTS ALL THREE.</span><span>15 / 15 → Q&amp;A</span></footer>
         </section>
 
-        <section class="slide qa" id="slide-16" aria-labelledby="title-16" data-act="Q&A" data-title="Let's talk — Q&A" hidden>
-          <div class="eyebrow">Q&A <span>10 MINUTES / FOLLOW THE CONVERSATION</span></div>
+        <section class="slide qa" id="slide-16" aria-labelledby="title-16" data-act="Q&amp;A" data-title="Let's talk — Q&amp;A" hidden="">
+          <div class="eyebrow">Q&amp;A <span>10 MINUTES / FOLLOW THE CONVERSATION</span></div>
           <div class="qa-layout"><div><p class="kicker">DESIGNOPS AS AI INFRASTRUCTURE</p><h2 id="title-16">Let's<br><em>talk.</em></h2>
             <nav class="contact-links" aria-label="Connect with Julian Alvarado">
               <a href="https://www.linkedin.com/in/alvaradolj1/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn: alvaradolj1 (opens in a new tab)">LinkedIn · alvaradolj1 <span aria-hidden="true">↗</span></a>
               <a href="https://github.com/JulianAlvarado" target="_blank" rel="noopener noreferrer" aria-label="GitHub: JulianAlvarado (opens in a new tab)">GitHub · JulianAlvarado <span aria-hidden="true">↗</span></a>
             </nav>
           </div>
-            <nav class="qa-links" aria-label="Q&A backup slides"><a href="#17">01 <span>Who owns governance?</span> ↗</a><a href="#18">02 <span>Do we become an AI team?</span> ↗</a><a href="#19">03 <span>What is an AI-ready design system?</span> ↗</a><a href="#20">04 <span>What happens when models change?</span> ↗</a><a href="#21">05 <span>How do we prove value?</span> ↗</a><a href="#22">06 <span>How does the context stack fit?</span> ↗</a><a href="#23">07 <span>Where does this fit in the lifecycle?</span> ↗</a></nav>
+            <nav class="qa-links" aria-label="Q&amp;A backup slides"><a href="#17">01 <span>Who owns governance?</span> ↗</a><a href="#18">02 <span>Do we become an AI team?</span> ↗</a><a href="#19">03 <span>What is an AI-ready design system?</span> ↗</a><a href="#20">04 <span>What happens when models change?</span> ↗</a><a href="#21">05 <span>How do we prove value?</span> ↗</a><a href="#22">06 <span>How does the context stack fit?</span> ↗</a><a href="#23">07 <span>Where does this fit in the lifecycle?</span> ↗</a><a href="#24">08 <span>How do we start a pilot?</span> ↗</a></nav>
           </div>
-          <footer class="slide-footer"><span>GOVERN · CONTEXT · EVALUATE</span><span>Q&A / BACKUPS FOLLOW</span></footer>
+          <footer class="slide-footer"><span>GOVERN · CONTEXT · EVALUATE</span><span>Q&amp;A / BACKUPS FOLLOW</span></footer>
         </section>
 
-        <section class="slide backup" id="slide-17" aria-labelledby="title-17" data-act="BACKUP" data-title="Backup: shared governance ownership" hidden>
-          <div class="eyebrow">BACKUP 01 <a href="#16">↖ BACK TO Q&A</a></div>
+        <section class="slide backup" id="slide-17" aria-labelledby="title-17" data-act="BACKUP" data-title="Backup: shared governance ownership" hidden="">
+          <div class="eyebrow">BACKUP 01 <a href="#16">↖ BACK TO Q&amp;A</a></div>
           <h2 id="title-17">Shared governance.<br><em>Explicit decision rights.</em></h2>
           <div class="ownership-grid"><article><span>BOUNDARIES</span><h3>Security + Legal</h3><p>Data, privacy, risk, and policy.<br>Set non-negotiable constraints.</p></article><article><span>ACCESS</span><h3>IT + platform teams</h3><p>Approved technology and access.<br>Maintain secure capabilities.</p></article><article><span>OPERATING MODEL</span><h3>DesignOps</h3><p>Translate policy into workflows.<br>Facilitate context and evaluation.</p></article><article><span>PRODUCT JUDGMENT</span><h3>Domain experts</h3><p>PM, research, design, engineering.<br>Own quality and release decisions.</p></article></div>
           <p class="backup-takeaway">Good governance pre-approves safe paths—not every individual click.</p>
           <footer class="slide-footer"><span>RISK-BASED CHECKPOINTS · NAMED OWNERS · DOCUMENTED EXCEPTIONS</span><span>APPENDIX / 01</span></footer>
         </section>
 
-        <section class="slide backup" id="slide-18" aria-labelledby="title-18" data-act="BACKUP" data-title="Backup: operating-environment architect, not AI factory" hidden>
-          <div class="eyebrow">BACKUP 02 <a href="#16">↖ BACK TO Q&A</a></div>
+        <section class="slide backup" id="slide-18" aria-labelledby="title-18" data-act="BACKUP" data-title="Backup: operating-environment architect, not AI factory" hidden="">
+          <div class="eyebrow">BACKUP 02 <a href="#16">↖ BACK TO Q&amp;A</a></div>
           <h2 id="title-18">Architect the environment.<br><em>Don't become the AI factory.</em></h2>
           <div class="role-responsibilities"><span>Governance <small>Rules + risk</small></span><span>Design intelligence <small>Consumable knowledge</small></span><span>Workflow architecture <small>With domain experts</small></span><span>Quality systems <small>Rubrics + evidence</small></span><span>Enablement <small>Playbooks + training</small></span><span>Measurement <small>Quality + outcomes</small></span></div>
           <div class="archetypes"><strong>ENABLE DIFFERENT KINDS OF WORK</strong><p>Prototype → Build → Improve → Grow → Maintain</p><small>Exploration, production, simplification, experimentation, and reliability need different controls.</small></div>
           <footer class="slide-footer"><span>A ROLE DIRECTION, NOT A MANDATED TITLE OR REORGANIZATION</span><span>APPENDIX / 02</span></footer>
         </section>
 
-        <section class="slide backup" id="slide-19" aria-labelledby="title-19" data-act="BACKUP" data-title="Backup: an AI-ready design system" hidden>
-          <div class="eyebrow">BACKUP 03 <a href="#16">↖ BACK TO Q&A</a></div>
+        <section class="slide backup" id="slide-19" aria-labelledby="title-19" data-act="BACKUP" data-title="Backup: an AI-ready design system" hidden="">
+          <div class="eyebrow">BACKUP 03 <a href="#16">↖ BACK TO Q&amp;A</a></div>
           <h2 id="title-19">A component library<br><em>with the reasoning attached.</em></h2>
           <div class="system-readiness"><article><span>KEEP THE FOUNDATION</span><h3>Tokens<br>Components<br>Patterns<br>Guidelines</h3></article><b aria-hidden="true">+</b><article><span>MAKE IT CONSUMABLE</span><h3>Semantic metadata<br>Usage rules + constraints<br>Examples + code equivalents<br>Evaluation criteria</h3></article></div>
           <div class="infrastructure-rail"><span>SHARED CONTEXT</span><strong>Owner</strong><strong>Version</strong><strong>Source</strong><strong>Freshness</strong><strong>Access</strong></div>
@@ -343,8 +316,8 @@
           <footer class="slide-footer"><span>READABLE BY HUMANS AND MACHINES · EXISTING PRODUCT EXPERIENCES ARE CONTEXT TOO</span><span>APPENDIX / 03</span></footer>
         </section>
 
-        <section class="slide backup" id="slide-20" aria-labelledby="title-20" data-act="BACKUP" data-title="Backup: model-agnostic workflows and canonical prompts" hidden>
-          <div class="eyebrow">BACKUP 04 <a href="#16">↖ BACK TO Q&A</a></div>
+        <section class="slide backup" id="slide-20" aria-labelledby="title-20" data-act="BACKUP" data-title="Backup: model-agnostic workflows and canonical prompts" hidden="">
+          <div class="eyebrow">BACKUP 04 <a href="#16">↖ BACK TO Q&amp;A</a></div>
           <h2 id="title-20">Models change.<br><em>Your operating principles endure.</em></h2>
           <div class="stable-contract"><span>KNOWLEDGE</span><span>RULES</span><span>WORKFLOWS</span><span>EVALUATION</span></div>
           <div class="model-swap"><span>Model A</span><b>↔</b><span>Model B</span><b>↔</b><span>Model C</span><p>Re-run evaluation before switching.<br>Model-agnostic does not mean behavior-identical.</p></div>
@@ -353,8 +326,8 @@
           <footer class="slide-footer"><span>DESIGNOPS FACILITATES · DOMAIN EXPERTS AUTHOR + REVIEW</span><span>APPENDIX / 04</span></footer>
         </section>
 
-        <section class="slide backup measurement-backup" id="slide-21" aria-labelledby="title-21" data-act="BACKUP" data-title="Backup: metric definitions and measurement plan" hidden>
-          <div class="eyebrow">BACKUP 05 <div><a href="#13">↖ DASHBOARD</a> <a href="#16">↖ Q&A</a></div></div>
+        <section class="slide backup measurement-backup" id="slide-21" aria-labelledby="title-21" data-act="BACKUP" data-title="Backup: metric definitions and measurement plan" hidden="">
+          <div class="eyebrow">BACKUP 05 <a id="definitions-return" href="#14">↖ BACK TO DASHBOARD</a></div>
           <h2 class="compact-title" id="title-21">Measure the workflow.<br><em>Not the number of prompts.</em></h2>
           <table class="definitions"><caption>Operational definitions for a scoped baseline and pilot</caption><thead><tr><th>Metric</th><th>Definition / unit</th><th>Collection method</th></tr></thead><tbody>
             <tr><td>Brief → validated concept</td><td>Median elapsed days; fixed validation criteria</td><td>Brief timestamp → review + user evidence</td></tr>
@@ -370,8 +343,8 @@
           <footer class="slide-footer"><span>LEADING INDICATORS SIGNAL READINESS · OUTCOMES TEST WHETHER IT WORKED</span><span>APPENDIX / 05</span></footer>
         </section>
 
-        <section class="slide backup" id="slide-22" aria-labelledby="title-22" data-act="BACKUP" data-title="Backup: Organizational memory is the advantage" hidden>
-          <div class="eyebrow">BACKUP 06 <a href="#16">↖ BACK TO Q&A</a></div>
+        <section class="slide backup" id="slide-22" aria-labelledby="title-22" data-act="BACKUP" data-title="Backup: Organizational memory is the advantage" hidden="">
+          <div class="eyebrow">BACKUP 06 <a href="#16">↖ BACK TO Q&amp;A</a></div>
           <div class="stack-layout">
             <div><h2 id="title-22">The advantage<br>isn't the model.<br><em>It's the memory.</em></h2><p class="lead">What does your organization<br>allow the model to know?</p><button data-action="stack" aria-controls="stack">Build the context stack</button><p class="micro" id="stack-status" role="status">Layer 1 of 5: Models. Build from the foundation up.</p></div>
             <div class="stack" id="stack">
@@ -385,8 +358,8 @@
           <footer class="slide-footer"><span>AI-READY = HUMAN-UNDERSTANDABLE + MACHINE-CONSUMABLE</span><span>APPENDIX / 06</span></footer>
         </section>
 
-        <section class="slide backup" id="slide-23" aria-labelledby="title-23" data-act="BACKUP" data-title="Backup: DesignOps across the product lifecycle" hidden>
-          <div class="eyebrow">BACKUP 07 <a href="#16">↖ BACK TO Q&A</a></div>
+        <section class="slide backup" id="slide-23" aria-labelledby="title-23" data-act="BACKUP" data-title="Backup: DesignOps across the product lifecycle" hidden="">
+          <div class="eyebrow">BACKUP 07 <a href="#16">↖ BACK TO Q&amp;A</a></div>
           <h2 id="title-23">Same infrastructure.<br><em>Every stage of the journey.</em></h2>
           <div class="lifecycle" role="group" aria-label="Choose a product lifecycle stage">
             <button data-life="0" aria-pressed="true">01 <strong>DISCOVER</strong><span>Synthesize research</span></button>
@@ -399,12 +372,23 @@
           <div class="infrastructure-rail"><span>SHARED INFRASTRUCTURE</span><strong>GOVERN</strong><strong>CONTEXT</strong><strong>EVALUATE</strong></div>
           <footer class="slide-footer"><span>SELECT A STAGE TO INSPECT ITS AI CONTRIBUTION + DESIGNOPS SUPPORT</span><span>APPENDIX / 07</span></footer>
         </section>
-      </div>
+      <section class="slide backup" id="slide-24" aria-labelledby="title-24" data-act="BACKUP" data-title="Backup: your first 30 days" hidden="">
+          <div class="eyebrow">BACKUP 08 <a id="pilot-return" href="#12">↖ BACK TO SHARED PRODUCTION</a></div>
+          <h2 id="title-24">One workflow.<br><em>Thirty days. A measurable pilot.</em></h2>
+          <div class="thirty-days">
+            <article><span>DAYS 01–07</span><h3>Map</h3><p>A map of AI use, gaps, and risk.</p></article>
+            <article><span>DAYS 08–14</span><h3>Select</h3><p>One workflow with shared context.</p></article>
+            <article><span>DAYS 15–21</span><h3>Define</h3><p>A review plan: owner, criteria, baseline.</p></article>
+            <article><span>DAYS 22–30</span><h3>Pilot</h3><p>Comparable work, reviewed evidence.</p></article>
+          </div>
+          <p class="pilot-decision"><span>THEN DECIDE</span> <strong>Adopt</strong> / <strong>Revise</strong> / <strong>Stop</strong></p>
+          <footer class="slide-footer"><span>APPENDIX / 08</span></footer>
+        </section></div>
     </div>
   </main>
-  <button id="stage-exit" hidden>Exit stage · Esc</button>
+  <button id="stage-exit" hidden="">Exit stage · Esc</button>
 
-  <aside id="notes" class="notes-panel" aria-label="Presenter notes" tabindex="0" hidden>
+  <aside id="notes" class="notes-panel" aria-label="Presenter notes" tabindex="0" hidden="">
     <div class="notes-header"><h2>Presenter notes</h2><button id="notes-close" aria-label="Close presenter notes">Close ×</button></div>
     <div id="notes-content"></div>
   </aside>
@@ -414,7 +398,7 @@
     <div class="nav-hint">← → navigate <span>·</span> N notes <span>·</span> G index</div>
     <progress id="progress" max="15" value="1" aria-label="Keynote progress"></progress>
   </footer>
-  <dialog id="overview" aria-labelledby="overview-title"><div class="dialog-header"><div><p class="kicker">20 MIN KEYNOTE + 10 MIN Q&A</p><h2 id="overview-title">The story at a glance</h2></div><button id="overview-close" aria-label="Close slide index">Close ×</button></div><div id="slide-index"></div></dialog>
+  <dialog id="overview" aria-labelledby="overview-title"><div class="dialog-header"><div><p class="kicker">20 MIN KEYNOTE + 10 MIN Q&amp;A</p><h2 id="overview-title">The story at a glance</h2></div><button id="overview-close" aria-label="Close slide index">Close ×</button></div><div id="slide-index"></div></dialog>
   <dialog id="metrics-detail" aria-labelledby="metrics-title">
     <div class="dialog-header"><h2 id="metrics-title">Speed + coherence: all 10 measures</h2><button id="metrics-close" aria-label="Close metric details">Close ×</button></div>
     <p class="scenario-label">EARLY EXPERIMENTATION · APPROXIMATE VALUES</p>
@@ -424,5 +408,6 @@
   </dialog>
   <div id="announcement" class="sr-only" role="status"></div>
   <noscript>This interactive presentation requires JavaScript. Enable JavaScript, or read speaker-notes.md for the complete narrative.</noscript>
-</body>
-</html>
+
+
+</body></html>

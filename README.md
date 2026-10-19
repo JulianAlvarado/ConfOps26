@@ -1,218 +1,132 @@
 # DesignOps as AI Infrastructure
 
-**Keynote v2.** A local, dependency-free HTML/CSS/JavaScript keynote: 15 main slides (20 minutes), a Q&A menu (10 minutes), and seven optional backups.
+**V3 — independent bilingual review candidate, awaiting user approval.** Based on frozen bilingual V2 commit `e39ef62f1729553773fa4a4f097f5c8cdf33d138`. This branch is not integrated into V2 or `main`. Do not merge, push, or open a PR until explicitly authorized.
 
-V2 reduces competing content in both review and Stage. Slide **05** has three strong words and three questions; slide **06** has a current-step indicator and one large example surface instead of a permanent checklist, badges, repeated explanation, and window/code chrome; slide **14** has four timeline outputs and an explicit **adopt / revise / stop** decision. Framework examples, stewardship/systems/enablement, and team/product-area/enterprise ownership remain in speaker notes. The six demo states, local form, approved metrics, biography, slide count, timing, and three Stage build moments are unchanged.
+The local, offline vanilla HTML/CSS/JavaScript presentation contains **24 slides: 15 keynote + Q&A + 8 appendices**. The keynote remains 20 minutes; Q&A remains 10 minutes. V1 and both inherited V2 PDFs are preserved unchanged. The frozen V2 and standalone Spanish branches are not edited.
 
-The original `ConfOps26_Julian-Alvarado_DesignOps-as-AI-Infrastructure_v1.pdf` is preserved unchanged. The new static conference export is `ConfOps26_Julian-Alvarado_DesignOps-as-AI-Infrastructure_v2.pdf` (23 widescreen pages).
+## Open V3
 
-## English / Español
+Open `index.html` directly in a modern desktop browser. No build, package installation, CDN, API key, AI service, or network connection is needed. Alternatively, run `python3 -m http.server 8080 --bind 127.0.0.1` here and open `http://127.0.0.1:8080`.
 
-Open the same `index.html` for both languages. **English is the default on every load.** The toolbar's **ES / EN** button shows the target language: ES switches to Spanish, EN to English. It switches all 23 slides, notes, menus, accessible labels, metrics, and demo copy in place. Its accessible name spells out the current and target languages. **L** switches languages without leaving Stage; like other shortcuts, it does not intercept typing in the form, notes, or an open dialog.
+English starts on reload. The single **ES / EN** toolbar button displays the target language; **L** also switches languages outside form fields, notes and dialogs, including in Stage. All slides, notes, menus, evidence, form feedback and accessible labels switch in place. Input, selected tabs, diagram states, the closing reveal and the Stage review snapshot survive switching. No language preference or user data is stored or sent.
 
-Switching keeps the current slide, demo step, entered form value and feedback, closing reveal, diagram selections, Stage/Reading mode, open notes, and review-state snapshot. It does not restart builds or reload the page. All content ships in local classic scripts, so switching works with `file://` and no network. The language choice and demo input are never stored; reload starts a fresh English presentation.
+Outbound LinkedIn and GitHub contact links are the only intended network use, when explicitly followed. No photos have been retrieved: slide 3 contains three deliberately neutral, localized placeholders for the photos the speaker will supply.
 
-English export: `ConfOps26_Julian-Alvarado_DesignOps-as-AI-Infrastructure_v2.pdf`. Spanish export: `ConfOps26_Julian-Alvarado_DesignOps-as-AI-Infrastructure_v2_es.pdf`. Each contains 23 widescreen pages; neither replaces V1.
+## Review changes
 
-## Conference story
+Inter is used for both primary and secondary typography, including diagrams and context labels. Existing **coral/orange** highlights action changes and the selected demo tab; **cyan** carries shared structure. Existing green success/acceptance states retain their meaning. There is no toolbar version badge; all six toolbar controls remain on one row at 1000px in both languages.
 
-Govern / Context / Evaluate follows the acceleration paradox at **3:00**. The retained interactive demonstration, **“Fix the form. Keep the lesson.”**, is now slide **6**, beginning at **4:00**. Its **270 seconds (4 minutes 30 seconds)** include the removed overview slide's 90 seconds as explanation, audience-reading, form-interaction, and review pauses—not new steps or an extra exercise. The keynote remains exactly **1,200 seconds**. The detailed stack and lifecycle remain available in backups.
+| Slide | V3 treatment |
+| --- | --- |
+| 1 | Inter and existing palette; aligned capacity/coherence labels, matching captions and opening animation retained |
+| 2 | Four disciplines separated by vertical rules, meaningful line icons and horizontal deliverable tags |
+| 3 | 50/50 neutral collage placeholders and condensed supplied biography; full biography retained in notes |
+| 4 | Cleaner branching diagram with a horizontal shared-context boundary; fragmentation and alignment remain distinct |
+| 5 | Three equal questions, separated rather than boxed; not a sequential dependency model |
+| 6 | Six persistent, accessible tabs, one content surface, and main Next progression; no Reset or duplicate Next |
+| 7 | Alternatives at equal visual weight, shared rubric and original evaluation icon **◎**; judgment stays human |
+| 8 | Entire cycle visible without a progress button, including return to shared guidance |
+| 9 | People / Process / Systems explicitly connect current responsibilities with expanded AI scope |
+| 10 | AI-assisted work appears once as a shared layer; distinct actors keep responsibility and DesignOps connects them |
+| 11 | Before: simplified sequential handoffs |
+| 12 | After: proposed shared purpose, synchronized collaboration and AI-assisted production; link to pilot appendix 24 |
+| 13 | Documentation inputs → reusable guidance outputs → packaged AI context, with provenance and caveats |
+| 14 | Shared Baseline / Pilot / Change headings, grouped categories; all ten measures and definitions remain accessible |
+| 15 | Main Next reveals the answer; next advance opens Q&A; reverse hides before moving back |
+| 16 | Topic hierarchy, eight appendix links and coral contact actions; removed lead question stays removed |
+| 17–23 | Existing backup content retained, with Inter and related consistency adjustments |
+| 24 | Original 30-day pilot moved intact to appendix; separated stages and return to the originating slide |
 
-| Slides | Story | Timing |
+The recent Spanish headings are retained, including **“Ejemplo: Corrige el formulario. Conserva lo aprendido.”**, **“Una decisión informada”**, **“No te enfoques en el output, Aceleras el aprendizaje.”**, and **“Las mismas bases, un alcance actualizado.”** The after-journey heading retains the speaker's latest Spanish wording.
+
+## Pacing and mapping
+
+Slides 1–10, closing 15, Q&A 16 and backups 17–23 keep their identifiers. Original 11 becomes 11/12; original documentation 12 becomes 13; metrics 13 becomes 14; pilot 14 becomes appendix 24. Menus, notes, hashes and return links use the new mapping.
+
+| Slides | Narrative | Window |
 | --- | --- | --- |
-| 1–4 | Opening → distributed generation → About me → acceleration paradox | 0:00–3:00 |
-| 5–8 | Govern / Context / Evaluate → decision demo → accountable evaluation → learning loop | 3:00–10:40 |
-| 9–14 | Expanded role → control plane → collaborative journey → reusable standards → measures → 30-day pilot | 10:40–18:30 |
-| 15 | Who designs the system? | 18:30–20:00 |
-| 16 | Q&A and contact links | 20:00–30:00 |
-| 17–23 | Ownership, role, AI-ready system, model changes, measurement, context stack, lifecycle | Optional backups |
+| 1–4 | Opening, distributed generation, biography, paradox | 0:00–3:00 |
+| 5–8 | Operating model, demo, evaluation, learning | 3:00–10:40 |
+| 9–10 | Expanded responsibilities and control plane | 10:40–12:20 |
+| 11 | Before: handoffs — 90 seconds | 12:20–13:50 |
+| 12 | After: synchronized production — 105 seconds | 13:50–15:35 |
+| 13–14 | Reusable guidance and measurement | 15:35–18:30 |
+| 15 | Closing — 90 seconds | 18:30–20:00 |
+| 16 | Q&A — 600 seconds | 20:00–30:00 |
+| 17–24 | Optional appendices | Outside keynote |
 
-The six demo steps tell one story: **user need → AI mistake → team decision → working fix → saved lesson → next result**. Someone needs to start alone, but the first form requires an invitation. The team moves invitations after setup; DesignOps keeps the reason in shared guidance for the next team and its AI tools. The lesson retains a source, scope, version, owner, and review trigger without document codes on the slide. All examples are pre-authored and illustrative; no actual research, organizational policy, or measured improvement is implied.
+The removed keynote pilot's 135 seconds join the original journey's 60 seconds, giving 195 seconds across the split. The demo retains **270 seconds**, biography **30**, closing **90**, and keynote total **1,200**. These are rehearsal allocations, not automatic advancement.
 
-The same vocabulary continues through the learning loop and documentation slides: **decision** is what the team changed, **saved lesson** includes why, and **shared guidance** makes it available for reuse. The next result still needs review. Stage, review, Reading view, live announcements, and speaker notes use these terms rather than invented document identifiers.
+## Presentation controls
 
-## Speaker introduction
-
-Slide **3**, **About me**, is a text-only introduction to **Julian Alvarado — Xbox Design Ops**, with his supplied biography translated into English and personal interests. Its **30 seconds (1:30–2:00)** come from the closing, now **90 seconds** rather than 120; the keynote remains 1,200 seconds, demo 270 seconds, and Q&A 600 seconds. Summarize the role and connection to the talk rather than reading the entire biography aloud.
-
-Edit the biography directly in `index.html` under `.about-slide` and keep its speaker notes in `app.js` synchronized.
-
-## Run
-
-Open `index.html` directly in a modern desktop browser. No build, installation, external fonts, API keys, network access, or AI service is required.
-
-The Q&A slide includes LinkedIn and personal GitHub links. They open in a new tab and require internet access only when followed.
-
-Alternatively, from this folder:
-
-```sh
-python3 -m http.server 8080 --bind 127.0.0.1
-```
-
-Open `http://127.0.0.1:8080`. Stop the server with Ctrl+C.
-
-**Presentation view** preserves the 1600 × 900 (16:9) stage. **Reading view** reflows the same slide into a scrollable layout with readable text, 44px-minimum controls, and text equivalents for complex SVG diagrams. Reading view starts automatically at widths of 900px or less, or heights of 560px or less. The toolbar toggle lets you choose either view at any size; your choice lasts until reload. For larger text on a laptop, turn Reading view on rather than shrinking the stage.
-
-The review toolbar uses borderless, text-style controls with understated shortcut hints and no version badge. Desktop actions stay on one line, including each label and shortcut; at widths up to 1200px, the secondary brand tagline yields space to the menu. At phone widths, complete buttons wrap with 44px minimum height. Hover underlines the action; active Reading view and open Notes use a cyan underline. Keyboard focus retains its visible outline.
-
-## Stage delivery
-
-Choose **Stage** or press **S** before sharing the screen. Stage removes the review toolbar, navigation hints, notes, and open dialogs. **F** optionally enters native fullscreen; Stage also works in a window. The visible **Exit stage · Esc** control stays in the bottom-left footer area.
-
-Only three slides have builds:
-
-| Slide | Stage build sequence |
+| Control | Behavior |
 | --- | --- |
-| 4 | Fully visible fragmentation → apply shared standards → next slide |
-| 6 | Six unchanged plain-language demo steps → next slide |
-| 15 | Question → answer → Q&A |
+| Main Next / Previous | Advance or reverse the demo/closing state before changing slides |
+| Right / Down / Page Down / Space | Same forward action; held keys do not skip builds |
+| Left / Up / Page Up | Reverse a build before leaving the slide |
+| Six demo tabs | Click to select; Left/Right wrap; Home/End select first/last; selected tab is bold, underlined and `aria-selected` |
+| Reading view | Reflowed, scrollable version; native vertical/Page/Home/End/Space keys scroll; Right and main Next still advance |
+| S / Stage | Hide review chrome, start a fresh rehearsal, retain a review snapshot |
+| Escape / S / Exit stage | Restore review input, feedback, selected state, reveal and Reading preference |
+| F | Native fullscreen when supported; denied/unavailable requests are announced |
+| N / Notes | Read notes on the same display; close before audience screen sharing |
+| G / Slides | Open the 24-slide index |
+| ES / EN, or L | In-place language switching |
 
-**Right / Down / Page Down / Space** advances the current build before moving to the next slide. **Left / Up / Page Up** reverses a build, then moves to the previous slide. Returning to a slide retains its stage build. Home / End jumps to the first / last slide. Keys never auto-repeat through builds.
+Stage has only three builds: slide 4 fragmentation/alignment, slide 6's six states, and slide 15's answer. Other diagrams are complete without extra clicks. Optional generation, connection and journey replay controls remain in review. Animations are finite and respect reduced-motion preferences.
 
-The demo's buttons and form remain keyboard accessible. **Tab** reaches its labeled input and submit button; native typing, arrows, Space, and Enter remain native within the form. Tab beyond the form (or focus the slide background) to resume presentation keys. **Escape** exits Stage even from the input. **S**, the exit button, or leaving browser fullscreen also returns to review. The current slide stays selected.
+The form's native input, validation and submit keys never advance the presentation. Tab outside the form to resume presentation keys. Revisiting the first demo tab does not erase entered input. Reload resets the demo; entering Stage starts its own clean rehearsal, and exiting restores review. Use fictional input only.
 
-Entering Stage starts its three build sequences afresh but snapshots the review builds and form. Exiting restores those states, diagram selections, and the manual Reading view preference. Notes and dialogs stay closed on exit; **N/G are inactive on stage**, so they cannot accidentally appear to the audience. Fullscreen permission failures are announced and leave windowed Stage usable.
+The pilot reference on 12 returns from 24 to 12; entering from Q&A returns to Q&A. Definitions from 14 returns to 14, not prematurely to Q&A; Q&A entry returns to Q&A. Direct appendix entry defaults to the related keynote slide. The previous control also respects these appendix origins. Closing the ten-metric dialog restores the opener and stays on the dashboard.
 
-Other diagrams are resolved and static: all roles generating; the complete learning loop; the original control-plane hub-and-spoke diagram with every connection visible; both journey paths; all stack layers; the lifecycle overview; and the four-part pilot timeline. Slide 10 keeps its diagram in Stage and desktop review, with larger stage labels and no stage connection toggle; Reading view retains the text equivalent. Lifecycle choices and the ten-measure dialog remain available in review. Organizational-altitude guidance is in slide 14's notes rather than a competing selector.
+## Evidence boundaries
 
-### Projection typography
+The form, six states, saved lesson and proposed workflow are pre-authored illustrations, not live AI, research findings or universal organizational history. Source, reason, scope, owner, version and review trigger remain visible; **user validation is pending**. A context package still requires integration, permissions, validation and human review.
 
-Stage uses the full available 16:9 area, not the smaller review viewport. The established system sans and semantic monospace stay unchanged. Decision-bearing body/diagram text uses a minimum **23px design-space size**: measured **18.4px at 1280×720** and **24.15px at 1680×1080** after the actual stage transform. Framework words/questions are 62/34px; demo headings/details are 42/29px; documentation mappings and rule content remain 29/27px. The framework now shows only its three questions, with examples in notes. The documentation model still shows four mappings and a concise rule summary; full provenance and the other three mappings remain in review and notes.
+All ten approximate comparisons remain unchanged. Design production rate is **~3–4/wk → ~1–2/wk**, a decline; **≈−2/wk** is a midpoint estimate, not an observed delta. The eight-week E2E cycle is team context, not the weekly denominator. Review effort increases **4h → 6h**. Neither is colored as an improvement. Records, sample sizes and methods have not been supplied; these are not validated outcomes, benchmarks or causal ROI. Definitions and collection caveats are in appendix 21 and the bilingual notes.
 
-Small reference-only text remains in act/topic eyebrows, slide numbers, decorative output labels, and role ordinals. The dense measurement appendix remains a reference table (18.4px cells at 1280×720); its captions/column labels and some backup category labels are smaller, not the primary spoken argument. Approximate-value and rule-scope qualifications remain visible. Use Reading view for reference reading or smaller displays; Stage is intended for projection at 1280×720 or larger, not phone-scale delivery.
+## Local font and license
 
-## Review controls
+Inter 4.1 variable upright WOFF2 supports weights 100–900, including the real intermediate weights used in the deck and Spanish accents. Italic styling is not used; synthesis is disabled. Primary and secondary text share Inter rather than falling back to the earlier system sans/monospace pairing.
 
-| Control | Action |
-| --- | --- |
-| S / Stage | Start clean stage delivery |
-| ES / EN, or L | Switch to Spanish / English in place; L also works on Stage outside the form |
-| Next / previous, Left / Right arrows | Navigate slides in either view; slide 15's first forward action reveals the answer, the next opens Q&A |
-| Up / Down, Page Up / Down, Space | Navigate in presentation view; scroll in reading view |
-| Home / End | First / last slide in presentation view; scroll in reading view |
-| Reading view | Toggle the reflowed reading layout |
-| N / Notes | Toggle the readable notes panel |
-| G / Slides | Open the slide index |
-| F / Fullscreen | Toggle native fullscreen when supported |
-| Escape | Close index or notes; browser also handles fullscreen exit |
-| Topic links on Q&A | Open the relevant backup |
-| `#13`, for example | Link directly to a slide |
+- Official source: [rsms/inter v4.1](https://github.com/rsms/inter/tree/v4.1)
+- Font: `fonts/InterVariable.woff2`, from `https://raw.githubusercontent.com/rsms/inter/v4.1/docs/font-files/InterVariable.woff2`
+- License: `fonts/LICENSE.txt`, [SIL Open Font License 1.1](https://github.com/rsms/inter/blob/v4.1/LICENSE.txt)
+- Font SHA-256: `693b77d4f32ee9b8bfc995589b5fad5e99adf2832738661f5402f9978429a8e3`
 
-All animations are finite and respect `prefers-reduced-motion`. Slides never advance automatically. In review, in-slide buttons are separate from slide navigation; press Tab and Enter/Space to operate them. Reveal steps expose their current state and announce updates. Interaction state is preserved while navigating within the page and resets on reload. Keynote progress reaches 100% at slide 15; Q&A and backups have separate labels and no keynote progress bar.
+No runtime font download occurs. The 1600×900 slide hierarchy retains projection-sized content; reference metadata is smaller. Reading view is the accessible reference surface for small screens.
 
-Opening Notes focuses its scrollable panel. Arrow, Page Up/Down, Home/End, and Space keys operate the panel instead of advancing slides; N or Escape closes it. Text-input controls retain their native keyboard behavior. The notes panel is part of the same display, **not a private presenter window**; close it before audience screen sharing.
+## Editing and validation
 
-## Review interactions
+`index.html` owns English markup; `styles.css` owns presentation/Reading/Stage/print layout; `app.js` owns notes, evidence and interaction state. `spanish.js` contains matching static bindings and runtime translations; `language.js` switches them without remounting the form. When editing markup, update its translation targets and both language values. The checks reject stale bindings.
 
-- **2:** distribute generation across four roles.
-- **4:** trace the acceleration chain and toggle shared standards.
-- **6:** follow the user's need, AI mistake, team decision, working fix, saved lesson, and next result. The form is interactive at step 4; Reset clears it and restarts the example.
-- **8:** follow the closed organizational learning loop.
-- **10:** connect/disconnect the shared control plane.
-- **11:** replay sequential handoffs versus collaborative production.
-- **13:** compare four approximate baseline/pilot measures informed by early experimentation; open all ten in a detail dialog or jump to operational definitions.
-- **14:** static four-week pilot timeline; open Notes for team, product-area, and enterprise ownership.
-- **15:** pause, then use bottom navigation **Next** to reveal the answer; use Next again for Q&A. Forward navigation keys behave identically. The Next control's accessible label and tooltip identify its current action; the reveal is announced without moving keyboard focus. There is no on-slide reveal button. Reading view retains its native scroll keys; Right still advances. Stage retains its reveal/reverse build and restores review's prior answer state on exit.
-- **22 (backup):** build the organizational-memory stack.
-- **23 (backup):** inspect AI assistance, infrastructure, and review at each lifecycle stage.
-
-## Files and editing
-
-- `index.html`: discrete semantic slide sections, editable content, inline SVG diagrams.
-- `styles.css`: shared palette, typography, 16:9 layouts, transitions, responsive chrome, reduced-motion and print rules.
-- `app.js`: navigation, local interactions, metric dataset, and presenter notes displayed in the UI.
-- `spanish.js`: Spanish static copy and runtime/notes translations. Static entries identify an existing DOM target and store `[English, Spanish]` text or attribute values; numbered runtime slots preserve interpolated values without translating user input.
-- `language.js`: small shared translation helpers; updates existing nodes rather than replacing the deck or rebinding handlers.
-- `speaker-notes.md`: standalone rehearsal script, timings, takeaways, visuals, transitions, assumptions, and source traceability.
-- `speaker-notes-es.md`: synchronized Spanish rehearsal script, generated by the same command.
-- `check.mjs`: zero-dependency source consistency check and notes exporter. Run `node check.mjs`.
-- `browser-check.cjs`: optional browser regression checks for all slides and six demo states across six review viewports, plus Stage at 1280×720 and 1680×1080. Covers build/slide keys, form isolation, clean entry/exit, fullscreen, review restoration, effective font thresholds, and overflow. With Playwright available, run `node browser-check.cjs`. If Playwright is installed outside this folder, set `PLAYWRIGHT_MODULE` to its module path. Set `SNAPSHOT_DIR` to an artifact directory to capture stage/desktop/mobile screenshots during the same run. The presentation itself still has no dependencies.
-
-Each slide has a contiguous numeric ID, descriptive `data-title`, and `data-act`. IDs follow the revised DOM order, so old numeric links may now point to different content. The `notes` array uses that same order; `keynoteCount` defines the talk boundary. Edit English copy/notes in `index.html` and `app.js`, update the matching entries in `spanish.js`, then run `node check.mjs --write-notes` to regenerate both note documents. The browser checks verify catalog targets against the English source, both languages' layouts, and state-preserving switches; changing DOM structure requires updating affected catalog selectors. Shared colors are CSS custom properties. Metric values and axis bounds live in the `metrics` array. Spanish localizes units such as `/wk` to `/sem`, not the numeric data. There is no external data collection, analytics, persistence, or live AI call.
-
-## Assumptions and qualifications
-
-1. English and Spanish share one presentation and the same evidence. The supplied outline, including Spanish review notes, is the primary narrative source. No outside evidence or unverified source attribution is added.
-2. All ten dashboard comparisons are labeled **“Early experimentation · approximate values.”** The presenter supplied **Design production rate: ~3–4/wk baseline → ~1–2/wk pilot**, with **≈−2/wk** explicitly a **midpoint estimate** (1.5 − 3.5), not a separately observed change. Its context is **accepted artifacts / in a team with 8w E2E Cycle**: a weekly rate, not a rate per eight-week cycle. The decrease uses the warning color, not an improvement indication. The other nine synthetic comparisons are unchanged; the presenter reports they are close to informal experimentation data. Underlying records, sample sizes, and methods have not been supplied. Do not present these as validated results, benchmarks, causal evidence, or forecasts. The slide highlights four measures; the dialog and notes preserve all ten. Percentage changes use percentage points (pp), not relative percentages.
-3. Leading/process signals: production effort, review effort, system compliance, context reuse, experimentation cadence. Workflow outcomes: concept cycle time, accepted production rate, major rework, open accessibility/quality defects, and design-to-code divergence. These categories are an operational framing, not universal classifications. Actual user outcomes require separate evidence.
-4. The before/after journey is a simplified comparison and a proposed operating model to validate. Animation durations are not delivery-time measurements. The first-30-days plan is a suggested sequence, not a delivery promise.
-5. The decision example is self-contained and pre-authored. Solo setup is an assumed scenario, not research; optional invitations are an illustrative requirement, not a universal onboarding rule. The saved lesson illustrates accountable judgment, source, scope, ownership, and review after the pilot or source change. Meeting that requirement does not prove accessibility or user benefit. The real local form performs no account creation and sends or stores no user input; there is no live code generation or invented Paper/Figma integration.
-6. Stewardship grounds GOVERN; Systems carry CONTEXT; Enablement activates GOVERN, CONTEXT, and EVALUATE through prompts, training, workflows, and rubrics. Evaluation remains a shared expert capability, not an AI score.
-7. Graphite, warm off-white, cyan, lime, and coral distinguish shared systems, alignment, and drift. System fonts keep the deck offline. A consistent branching/connecting motif ties output to coherence without stock AI imagery.
-
-Metric definitions, denominators, collection methods, and pilot caveats are on backup 5 and in the notes. No fabricated citations or performance claims are used.
-
-## PowerPoint readiness
-
-This is the HTML deliverable, not a `.pptx`. The content uses fixed-ratio sections, selectable text, CSS primitives, and inline vectors with stable layouts. A future conversion can map each section to a 16:9 slide and recreate text, lines, nodes, and tables as native PowerPoint objects.
-
-- **Branch/network/loop diagrams:** preserve inline SVG as vectors, or recreate nodes and connectors as editable shapes.
-- **Interactions:** export initial and resolved states as separate slides or use native Appear/Fade builds. Preserve the labels and explicit human checkpoints.
-- **Metrics:** recreate native comparison cards/tables from `metrics`; retain both scenarios, units, percentage-point changes, and the increased review effort. Use the full ten-measure comparison as a backup.
-- **Decision demo:** preserve user need → AI mistake → team decision → working fix → saved lesson → next result as six frames and link to the HTML prototype. Keep the reason, source, owner, and illustrative qualification visible. PowerPoint cannot reproduce the live form as editable slide content.
-- **Lifecycle selector:** use a static summary layout or duplicate slides for each state. Pilot ownership guidance remains in notes.
-- **Closing:** retain the question and answer as two builds. Speaker notes remain separate editable text.
-
-Print CSS provides a browser handout of all 23 slides, including the closing answer. Use landscape, background graphics on, no browser headers/footers, and 100% scale; PDF print behavior varies by browser. Printing is not a PowerPoint conversion. A printout uses current interaction states; prepare those before printing if a particular state is desired.
-
-### Reproduce both v2 PDFs
-
-Use the existing Playwright installation (the deck has no runtime dependencies). This export-only stylesheet reuses Stage typography without altering screen or Reading behavior. It resolves diagrams and uses the demo's final, explicitly reviewed example; the interactive HTML and notes retain all six steps.
+`speaker-notes.md` and `speaker-notes-es.md` are generated, not hand-edited:
 
 ```sh
-PLAYWRIGHT_MODULE=/path/to/playwright node --input-type=commonjs <<'NODE'
-const { chromium } = require(process.env.PLAYWRIGHT_MODULE);
-const { readFileSync } = require("node:fs");
-const { pathToFileURL } = require("node:url");
-const path = require("node:path");
-(async () => {
-  const browser = await chromium.launch();
-  try {
-    const page = await browser.newPage({ viewport: { width: 1600, height: 900 }, reducedMotion: "reduce" });
-    await page.goto(pathToFileURL(path.resolve("index.html")).href);
-    await page.evaluate(() => {
-      setStageMode(true);
-      setAligned(true);
-      setPair(5);
-      setClosing(true);
-      document.querySelector("#network").classList.add("connected");
-    });
-    await page.addStyleTag({ content: readFileSync("styles.css", "utf8").replaceAll("@media screen {", "@media all {") });
-    await page.addStyleTag({ content: "@media print { @page { size: 1600px 900px; margin: 0; } .slide, .slide[hidden] { zoom: 1 !important; } }" });
-    for (const language of ["en", "es"]) {
-      await page.evaluate(language => setLanguage(language), language);
-      await page.pdf({
-        path: `ConfOps26_Julian-Alvarado_DesignOps-as-AI-Infrastructure_v2${language === "es" ? "_es" : ""}.pdf`,
-        preferCSSPageSize: true, printBackground: true, displayHeaderFooter: false
-      });
-    }
-  } finally {
-    await browser.close();
-  }
-})().catch(error => { console.error(error); process.exitCode = 1; });
-NODE
+node check.mjs --write-notes
+node check.mjs
+PLAYWRIGHT_MODULE=/path/to/existing/playwright node browser-check.cjs
 ```
 
-Chromium may round the page height to 675.12pt. For exact 16:9 files, the delivered PDFs trim only that 0.12pt page extent to 1200×675pt; content is neither scaled nor rasterized. On macOS, use PDFKit with an SDK matching your Swift installation (adjust the Xcode SDK path if needed):
+The presentation has no package dependencies. Playwright is optional validation/export tooling, supplied externally. `SNAPSHOT_DIR=/absolute/artifact/path` captures screenshots and layout findings. Browser checks cover every slide in both languages at review, Reading and Stage sizes; the 1000px toolbar; all six tabs; native form validation; forward/reverse navigation; language switching; Stage restoration; origin links; notes and duplicate IDs.
+
+## V3 review PDFs
+
+Separate resolved-state exports, **24 widescreen pages each**:
+
+- `ConfOps26_Julian-Alvarado_DesignOps-as-AI-Infrastructure_v3_review_en.pdf`
+- `ConfOps26_Julian-Alvarado_DesignOps-as-AI-Infrastructure_v3_review_es.pdf`
+
+Reproduce both only after passing the same browser checks:
 
 ```sh
-swift -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk - \
-  ConfOps26_Julian-Alvarado_DesignOps-as-AI-Infrastructure_v2.pdf \
-  ConfOps26_Julian-Alvarado_DesignOps-as-AI-Infrastructure_v2_es.pdf <<'SWIFT'
-import PDFKit
-import Foundation
-for filename in CommandLine.arguments.dropFirst() {
-    let url = URL(fileURLWithPath: filename)
-    guard let pdf = PDFDocument(url: url), pdf.pageCount == 23 else { fatalError("Expected 23 pages") }
-    for index in 0..<pdf.pageCount {
-        let page = pdf.page(at: index)!
-        let bounds = page.bounds(for: .mediaBox)
-        guard abs(bounds.width - 1200) < 0.2, abs(bounds.height - 675) < 0.2 else { fatalError("Unexpected page size") }
-        let exact = CGRect(x: 0, y: 0, width: 1200, height: 675)
-        page.setBounds(exact, for: .mediaBox)
-        page.setBounds(exact, for: .cropBox)
-    }
-    guard pdf.write(to: url) else { fatalError("Could not save PDF") }
-}
-SWIFT
+PLAYWRIGHT_MODULE=/path/to/existing/playwright node browser-check.cjs --export-pdfs
 ```
+
+The exporter reuses the established Stage print recipe, waits for local fonts, resolves diagrams, selects the demo's final reviewed state and reveals the closing answer. Interactive behavior remains in HTML. PDF links target actual slide anchors; the default pilot return is slide 12 and measurement return is slide 14. V1/V2 filenames are never overwritten.
+
+Chromium may output a 675.12pt height rather than 675pt. The delivered files normalize that fractional page edge to exact **1200×675pt (16:9)** without scaling/rasterizing content. PDFKit on macOS can apply `.mediaBox` and `.cropBox` = `CGRect(x: 0, y: 0, width: 1200, height: 675)` to each page. Inspect rendered output after export or normalization, including embedded font weights, Spanish accents, dense definitions and all disclaimers.
+
+The delivered exports were rendered and inspected across all 48 pages. Each has 17 internal links. Chromium embeds Inter's variable-font instances as Type 3 glyph subsets with Unicode mappings; their glyph programs are included, so the PDFs do not require Inter to be installed. The retained evaluation symbol also has an embedded fallback glyph. These are static review PDFs, not an interactive replacement for the HTML demo.
+
+**Approval boundary:** these assets are a local V3 review candidate. Photos and final design approval remain pending. Do not automatically integrate this candidate into the principal version.
