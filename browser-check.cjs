@@ -419,6 +419,10 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
       assert((await page.locator(".wordmark").textContent()).includes("Julian Alvarado"));
       await go(11);
       await go(12);
+      assert.equal(await page.locator("#slide-12 .bottom-line > p").textContent(), locale === "en"
+        ? "Hypothesis: production can shrink; experimentation can expand. Validate it."
+        : "Hipótesis: producir puede llevar menos; experimentar, más. Valídalo.");
+      assert.equal(await page.locator("#slide-12 .bottom-line br").count(), 0);
       assert.deepEqual(await page.locator("#journeys-after .workflow-track span").evaluateAll(nodes => nodes.map(node => ({
         name: getComputedStyle(node).animationName,
         delay: getComputedStyle(node).animationDelay
@@ -567,7 +571,13 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
             const edge = band.getBoundingClientRect().right;
             for (const output of slide.querySelectorAll(".branch-outputs span")) if (edge > output.getBoundingClientRect().left) issues.push("Alignment band overlaps pattern labels");
           }
-          if (slide.id === "slide-14" && !reading && !document.body.classList.contains("stage-mode")) {
+        }
+        if (slide.id === "slide-14") {
+          const heading = slide.querySelector(".metrics-heading");
+          const scale = slide.getBoundingClientRect().width / slide.offsetWidth;
+          const contentGap = (slide.querySelector("#metric-dashboard").getBoundingClientRect().top - heading.getBoundingClientRect().bottom) / scale + parseFloat(getComputedStyle(heading).paddingBottom);
+          if (contentGap < 61) issues.push("Metric content must have at least 62px separation below the heading content");
+          if (!reading && !document.body.classList.contains("stage-mode")) {
             const title = slide.querySelector("h2").getBoundingClientRect();
             for (const button of slide.querySelectorAll(".metrics-heading button")) {
               const box = button.getBoundingClientRect();
