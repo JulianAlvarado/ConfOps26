@@ -115,7 +115,7 @@ assert(html.includes('id="definitions-return" href="#14"'));
 assert(/<progress\b[^>]*max="15"/.test(html));
 assert(!/data-action="(?:pair|pair-reset|loop|closing)"/.test(html));
 assert.equal((html.match(/class="photo-placeholder /g) || []).length, 3);
-assert(!/<img\b/.test(html), "Only neutral placeholders, no photos");
+assert.deepEqual([...html.matchAll(/<img\b[^>]*src="([^"]+)"/g)].map(match => match[1]), ["presentation-qr.png"], "Only the bundled QR image, no photos");
 assert.match(html, /class="human-symbol" aria-hidden="true">◎/);
 assert.match(catalogSource, /No te enfoques<br>en el output,<br><em>Aceleras el aprendizaje\.<\/em>/);
 assert.equal(data.metrics.length, 10);
