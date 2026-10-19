@@ -49,6 +49,25 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
     assert.equal(await page.locator("#metric-dashboard thead th").count(), 4);
     assert.equal(await page.locator("#metric-dashboard .metric-category").count(), 2);
     assert.equal(await page.locator("#metric-tables tbody tr").count(), 10);
+    const roleOutputs = {
+      en: [["Brief", "Requirements", "Hypotheses"], ["Synthesis", "Insights", "Questions"], ["Concepts", "Prototypes", "Patterns"], ["Components", "Code", "Tests"]],
+      es: [["Encargo", "Requisitos", "Hipótesis"], ["Síntesis", "Hallazgos", "Preguntas"], ["Conceptos", "Prototipos", "Patrones"], ["Componentes", "Código", "Pruebas"]]
+    };
+    await go(2);
+    for (let generated = 0; generated <= 4; generated++) {
+      for (const locale of ["es", "en"]) {
+        await click("#language-toggle");
+        assert.equal(await page.locator("html").getAttribute("lang"), locale);
+        assert.equal(await page.locator("#roles > article.role > ul.role-output").count(), 4);
+        assert.deepEqual(await page.locator("#roles .role-output").evaluateAll(lists => lists.map(list => [...list.children].map(item => {
+          if (item.tagName !== "LI") throw new Error("Role outputs must be semantic list items");
+          return item.textContent;
+        }))), roleOutputs[locale]);
+        assert.equal(await page.locator(".role.generated").count(), generated, "Language switching preserves generation state");
+      }
+      await click('[data-action="generate"]');
+      assert.equal(await page.locator(".role.generated").count(), (generated + 1) % 5, "Four generation steps then reset");
+    }
     assert.deepEqual(await page.locator(".contact-links a").evaluateAll(links => links.map(link => link.href)),
       ["https://www.linkedin.com/in/alvaradolj1/", "https://github.com/JulianAlvarado"]);
     assert.deepEqual(await page.evaluate(source => {
@@ -329,6 +348,21 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
         const bounds = slide.getBoundingClientRect();
         const footer = slide.querySelector(".slide-footer").getBoundingClientRect();
         const issues = [];
+        if (slide.id === "slide-2") {
+          for (const list of slide.querySelectorAll("ul.role-output")) {
+            const items = [...list.children];
+            if (items.length !== 3 || getComputedStyle(list).listStyleType !== "disc") issues.push("Expected three visible bullet items");
+            const listBounds = list.getBoundingClientRect();
+            const scale = reading ? 1 : bounds.width / 1600;
+            items.forEach((item, index) => {
+              const rect = item.getBoundingClientRect();
+              if (getComputedStyle(item).display !== "list-item") issues.push("Missing native bullet marker");
+              if (rect.left - listBounds.left < 20 * scale) issues.push("No space for bullet marker");
+              if (index && rect.top < items[index - 1].getBoundingClientRect().bottom - 1) issues.push("Outputs not vertically stacked");
+              if (parseFloat(getComputedStyle(item).fontSize) < (reading ? 18 : 23)) issues.push("Output list text too small");
+            });
+          }
+        }
         if (!reading && slide.id === "slide-1") {
           const textBounds = node => {
             const range = document.createRange();

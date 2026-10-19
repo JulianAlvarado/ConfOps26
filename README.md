@@ -19,7 +19,7 @@ Inter is used for both primary and secondary typography, including diagrams and 
 | Slide | V3 treatment |
 | --- | --- |
 | 1 | Inter and existing palette; aligned capacity/coherence labels, matching captions and opening animation retained |
-| 2 | Four disciplines separated by vertical rules, meaningful line icons and horizontal deliverable tags |
+| 2 | Four disciplines separated by vertical rules, meaningful line icons and vertical semantic bullet lists of deliverables in both languages |
 | 3 | 50/50 neutral collage placeholders and condensed supplied biography; full biography retained in notes |
 | 4 | Cleaner branching diagram with a horizontal shared-context boundary; fragmentation and alignment remain distinct |
 | 5 | Three equal questions, separated rather than boxed; not a sequential dependency model |

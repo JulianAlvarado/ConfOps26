@@ -133,6 +133,11 @@ assert.match(data.pairEvidence[4].verdict, /user validation pending/);
 assert.match(spanishData.pairEvidence[4].verdict, /validación con usuarios pendiente/);
 assert.match(data.pairEvidence[5].verdict, /review is not over/);
 assert.equal(data.lifecycle.length, 5);
+const roleLists = [...html.matchAll(/<ul class="role-output">([\s\S]*?)<\/ul>/g)];
+assert.equal(roleLists.length, 4, "All four roles use semantic output lists");
+assert.deepEqual(roleLists.map(match => [...match[1].matchAll(/<li>([^<]+)<\/li>/g)].map(item => item[1])),
+  [["Brief", "Requirements", "Hypotheses"], ["Synthesis", "Insights", "Questions"], ["Concepts", "Prototypes", "Patterns"], ["Components", "Code", "Tests"]]);
+assert(!html.includes('<div class="role-output">') && !css.includes(".role-output span"), "No obsolete output-tag markup or selectors");
 for (const stage of data.lifecycle) assert.equal(stage.length, 6);
 for (const phrase of ["At team level", "At product-area level", "At enterprise level"]) assert(data.notes[23].body.includes(phrase));
 assert(css.includes('font-family: "Inter"') && css.includes("font-weight: 100 900") && css.includes("prefers-reduced-motion"));

@@ -108,12 +108,14 @@ main { flex: 1; min-height: 0; display: flex; align-items: center; justify-conte
 .role { border-top: 1px solid var(--line); padding: 24px 24px 20px; background: #171d1f; position: relative; }
 .role-number { font: 16px var(--mono); color: var(--muted); }
 .role h3 { font-size: 32px; margin-top: 20px; }
-.role-output { display: grid; gap: 9px; margin-top: 24px; }
-.role-output span { padding: 12px 16px; border: 1px solid var(--line); border-radius: 4px; font-size: 21px; color: var(--muted); transition: transform .4s, border-color .4s, color .4s; }
+.role-output { display: block; list-style: disc outside; margin: 24px 0 0; padding-left: 26px; }
+.role-output li { padding: 9px 0 9px 4px; font-size: 23px; line-height: 1.4; color: var(--muted); transition: color .4s; }
+.role-output li::marker { color: var(--muted); }
 .role.generated { border-top-color: var(--cyan); }
-.role.generated .role-output span { color: var(--text); border-color: #5a9e9e; transform: translateX(4px); }
-.role.generated .role-output span:nth-child(2) { transition-delay: .12s; }
-.role.generated .role-output span:nth-child(3) { transition-delay: .24s; }
+.role.generated .role-output li { color: var(--text); }
+.role.generated .role-output li::marker { color: var(--coral); }
+.role.generated .role-output li:nth-child(2) { transition-delay: .12s; }
+.role.generated .role-output li:nth-child(3) { transition-delay: .24s; }
 .causal-chain { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; padding: 0; margin: 40px 0 10px; }
 .causal-chain li { border-top: 2px solid var(--line); padding-top: 20px; font-size: 23px; color: var(--muted); position: relative; }
 .causal-chain li:not(:last-child)::after { content: "→"; position: absolute; right: -25px; color: var(--muted); }
@@ -439,7 +441,7 @@ dialog::backdrop { background: #05090dea; }
   .stage-mode #slide-6 > .eyebrow > span { font-size: 23px; letter-spacing: 0; }
   .stage-mode .slide button { font-size: 23px; }
   .stage-mode #slide-4 button[data-action="align"] { font-size: 23px; padding: 14px 22px; }
-  .stage-mode :is(.subtitle, .role-output span, .causal-chain li, .source-node,
+  .stage-mode :is(.subtitle, .role-output li, .causal-chain li, .source-node,
     .branch-outputs span, .alignment-band, .journey p, .workflow-track span,
     .output-pile > span, .output-pile p, .rubric h3, .rubric > div, .rubric p,
     .human-gate p, .stack-layer p, .metric-comparison dt, .metric-unit,
@@ -450,7 +452,8 @@ dialog::backdrop { background: #05090dea; }
   .stage-mode .bottom-line p, .stage-mode #slide-4 .bottom-line p,
   .stage-mode #slide-11 .bottom-line p { font-size: 25px; }
   .stage-mode .bottom-line small { font-size: 23px; }
-  .stage-mode .role-output span { color: var(--text); border-color: #5a9e9e; transform: none; }
+  .stage-mode .role-output li { color: var(--text); }
+  .stage-mode .role-output li::marker { color: var(--coral); }
   .stage-mode .role { border-top-color: var(--cyan); }
   .stage-mode .role h3 { margin-top: 0; }
   .stage-mode .causal-chain li { color: var(--text); border-color: var(--coral); }
@@ -537,7 +540,7 @@ dialog::backdrop { background: #05090dea; }
   .reading #stage :is(.role-grid, .framework, .ownership-grid, .role-responsibilities, .thirty-days, .metric-dashboard, .lifecycle) { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr)); gap: 20px; margin-top: 28px; }
   .reading #stage :is(.bottom-line, .metric-foot, .metrics-heading, .infrastructure-rail, .stable-contract, .model-swap, .closing-triad) { display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; }
   .reading #stage :is(.button-group, .journey-label) { flex-wrap: wrap; gap: 12px; }
-  .reading #stage :is(.role-output span, .lifecycle button > span, .tag, .scenario-label) { white-space: normal; }
+  .reading #stage :is(.role-output li, .lifecycle button > span, .tag, .scenario-label) { white-space: normal; }
   .reading #stage .slide-footer { position: static; margin: 40px auto 0; max-width: 1100px; gap: 20px; font-size: 13px; line-height: 1.5; }
   .reading #stage .slide-footer span:last-child { flex-shrink: 0; margin-left: auto; }
   .reading #stage :is(.lead, .subtitle, .backup-takeaway) { margin-top: 24px; }
@@ -650,7 +653,7 @@ dialog::backdrop { background: #05090dea; }
   .slide:last-child { break-after: auto; }
   .lifecycle button { display: flex !important; }
   #closing-reveal[hidden] { display: flex !important; }
-  .role-output span, .stack-layer h3 { color: var(--text); }
+  .role-output li, .stack-layer h3 { color: var(--text); }
 }
 
 /* V3 review: shared regions, structural cyan, and coral action changes. */
@@ -667,10 +670,6 @@ svg text, code, .lifecycle button > span, .qa-links a span,
 .role-icon { display: block; width: 38px; height: 38px; color: var(--cyan); }
 .role-icon svg { width: 100%; height: 100%; }
 .role h3, .stage-mode .role h3 { margin-top: 26px; }
-.role-output { display: flex; flex-wrap: wrap; gap: 12px; min-height: 160px; align-content: flex-start; }
-.role-output span { font-size: 23px; padding: 9px 0; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; }
-.role-output span + span { margin-left: 10px; }
-.role.generated .role-output span, .stage-mode .role-output span { border-color: var(--coral); transform: none; }
 .about-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; max-width: none; margin-top: 0; }
 .about-copy h2 { font-size: 54px; }
 .about-role { font-size: 29px; margin-top: 12px; }
