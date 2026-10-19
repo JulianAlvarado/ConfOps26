@@ -4,7 +4,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="dark">
   <meta name="theme-color" content="#111516">
-  <title>DesignOps as AI Infrastructure — V3 review</title>
+  <title>DesignOps as AI Infrastructure</title>
   <link rel="stylesheet" href="styles.css">
   <script src="spanish.js" defer=""></script>
   <script src="language.js" defer=""></script>
@@ -12,7 +12,7 @@
 </head>
 <body>
   <header class="toolbar">
-    <a class="wordmark" href="#1" aria-label="Go to opening slide"><span class="brand-mark" aria-hidden="true">◈</span> DESIGNOPS <span class="toolbar-muted">/ AI INFRASTRUCTURE</span></a>
+    <a class="wordmark" href="#1" aria-label="Go to opening slide"><span class="brand-mark" aria-hidden="true">◈</span> Julian Alvarado <span class="toolbar-muted">/ AI INFRASTRUCTURE</span></a>
     <div class="toolbar-actions">
       <button id="stage-toggle" aria-pressed="false" aria-describedby="stage-help">Stage <kbd>S</kbd></button>
       <button id="reading-toggle" aria-pressed="false" aria-controls="presentation">Reading view</button>
@@ -101,7 +101,7 @@
             <div class="branch-outputs"><span class="lit">Pattern A</span><span>Pattern B</span><span>Pattern C</span><span>Pattern D</span><span>Pattern E</span></div>
             <div class="alignment-band">CONTEXT + EVALUATION</div>
           </div>
-          <div class="bottom-line"><p id="fragment-caption" aria-live="polite">Different patterns. Conflicting terminology. Unowned decisions.</p><div class="button-group"><button data-action="cause">Trace the chain</button><button data-action="align" aria-pressed="false">Apply shared standards</button></div></div>
+          <div class="bottom-line"><p id="fragment-caption" aria-live="polite">Different patterns. Conflicting terminology. Unowned decisions.</p></div>
           <p id="cause-status" class="sr-only" role="status">Stage 1 of 4: More output.</p>
           <footer class="slide-footer"><span>CONCEPTUAL SYSTEM</span><span>04 / 15</span></footer>
         </section>
@@ -195,7 +195,7 @@
               <svg viewBox="0 0 750 580" role="img" aria-label="A shared AI circle passes behind product, research, design, prototyping and engineering. DesignOps connects their governance, context and evaluation; each keeps domain ownership.">
                 <g>
                   <circle class="ai-ring" cx="375" cy="285" r="280"></circle>
-                  <rect class="ai-ring-label-bg" x="340" y="0" width="70" height="45"></rect><text class="ai-ring-label" x="375" y="30">AI</text>
+                  <rect class="ai-ring-label-bg" x="340" y="-17.5" width="70" height="45"></rect><text class="ai-ring-label" x="375" y="5" dominant-baseline="central">AI</text>
                   <g class="network-links" fill="none" stroke-width="2"><path d="M145 85L375 255L600 85"></path><path d="M125 395L375 255L625 395"></path><path d="M375 255V520"></path></g>
                 </g>
                 <g class="network-node"><rect x="50" y="45" width="190" height="80" rx="8"></rect><text x="145" y="94">PM</text></g>
@@ -217,14 +217,14 @@
         <section class="slide journey-before" id="slide-11" aria-labelledby="title-11" data-act="ACT III" data-title="Before AI: sequential handoffs" hidden="">
           <div class="eyebrow">ACT III <span>BEFORE · SIMPLIFIED WORKFLOW</span></div><h2 id="title-11">Before accelerated production.<br><em>Work moves by handoff.</em></h2>
 
-          <div class="journeys" id="journeys">
+          <div class="journeys running" id="journeys">
             <article class="journey sequential">
               <div class="journey-label"><h3>Sequential handoffs</h3><span class="tag">SIMPLIFIED BEFORE</span></div>
               <div class="workflow-track"><span>Research</span><b>→</b><span>Brief</span><b>→</b><span>Mocks</span><b>→</b><span>Build</span><b>→</b><span>Release</span></div>
               <p>Customer need <span>→ handoff → wait → handoff → wait →</span> customer feedback</p>
             </article>
 
-          </div><div class="bottom-line"><p>A simplified pattern—not a universal history.<br>Waiting and late feedback can limit learning.</p><button data-action="journey" data-journey="journeys">Replay handoffs</button></div>
+          </div><div class="bottom-line"><p>A simplified pattern—not a universal history.<br>Waiting and late feedback can limit learning.</p></div>
 
           <p id="journey-status" class="sr-only" role="status">Workflow animations are illustrative, not measured durations.</p>
           <footer class="slide-footer"><span>11 / 15</span></footer>
@@ -240,7 +240,7 @@
           <div class="standards-layout">
             <div class="standards-table"><div class="standards-heading"><span>DOCUMENTATION · INPUTS</span><span>REUSABLE GUIDANCE · OUTPUTS</span></div>
               <div><span>Guidelines</span><b>→</b><strong>Machine-readable rules</strong></div>
-              <div><span>Design system</span><b>→</b><strong>AI-readable design system</strong></div>
+              <div><span>Design system</span><b>→</b><strong>Scalable Production Pipeline</strong></div>
               <div class="review-detail"><span>Templates</span><b>→</b><strong>Canonical prompts</strong></div>
               <div><span>Documentation</span><b>→</b><strong>Reusable context packages</strong></div>
               <div><span>Critique</span><b>→</b><strong>Evaluation rubrics</strong></div>
@@ -264,9 +264,8 @@
 
         <section class="slide" id="slide-14" aria-labelledby="title-14" data-act="ACT III" data-title="Measure speed and coherence" hidden="">
           <div class="eyebrow">ACT III <span>12 — MEASURE THE OPERATING MODEL</span></div>
-          <div class="metrics-heading"><h2 class="compact-title" id="title-14">Faster is not<br><em>the whole score.</em></h2></div>
+          <div class="metrics-heading"><h2 class="compact-title" id="title-14">Faster is not<br><em>the whole score.</em></h2><div class="button-group"><button id="metrics-open" aria-haspopup="dialog">All 10 measures</button><button data-action="metric-definitions">Definitions <span aria-hidden="true">↗</span></button></div></div>
           <div class="metric-dashboard" id="metric-dashboard"></div>
-          <div class="metric-foot"><div class="button-group"><button id="metrics-open" aria-haspopup="dialog">All 10 measures</button><button data-action="metric-definitions">Definitions <span aria-hidden="true">↗</span></button></div></div>
           <footer class="slide-footer"><span>ARE WE INCREASING SPEED WITHOUT INCREASING ENTROPY?</span><span>14 / 15</span></footer>
         </section>
 

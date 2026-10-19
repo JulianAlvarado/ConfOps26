@@ -1,6 +1,6 @@
 # DesignOps as AI Infrastructure
 
-**V3 for review and approval. Not integrated into V2 or main.**
+**Approved bilingual presentation (V3), the canonical version replacing V2.**
 
 Based on frozen bilingual V2 `e39ef62f1729553773fa4a4f097f5c8cdf33d138`.
 15 keynote slides + Q&A + 8 appendices = 24. Local Inter under OFL. Photos pending: neutral placeholders only, no stock or generated photos.
@@ -25,7 +25,7 @@ The demo retains 270 seconds; biography, 30; closing, 90; Q&A, 600. The pilot mo
 
 ## Stage delivery and rehearsal
 
-S enters Stage; F optionally enters fullscreen; Escape or S restores review. Arrow keys advance or reverse demo and closing builds before changing slides; Stage also builds fragmentation/alignment on slide 4. Six tabs expose the whole journey; no Reset or duplicate Next. Native form keys never navigate. Home/End and arrows inside the tabs select states. Main Next advances the demo. ES/EN or L switches language without losing local input or state; L does not intercept typing, notes, or dialogs. Exiting Stage restores review's snapshot. Reading preserves native scrolling. Nothing is saved or sent.
+S enters Stage; F optionally enters fullscreen; Escape or S restores review. Arrow keys advance or reverse slide 4's chain and alignment, demo and closing builds before changing slides, in both review and Stage. Six tabs expose the whole journey; no Reset or duplicate Next. Native form keys never navigate. Home/End and arrows inside the tabs select states. Main Next advances the demo. ES/EN or L switches language without losing local input or state; L does not intercept typing, notes, or dialogs. Exiting Stage restores review's snapshot. Reading preserves native scrolling. Nothing is saved or sent.
 
 The reference on 12 opens pilot 24 and returns to its origin. Definitions from 14 returns to the dashboard; from Q&A it returns to Q&A. The full learning cycle requires no clicks. Evaluation icon ◎ is retained.
 
@@ -85,7 +85,7 @@ The reference on 12 opens pilot 24 and returns to its origin. Definitions from 1
 
 **Visual concept:** A causal chain sits above diverging output branches; a shared standards band aligns their treatment.
 
-**Interaction:** Stage moment 1: the complete chain starts fragmented. Right advances to shared standards, then to the next slide; Left reverses it. Review retains the four-stage trace and alignment toggle.
+**Interaction:** Review and Stage start with More output. Next traces More variation, More decisions, then More inconsistency; the next press applies shared standards, and one more advances to slide 5. Previous reverses alignment, then each chain stage before leaving slide 4. Forward/reverse keys follow the same sequence, with held-key repeats ignored. No dedicated trace or alignment controls. Revisits and language switches retain progress; Stage starts a fresh rehearsal and restores review's chain and alignment on exit.
 
 **Speaker notes:** Read the chain deliberately: more output, more variation, more decisions, more opportunities for inconsistency. This is a conceptual mechanism, not a statistical forecast. Variation is useful during exploration; unmanaged variation becomes expensive at system boundaries. Examples include conflicting terminology, duplicated research, inaccessible patterns, undocumented AI decisions, and design-system drift. The source's '17 versions of a pattern' is rhetorical, not a measured statistic, so we do not chart it. Apply shared context and evaluation: options can remain different while obeying common constraints. A green state is an explanatory metaphor, not a claim that standards automatically eliminate defects.
 
@@ -197,7 +197,7 @@ The reference on 12 opens pilot 24 and returns to its origin. Definitions from 1
 
 **Visual concept:** One before journey: research → brief → mocks → build → release, between customer need and feedback.
 
-**Interaction:** Optional replay traces handoffs. Stage is fully visible; animation is not a measured duration.
+**Interaction:** The sequential handoff animation runs once on slide entry, with no replay control or slide auto-advance. Stage and reduced-motion views remain fully visible and static; animation is not a measured duration.
 
 **Speaker notes:** This before journey is a deliberately simplified explanatory pattern, not a claim that all pre-AI teams worked sequentially. Research informs a brief, design produces mocks, engineering builds, and customers respond. Each discipline can do excellent work while waiting and late feedback limit learning. Use the 90 seconds to distinguish production time from waiting time and to ask where a decision becomes shared. The next slide proposes synchronized work, not a universal history or a measured improvement. Together the two journey slides use 195 seconds: the original 60 seconds plus the 135 seconds moved out of the keynote with the pilot appendix.
 

@@ -313,22 +313,101 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
     assert.equal(await page.locator("#title-7 em").textContent(), "Una decisión informada");
     await go(2);
     assert.equal(await page.locator("#roles .role-output li").count(), 12);
-    await go(4);
-    await click('[data-action="align"]');
-    assert(await page.locator("#fragmentation").evaluate(node => node.classList.contains("aligned")));
-    await page.evaluate(() => setStageMode(true));
-    assert(!(await page.locator("#fragmentation").evaluate(node => node.classList.contains("aligned"))));
-    await page.locator("#presentation").focus();
-    await page.keyboard.press("ArrowRight");
-    assert.equal(await current(), 4);
-    assert(await page.locator("#fragmentation").evaluate(node => node.classList.contains("aligned")));
-    await page.keyboard.press("ArrowLeft");
-    assert(!(await page.locator("#fragmentation").evaluate(node => node.classList.contains("aligned"))));
-    await page.keyboard.press("Escape");
-    assert(await page.locator("#fragmentation").evaluate(node => node.classList.contains("aligned")));
+    await page.goto(`${pathToFileURL(path.join(__dirname, "index.html")).href}#4`);
+    await page.evaluate(() => document.fonts.ready);
+    const paradoxState = () => page.evaluate(() => [state.cause, document.querySelector("#fragmentation").classList.contains("aligned")]);
+    assert.deepEqual(await paradoxState(), [0, false], "Direct #4 starts at the already-visible first stage");
+    assert.equal(await page.locator('[data-action="cause"], [data-action="align"]').count(), 0);
+    for (const locale of ["en", "es"]) for (const stage of [false, true]) {
+      await page.evaluate(({ locale, stage }) => { setStageMode(stage); setLanguage(locale); state.cause = 0; setAligned(false); }, { locale, stage });
+      await go(4);
+      const advance = async direction => {
+        if (stage) {
+          await page.locator("#presentation").focus();
+          await page.keyboard.press(direction > 0 ? "ArrowRight" : "ArrowLeft");
+        } else await click(direction > 0 ? "#next" : "#previous");
+      };
+      for (let build = 0; build <= 4; build++) {
+        assert.deepEqual(await paradoxState(), [Math.min(build, 3), build === 4]);
+        assert.equal(await page.locator("#causal-chain .current").count(), Math.min(build + 1, 4));
+        assert.equal(await page.locator(".branch-lines .lit").count(), build >= 3 ? 5 : build + 1);
+        assert.equal(await page.locator("#causal-chain [aria-current=step]").count(), 1);
+        assert.equal(await page.locator("#causal-chain li").evaluateAll(nodes => nodes.filter(node => getComputedStyle(node).borderTopColor === "rgb(255, 151, 127)").length), Math.min(build + 1, 4), "Each press visibly advances the chain in Review and Stage");
+        assert((await page.locator("#cause-status").textContent()).includes(build === 4 ? (locale === "es" ? "Criterios comunes aplicados" : "Shared standards applied") : `${build + 1}`), "Current progression is announced");
+        const label = await page.locator("#next").getAttribute("aria-label");
+        assert.equal(label, build < 3
+          ? `${locale === "es" ? "Siguiente paso de la cadena" : "Next chain stage"}: ${await page.locator("#causal-chain li").nth(build + 1).textContent()}`
+          : build === 3 ? (locale === "es" ? "Aplicar criterios comunes" : "Apply shared standards")
+          : (locale === "es" ? "Siguiente diapositiva" : "Next slide"));
+        assert.equal(await page.locator("#next").evaluate(node => node.classList.contains("build-action")), build < 4);
+        await page.evaluate(() => setLanguage(language === "en" ? "es" : "en"));
+        assert.deepEqual(await paradoxState(), [Math.min(build, 3), build === 4]);
+        await page.evaluate(locale => setLanguage(locale), locale);
+        await go(3);
+        await go(4);
+        assert.deepEqual(await paradoxState(), [Math.min(build, 3), build === 4], "Revisits retain the exact build");
+        await advance(1);
+        if (build < 4) assert.equal(await current(), 4);
+      }
+      await page.waitForFunction(() => state.index === 4);
+      await advance(-1);
+      await page.waitForFunction(() => state.index === 3);
+      for (const expected of [[3, false], [2, false], [1, false], [0, false]]) {
+        await advance(-1);
+        assert.deepEqual(await paradoxState(), expected);
+      }
+      await advance(-1);
+      await page.waitForFunction(() => state.index === 2);
+      await go(4);
+      for (const key of ["ArrowRight", "ArrowDown", "PageDown", " "]) {
+        await page.evaluate(() => { state.cause = 0; setAligned(false); });
+        await page.locator("#presentation").focus();
+        await page.keyboard.down(key);
+        await page.keyboard.down(key);
+        await page.keyboard.up(key);
+        assert.deepEqual(await paradoxState(), [1, false], "A held forward key advances only once");
+      }
+      for (const key of ["ArrowLeft", "ArrowUp", "PageUp"]) {
+        await page.evaluate(() => { state.cause = 3; setAligned(false); });
+        await page.locator("#presentation").focus();
+        await page.keyboard.down(key);
+        await page.keyboard.down(key);
+        await page.keyboard.up(key);
+        assert.deepEqual(await paradoxState(), [2, false], "A held reverse key retreats only once");
+      }
+      await page.evaluate(() => setStageMode(false));
+      for (const saved of [[2, false], [3, true]]) {
+        await page.evaluate(([cause, aligned]) => { state.cause = cause; setAligned(aligned); setStageMode(true); }, saved);
+        assert.deepEqual(await paradoxState(), [0, false], "Stage resets the whole explanatory sequence");
+        await page.evaluate(() => { advanceReview(); setLanguage(language === "en" ? "es" : "en"); setStageMode(false); });
+        assert.deepEqual(await paradoxState(), saved, "Review restores both chain and alignment");
+      }
+    }
     await go(11);
-    await click('#slide-11 [data-action="journey"]');
+    assert.equal(await page.locator('[data-action="journey"]').count(), 0);
     assert(await page.locator("#journeys").evaluate(node => node.classList.contains("running")));
+    await page.emulateMedia({ reducedMotion: "no-preference" });
+    await page.goto(`${pathToFileURL(path.join(__dirname, "index.html")).href}#11`);
+    for (const locale of ["en", "es"]) {
+      await page.evaluate(locale => setLanguage(locale), locale);
+      await go(10);
+      await go(11);
+      assert.deepEqual(await page.locator("#journeys .workflow-track span").evaluateAll(nodes => nodes.map(node => getComputedStyle(node).animationDelay)), ["0s", "0.75s", "1.5s", "2.25s", "3s"]);
+      const starts = await page.locator("#journeys").evaluate(node => node.getAnimations({ subtree: true }).map(animation => animation.startTime));
+      await page.evaluate(() => setLanguage(language === "en" ? "es" : "en"));
+      assert.deepEqual(await page.locator("#journeys").evaluate(node => node.getAnimations({ subtree: true }).map(animation => animation.startTime)), starts);
+      await page.waitForFunction(() => [...document.querySelectorAll("#journeys .workflow-track span")].every(node => getComputedStyle(node).backgroundColor === "rgb(52, 42, 38)"));
+      assert.equal(await current(), 11, "Handoffs never advance the slide");
+      await go(10);
+      assert.equal(await page.locator("#journeys").evaluate(node => node.getAnimations({ subtree: true }).length), 0);
+      await go(11);
+      assert.equal(await page.locator("#journeys").evaluate(node => node.getAnimations({ subtree: true }).length), 5);
+      await page.evaluate(() => setStageMode(true));
+      assert.equal(await page.locator("#journeys").evaluate(node => node.getAnimations({ subtree: true }).length), 0);
+      await page.evaluate(() => setStageMode(false));
+    }
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    assert.equal(await page.locator("#journeys").evaluate(node => node.getAnimations({ subtree: true }).length), 0);
     await go(12);
     assert(await page.locator("#journeys-after").evaluate(node => node.classList.contains("running")));
     assert.equal(await page.locator('#slide-12 [data-action="journey"], #slide-12 .journey-label .tag').count(), 0);
@@ -337,6 +416,7 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
     await page.emulateMedia({ reducedMotion: "no-preference" });
     for (const locale of ["en", "es"]) {
       await page.evaluate(locale => setLanguage(locale), locale);
+      assert((await page.locator(".wordmark").textContent()).includes("Julian Alvarado"));
       await go(11);
       await go(12);
       assert.deepEqual(await page.locator("#journeys-after .workflow-track span").evaluateAll(nodes => nodes.map(node => ({
@@ -382,6 +462,18 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
     await page.evaluate(() => { setPair(0); });
     await click("#next");
     assert.equal(await step(), "1", "Main Next also progresses in Reading");
+    await go(4);
+    await page.evaluate(() => { state.cause = 0; setAligned(false); });
+    await page.locator("#presentation").focus();
+    await page.keyboard.press("PageDown");
+    assert.deepEqual(await paradoxState(), [0, false], "Reading native scrolling does not trace the chain");
+    await click("#next");
+    assert.deepEqual(await paradoxState(), [1, false]);
+    await page.locator("#presentation").focus();
+    await page.keyboard.press("ArrowRight");
+    assert.deepEqual(await paradoxState(), [2, false]);
+    await click("#previous");
+    assert.deepEqual(await paradoxState(), [1, false]);
     await click("#stage-toggle");
     await page.locator("#presentation").focus();
     await page.keyboard.press("l");
@@ -403,6 +495,13 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
             const rect = paragraph.getBoundingClientRect();
             if (rect.bottom > parent.bottom + 1 || rect.right > parent.right + 1) issues.push("Framework copy clips within its column");
           }
+        }
+        if (slide.id === "slide-6") {
+          const counter = getComputedStyle(slide.querySelector("#pair-count"));
+          if (parseFloat(counter.fontSize) !== (reading ? 16 : 19)) issues.push("Demo counter must be secondary metadata");
+          const rgb = counter.color.match(/[\d.]+/g).slice(0, 3).map(Number).map(value => counter.color.startsWith("color(srgb") ? value : value / 255);
+          const luminance = values => values.map(value => value <= .04045 ? value / 12.92 : ((value + .055) / 1.055) ** 2.4).reduce((sum, value, i) => sum + value * [.2126, .7152, .0722][i], 0);
+          if ((luminance(rgb) + .05) / (luminance([17, 21, 22].map(value => value / 255)) + .05) < 4.5 || counter.color !== "rgb(166, 178, 180)") issues.push("Counter must use the readable secondary grey");
         }
         if (slide.id === "slide-6" && !reading) {
           const label = slide.querySelector("#pair-label").getBoundingClientRect();
@@ -436,6 +535,10 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
             const { cx, cy, r } = ring;
             const bounds = ring.getBoundingClientRect();
             if (Math.abs(bounds.width - bounds.height) > 1) issues.push("AI ring must render as a true circle");
+            for (const selector of [".ai-ring-label", ".ai-ring-label-bg"]) {
+              const box = slide.querySelector(selector).getBoundingClientRect();
+              if (Math.abs(box.left + box.width / 2 - bounds.left - bounds.width / 2) > 1 || Math.abs(box.top + box.height / 2 - bounds.top) > 1) issues.push("AI label and gap must be centered on the ring top");
+            }
             for (const node of slide.querySelectorAll(".network-node rect")) {
               const { x, y, width, height } = node.getBBox();
               const distances = [];
@@ -463,6 +566,13 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
             if (style.right !== (stage ? "240px" : "190px") || style.top !== (stage ? "-30px" : "2px")) issues.push("V2 alignment-band anchoring");
             const edge = band.getBoundingClientRect().right;
             for (const output of slide.querySelectorAll(".branch-outputs span")) if (edge > output.getBoundingClientRect().left) issues.push("Alignment band overlaps pattern labels");
+          }
+          if (slide.id === "slide-14" && !reading && !document.body.classList.contains("stage-mode")) {
+            const title = slide.querySelector("h2").getBoundingClientRect();
+            for (const button of slide.querySelectorAll(".metrics-heading button")) {
+              const box = button.getBoundingClientRect();
+              if (Math.abs(box.top - title.top) > 1 || box.left < title.right + 10) issues.push("Metric controls must sit top-right of the title without overlap");
+            }
           }
         }
         if (slide.id === "slide-2") {
@@ -558,7 +668,7 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
         if (mode === "stage") {
           await go(6);
           assert(await page.locator("#pair-tabs button").first().isVisible(), "Tabs remain visible in Stage");
-          const sizes = await page.locator("#pair-tabs button, #pair-count, .decision-evidence dd").evaluateAll(nodes => nodes.map(node => parseFloat(getComputedStyle(node).fontSize)));
+          const sizes = await page.locator("#pair-tabs button, .decision-evidence dd").evaluateAll(nodes => nodes.map(node => parseFloat(getComputedStyle(node).fontSize)));
           assert(sizes.every(size => size >= 23), "Primary demo text remains projection-sized");
         }
       }
@@ -579,6 +689,7 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
         readingPreference = false;
         setReadingView(false);
         setStageMode(true);
+        state.cause = 3;
         setAligned(true);
         setPair(5, true);
         setClosing(true);
@@ -599,7 +710,7 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
           });
         }, locale);
         await page.evaluate(() => document.fonts.ready);
-        const file = `ConfOps26_Julian-Alvarado_DesignOps-as-AI-Infrastructure_v3_review_${locale}.pdf`;
+        const file = `ConfOps26_Julian-Alvarado_DesignOps-as-AI-Infrastructure_${locale}.pdf`;
         await page.pdf({ path: path.join(__dirname, file), preferCSSPageSize: true, printBackground: true, displayHeaderFooter: false });
         console.log(`Exported ${file}`);
       }

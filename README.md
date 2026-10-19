@@ -1,10 +1,10 @@
 # DesignOps as AI Infrastructure
 
-**V3 — independent bilingual review candidate, awaiting user approval.** Based on frozen bilingual V2 commit `e39ef62f1729553773fa4a4f097f5c8cdf33d138`. This branch is not integrated into V2 or `main`. Do not merge, push, or open a PR until explicitly authorized.
+**Approved bilingual presentation (V3).** User-approved to replace V2 as the canonical presentation. Open `index.html`; use the English and Spanish PDFs linked below. Based on frozen bilingual V2 commit `e39ef62f1729553773fa4a4f097f5c8cdf33d138`, with its history and historical exports preserved.
 
 The local, offline vanilla HTML/CSS/JavaScript presentation contains **24 slides: 15 keynote + Q&A + 8 appendices**. The keynote remains 20 minutes; Q&A remains 10 minutes. V1 and both inherited V2 PDFs are preserved unchanged. The frozen V2 and standalone Spanish branches are not edited.
 
-## Open V3
+## Open the presentation
 
 Open `index.html` directly in a modern desktop browser. No build, package installation, CDN, API key, AI service, or network connection is needed. Alternatively, run `python3 -m http.server 8080 --bind 127.0.0.1` here and open `http://127.0.0.1:8080`.
 
@@ -12,7 +12,7 @@ English starts on reload. The single **ES / EN** toolbar button displays the tar
 
 Outbound LinkedIn and GitHub contact links are the only intended network use, when explicitly followed. No photos have been retrieved: slide 3 contains three deliberately neutral, localized placeholders for the photos the speaker will supply.
 
-## Review changes
+## Approved V3 changes
 
 Inter is used for both primary and secondary typography, including diagrams and context labels. Existing **coral/orange** highlights action changes and the selected demo tab; **cyan** carries shared structure. Existing green success/acceptance states retain their meaning. There is no toolbar version badge; all six toolbar controls remain on one row at 1000px in both languages.
 
@@ -23,15 +23,15 @@ Inter is used for both primary and secondary typography, including diagrams and 
 | 3 | 50/50 neutral collage placeholders and condensed supplied biography; full biography retained in notes |
 | 4 | Cleaner branching diagram with V2's vertical context/evaluation band placement restored; fragmentation and alignment remain distinct |
 | 5 | Three equal coral headings: what to use and how, context as the intelligence layer for right choices, and what is good enough; separated rather than boxed, not a sequential dependency model |
-| 6 | Six persistent, accessible tabs, one content surface, and main Next progression; left step heading and right evidence/form share a top-aligned grid row across every tab; no Reset or duplicate Next |
+| 6 | Six persistent, accessible tabs, one content surface, and main Next progression; top-aligned headings, roomier vertical rhythm and a smaller neutral-grey counter across every tab; no Reset or duplicate Next |
 | 7 | V2's stacked-concept composition and enclosed rubric restored by request, retaining V3 Inter, approved wording and original evaluation icon **◎**; judgment stays human |
 | 8 | V2's learning-loop diagram restored without its progress button; complete cycle visible, with V2 Reading/Stage text equivalents and V3 Inter |
 | 9 | People / Process / Systems explicitly connect current responsibilities with expanded AI scope |
 | 10 | V2's original hub/spoke geometry and role-card positions, with one true AI/IA circle passing behind opaque role cards; shared-layer summary in Reading |
-| 11 | Before: simplified sequential handoffs |
+| 11 | Before: simplified sequential handoffs, animated once on entry without a replay control |
 | 12 | After: proposed shared purpose, synchronized collaboration and AI-assisted production; existing green animation starts on entry, without a replay control or pilot badge; link to pilot appendix 24 |
 | 13 | Documentation inputs → reusable guidance outputs → packaged AI context, with provenance and caveats |
-| 14 | Shared Baseline / Pilot / Change headings, grouped categories; heading badge and footer question removed, while approximate values, evidence caveats, all ten measures and definitions remain accessible |
+| 14 | Shared Baseline / Pilot / Change headings, grouped categories; detail/definition controls top-aligned beside the title; heading badge and footer question removed, while approximate values and evidence caveats remain |
 | 15 | Main Next reveals the answer; next advance opens Q&A; reverse hides before moving back |
 | 16 | Topic hierarchy, eight appendix links and coral contact actions; removed lead question stays removed |
 | 17–23 | Existing backup content retained, with Inter and related consistency adjustments |
@@ -61,7 +61,7 @@ The removed keynote pilot's 135 seconds join the original journey's 60 seconds, 
 
 | Control | Behavior |
 | --- | --- |
-| Main Next / Previous | Advance or reverse the demo/closing state before changing slides |
+| Main Next / Previous | Advance or reverse slide 4's chain/alignment, demo and closing states before changing slides |
 | Right / Down / Page Down / Space | Same forward action; held keys do not skip builds |
 | Left / Up / Page Up | Reverse a build before leaving the slide |
 | Six demo tabs | Click to select; Left/Right wrap; Home/End select first/last; selected tab is bold, underlined and `aria-selected` |
@@ -73,7 +73,7 @@ The removed keynote pilot's 135 seconds join the original journey's 60 seconds, 
 | G / Slides | Open the 24-slide index |
 | ES / EN, or L | In-place language switching |
 
-Stage has only three builds: slide 4 fragmentation/alignment, slide 6's six states, and slide 15's answer. Other diagrams are complete without extra clicks. Slide 2's generation sequence and slide 12's green collaboration animation start on entry, without controls or automatic slide advancement. Slide 2 uses native CSS animations, with no timers/listeners to accumulate on revisits; Stage, Reading and reduced-motion views show all four outputs complete. Optional connection and before-journey replay controls remain in review. Animations are finite and respect reduced-motion preferences. Slide 4's context/evaluation band retains its V2 vertical placement in review/Stage and horizontal Reading equivalent.
+Review and Stage share slide 4's exact progression: **More output → More variation → More decisions → More inconsistency → shared standards → slide 5**. Previous reverses these steps before leaving; revisits and language switches retain progress. Stage resets both chain and alignment for rehearsal and restores both on exit. There are no dedicated slide 4 controls. Other diagrams are complete without extra clicks. Slide 2's generation sequence and slide 12's green collaboration animation start on entry, without controls or automatic slide advancement. Slide 2 uses native CSS animations, with no timers/listeners to accumulate on revisits; Stage, Reading and reduced-motion views show all four outputs complete. The connection control remains in review. Slide 11's sequential handoffs also animate once on entry, without a replay control. Animations are finite and respect reduced-motion preferences. Slide 4's context/evaluation band retains its V2 vertical placement in review/Stage and horizontal Reading equivalent.
 
 The form's native input, validation and submit keys never advance the presentation. Tab outside the form to resume presentation keys. Revisiting the first demo tab does not erase entered input. Reload resets the demo; entering Stage starts its own clean rehearsal, and exiting restores review. Use fictional input only.
 
@@ -110,12 +110,12 @@ PLAYWRIGHT_MODULE=/path/to/existing/playwright node browser-check.cjs
 
 The presentation has no package dependencies. Playwright is optional validation/export tooling, supplied externally. `SNAPSHOT_DIR=/absolute/artifact/path` captures screenshots and layout findings. Browser checks cover every slide in both languages at review, Reading and Stage sizes; the 1000px toolbar; all six tabs; native form validation; forward/reverse navigation; language switching; Stage restoration; origin links; notes and duplicate IDs.
 
-## V3 review PDFs
+## Canonical PDFs
 
 Separate resolved-state exports, **24 widescreen pages each**:
 
-- `ConfOps26_Julian-Alvarado_DesignOps-as-AI-Infrastructure_v3_review_en.pdf`
-- `ConfOps26_Julian-Alvarado_DesignOps-as-AI-Infrastructure_v3_review_es.pdf`
+- [English PDF](ConfOps26_Julian-Alvarado_DesignOps-as-AI-Infrastructure_en.pdf)
+- [Spanish PDF](ConfOps26_Julian-Alvarado_DesignOps-as-AI-Infrastructure_es.pdf)
 
 Reproduce both only after passing the same browser checks:
 
@@ -127,6 +127,6 @@ The exporter reuses the established Stage print recipe, waits for local fonts, r
 
 Chromium may output a 675.12pt height rather than 675pt. The delivered files normalize that fractional page edge to exact **1200×675pt (16:9)** without scaling/rasterizing content. PDFKit on macOS can apply `.mediaBox` and `.cropBox` = `CGRect(x: 0, y: 0, width: 1200, height: 675)` to each page. Inspect rendered output after export or normalization, including embedded font weights, Spanish accents, dense definitions and all disclaimers.
 
-The delivered exports were rendered and inspected across all 48 pages. Each has 17 internal links. Chromium embeds Inter's variable-font instances as Type 3 glyph subsets with Unicode mappings; their glyph programs are included, so the PDFs do not require Inter to be installed. The retained evaluation symbol also has an embedded fallback glyph. These are static review PDFs, not an interactive replacement for the HTML demo.
+The delivered exports were rendered and inspected across all 48 pages. Each has 17 internal links. Chromium embeds Inter's variable-font instances as Type 3 glyph subsets with Unicode mappings; their glyph programs are included, so the PDFs do not require Inter to be installed. The retained evaluation symbol also has an embedded fallback glyph. These are static presentation PDFs, not an interactive replacement for the HTML demo.
 
-**Approval boundary:** these assets are a local V3 review candidate. Photos and final design approval remain pending. Do not automatically integrate this candidate into the principal version.
+**Approved promotion:** V3 is the current presentation, not a pending review candidate. V1/V2 PDFs remain historical references; previous V3 review exports remain in Git history. The speaker's photos are still pending, so the neutral placeholders remain intentional. Local promotion does not authorize a push or PR.

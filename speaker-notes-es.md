@@ -1,6 +1,6 @@
 # DesignOps como infraestructura de IA
 
-**V3 para revisión y aprobación. No integrada en V2 ni en main.**
+**Presentación bilingüe aprobada (V3), versión principal que sustituye a V2.**
 
 Basada en V2 bilingüe congelada `e39ef62f1729553773fa4a4f097f5c8cdf33d138`.
 15 diapositivas principales + Preguntas + 8 apéndices = 24. Inter local, bajo licencia OFL. Fotos pendientes: solo espacios neutros, sin imágenes de archivo ni generadas.
@@ -25,7 +25,7 @@ La demo conserva 270 segundos; biografía, 30; cierre, 90; preguntas, 600. El pi
 
 ## Escenario, revisión y Lectura
 
-S abre Escenario; F activa pantalla completa opcional; Escape o S restaura revisión. Las flechas avanzan o retroceden los estados de la demo y del cierre antes de cambiar de diapositiva; Escenario también incluye fragmentación/alineación en la 4. Las seis pestañas muestran el recorrido completo; no hay Reiniciar ni Siguiente duplicado. Las teclas nativas del formulario no navegan. Inicio/Fin y flechas dentro de las pestañas seleccionan estados. El botón principal Siguiente recorre la demo. Cambiar de idioma con ES/EN o L conserva el estado y los datos locales; L no intercepta escritura, notas ni diálogos. Al salir de Escenario se restaura el estado de revisión. Lectura conserva el desplazamiento nativo. Nada se guarda ni envía.
+S abre Escenario; F activa pantalla completa opcional; Escape o S restaura revisión. Las flechas avanzan o retroceden la cadena y la alineación de la diapositiva 4, la demo y el cierre antes de cambiar de diapositiva, tanto en revisión como en Escenario. Las seis pestañas muestran el recorrido completo; no hay Reiniciar ni Siguiente duplicado. Las teclas nativas del formulario no navegan. Inicio/Fin y flechas dentro de las pestañas seleccionan estados. El botón principal Siguiente recorre la demo. Cambiar de idioma con ES/EN o L conserva el estado y los datos locales; L no intercepta escritura, notas ni diálogos. Al salir de Escenario se restaura el estado de revisión. Lectura conserva el desplazamiento nativo. Nada se guarda ni envía.
 
 La referencia en la 12 abre el piloto 24 y vuelve a su origen. Definiciones desde la 14 vuelve al panel; desde Preguntas vuelve a Preguntas. El ciclo completo no requiere clics. Se conserva el icono de evaluación ◎.
 
@@ -85,7 +85,7 @@ La referencia en la 12 abre el piloto 24 y vuelve a su origen. Definiciones desd
 
 **Concepto visual:** Una cadena causal sobre ramas divergentes; una banda de criterios comunes alinea su tratamiento.
 
-**Interacción:** Momento de Escenario 1: la cadena completa empieza fragmentada. Derecha aplica criterios comunes y después avanza; Izquierda los retira. Revisión conserva los cuatro pasos y el control de alineación.
+**Interacción:** Revisión y Escenario empiezan con Más producción. Siguiente recorre Más variación, Más decisiones y Más incoherencia; la siguiente pulsación aplica criterios comunes y otra avanza a la diapositiva 5. Anterior retira los criterios y retrocede por cada paso antes de salir de la 4. Las teclas de avance y retroceso siguen la misma secuencia, sin repetir al mantenerlas pulsadas. No hay controles aparte. Volver a la diapositiva o cambiar de idioma conserva el progreso; Escenario inicia un ensayo nuevo y restaura la cadena y la alineación de revisión al salir.
 
 **Notas del ponente:** Lee la cadena con calma: más producción, más variación, más decisiones, más oportunidades de incoherencia. Es un mecanismo conceptual, no una previsión estadística. La variación ayuda a explorar; sin gestión, encarece las conexiones entre sistemas. Puede generar términos contradictorios, investigación duplicada, patrones inaccesibles, decisiones de IA sin documentar y desviaciones del sistema de diseño. Las «17 versiones de un patrón» de la fuente son un recurso retórico, no una estadística; por eso no se representan como datos. Aplica contexto y evaluación comunes: las opciones pueden ser distintas y respetar los mismos límites. El verde es una metáfora explicativa, no una garantía de que los criterios eliminen todos los defectos.
 
@@ -197,7 +197,7 @@ La referencia en la 12 abre el piloto 24 y vuelve a su origen. Definiciones desd
 
 **Concepto visual:** Un recorrido anterior: investigación → encargo → maquetas → construcción → lanzamiento, entre necesidad y opinión del cliente.
 
-**Interacción:** Repetición opcional de los traspasos. Escenario muestra todo; la animación no representa una duración medida.
+**Interacción:** La animación secuencial de traspasos se inicia una vez al entrar, sin control de repetición ni avance automático. Escenario y movimiento reducido muestran todo de forma estática; la animación no representa una duración medida.
 
 **Notas del ponente:** Este recorrido anterior es un patrón explicativo deliberadamente simplificado, no una afirmación de que todos los equipos anteriores a la IA trabajaran de forma secuencial. Investigación informa el encargo, diseño crea maquetas, ingeniería construye y los clientes responden. Cada disciplina puede hacer un gran trabajo mientras la espera y la opinión tardía limitan el aprendizaje. Usa los 90 segundos para distinguir producción y espera, y explicar cuándo se comparte una decisión. La siguiente diapositiva propone trabajo sincronizado, no una historia universal ni una mejora medida. Ambos recorridos suman 195 segundos: los 60 originales más los 135 del piloto trasladado al apéndice.
 

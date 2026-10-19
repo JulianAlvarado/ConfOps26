@@ -30,7 +30,7 @@ let notes = [
     "seconds": 60,
     "takeaway": "Shared context and evaluation govern variation without eliminating useful exploration.",
     "visual": "A causal chain sits above diverging output branches; a shared standards band aligns their treatment.",
-    "interaction": "Stage moment 1: the complete chain starts fragmented. Right advances to shared standards, then to the next slide; Left reverses it. Review retains the four-stage trace and alignment toggle.",
+    "interaction": "Review and Stage start with More output. Next traces More variation, More decisions, then More inconsistency; the next press applies shared standards, and one more advances to slide 5. Previous reverses alignment, then each chain stage before leaving slide 4. Forward/reverse keys follow the same sequence, with held-key repeats ignored. No dedicated trace or alignment controls. Revisits and language switches retain progress; Stage starts a fresh rehearsal and restores review's chain and alignment on exit.",
     "body": "Read the chain deliberately: more output, more variation, more decisions, more opportunities for inconsistency. This is a conceptual mechanism, not a statistical forecast. Variation is useful during exploration; unmanaged variation becomes expensive at system boundaries. Examples include conflicting terminology, duplicated research, inaccessible patterns, undocumented AI decisions, and design-system drift. The source's '17 versions of a pattern' is rhetorical, not a measured statistic, so we do not chart it. Apply shared context and evaluation: options can remain different while obeying common constraints. A green state is an explanatory metaphor, not a claim that standards automatically eliminate defects.",
     "transition": "Three questions help us govern that variation. Then we will apply them to one workspace-setup example."
   },
@@ -86,7 +86,7 @@ let notes = [
     "seconds": 90,
     "takeaway": "Sequential handoffs can delay feedback even when each discipline does good work.",
     "visual": "One before journey: research → brief → mocks → build → release, between customer need and feedback.",
-    "interaction": "Optional replay traces handoffs. Stage is fully visible; animation is not a measured duration.",
+    "interaction": "The sequential handoff animation runs once on slide entry, with no replay control or slide auto-advance. Stage and reduced-motion views remain fully visible and static; animation is not a measured duration.",
     "body": "This before journey is a deliberately simplified explanatory pattern, not a claim that all pre-AI teams worked sequentially. Research informs a brief, design produces mocks, engineering builds, and customers respond. Each discipline can do excellent work while waiting and late feedback limit learning. Use the 90 seconds to distinguish production time from waiting time and to ask where a decision becomes shared. The next slide proposes synchronized work, not a universal history or a measured improvement. Together the two journey slides use 195 seconds: the original 60 seconds plus the 135 seconds moved out of the keynote with the pilot appendix.",
     "transition": "What changes when shared purpose connects production and learning?"
   },
@@ -278,7 +278,6 @@ function setLanguage(nextLanguage) {
   language = nextLanguage;
   translateMarkup();
   ({ notes, lifecycle, metrics, pairLabels, pairEvidence } = translateData(englishData));
-  renderCause();
   setAligned($("#fragmentation").classList.contains("aligned"));
   renderPair();
   renderFormResult();
@@ -441,6 +440,7 @@ function setStageMode(active) {
     // Stage builds are temporary; review's diagram and form states survive a rehearsal.
     stageReview = {
       pair: state.pair,
+      cause: state.cause,
       aligned: $("#fragmentation").classList.contains("aligned"),
       closing: !$("#closing-reveal").hidden,
       name: $("#workspace-name").value,
@@ -452,12 +452,14 @@ function setStageMode(active) {
     document.querySelectorAll("dialog[open]").forEach(dialog => dialog.close());
     $("#notes").hidden = true;
     $("#notes-toggle").setAttribute("aria-expanded", "false");
+    state.cause = 0;
     setAligned(false);
     setPair(0, true);
     setClosing(false);
   } else {
     const saved = stageReview;
     stageReview = undefined;
+    state.cause = saved.cause;
     setAligned(saved.aligned);
     setPair(saved.pair);
     setClosing(saved.closing);
@@ -475,7 +477,6 @@ function setStageMode(active) {
   $("#stage-exit").textContent = t("Exit stage · Esc");
   document.querySelectorAll("[data-life]").forEach(button => { button.disabled = active; });
   renderStack();
-  markCurrent("#causal-chain li", active ? -1 : state.cause);
   setReadingView(readingPreference ?? smallScreen.matches);
   (active ? $("#presentation") : $("#stage-toggle")).focus({ preventScroll: true });
   $("#announcement").textContent = active ? $("#stage-help").textContent : t("Review restored. Notes remain closed.");
@@ -488,10 +489,8 @@ async function exitStage() {
 
 function setAligned(aligned) {
   $("#fragmentation").classList.toggle("aligned", aligned);
-  const button = $('[data-action="align"]');
-  button.setAttribute("aria-pressed", String(aligned));
-  button.textContent = aligned ? t("Remove shared standards") : t("Apply shared standards");
   $("#fragment-caption").textContent = aligned ? t("Distinct ideas. Shared constraints. Accountable decisions.") : t("Different patterns. Conflicting terminology. Unowned decisions.");
+  renderCause();
 }
 
 function updateNext() {
@@ -499,14 +498,21 @@ function updateNext() {
   const closing = state.index === 14;
   const revealed = !$("#closing-reveal").hidden;
   const demoBuild = state.index === 5 && state.pair < 5;
-  const label = demoBuild ? t("Next example state") : closing ? (revealed ? t("Next slide: Q&A") : t("Reveal the answer")) : t("Next slide");
+  const paradox = state.index === 3;
+  const aligned = $("#fragmentation").classList.contains("aligned");
+  const chain = [...document.querySelectorAll("#causal-chain li")];
+  const paradoxBuild = paradox && !aligned;
+  const label = paradoxBuild ? (state.cause < chain.length - 1 ? t`Next chain stage: ${chain[state.cause + 1].textContent}` : t("Apply shared standards")) : demoBuild ? t("Next example state") : closing ? (revealed ? t("Next slide: Q&A") : t("Reveal the answer")) : t("Next slide");
   next.setAttribute("aria-label", label);
   next.title = label;
-  next.classList.toggle("build-action", demoBuild || (closing && !revealed));
-  $("#previous").setAttribute("aria-label", state.index === 5 && state.pair > 0 ? t("Previous example state") : closing && revealed ? t("Hide the answer") : t("Previous slide"));
+  next.classList.toggle("build-action", paradoxBuild || demoBuild || (closing && !revealed));
+  $("#previous").setAttribute("aria-label", paradox && aligned ? t("Remove shared standards") : paradox && state.cause > 0 ? t`Previous chain stage: ${chain[state.cause - 1].textContent}` : state.index === 5 && state.pair > 0 ? t("Previous example state") : closing && revealed ? t("Hide the answer") : t("Previous slide"));
   if (closing) {
     next.setAttribute("aria-controls", "closing-reveal");
     next.setAttribute("aria-expanded", String(revealed));
+  } else if (paradox) {
+    next.setAttribute("aria-controls", "causal-chain fragmentation");
+    next.removeAttribute("aria-expanded");
   } else if (state.index === 5) {
     next.setAttribute("aria-controls", "pair-panel");
     next.removeAttribute("aria-expanded");
@@ -523,10 +529,22 @@ function setClosing(revealed) {
 }
 
 function advanceReview(direction = 1) {
-  if (stageReview && state.index === 3) {
+  if (state.index === 3) {
     const aligned = $("#fragmentation").classList.contains("aligned");
-    if (aligned !== (direction > 0)) {
-      setAligned(direction > 0);
+    if (direction < 0 && aligned) {
+      setAligned(false);
+      return;
+    }
+    if (direction > 0 && !aligned) {
+      if (state.cause < $("#causal-chain").children.length - 1) {
+        state.cause++;
+        renderCause();
+      } else setAligned(true);
+      return;
+    }
+    if (direction < 0 && state.cause > 0) {
+      state.cause--;
+      renderCause();
       return;
     }
   }
@@ -707,12 +725,15 @@ function renderPair() {
 }
 
 function renderCause() {
-  const button = $('[data-action="cause"]');
   const steps = [...document.querySelectorAll("#causal-chain li")];
   const complete = state.cause === steps.length - 1;
-  button.textContent = complete ? t("Restart the chain") : t("Trace the chain");
-  markCurrent("#causal-chain li", stageReview ? -1 : state.cause);
-  $("#cause-status").textContent = t`Stage ${state.cause + 1} of ${steps.length}: ${steps[state.cause].textContent}.`;
+  steps.forEach((item, i) => item.classList.toggle("current", i <= state.cause));
+  for (const selector of [".branch-lines path", ".branch-outputs span"]) {
+    document.querySelectorAll(selector).forEach((item, i) => item.classList.toggle("lit", complete || i <= state.cause));
+  }
+  markCurrent("#causal-chain li", state.cause);
+  $("#cause-status").textContent = $("#fragmentation").classList.contains("aligned") ? t("Shared standards applied. The chain is complete.") : t`Stage ${state.cause + 1} of ${steps.length}: ${steps[state.cause].textContent}.`;
+  updateNext();
 }
 
 function renderNetwork() {
@@ -730,27 +751,6 @@ function renderStackCopy() {
 }
 
 const actions = {
-  cause() {
-    const steps = [...document.querySelectorAll("#causal-chain li")];
-    state.cause = (state.cause + 1) % steps.length;
-    const complete = state.cause === steps.length - 1;
-    steps.forEach((item, i) => item.classList.toggle("current", i <= state.cause));
-    for (const selector of [".branch-lines path", ".branch-outputs span"]) {
-      document.querySelectorAll(selector).forEach((item, i) => item.classList.toggle("lit", complete || i <= state.cause));
-    }
-    renderCause();
-  },
-  align() {
-    setAligned(!$("#fragmentation").classList.contains("aligned"));
-  },
-  journey(button) {
-    const journeys = document.getElementById(button.dataset.journey);
-    journeys.classList.remove("running");
-    // Restart a finite explanatory animation; there is no slide-advance timer.
-    void journeys.offsetWidth;
-    journeys.classList.add("running");
-    $("#announcement").textContent = t("Workflow animations are illustrative, not measured durations.");
-  },
   connect() {
     $("#network").classList.toggle("connected");
     renderNetwork();
@@ -946,7 +946,7 @@ function renderDefinitions() {
 }
 renderLoopLabels();
 renderDefinitions();
-markCurrent("#causal-chain li", 0);
+renderCause();
 renderStack();
 setPair(0, true);
 setReadingView(smallScreen.matches);
