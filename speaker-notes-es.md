@@ -181,7 +181,7 @@ La referencia en la 12 abre el piloto 24 y vuelve a su origen. Definiciones desd
 
 **Concepto visual:** El trabajo con IA es una sola capa compartida entre actores distintos; DesignOps sigue siendo la capa operativa que conecta, no la IA.
 
-**Interacción:** Se conserva la geometría radial original, con un único círculo compartido de IA que pasa por detrás de las tarjetas opacas de las funciones. Escenario muestra todas las conexiones sin otro control. Revisión: Conectar el plano de control activa o desactiva los enlaces radiales, no el círculo de IA. Lectura conserva la capa compartida de IA y el resumen textual accesible.
+**Interacción:** Se conserva la geometría radial original, con un único círculo compartido de IA que pasa por detrás de las tarjetas opacas de las funciones. Las conexiones se iluminan una vez al entrar, sin botón ni avance automático de diapositiva. Escenario, Lectura y movimiento reducido muestran todas las conexiones. Lectura conserva la capa compartida de IA y el resumen textual accesible.
 
 **Notas del ponente:** El plano de control distingue definir las condiciones del trabajo de hacer el trabajo de todos. Producto, investigación, diseño, prototipado e ingeniería conservan sus responsabilidades. DesignOps coordina contexto reutilizable, límites según el riesgo, criterios de evaluación, responsables y habilitación. No debe convertirse en una cola central de aprobaciones. Seguridad, Legal, TI, plataformas y expertos siguen siendo socios esenciales. Unos límites claros permiten avanzar sin pedir repetidamente permiso para tareas conocidas y seguras.
 

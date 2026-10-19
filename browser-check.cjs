@@ -417,6 +417,8 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
     for (const locale of ["en", "es"]) {
       await page.evaluate(locale => setLanguage(locale), locale);
       assert((await page.locator(".wordmark").textContent()).includes("Julian Alvarado"));
+      assert.equal(await page.locator("#slide-13 aside.context-package > p").count(), 0);
+      assert.equal(await page.locator("#slide-11 .bottom-line, #loop-status").count(), 0);
       await go(11);
       await go(12);
       assert.equal(await page.locator("#slide-12 .bottom-line > p").textContent(), locale === "en"
@@ -434,10 +436,28 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
       assert(await page.locator("#journeys-after .workflow-track span").evaluateAll(nodes => nodes.every(node => getComputedStyle(node).animationName === "none")), "Stage stays static");
       await page.evaluate(() => setStageMode(false));
     }
+    await page.emulateMedia({ reducedMotion: "no-preference" });
+    await page.goto(`${pathToFileURL(path.join(__dirname, "index.html")).href}#10`);
+    await page.evaluate(() => document.fonts.ready);
+    assert.equal(await current(), 10);
+    assert.equal(await page.locator('[data-action="connect"]').count(), 0);
+    for (const locale of ["en", "es"]) {
+      await page.evaluate(locale => setLanguage(locale), locale);
+      await go(9);
+      assert.equal(await page.locator(".network-links").evaluate(node => node.getAnimations().length), 0);
+      await go(10);
+      assert.equal(await page.locator(".network-links").evaluate(node => getComputedStyle(node).animationName), "illuminate");
+      await page.locator(".network-links").evaluate(node => Promise.all(node.getAnimations().map(animation => animation.finished)));
+      assert.equal(await page.locator(".network-links").evaluate(node => getComputedStyle(node).opacity), "1");
+      await page.evaluate(() => setLanguage(language === "en" ? "es" : "en"));
+      assert.equal(await page.locator(".network-links").evaluate(node => node.getAnimations().length), 0, "Language changes must not replay connections");
+      assert.equal(await current(), 10);
+      await page.evaluate(() => setStageMode(true));
+      assert.equal(await page.locator(".network-links").evaluate(node => getComputedStyle(node).animationName), "none");
+      await page.evaluate(() => setStageMode(false));
+    }
     await page.emulateMedia({ reducedMotion: "reduce" });
-    await go(10);
-    await click('[data-action="connect"]');
-    assert.equal(await page.locator('[data-action="connect"]').getAttribute("aria-pressed"), "true");
+    assert.equal(await page.locator(".network-links").evaluate(node => node.getAnimations().length), 0);
     await go(22);
     for (let i = 0; i < 4; i++) await click('[data-action="stack"]');
     assert.equal(await page.locator(".stack-layer.revealed").count(), 5);
@@ -703,7 +723,6 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
         setAligned(true);
         setPair(5, true);
         setClosing(true);
-        $("#network").classList.add("connected");
         appendixOrigins[21] = 14;
         appendixOrigins[24] = 12;
       });

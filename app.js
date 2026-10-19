@@ -78,7 +78,7 @@ let notes = [
     "seconds": 50,
     "takeaway": "DesignOps connects distributed actors through shared rules, context, and evaluation.",
     "visual": "AI-assisted work is a single shared layer around distinct actors; DesignOps remains the connective operating layer, not the AI itself.",
-    "interaction": "The original hub-and-spoke geometry is preserved, with one shared AI circle passing behind opaque role cards. Stage shows all connections without an extra control. Review: Connect the control plane toggles the spokes, not the AI circle. Reading retains the shared-AI layer and accessible text summary.",
+    "interaction": "The original hub-and-spoke geometry is preserved, with one shared AI circle passing behind opaque role cards. Connections illuminate once on slide entry, without a button or automatic slide advancement. Stage, Reading and reduced-motion views show the complete connected state. Reading retains the shared-AI layer and accessible text summary.",
     "body": "The control plane metaphor distinguishes defining the conditions of work from doing everyone's work. PM, research, design, prototyping, and engineering keep their domain responsibilities. DesignOps coordinates reusable context, risk-based guardrails, evaluation criteria, ownership, and enablement. It should not become a central approval queue. Security, Legal, IT, platform teams, and domain experts remain essential partners. Clear boundaries can allow teams to move without repeatedly asking permission for known-safe tasks.",
     "transition": "Shared guidance also changes how work moves between these people."
   },
@@ -282,7 +282,6 @@ function setLanguage(nextLanguage) {
   renderPair();
   renderFormResult();
   if ($("#workspace-name").validity.customError) $("#workspace-name").setCustomValidity(t("Enter a workspace name."));
-  renderNetwork();
   renderStackCopy();
   renderLoopLabels();
   selectLife(state.life);
@@ -736,14 +735,6 @@ function renderCause() {
   updateNext();
 }
 
-function renderNetwork() {
-  const button = $('[data-action="connect"]');
-  const connected = $("#network").classList.contains("connected");
-  button.setAttribute("aria-pressed", String(connected));
-  button.textContent = connected ? t("Disconnect the control plane") : t("Connect the control plane");
-  $("#network-status").textContent = connected ? t("Shared rules. Reusable context. Human evaluation.") : t("Isolated tools. Local rules. Fragmented context.");
-}
-
 function renderStackCopy() {
   renderStack();
   $("#stack-status").textContent = t`Layer ${state.stack + 1} of 5: ${$(`[data-layer="${state.stack}"] h3`).textContent}. ${state.stack === 4 ? t("Stack complete.") : t("Build from the foundation up.")}`;
@@ -751,10 +742,6 @@ function renderStackCopy() {
 }
 
 const actions = {
-  connect() {
-    $("#network").classList.toggle("connected");
-    renderNetwork();
-  },
   stack() {
     state.stack = (state.stack + 1) % 5;
     renderStackCopy();

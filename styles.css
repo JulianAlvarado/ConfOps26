@@ -59,7 +59,6 @@ main { flex: 1; min-height: 0; display: flex; align-items: center; justify-conte
 .slide h2.compact-title { font-size: 59px; }
 .slide h3 { font-weight: 550; }
 .slide button { font-size: 19px; padding: 14px 22px; }
-#slide-10 button[data-action="connect"],
 #slide-22 button[data-action="stack"] { font-size: 16px; padding: 9px 14px; }
 .slide-footer { position: absolute; bottom: 35px; left: 76px; right: 76px; border-top: 1px solid var(--line); padding-top: 20px; display: flex; align-items: center; justify-content: space-between; color: var(--muted); font: 12px var(--mono); letter-spacing: 1.4px; }
 .kicker { font: 14px var(--mono); color: var(--muted); letter-spacing: 2px; margin-bottom: 25px; }
@@ -163,7 +162,7 @@ main { flex: 1; min-height: 0; display: flex; align-items: center; justify-conte
 .shift-table .table-heading span:last-child { color: var(--cyan); }
 .network-layout, .loop-layout { display: grid; grid-template-columns: 1fr 1.22fr; gap: 34px; margin-top: 65px; }
 .network-layout h2 { font-size: 71px; }
-.network-layout button, .stack-layout button { margin-top: 35px; }
+.stack-layout button { margin-top: 35px; }
 .network svg { width: 100%; height: 560px; overflow: visible; }
 .network-links { stroke: var(--control-line); stroke-dasharray: 7 10; opacity: 1; }
 .network-node rect { fill: var(--panel); stroke: var(--control-line); }
@@ -175,6 +174,7 @@ main { flex: 1; min-height: 0; display: flex; align-items: center; justify-conte
 .network.connected .network-links { stroke: var(--cyan); stroke-dasharray: none; opacity: 1; animation: illuminate .8s ease; }
 .network.connected .network-hub { stroke: var(--cyan); }
 .network.connected .network-node rect { stroke: var(--cyan); }
+.reading .network.connected .network-links { animation: none; }
 .network-caption { text-align: center; font: 16px var(--mono); color: var(--muted); margin-top: 15px; }
 .framework { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; margin-top: 110px; }
 .framework article { padding-top: 32px; border-top: 2px solid var(--cyan); }
@@ -430,7 +430,6 @@ dialog::backdrop { background: #05090dea; }
   .stage-mode .life-detail,
   .stage-mode .learning-loop svg,
   .stage-mode #network-status,
-  .stage-mode #loop-status,
   .stage-mode #stack-status,
   .stage-mode .role-number { display: none; }
   .stage-mode .slide button:not([data-action="pair"], [data-action="pair-reset"], [type="submit"], [data-life]) { display: none; }
@@ -472,7 +471,7 @@ dialog::backdrop { background: #05090dea; }
   .stage-mode .rubric > div { gap: 22px 15px; }
   .stage-mode .human-gate .tag { font: 23px/1.4 sans-serif; white-space: normal; }
   .stage-mode .network-layout, .stage-mode .loop-layout { grid-template-columns: 1fr 1.22fr; gap: 48px; margin-top: 42px; }
-  .stage-mode .network-links { stroke: var(--cyan); stroke-dasharray: none; opacity: 1; animation: none; }
+  .stage-mode .network.connected .network-links { stroke: var(--cyan); stroke-dasharray: none; opacity: 1; animation: none; }
   .stage-mode .network-hub, .stage-mode .network-node rect { stroke: var(--cyan); }
   .stage-mode .network-hub { x: 175px; width: 400px; }
   :lang(es) .stage-mode .alignment-band { width: 96px; }
@@ -648,6 +647,7 @@ dialog::backdrop { background: #05090dea; }
   .lifecycle button { display: flex !important; }
   #closing-reveal[hidden] { display: flex !important; }
   .role-output li, .stack-layer h3 { color: var(--text); }
+  .network.connected .network-links { animation: none; }
 }
 
 /* V3: shared regions, structural cyan, and coral action changes. */

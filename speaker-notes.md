@@ -181,7 +181,7 @@ The reference on 12 opens pilot 24 and returns to its origin. Definitions from 1
 
 **Visual concept:** AI-assisted work is a single shared layer around distinct actors; DesignOps remains the connective operating layer, not the AI itself.
 
-**Interaction:** The original hub-and-spoke geometry is preserved, with one shared AI circle passing behind opaque role cards. Stage shows all connections without an extra control. Review: Connect the control plane toggles the spokes, not the AI circle. Reading retains the shared-AI layer and accessible text summary.
+**Interaction:** The original hub-and-spoke geometry is preserved, with one shared AI circle passing behind opaque role cards. Connections illuminate once on slide entry, without a button or automatic slide advancement. Stage, Reading and reduced-motion views show the complete connected state. Reading retains the shared-AI layer and accessible text summary.
 
 **Speaker notes:** The control plane metaphor distinguishes defining the conditions of work from doing everyone's work. PM, research, design, prototyping, and engineering keep their domain responsibilities. DesignOps coordinates reusable context, risk-based guardrails, evaluation criteria, ownership, and enablement. It should not become a central approval queue. Security, Legal, IT, platform teams, and domain experts remain essential partners. Clear boundaries can allow teams to move without repeatedly asking permission for known-safe tasks.
 
