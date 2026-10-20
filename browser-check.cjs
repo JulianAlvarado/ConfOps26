@@ -65,6 +65,11 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
     ]) {
       await page.evaluate(locale => setLanguage(locale), locale);
       assert.deepEqual(await page.locator("#slide-4 .framework p").allTextContents(), copy);
+      assert.equal(await page.locator("#slide-4 .framework h3").first().textContent(), locale === "es" ? "GESTIONAR" : "GOVERN");
+      const frameworkTitle = locale === "es" ? "Gestionar. Contexto. Evaluar." : "Govern. Context. Evaluate.";
+      assert.equal(await page.locator("#slide-4").getAttribute("data-title"), frameworkTitle);
+      assert((await page.locator('#slide-index a[href="#4"]').textContent()).includes(frameworkTitle));
+      assert((await page.locator("#slide-4").getAttribute("aria-label")).includes(frameworkTitle));
       const takeaway = await page.evaluate(() => notes[3].takeaway);
       for (const text of copy) assert(takeaway.includes(text), "Framework summary quotes the current supporting copy");
     }

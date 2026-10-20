@@ -77,11 +77,11 @@ La referencia en la 11 abre el piloto 23 y vuelve a su origen. Definiciones desd
 
 ---
 
-## 4. Gobernar. Contexto. Evaluar.
+## 4. Gestionar. Contexto. Evaluar.
 
 **Tiempo:** 2:30–3:30 (60 segundos)
 
-**Idea clave:** GOBERNAR: ¿Qué debemos usar y cómo debemos usarlo? CONTEXTO: La capa de inteligencia para tomar las decisiones correctas. EVALUAR: ¿Qué lo hace suficientemente bueno?
+**Idea clave:** GESTIONAR: ¿Qué debemos usar y cómo debemos usarlo? CONTEXTO: La capa de inteligencia para tomar las decisiones correctas. EVALUAR: ¿Qué lo hace suficientemente bueno?
 
 **Concepto visual:** Tres encabezados en coral con texto de apoyo, con espacio para asimilar cada diferencia.
 
