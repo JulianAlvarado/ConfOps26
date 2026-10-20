@@ -3,7 +3,7 @@
 **Approved bilingual presentation (V3), the canonical version replacing V2.**
 
 Based on frozen bilingual V2 `e39ef62f1729553773fa4a4f097f5c8cdf33d138`.
-15 keynote slides + Q&A + 8 appendices = 24. Local Inter under OFL. Photos pending: neutral placeholders only, no stock or generated photos.
+14 keynote slides + Q&A + 8 appendices = 23. Local Inter under OFL. The About me slide has been removed.
 
 Generated from app.js and spanish.js with `node check.mjs --write-notes`.
 
@@ -11,23 +11,23 @@ Generated from app.js and spanish.js with `node check.mjs --write-notes`.
 
 | Slides | Window |
 | --- | --- |
-| 1–4 | 0:00–3:00 |
-| 5–8 | 3:00–10:40 |
-| 9–10 | 10:40–12:20 |
-| 11 (before) | 12:20–13:50 |
-| 12 (after) | 13:50–15:35 |
-| 13–14 | 15:35–18:30 |
-| 15 | 18:30–20:00 |
-| 16 | 20:00–30:00 |
-| 17–24 | Optional |
+| 1–3 | 0:00–2:30 |
+| 4–7 | 2:30–10:10 |
+| 8–9 | 10:10–11:50 |
+| 10 (before) | 11:50–13:20 |
+| 11 (after) | 13:20–15:05 |
+| 12–13 | 15:05–18:00 |
+| 14 | 18:00–19:30 |
+| 15 | 19:30–29:30 |
+| 16–23 | Optional |
 
-The demo retains 270 seconds; biography, 30; closing, 90; Q&A, 600. The pilot moves to appendix 24. Its 135 seconds are reassigned to the split journey: 90 seconds before + 105 after, versus the original 60. Total keynote: 1,200 seconds.
+The demo retains 270 seconds; closing, 90; Q&A, 600. The pilot is in appendix 23. The split journey retains 90 seconds before + 105 after. Removing the biography subtracts 30 seconds without reallocating them: total keynote, 1,170 seconds.
 
 ## Stage delivery and rehearsal
 
-S enters Stage; F optionally enters fullscreen; Escape or S restores review. Arrow keys advance or reverse slide 4's chain and alignment, demo and closing builds before changing slides, in both review and Stage. Six tabs expose the whole journey; no Reset or duplicate Next. Native form keys never navigate. Home/End and arrows inside the tabs select states. Main Next advances the demo. ES/EN or L switches language without losing local input or state; L does not intercept typing, notes, or dialogs. Exiting Stage restores review's snapshot. Reading preserves native scrolling. Nothing is saved or sent.
+S enters Stage; F optionally enters fullscreen; Escape or S restores review. Arrow keys advance or reverse slide 3's chain and alignment, demo and closing builds before changing slides, in both review and Stage. Six tabs expose the whole journey; no Reset or duplicate Next. Native form keys never navigate. Home/End and arrows inside the tabs select states. Main Next advances the demo. ES/EN or L switches language without losing local input or state; L does not intercept typing, notes, or dialogs. Exiting Stage restores review's snapshot. The presentation scales on small screens. Nothing is saved or sent.
 
-The reference on 12 opens pilot 24 and returns to its origin. Definitions from 14 returns to the dashboard; from Q&A it returns to Q&A. The full learning cycle requires no clicks. Evaluation icon ◎ is retained.
+The reference on 11 opens pilot 23 and returns to its origin. Definitions from 13 returns to the dashboard; from Q&A it returns to Q&A. The full learning cycle requires no clicks. Evaluation icon ◎ is retained.
 
 ## 1. AI makes us faster. Who keeps us coherent?
 
@@ -53,39 +53,23 @@ The reference on 12 opens pilot 24 and returns to its origin. Definitions from 1
 
 **Visual concept:** Four parallel lanes: product, research, design, and engineering.
 
-**Interaction:** Review: the four roles activate automatically on slide entry, with staggered output and bullet-color transitions. No generation control or slide auto-advance. Stage, Reading, and reduced-motion views show the complete static state.
+**Interaction:** Review: the four roles activate automatically on slide entry, with staggered output and bullet-color transitions. No generation control or slide auto-advance. Stage and reduced-motion views show the complete static state.
 
 **Speaker notes:** Each discipline gains production capacity. PMs generate briefs and hypotheses; researchers synthesize evidence; designers explore concepts; engineers generate components and tests. Generation is more distributed, but expertise is not interchangeable. The same language model can interpret the product differently in each lane. These are categories of assistance, not guarantees that outputs are accurate. Ask the room to imagine all four lanes producing simultaneously. The new constraint is agreeing on what to produce, what fits the system, and who evaluates it.
 
-**Transition:** Before we look at that variation, a brief introduction to the person sharing this perspective.
+**Transition:** Now consider how distributed output can create more variation.
 
 ---
 
-## 3. About me
+## 3. The acceleration paradox
 
-**Timing:** 1:30–2:00 (30 seconds)
-
-**Takeaway:** Introduce yourself and the perspective you bring to DesignOps and AI.
-
-**Visual concept:** Neutral photo placeholders fill the left half; concise biography bullets fill the right. Supplied photos are pending.
-
-**Interaction:** No builds or controls.
-
-**Speaker notes:** Julian Alvarado is a Senior Program Manager and Design Operations leader at Microsoft, helping Xbox Design scale through better systems, clearer processes, and responsible AI. He works across teams and studios to improve how designers plan, learn, and deliver—building resilient, people-centered creative organizations. Outside work, Julian is a daily CrossFit devotee and a “forever blue belt” in jiu-jitsu. A retired musician, he still loves live shows and enjoys drawing at home. Currently in rotation: Radiohead, Lenny Kravitz, Oasis, and Crosses. This is a concise English version of the speaker's supplied biography, with his supplied personal interests. Keep the spoken introduction to 30 seconds by summarizing your role and its connection to this talk rather than reading the full biography aloud. The keynote remains 1,200 seconds, the demo remains 270 seconds, closing remains 90 seconds, and Q&A remains 600 seconds.
-
-**Transition:** Now return to the shared challenge: without common conditions, more output can create more variation.
-
----
-
-## 4. The acceleration paradox
-
-**Timing:** 2:00–3:00 (60 seconds)
+**Timing:** 1:30–2:30 (60 seconds)
 
 **Takeaway:** Shared context and evaluation govern variation without eliminating useful exploration.
 
 **Visual concept:** A causal chain sits above diverging output branches; a shared standards band aligns their treatment.
 
-**Interaction:** Review and Stage start with More output. Next traces More variation, More decisions, then More inconsistency; the next press applies shared standards, and one more advances to slide 5. Previous reverses alignment, then each chain stage before leaving slide 4. Forward/reverse keys follow the same sequence, with held-key repeats ignored. No dedicated trace or alignment controls. Revisits and language switches retain progress; Stage starts a fresh rehearsal and restores review's chain and alignment on exit.
+**Interaction:** Review and Stage start with the patterns inactive. First Next activates all patterns and the full causal chain together. Second Next applies context and evaluation together. Third Next advances to slide 4. Previous removes alignment, then deactivates all patterns before leaving slide 3. Forward/reverse keys use the same two interaction steps, with held-key repeats ignored. No local controls. Revisits and language switches retain progress; Stage starts fresh and restores review on exit.
 
 **Speaker notes:** Read the chain deliberately: more output, more variation, more decisions, more opportunities for inconsistency. This is a conceptual mechanism, not a statistical forecast. Variation is useful during exploration; unmanaged variation becomes expensive at system boundaries. Examples include conflicting terminology, duplicated research, inaccessible patterns, undocumented AI decisions, and design-system drift. The source's '17 versions of a pattern' is rhetorical, not a measured statistic, so we do not chart it. Apply shared context and evaluation: options can remain different while obeying common constraints. A green state is an explanatory metaphor, not a claim that standards automatically eliminate defects.
 
@@ -93,9 +77,9 @@ The reference on 12 opens pilot 24 and returns to its origin. Definitions from 1
 
 ---
 
-## 5. Govern. Context. Evaluate.
+## 4. Govern. Context. Evaluate.
 
-**Timing:** 3:00–4:00 (60 seconds)
+**Timing:** 2:30–3:30 (60 seconds)
 
 **Takeaway:** GOVERN: What should we use and how should we use it? CONTEXT: The intelligence layer for the right choices. EVALUATE: What makes it good enough?
 
@@ -109,9 +93,9 @@ The reference on 12 opens pilot 24 and returns to its origin. Definitions from 1
 
 ---
 
-## 6. Fix the form. Keep the lesson.
+## 5. Fix the form. Keep the lesson.
 
-**Timing:** 4:00–8:30 (270 seconds)
+**Timing:** 3:30–8:00 (270 seconds)
 
 **Takeaway:** The team fixes the form. DesignOps makes the lesson available to the next team and its AI tools.
 
@@ -125,9 +109,9 @@ The reference on 12 opens pilot 24 and returns to its origin. Definitions from 1
 
 ---
 
-## 7. When generation is cheap, evaluation is strategic
+## 6. When generation is cheap, evaluation is strategic
 
-**Timing:** 8:30–9:30 (60 seconds)
+**Timing:** 8:00–9:00 (60 seconds)
 
 **Takeaway:** Automated checks support accountable human judgment; they cannot prove design quality.
 
@@ -141,15 +125,15 @@ The reference on 12 opens pilot 24 and returns to its origin. Definitions from 1
 
 ---
 
-## 8. The organizational learning loop
+## 7. The organizational learning loop
 
-**Timing:** 9:30–10:40 (70 seconds)
+**Timing:** 9:00–10:10 (70 seconds)
 
 **Takeaway:** Keep the decision and its reason in shared guidance, then check the next result.
 
 **Visual concept:** The complete learning cycle is visible without interaction, including the final check and return to shared guidance.
 
-**Interaction:** No cycle-progress control. Read the full cycle in review, Reading, or Stage.
+**Interaction:** No cycle-progress control. Read the full cycle in review or Stage.
 
 **Speaker notes:** Return to the decision to offer invitations after setup. Do not save only the corrected form: save why the team changed it and who will review that guidance. Follow the same sequence on screen: AI proposes a design using shared guidance; the team checks it against the user's need; they save the lesson, including the decision, reason, and owner; DesignOps updates the guidance available to the next team and its AI tools; a reviewer checks the next result. The example does not prove that one field is always best or that guidance automatically prevents mistakes. It is fictional and user validation is pending. If the solo-setup assumption changes, the product lead revisits the guidance. DesignOps keeps its source, version, access, and review date current. Retire lessons that no longer apply instead of turning every observation into universal policy.
 
@@ -157,9 +141,9 @@ The reference on 12 opens pilot 24 and returns to its origin. Definitions from 1
 
 ---
 
-## 9. The role expands; the fundamentals remain
+## 8. The role expands; the fundamentals remain
 
-**Timing:** 10:40–11:30 (50 seconds)
+**Timing:** 10:10–11:00 (50 seconds)
 
 **Takeaway:** People, process, and systems remain the foundations; their scope expands.
 
@@ -173,15 +157,15 @@ The reference on 12 opens pilot 24 and returns to its origin. Definitions from 1
 
 ---
 
-## 10. DesignOps as the control plane
+## 9. DesignOps as the control plane
 
-**Timing:** 11:30–12:20 (50 seconds)
+**Timing:** 11:00–11:50 (50 seconds)
 
 **Takeaway:** DesignOps connects distributed actors through shared rules, context, and evaluation.
 
 **Visual concept:** AI-assisted work is a single shared layer around distinct actors; DesignOps remains the connective operating layer, not the AI itself.
 
-**Interaction:** The original hub-and-spoke geometry is preserved, with one shared AI circle passing behind opaque role cards. Connections illuminate once on slide entry, without a button or automatic slide advancement. Stage, Reading and reduced-motion views show the complete connected state. Reading retains the shared-AI layer and accessible text summary.
+**Interaction:** The original hub-and-spoke geometry is preserved, with one shared AI circle passing behind opaque role cards. Connections illuminate once on slide entry, without a button or automatic slide advancement. Stage and reduced-motion views show the complete connected state. An accessible text summary describes the shared-AI layer.
 
 **Speaker notes:** The control plane metaphor distinguishes defining the conditions of work from doing everyone's work. PM, research, design, prototyping, and engineering keep their domain responsibilities. DesignOps coordinates reusable context, risk-based guardrails, evaluation criteria, ownership, and enablement. It should not become a central approval queue. Security, Legal, IT, platform teams, and domain experts remain essential partners. Clear boundaries can allow teams to move without repeatedly asking permission for known-safe tasks.
 
@@ -189,9 +173,9 @@ The reference on 12 opens pilot 24 and returns to its origin. Definitions from 1
 
 ---
 
-## 11. Before AI: sequential handoffs
+## 10. Before AI: sequential handoffs
 
-**Timing:** 12:20–13:50 (90 seconds)
+**Timing:** 11:50–13:20 (90 seconds)
 
 **Takeaway:** Sequential handoffs can delay feedback even when each discipline does good work.
 
@@ -205,15 +189,15 @@ The reference on 12 opens pilot 24 and returns to its origin. Definitions from 1
 
 ---
 
-## 12. With AI: shared purpose and synchronized work
+## 11. With AI: shared purpose and synchronized work
 
-**Timing:** 13:50–15:35 (105 seconds)
+**Timing:** 13:20–15:05 (105 seconds)
 
 **Takeaway:** Pilot collaborative production and use any capacity gained for customer learning.
 
 **Visual concept:** One proposed after journey: shared purpose, synchronized collaborative work, AI-assisted production, and experiments with customer feedback.
 
-**Interaction:** The existing green collaboration animation runs on entry without a replay control. Stage and reduced-motion views remain fully readable without animation. The 30-day pilot reference opens appendix 24; its return link brings you here. The pilot is outside keynote timing.
+**Interaction:** The existing green collaboration animation runs on entry without a replay control. Stage and reduced-motion views remain fully readable without animation. The 30-day pilot reference opens appendix 23; its return link brings you here. The pilot is outside keynote timing.
 
 **Speaker notes:** The before journey is a deliberately simplified pattern, not a claim that all pre-AI teams worked sequentially. Research informs a brief, design produces mocks, engineering builds, and customers finally respond. The proposed alternative starts with Mission, Milestones, and Metrics—the source's MMM. PM, research, design, and engineering share intent; specification, concepts, feasibility, and HTML/CSS prototypes evolve together. Releases can become experiments that inform another iteration. AI may reduce production effort, but review, integration, and dependency costs still count. Do not promise a one-week release or universal acceleration. Measure elapsed production time, person-hours, waiting time, customer validation, and experimentation cadence. The animation contrasts sequencing, not numeric speed. A prototype is not a production release; user evidence remains necessary.
 
@@ -221,9 +205,9 @@ The reference on 12 opens pilot 24 and returns to its origin. Definitions from 1
 
 ---
 
-## 13. From documentation to executable standards
+## 12. From documentation to executable standards
 
-**Timing:** 15:35–16:50 (75 seconds)
+**Timing:** 15:05–16:20 (75 seconds)
 
 **Takeaway:** Turn domain knowledge into versioned, reusable context and verifiable standards.
 
@@ -237,39 +221,39 @@ The reference on 12 opens pilot 24 and returns to its origin. Definitions from 1
 
 ---
 
-## 14. Measure speed and coherence
+## 13. Measure speed and coherence
 
-**Timing:** 16:50–18:30 (100 seconds)
+**Timing:** 16:20–18:00 (100 seconds)
 
 **Takeaway:** Evaluate the whole workflow: speed, review cost, quality, coherence, and customer outcomes.
 
 **Visual concept:** A shared comparison table has Baseline, Pilot and Change headings once; category groups separate workflow outcomes from leading/process signals.
 
-**Interaction:** All 10 measures opens the full dialog. Definitions opens appendix 21 and returns here; entering definitions from Q&A returns to Q&A instead. Closing the dialog restores its opener.
+**Interaction:** All 10 measures opens the full dialog. Definitions opens appendix 20 and returns here; entering definitions from Q&A returns to Q&A instead. Closing the dialog restores its opener.
 
 **Speaker notes:** These are approximate comparison values informed by the presenter's early experimentation, not exact measurements, benchmarks, or a forecast. The presenter supplied design production-rate ranges; the other nine comparisons remain unchanged from the earlier synthetic values, reported as close to informal observations. Underlying records, sample sizes, and methods have not been supplied, so do not claim validated results or causal ROI. Baseline to pilot: median brief-to-validated-concept time 9 to 6 days; design production rate ~3–4/wk to ~1–2/wk, accepted artifacts / in a team with 8w E2E Cycle. The change ≈−2/wk is a midpoint estimate: 1.5 minus 3.5, not an independently observed change. Weekly rate and the team's eight-week end-to-end cycle are different concepts; do not divide by eight or infer an eight-week total. Production rate decreases, so do not frame it as an improvement. Production effort is 18 to 11 hours per concept; review effort 4 to 6 hours; rework 35% to 24%; applicable system checks passed 78% to 90%; open accessibility/quality defects 6 to 4 per 10 screens; design-to-code divergence 28% to 18%; experiments 1 to 2 per week; approved-context reuse 25% to 70%. Review effort rises in this comparison: faster generation does not imply less review. Leading/process measures signal behavior and readiness; outcome measures test delivered workflow results. System compliance is a leading quality signal, not proof of user benefit. Both sets of approximate values and their changes appear together, without competing bar scales. Percentage measures use percentage-point changes, not relative percentages. Match work scope, staffing, artifact definition, and evaluation criteria; include sample sizes and dispersion before presenting a validated comparison. Track customer task success separately. No customer outcome data is supplied.
 
-**Transition:** Return to the central question. The proposed workflow's pilot reference remains available in appendix 24.
+**Transition:** Return to the central question. The proposed workflow's pilot reference remains available in appendix 23.
 
 ---
 
-## 15. Who designs the system?
+## 14. Who designs the system?
 
-**Timing:** 18:30–20:00 (90 seconds)
+**Timing:** 18:00–19:30 (90 seconds)
 
 **Takeaway:** AI doesn't eliminate the need for DesignOps. It makes DesignOps infrastructure.
 
 **Visual concept:** A quiet question, a deliberate answer reveal, and three concluding statements.
 
-**Interaction:** Stage moment 3: pause, press Right to reveal DesignOps, then Right for Q&A. Left hides the answer before moving back. In review, Next or a forward navigation key reveals the answer first, then advances to Q&A. Reading view keeps its native scroll keys. There is no separate reveal button.
+**Interaction:** Stage moment 3: pause, press Right to reveal DesignOps, then Right for Q&A. Left hides the answer before moving back. In review, Next or a forward navigation key reveals the answer first, then advances to Q&A. There is no separate reveal button.
 
-**Speaker notes:** Use 90 seconds for the closing; its former 30 seconds now introduce the speaker on slide 3. Slow down. Read the question and leave space: if AI becomes part of how we design products, who designs the system in which AI operates? Reveal DesignOps. This is not a territorial claim that one function owns all AI. It is an invitation for DesignOps to connect domain expertise, governance, knowledge, workflows, and evaluation. AI creates capacity. Systems create consistency. Stewardship creates trust. DesignOps connects all three. The future is not merely managing work around design; it is designing the infrastructure through which humans and AI create products together. The practical challenge is one workflow, a baseline, a maintained context package, named human checkpoints, and evidence that quality has not been traded for speed. End on the thesis and pause rather than adding more tools.
+**Speaker notes:** Use 90 seconds for the closing. Slow down. Read the question and leave space: if AI becomes part of how we design products, who designs the system in which AI operates? Reveal DesignOps. This is not a territorial claim that one function owns all AI. It is an invitation for DesignOps to connect domain expertise, governance, knowledge, workflows, and evaluation. AI creates capacity. Systems create consistency. Stewardship creates trust. DesignOps connects all three. The future is not merely managing work around design; it is designing the infrastructure through which humans and AI create products together. The practical challenge is one workflow, a baseline, a maintained context package, named human checkpoints, and evidence that quality has not been traded for speed. End on the thesis and pause rather than adding more tools.
 
 **Transition:** Let's talk. Where is your team generating faster than it can maintain coherence?
 
 ---
 
-## 16. Let's talk — Q&A
+## 15. Let's talk — Q&A
 
 **Timing:** 10-minute Q&A, outside keynote timing
 
@@ -285,7 +269,7 @@ The reference on 12 opens pilot 24 and returns to its origin. Definitions from 1
 
 ---
 
-## 17. Backup: shared governance ownership
+## 16. Backup: shared governance ownership
 
 **Timing:** Optional appendix, outside keynote timing
 
@@ -301,7 +285,7 @@ The reference on 12 opens pilot 24 and returns to its origin. Definitions from 1
 
 ---
 
-## 18. Backup: operating-environment architect, not AI factory
+## 17. Backup: operating-environment architect, not AI factory
 
 **Timing:** Optional appendix, outside keynote timing
 
@@ -317,7 +301,7 @@ The reference on 12 opens pilot 24 and returns to its origin. Definitions from 1
 
 ---
 
-## 19. Backup: an AI-ready design system
+## 18. Backup: an AI-ready design system
 
 **Timing:** Optional appendix, outside keynote timing
 
@@ -333,7 +317,7 @@ The reference on 12 opens pilot 24 and returns to its origin. Definitions from 1
 
 ---
 
-## 20. Backup: model-agnostic workflows and canonical prompts
+## 19. Backup: model-agnostic workflows and canonical prompts
 
 **Timing:** Optional appendix, outside keynote timing
 
@@ -349,7 +333,7 @@ The reference on 12 opens pilot 24 and returns to its origin. Definitions from 1
 
 ---
 
-## 21. Backup: metric definitions and measurement plan
+## 20. Backup: metric definitions and measurement plan
 
 **Timing:** Optional appendix, outside keynote timing
 
@@ -365,7 +349,7 @@ The reference on 12 opens pilot 24 and returns to its origin. Definitions from 1
 
 ---
 
-## 22. Backup: Organizational memory is the advantage
+## 21. Backup: Organizational memory is the advantage
 
 **Timing:** Optional appendix, outside keynote timing
 
@@ -381,7 +365,7 @@ The reference on 12 opens pilot 24 and returns to its origin. Definitions from 1
 
 ---
 
-## 23. Backup: DesignOps across the product lifecycle
+## 22. Backup: DesignOps across the product lifecycle
 
 **Timing:** Optional appendix, outside keynote timing
 
@@ -397,7 +381,7 @@ The reference on 12 opens pilot 24 and returns to its origin. Definitions from 1
 
 ---
 
-## 24. Backup: your first 30 days
+## 23. Backup: your first 30 days
 
 **Timing:** Optional appendix, outside keynote timing
 
@@ -405,7 +389,7 @@ The reference on 12 opens pilot 24 and returns to its origin. Definitions from 1
 
 **Visual concept:** Four verbs on a timeline, one concrete output per week, and an explicit adopt / revise / stop decision.
 
-**Interaction:** The return link goes back to shared production (slide 12), or Q&A when opened from that menu. Direct entry defaults to shared production.
+**Interaction:** The return link goes back to shared production (slide 11), or Q&A when opened from that menu. Direct entry defaults to shared production.
 
 **Speaker notes:** Days 1–7: map actual AI use and identify inconsistency, quality gaps, and risk. Days 8–14: select one useful, bounded workflow and package relevant organizational knowledge. Days 15–21: name decision owners, define human checkpoints and evaluation criteria, and establish a baseline before the pilot. Days 22–30: run comparable work and decide whether to adopt, revise, or stop. Avoid sensitive or high-risk first pilots unless the appropriate governance is already in place. At team level, design and engineering leads can own a single workflow with DesignOps facilitation. At product-area level, PM, research, design, engineering, and a system owner coordinate shared patterns and cross-team outcomes. At enterprise level, federated product ownership works within Security, Legal, IT, and platform guardrails. DesignOps connects the altitudes; it does not unilaterally own policy or product decisions. Calendar windows are a suggested starting plan, not promised delivery dates.
 
@@ -428,4 +412,4 @@ These are not validated measurements, benchmarks, or causal evidence. Records, s
 | Accessibility / quality defects | 6/10 | 4/10 | −2 /10 | open defects / 10 reviewed screens |
 | Design-to-code divergence | 28% | 18% | −10 pp | % audited UI instances divergent |
 
-Definitions and collection methods are in appendix 21. Match scope, staffing and criteria; record sample size and spread; agree adopt/revise/stop thresholds before seeing results. The form example is fictional, pre-authored, and pending user validation. Context does not enforce itself: integration, permissions, validation and human review are required.
+Definitions and collection methods are in appendix 20. Match scope, staffing and criteria; record sample size and spread; agree adopt/revise/stop thresholds before seeing results. The form example is fictional, pre-authored, and pending user validation. Context does not enforce itself: integration, permissions, validation and human review are required.

@@ -5,7 +5,7 @@ const { pathToFileURL } = require("node:url");
 const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
 
 (async () => {
-  const browser = await chromium.launch();
+  const browser = await chromium.launch({ headless: !process.env.HEADED });
   try {
     const page = await browser.newPage({ viewport: { width: 1680, height: 1080 }, reducedMotion: "reduce" });
     const errors = [];
@@ -27,25 +27,35 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
       mkdirSync(process.env.SNAPSHOT_DIR, { recursive: true });
       await page.screenshot({ path: path.join(process.env.SNAPSHOT_DIR, `${name}.png`) });
     };
-    assert.equal(await page.locator("#language-toggle").textContent(), "ES");
-    assert.equal(await page.locator(".slide").count(), 24);
+    for (const hash of ["", "#3", "#5"]) {
+      await page.goto(`${pathToFileURL(path.join(__dirname, "index.html")).href}${hash}`);
+      assert.equal(await page.locator("html").getAttribute("lang"), "es");
+      assert.equal(await page.locator("#language-toggle").textContent(), "EN");
+      assert.equal(await page.locator("#language-toggle").getAttribute("aria-label"), "Idioma: español. Cambiar a inglés");
+      assert.equal(await page.locator("#notes-toggle").textContent(), "Notas N");
+      assert((await page.locator("#notes-content").textContent()).includes("IDEA CLAVE"));
+      assert.equal(await step(), "0");
+      await page.evaluate(() => setLanguage("en"));
+      await page.reload();
+      assert.equal(await page.locator("html").getAttribute("lang"), "es", "Reload returns to Spanish without storing preferences");
+    }
+    await page.evaluate(() => setLanguage("en"));
+    assert.equal(await page.locator(".slide").count(), 23);
     assert.equal(await page.locator("[role=tab]").count(), 6);
     assert.equal(await page.locator('[data-action="pair-reset"], [data-action="pair"], [data-action="loop"]').count(), 0);
     assert.deepEqual(await page.evaluate(() => ({
-      total: notes.slice(0, 15).reduce((sum, note) => sum + note.seconds, 0),
-      bio: notes[2].seconds, demo: notes[5].seconds, before: notes[10].seconds,
-      after: notes[11].seconds, closing: notes[14].seconds, qa: notes[15].seconds,
-      backups: notes.slice(16).map(note => note.seconds)
-    })), { total: 1200, bio: 30, demo: 270, before: 90, after: 105, closing: 90, qa: 600, backups: [0, 0, 0, 0, 0, 0, 0, 0] });
+      total: notes.slice(0, 14).reduce((sum, note) => sum + note.seconds, 0),
+      demo: notes[4].seconds, before: notes[9].seconds,
+      after: notes[10].seconds, closing: notes[13].seconds, qa: notes[14].seconds,
+      backups: notes.slice(15).map(note => note.seconds)
+    })), { total: 1170, demo: 270, before: 90, after: 105, closing: 90, qa: 600, backups: [0, 0, 0, 0, 0, 0, 0, 0] });
     assert.equal(await page.locator(".human-symbol").textContent(), "◎");
-    assert.equal(await page.locator(".photo-placeholder").count(), 3);
-    assert.equal(await page.locator(".about-slide img").count(), 0);
     assert.equal(await page.locator(".network-node").count(), 5);
     assert(!(await page.locator(".network-node").allTextContents()).some(text => text.includes("+ AI")));
     assert.equal(await page.locator(".shift-group").count(), 3);
     assert.equal(await page.locator(".shift-rows > div").count(), 6);
+    assert.equal(await page.locator("#slide-10 .journey").count(), 1);
     assert.equal(await page.locator("#slide-11 .journey").count(), 1);
-    assert.equal(await page.locator("#slide-12 .journey").count(), 1);
     assert.equal(await page.locator("#metric-dashboard thead th").count(), 4);
     assert.equal(await page.locator("#metric-dashboard .metric-category").count(), 2);
     assert.equal(await page.locator("#metric-tables tbody tr").count(), 10);
@@ -54,8 +64,8 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
       ["en", ["What should we use and how should we use it?", "The intelligence layer for the right choices.", "What makes it good enough?"]]
     ]) {
       await page.evaluate(locale => setLanguage(locale), locale);
-      assert.deepEqual(await page.locator("#slide-5 .framework p").allTextContents(), copy);
-      const takeaway = await page.evaluate(() => notes[4].takeaway);
+      assert.deepEqual(await page.locator("#slide-4 .framework p").allTextContents(), copy);
+      const takeaway = await page.evaluate(() => notes[3].takeaway);
       for (const text of copy) assert(takeaway.includes(text), "Framework summary quotes the current supporting copy");
     }
     const roleOutputs = {
@@ -79,6 +89,7 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
     await page.evaluate(() => document.fonts.ready);
     assert.equal(await current(), 2, "Direct hash load starts on slide 2");
     assert.deepEqual(await page.locator(".role-output li:first-child").evaluateAll(items => items.map(item => getComputedStyle(item).animationDelay)), ["0s", "0.65s", "1.3s", "1.95s"]);
+    await page.locator(".role-output li").evaluateAll(items => Promise.all(items.flatMap(item => item.getAnimations().map(animation => animation.ready))));
     for (const locale of ["es", "en"]) {
       const starts = await page.locator(".role-output li").evaluateAll(items => items.flatMap(item => item.getAnimations().map(animation => animation.startTime)));
       await page.evaluate(locale => setLanguage(locale), locale);
@@ -115,7 +126,6 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
       await page.evaluate(locale => setLanguage(locale), locale);
       for (const width of [1680, 1201, 1200, 1100, 1000, 901, 900, 701, 700, 390, 320]) {
         await page.setViewportSize({ width, height: 1000 });
-        await page.waitForFunction(() => document.body.classList.contains("reading") === smallScreen.matches);
         const issues = await page.evaluate(() => {
           const brand = document.querySelector(".wordmark").getBoundingClientRect();
           const buttons = [...document.querySelectorAll(".toolbar button")];
@@ -133,7 +143,7 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
             if (text.some(r => r.left < box.left - 1 || r.right > box.right + 1)) issues.push("Clipped text");
             if (text.length && Math.max(...text.map(r => r.top)) >= Math.min(...text.map(r => r.bottom))) issues.push("Wrapped label/shortcut");
           }
-          if (buttons.length !== 6 || document.querySelector(".version")) issues.push("Toolbar shape");
+          if (buttons.length !== 5 || document.querySelector(".version")) issues.push("Toolbar shape");
           if (innerWidth > 700 && Math.max(...centers) - Math.min(...centers) > 1) issues.push("Multiple toolbar rows");
           if (document.documentElement.scrollWidth > innerWidth) issues.push("Horizontal overflow");
           return issues;
@@ -142,10 +152,9 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
       }
     }
     await page.setViewportSize({ width: 1680, height: 1080 });
-    await page.evaluate(() => { readingPreference = false; setReadingView(false); });
     for (const stage of [false, true]) {
       await page.evaluate(stage => { setStageMode(stage); setPair(0, true); }, stage);
-      await go(6);
+      await go(5);
       for (let i = 0; i < 6; i++) {
         assert.equal(await step(), String(i));
         assert.equal(await page.locator('[role=tab][aria-selected=true]').count(), 1);
@@ -174,7 +183,7 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
             for (const key of ["ArrowRight", "ArrowLeft", "ArrowDown", "ArrowUp", "PageDown", "PageUp", "Home", "End", " "]) {
               await page.locator("#workspace-name").focus();
               await page.keyboard.press(key);
-              assert.equal(await current(), 6);
+              assert.equal(await current(), 5);
               assert.equal(await step(), "3");
             }
             await page.locator("#workspace-name").fill("Diseño de ejemplo");
@@ -198,8 +207,8 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
           await page.keyboard.press("ArrowRight");
         } else await click("#next");
       }
-      await page.waitForFunction(() => state.index === 6);
-      await go(6);
+      await page.waitForFunction(() => state.index === 5);
+      await go(5);
       for (let i = 5; i > 0; i--) {
         if (stage) {
           await page.locator("#presentation").focus();
@@ -237,10 +246,10 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
       await page.evaluate(() => setPair(0));
       await page.locator("#presentation").focus();
       await page.keyboard.press("ArrowLeft");
-      await page.waitForFunction(() => state.index === 4);
+      await page.waitForFunction(() => state.index === 3);
     }
     await page.evaluate(() => { setStageMode(false); setPair(4); setClosing(true); });
-    await go(6);
+    await go(5);
     await page.evaluate(() => { $("#workspace-name").value = "Review snapshot"; state.formName = "Review snapshot"; state.formResult = "success"; renderFormResult(); });
     await click("#stage-toggle");
     assert.equal(await step(), "0");
@@ -257,12 +266,12 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
       await page.evaluate(stage => { setStageMode(stage); setClosing(false); }, stage);
       for (const locale of ["es", "en"]) {
         await page.evaluate(locale => setLanguage(locale), locale);
-        await go(15);
+        await go(14);
         await page.evaluate(() => setClosing(false));
         if (stage) { await page.locator("#presentation").focus(); await page.keyboard.press("ArrowRight"); }
         else await click("#next");
         assert(await page.locator("#closing-reveal").isVisible());
-        assert.equal(await current(), 15);
+        assert.equal(await current(), 14);
         await page.evaluate(() => setLanguage(language === "en" ? "es" : "en"));
         assert(await page.locator("#closing-reveal").isVisible());
         if (stage) { await page.locator("#presentation").focus(); await page.keyboard.press("ArrowLeft"); }
@@ -270,25 +279,25 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
         assert(!(await page.locator("#closing-reveal").isVisible()));
         await page.locator("#presentation").focus();
         for (const key of ["ArrowRight", "PageDown"]) await page.keyboard.press(key);
-        await page.waitForFunction(() => state.index === 15);
-        await page.keyboard.press("ArrowLeft");
         await page.waitForFunction(() => state.index === 14);
+        await page.keyboard.press("ArrowLeft");
+        await page.waitForFunction(() => state.index === 13);
         assert(await page.locator("#closing-reveal").isVisible(), "Revisiting closing retains reveal");
       }
     }
     await page.evaluate(() => setStageMode(false));
-    await go(14);
+    await go(13);
     await click("#metrics-open");
     assert(await page.locator("#metrics-detail").isVisible());
     await page.keyboard.press("Escape");
-    assert.equal(await current(), 14);
+    assert.equal(await current(), 13);
     assert.equal(await page.evaluate(() => document.activeElement.id), "metrics-open");
     await click("#metrics-open");
     await click("#metrics-close");
-    assert.equal(await current(), 14);
+    assert.equal(await current(), 13);
     for (const locale of ["en", "es"]) for (const stage of [false, true]) {
       await page.evaluate(({ locale, stage }) => { setStageMode(stage); setLanguage(locale); }, { locale, stage });
-      for (const [origin, target, link, back] of [[12, 24, "#pilot-reference", "#pilot-return"], [16, 24, '.qa-links a[href="#24"]', "#pilot-return"], [16, 21, '.qa-links a[href="#21"]', "#definitions-return"]]) {
+      for (const [origin, target, link, back] of [[11, 23, "#pilot-reference", "#pilot-return"], [15, 23, '.qa-links a[href="#23"]', "#pilot-return"], [15, 20, '.qa-links a[href="#20"]', "#definitions-return"]]) {
         await go(origin);
         await click(link);
         await page.waitForFunction(target => state.index === target - 1, target);
@@ -298,67 +307,71 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
         await page.waitForFunction(origin => state.index === origin - 1, origin);
       }
       if (!stage) {
-        await go(14);
+        await go(13);
         await click('[data-action="metric-definitions"]');
-        await page.waitForFunction(() => state.index === 20);
-        assert.equal(await page.locator("#definitions-return").getAttribute("href"), "#14");
+        await page.waitForFunction(() => state.index === 19);
+        assert.equal(await page.locator("#definitions-return").getAttribute("href"), "#13");
         await click("#previous");
-        await page.waitForFunction(() => state.index === 13);
+        await page.waitForFunction(() => state.index === 12);
       }
     }
     await page.evaluate(() => { setStageMode(false); setLanguage("es"); });
-    assert.equal((await page.locator("#title-6").textContent()).trim(), "Ejemplo: Corrige el formulario. Conserva lo aprendido.");
-    assert.equal(await page.locator("#title-8").textContent(), "No te enfoquesen el output,Aceleras el aprendizaje.");
-    assert.equal(await page.locator("#title-9").textContent(), "Las mismas bases,un alcance actualizado.");
-    assert.equal(await page.locator("#title-7 em").textContent(), "Una decisión informada");
+    assert.equal((await page.locator("#title-5").textContent()).trim(), "Ejemplo: Corrige el formulario. Conserva lo aprendido.");
+    assert.equal(await page.locator("#title-7").textContent(), "No te enfoquesen el output,Aceleras el aprendizaje.");
+    assert.equal(await page.locator("#title-8").textContent(), "Las mismas bases,un alcance actualizado.");
+    assert.equal(await page.locator("#title-6 em").textContent(), "Una decisión informada");
     await go(2);
     assert.equal(await page.locator("#roles .role-output li").count(), 12);
-    await page.goto(`${pathToFileURL(path.join(__dirname, "index.html")).href}#4`);
+    await page.goto(`${pathToFileURL(path.join(__dirname, "index.html")).href}#3`);
     await page.evaluate(() => document.fonts.ready);
     const paradoxState = () => page.evaluate(() => [state.cause, document.querySelector("#fragmentation").classList.contains("aligned")]);
-    assert.deepEqual(await paradoxState(), [0, false], "Direct #4 starts at the already-visible first stage");
+    assert.deepEqual(await paradoxState(), [0, false], "Direct #3 starts with all patterns inactive");
     assert.equal(await page.locator('[data-action="cause"], [data-action="align"]').count(), 0);
     for (const locale of ["en", "es"]) for (const stage of [false, true]) {
       await page.evaluate(({ locale, stage }) => { setStageMode(stage); setLanguage(locale); state.cause = 0; setAligned(false); }, { locale, stage });
-      await go(4);
+      await go(3);
       const advance = async direction => {
         if (stage) {
           await page.locator("#presentation").focus();
           await page.keyboard.press(direction > 0 ? "ArrowRight" : "ArrowLeft");
         } else await click(direction > 0 ? "#next" : "#previous");
       };
-      for (let build = 0; build <= 4; build++) {
-        assert.deepEqual(await paradoxState(), [Math.min(build, 3), build === 4]);
-        assert.equal(await page.locator("#causal-chain .current").count(), Math.min(build + 1, 4));
-        assert.equal(await page.locator(".branch-lines .lit").count(), build >= 3 ? 5 : build + 1);
-        assert.equal(await page.locator("#causal-chain [aria-current=step]").count(), 1);
-        assert.equal(await page.locator("#causal-chain li").evaluateAll(nodes => nodes.filter(node => getComputedStyle(node).borderTopColor === "rgb(255, 151, 127)").length), Math.min(build + 1, 4), "Each press visibly advances the chain in Review and Stage");
-        assert((await page.locator("#cause-status").textContent()).includes(build === 4 ? (locale === "es" ? "Criterios comunes aplicados" : "Shared standards applied") : `${build + 1}`), "Current progression is announced");
+      for (let build = 0; build <= 2; build++) {
+        assert.deepEqual(await paradoxState(), [Math.min(build, 1), build === 2]);
+        assert.equal(await page.locator("#causal-chain .current").count(), build ? 4 : 0);
+        assert.equal(await page.locator(".branch-lines .lit").count(), build ? 5 : 0);
+        assert.equal(await page.locator(".branch-outputs .lit").count(), build ? 5 : 0);
+        assert.equal(await page.locator("#causal-chain [aria-current=step]").count(), build ? 1 : 0);
+        assert.equal(await page.locator("#causal-chain li").evaluateAll(nodes => nodes.filter(node => getComputedStyle(node).borderTopColor === "rgb(255, 151, 127)").length), build ? 4 : 0, "First press visibly activates the complete chain");
+        const statuses = locale === "es"
+          ? ["Patrones listos para activar.", "Todos los patrones activados. Contexto y evaluación pendientes.", "Criterios comunes aplicados. La cadena está completa."]
+          : ["Patterns ready to activate.", "All patterns activated. Context and evaluation pending.", "Shared standards applied. The chain is complete."];
+        assert.equal(await page.locator("#cause-status").textContent(), statuses[build]);
         const label = await page.locator("#next").getAttribute("aria-label");
-        assert.equal(label, build < 3
-          ? `${locale === "es" ? "Siguiente paso de la cadena" : "Next chain stage"}: ${await page.locator("#causal-chain li").nth(build + 1).textContent()}`
-          : build === 3 ? (locale === "es" ? "Aplicar criterios comunes" : "Apply shared standards")
+        assert.equal(label, build === 0
+          ? (locale === "es" ? "Activar todos los patrones" : "Activate all patterns")
+          : build === 1 ? (locale === "es" ? "Aplicar criterios comunes" : "Apply shared standards")
           : (locale === "es" ? "Siguiente diapositiva" : "Next slide"));
-        assert.equal(await page.locator("#next").evaluate(node => node.classList.contains("build-action")), build < 4);
+        assert.equal(await page.locator("#next").evaluate(node => node.classList.contains("build-action")), build < 2);
         await page.evaluate(() => setLanguage(language === "en" ? "es" : "en"));
-        assert.deepEqual(await paradoxState(), [Math.min(build, 3), build === 4]);
+        assert.deepEqual(await paradoxState(), [Math.min(build, 1), build === 2]);
         await page.evaluate(locale => setLanguage(locale), locale);
+        await go(2);
         await go(3);
-        await go(4);
-        assert.deepEqual(await paradoxState(), [Math.min(build, 3), build === 4], "Revisits retain the exact build");
+        assert.deepEqual(await paradoxState(), [Math.min(build, 1), build === 2], "Revisits retain the exact build");
         await advance(1);
-        if (build < 4) assert.equal(await current(), 4);
+        if (build < 2) assert.equal(await current(), 3, "Neither interaction click may advance the slide");
       }
-      await page.waitForFunction(() => state.index === 4);
-      await advance(-1);
       await page.waitForFunction(() => state.index === 3);
-      for (const expected of [[3, false], [2, false], [1, false], [0, false]]) {
+      await advance(-1);
+      await page.waitForFunction(() => state.index === 2);
+      for (const expected of [[1, false], [0, false]]) {
         await advance(-1);
         assert.deepEqual(await paradoxState(), expected);
       }
       await advance(-1);
-      await page.waitForFunction(() => state.index === 2);
-      await go(4);
+      await page.waitForFunction(() => state.index === 1);
+      await go(3);
       for (const key of ["ArrowRight", "ArrowDown", "PageDown", " "]) {
         await page.evaluate(() => { state.cause = 0; setAligned(false); });
         await page.locator("#presentation").focus();
@@ -368,39 +381,40 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
         assert.deepEqual(await paradoxState(), [1, false], "A held forward key advances only once");
       }
       for (const key of ["ArrowLeft", "ArrowUp", "PageUp"]) {
-        await page.evaluate(() => { state.cause = 3; setAligned(false); });
+        await page.evaluate(() => { state.cause = 1; setAligned(false); });
         await page.locator("#presentation").focus();
         await page.keyboard.down(key);
         await page.keyboard.down(key);
         await page.keyboard.up(key);
-        assert.deepEqual(await paradoxState(), [2, false], "A held reverse key retreats only once");
+        assert.deepEqual(await paradoxState(), [0, false], "A held reverse key retreats only once");
       }
       await page.evaluate(() => setStageMode(false));
-      for (const saved of [[2, false], [3, true]]) {
+      for (const saved of [[1, false], [1, true]]) {
         await page.evaluate(([cause, aligned]) => { state.cause = cause; setAligned(aligned); setStageMode(true); }, saved);
         assert.deepEqual(await paradoxState(), [0, false], "Stage resets the whole explanatory sequence");
         await page.evaluate(() => { advanceReview(); setLanguage(language === "en" ? "es" : "en"); setStageMode(false); });
         assert.deepEqual(await paradoxState(), saved, "Review restores both chain and alignment");
       }
     }
-    await go(11);
+    await go(10);
     assert.equal(await page.locator('[data-action="journey"]').count(), 0);
     assert(await page.locator("#journeys").evaluate(node => node.classList.contains("running")));
     await page.emulateMedia({ reducedMotion: "no-preference" });
-    await page.goto(`${pathToFileURL(path.join(__dirname, "index.html")).href}#11`);
+    await page.goto(`${pathToFileURL(path.join(__dirname, "index.html")).href}#10`);
     for (const locale of ["en", "es"]) {
       await page.evaluate(locale => setLanguage(locale), locale);
+      await go(9);
       await go(10);
-      await go(11);
       assert.deepEqual(await page.locator("#journeys .workflow-track span").evaluateAll(nodes => nodes.map(node => getComputedStyle(node).animationDelay)), ["0s", "0.75s", "1.5s", "2.25s", "3s"]);
+      await page.locator("#journeys").evaluate(node => Promise.all(node.getAnimations({ subtree: true }).map(animation => animation.ready)));
       const starts = await page.locator("#journeys").evaluate(node => node.getAnimations({ subtree: true }).map(animation => animation.startTime));
       await page.evaluate(() => setLanguage(language === "en" ? "es" : "en"));
       assert.deepEqual(await page.locator("#journeys").evaluate(node => node.getAnimations({ subtree: true }).map(animation => animation.startTime)), starts);
       await page.waitForFunction(() => [...document.querySelectorAll("#journeys .workflow-track span")].every(node => getComputedStyle(node).backgroundColor === "rgb(52, 42, 38)"));
-      assert.equal(await current(), 11, "Handoffs never advance the slide");
-      await go(10);
+      assert.equal(await current(), 10, "Handoffs never advance the slide");
+      await go(9);
       assert.equal(await page.locator("#journeys").evaluate(node => node.getAnimations({ subtree: true }).length), 0);
-      await go(11);
+      await go(10);
       assert.equal(await page.locator("#journeys").evaluate(node => node.getAnimations({ subtree: true }).length), 5);
       await page.evaluate(() => setStageMode(true));
       assert.equal(await page.locator("#journeys").evaluate(node => node.getAnimations({ subtree: true }).length), 0);
@@ -408,23 +422,23 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
     }
     await page.emulateMedia({ reducedMotion: "reduce" });
     assert.equal(await page.locator("#journeys").evaluate(node => node.getAnimations({ subtree: true }).length), 0);
-    await go(12);
+    await go(11);
     assert(await page.locator("#journeys-after").evaluate(node => node.classList.contains("running")));
-    assert.equal(await page.locator('#slide-12 [data-action="journey"], #slide-12 .journey-label .tag').count(), 0);
-    assert.equal(await page.locator('#slide-14 .scenario-label, #slide-14 .metric-foot > p').count(), 0);
+    assert.equal(await page.locator('#slide-11 [data-action="journey"], #slide-11 .journey-label .tag').count(), 0);
+    assert.equal(await page.locator('#slide-13 .scenario-label, #slide-13 .metric-foot > p').count(), 0);
     assert.equal(await page.locator("#metrics-detail .scenario-label").count(), 1, "Detail evidence badge remains");
     await page.emulateMedia({ reducedMotion: "no-preference" });
     for (const locale of ["en", "es"]) {
       await page.evaluate(locale => setLanguage(locale), locale);
       assert((await page.locator(".wordmark").textContent()).includes("Julian Alvarado"));
-      assert.equal(await page.locator("#slide-13 aside.context-package > p").count(), 0);
-      assert.equal(await page.locator("#slide-11 .bottom-line, #loop-status").count(), 0);
+      assert.equal(await page.locator("#slide-12 aside.context-package > p").count(), 0);
+      assert.equal(await page.locator("#slide-10 .bottom-line, #loop-status").count(), 0);
+      await go(10);
       await go(11);
-      await go(12);
-      assert.equal(await page.locator("#slide-12 .bottom-line > p").textContent(), locale === "en"
+      assert.equal(await page.locator("#slide-11 .bottom-line > p").textContent(), locale === "en"
         ? "Hypothesis: production can shrink; experimentation can expand. Validate it."
         : "Hipótesis: producir puede llevar menos; experimentar, más. Valídalo.");
-      assert.equal(await page.locator("#slide-12 .bottom-line br").count(), 0);
+      assert.equal(await page.locator("#slide-11 .bottom-line br").count(), 0);
       assert.deepEqual(await page.locator("#journeys-after .workflow-track span").evaluateAll(nodes => nodes.map(node => ({
         name: getComputedStyle(node).animationName,
         delay: getComputedStyle(node).animationDelay
@@ -437,122 +451,129 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
       await page.evaluate(() => setStageMode(false));
     }
     await page.emulateMedia({ reducedMotion: "no-preference" });
-    await page.goto(`${pathToFileURL(path.join(__dirname, "index.html")).href}#10`);
+    await page.goto(`${pathToFileURL(path.join(__dirname, "index.html")).href}#9`);
     await page.evaluate(() => document.fonts.ready);
-    assert.equal(await current(), 10);
+    assert.equal(await current(), 9);
     assert.equal(await page.locator('[data-action="connect"]').count(), 0);
     for (const locale of ["en", "es"]) {
       await page.evaluate(locale => setLanguage(locale), locale);
-      await go(9);
+      await go(8);
       assert.equal(await page.locator(".network-links").evaluate(node => node.getAnimations().length), 0);
-      await go(10);
+      await go(9);
       assert.equal(await page.locator(".network-links").evaluate(node => getComputedStyle(node).animationName), "illuminate");
       await page.locator(".network-links").evaluate(node => Promise.all(node.getAnimations().map(animation => animation.finished)));
       assert.equal(await page.locator(".network-links").evaluate(node => getComputedStyle(node).opacity), "1");
       await page.evaluate(() => setLanguage(language === "en" ? "es" : "en"));
       assert.equal(await page.locator(".network-links").evaluate(node => node.getAnimations().length), 0, "Language changes must not replay connections");
-      assert.equal(await current(), 10);
+      assert.equal(await current(), 9);
       await page.evaluate(() => setStageMode(true));
       assert.equal(await page.locator(".network-links").evaluate(node => getComputedStyle(node).animationName), "none");
       await page.evaluate(() => setStageMode(false));
     }
     await page.emulateMedia({ reducedMotion: "reduce" });
     assert.equal(await page.locator(".network-links").evaluate(node => node.getAnimations().length), 0);
-    await go(22);
+    await go(21);
     for (let i = 0; i < 4; i++) await click('[data-action="stack"]');
     assert.equal(await page.locator(".stack-layer.revealed").count(), 5);
-    await go(23);
+    await go(22);
     for (let i = 0; i < 5; i++) {
       await click(`[data-life="${i}"]`);
       assert.equal(await page.locator("#life-detail > div").count(), 3);
     }
-    await go(6);
+    await go(5);
     await click("#notes-toggle");
     await page.locator("#notes").focus();
     for (const key of ["ArrowRight", "ArrowDown", "PageDown", " ", "Home", "End"]) {
       await page.keyboard.press(key);
-      assert.equal(await current(), 6);
+      assert.equal(await current(), 5);
     }
     await page.keyboard.press("Escape");
     await click("#overview-toggle");
-    assert.equal(await page.locator("#slide-index a").count(), 24);
+    assert.equal(await page.locator("#slide-index a").count(), 23);
     await page.keyboard.press("Escape");
-    await page.evaluate(() => { readingPreference = true; setReadingView(true); });
-    await page.locator("#presentation").focus();
-    for (const key of ["ArrowDown", "PageDown", " ", "Home", "End"]) {
-      await page.keyboard.press(key);
-      assert.equal(await current(), 6, "Reading preserves native scroll keys");
+    const fullscreenPage = await browser.newPage({ viewport: null, reducedMotion: "reduce" });
+    try {
+      await fullscreenPage.goto(`${pathToFileURL(path.join(__dirname, "index.html")).href}#5`);
+      const fullscreenFits = async active => {
+        await fullscreenPage.waitForFunction(active => {
+          const viewport = document.querySelector("#viewport").getBoundingClientRect();
+          const stage = document.querySelector("#stage").getBoundingClientRect();
+          const scale = Math.min(viewport.width / 1600, viewport.height / 900);
+          return Boolean(document.fullscreenElement) === active
+            && Math.abs(stage.width - 1600 * scale) < 1
+            && Math.abs(stage.height - 900 * scale) < 1
+            && Math.abs(stage.left - viewport.left - (viewport.width - stage.width) / 2) < 1
+            && Math.abs(stage.top - viewport.top - (viewport.height - stage.height) / 2) < 1;
+        }, active);
+      };
+      await fullscreenPage.click("#fullscreen");
+      await fullscreenFits(true);
+      const fullSize = await fullscreenPage.evaluate(() => [innerWidth, innerHeight]);
+      for (let i = 1; i <= 6; i++) {
+        await fullscreenPage.click("#next");
+        await fullscreenFits(true);
+        await fullscreenPage.waitForFunction(i => state.index === (i < 6 ? 4 : 5) && state.pair === Math.min(i, 5), i);
+        assert.deepEqual(await fullscreenPage.evaluate(() => [innerWidth, innerHeight]), fullSize, "Next must not shrink the fullscreen viewport");
+      }
+      await fullscreenPage.click("#previous");
+      await fullscreenPage.waitForFunction(() => state.index === 4);
+      await fullscreenFits(true);
+      await fullscreenPage.click("#language-toggle");
+      await fullscreenFits(true);
+      await fullscreenPage.click("#stage-toggle");
+      await fullscreenFits(true);
+      for (let i = 1; i <= 6; i++) {
+        await fullscreenPage.keyboard.press("ArrowRight");
+        await fullscreenPage.waitForFunction(i => state.index === (i < 6 ? 4 : 5) && state.pair === Math.min(i, 5), i);
+        await fullscreenFits(true);
+      }
+      await fullscreenPage.keyboard.press("ArrowLeft");
+      await fullscreenPage.waitForFunction(() => state.index === 4);
+      await fullscreenPage.keyboard.press("l");
+      await fullscreenFits(true);
+      await fullscreenPage.keyboard.press("Escape");
+      await fullscreenFits(false);
+      assert.equal(await fullscreenPage.locator("body.stage-mode").count(), 0);
+      assert.equal(await fullscreenPage.evaluate(() => state.pair), 5, "Fullscreen Stage exit restores Review's demo state");
+    } finally {
+      await fullscreenPage.close();
     }
-    await page.evaluate(() => { setPair(0); });
-    await click("#next");
-    assert.equal(await step(), "1", "Main Next also progresses in Reading");
-    await go(4);
-    await page.evaluate(() => { state.cause = 0; setAligned(false); });
-    await page.locator("#presentation").focus();
-    await page.keyboard.press("PageDown");
-    assert.deepEqual(await paradoxState(), [0, false], "Reading native scrolling does not trace the chain");
-    await click("#next");
-    assert.deepEqual(await paradoxState(), [1, false]);
-    await page.locator("#presentation").focus();
-    await page.keyboard.press("ArrowRight");
-    assert.deepEqual(await paradoxState(), [2, false]);
-    await click("#previous");
-    assert.deepEqual(await paradoxState(), [1, false]);
-    await click("#stage-toggle");
-    await page.locator("#presentation").focus();
-    await page.keyboard.press("l");
-    await page.keyboard.press("Escape");
-    assert(await page.locator("body").evaluate(node => node.classList.contains("reading")), "Stage restores Reading preference");
-
-    const checkLayout = async (reading, label) => {
-      const issues = await page.evaluate(reading => {
+    const checkLayout = async (label) => {
+      const issues = await page.evaluate(() => {
         const slide = document.querySelector(".slide:not([hidden])");
         const bounds = slide.getBoundingClientRect();
         const footer = slide.querySelector(".slide-footer").getBoundingClientRect();
         const issues = [];
-        if (slide.id === "slide-5") {
+        const viewport = document.querySelector("#viewport").getBoundingClientRect();
+        if (bounds.left < viewport.left - 1 || bounds.right > viewport.right + 1 || bounds.top < viewport.top - 1 || bounds.bottom > viewport.bottom + 1) issues.push("Scaled slide exceeds viewport");
+        const eyebrowNumber = slide.querySelector(".eyebrow > span")?.textContent.match(/^(\d\d) —/);
+        if (eyebrowNumber && Number(eyebrowNumber[1]) !== Number(slide.id.slice(6))) issues.push("Stale visible slide number");
+        if (slide.id === "slide-11" && slide.querySelector(".journey-label")) issues.push("Removed journey heading remains");
+        if (slide.id === "slide-4") {
           const headings = [...slide.querySelectorAll(".framework h3")];
           if (headings.length !== 3 || headings.some(node => getComputedStyle(node).color !== "rgb(255, 151, 127)")) issues.push("All framework headings must use existing coral");
           for (const paragraph of slide.querySelectorAll(".framework p")) {
-            if (parseFloat(getComputedStyle(paragraph).fontSize) < (reading ? 18 : 35)) issues.push("Framework supporting copy lost its readable size");
+            if (parseFloat(getComputedStyle(paragraph).fontSize) < 35) issues.push("Framework supporting copy lost its readable size");
             const parent = paragraph.parentElement.getBoundingClientRect();
             const rect = paragraph.getBoundingClientRect();
             if (rect.bottom > parent.bottom + 1 || rect.right > parent.right + 1) issues.push("Framework copy clips within its column");
           }
         }
-        if (slide.id === "slide-6") {
+        if (slide.id === "slide-5") {
           const counter = getComputedStyle(slide.querySelector("#pair-count"));
-          if (parseFloat(counter.fontSize) !== (reading ? 16 : 19)) issues.push("Demo counter must be secondary metadata");
+          if (parseFloat(counter.fontSize) !== 19) issues.push("Demo counter must be secondary metadata");
           const rgb = counter.color.match(/[\d.]+/g).slice(0, 3).map(Number).map(value => counter.color.startsWith("color(srgb") ? value : value / 255);
           const luminance = values => values.map(value => value <= .04045 ? value / 12.92 : ((value + .055) / 1.055) ** 2.4).reduce((sum, value, i) => sum + value * [.2126, .7152, .0722][i], 0);
           if ((luminance(rgb) + .05) / (luminance([17, 21, 22].map(value => value / 255)) + .05) < 4.5 || counter.color !== "rgb(166, 178, 180)") issues.push("Counter must use the readable secondary grey");
         }
-        if (slide.id === "slide-6" && !reading) {
+        if (slide.id === "slide-5") {
           const label = slide.querySelector("#pair-label").getBoundingClientRect();
           const content = slide.querySelector("#decision-evidence:not([hidden]), #prototype-form:not([hidden])");
           for (const node of [content, content.querySelector("h3")]) {
             if (Math.abs(label.top - node.getBoundingClientRect().top) > 1) issues.push("Demo current-step heading and visible content are not top-aligned");
           }
         }
-        if (slide.id === "slide-16") {
-          const link = slide.querySelector(".presentation-qr");
-          const image = link.querySelector("img");
-          const box = image.getBoundingClientRect();
-          const scale = slide.getBoundingClientRect().width / slide.offsetWidth;
-          if (link.getAttribute("href") !== "https://confops26.vercel.app" || !image.complete || !image.naturalWidth) issues.push("Presentation QR must load locally and link to the exact URL");
-          if (Math.abs(box.width - box.height) > 1 || Math.abs(box.width / scale - 224) > 1) issues.push("Presentation QR must remain square and 224px");
-          const qr = link.getBoundingClientRect();
-          const github = slide.querySelector(".contact-links > a:last-child").getBoundingClientRect();
-          if (Math.abs(qr.left - github.left) > 1 || (qr.top - github.bottom) / scale < 23) issues.push("QR must align directly below GitHub with a 24px gap");
-          for (const selector of [".contact-links", ".qa-links", "#title-16", ".slide-footer"]) {
-            const other = slide.querySelector(selector).getBoundingClientRect();
-            if (qr.left < other.right && qr.right > other.left && qr.top < other.bottom && qr.bottom > other.top) issues.push(`QR overlaps ${selector}`);
-          }
-          const caption = document.documentElement.lang === "es" ? "Ver la presentación" : "View the presentation";
-          if (slide.querySelector(".qr-caption, .qr-url") || link.textContent.trim()) issues.push("QR must not have a visible caption or URL");
-          if (!link.getAttribute("aria-label").startsWith(caption) || !image.alt.startsWith(document.documentElement.lang === "es" ? "Código QR:" : "QR code:")) issues.push("QR accessible name and alternative must match the locale");
-        }
-        if (slide.id === "slide-7") {
+        if (slide.id === "slide-6") {
           const rubric = getComputedStyle(slide.querySelector(".rubric"));
           if (rubric.borderTopWidth !== "1px" || rubric.backgroundColor !== "rgb(21, 33, 35)") issues.push("V2 enclosed rubric must remain restored");
           const concepts = [...slide.querySelectorAll(".output-pile > span")];
@@ -560,20 +581,20 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
           for (const concept of concepts) {
             const style = getComputedStyle(concept);
             if (style.backgroundColor !== "rgb(34, 43, 45)" || style.borderTopWidth !== "1px") issues.push("V2 concept surfaces must remain restored");
-            if ((style.transform === "none") !== reading) issues.push("Concept rotation follows V2 desktop/Reading behavior");
+            if (style.transform === "none") issues.push("Concept rotation follows V2 desktop behavior");
           }
         }
-        if (slide.id === "slide-8") {
-          const textMode = reading || document.body.classList.contains("stage-mode");
+        if (slide.id === "slide-7") {
+          const textMode = document.body.classList.contains("stage-mode");
           if (slide.querySelector(".learning-loop svg").checkVisibility() === textMode) issues.push("V2 learning-loop diagram belongs in desktop review");
-          if (slide.querySelector("#loop-reading").checkVisibility() !== textMode) issues.push("Reading/Stage must retain the complete textual cycle");
-          if (slide.querySelectorAll(".loop-node").length !== 5 || slide.querySelectorAll("#loop-reading li").length !== 5) issues.push("All five learning-cycle stages must remain");
+          if (slide.querySelector("#loop-summary").checkVisibility() !== textMode) issues.push("Stage must retain the complete textual cycle");
+          if (slide.querySelectorAll(".loop-node").length !== 5 || slide.querySelectorAll("#loop-summary li").length !== 5) issues.push("All five learning-cycle stages must remain");
           if (slide.querySelector('button[data-action="loop"]')) issues.push("No cycle-progress button");
         }
-        if (slide.id === "slide-10") {
+        if (slide.id === "slide-9") {
           const ring = slide.querySelector("circle.ai-ring");
           if (!ring || slide.querySelector(".ai-ring-label").textContent !== (document.documentElement.lang === "es" ? "IA" : "AI")) issues.push("Shared circle must be labeled in the active language");
-          if (!reading && ring) {
+          if (ring) {
             const { cx, cy, r } = ring;
             const bounds = ring.getBoundingClientRect();
             if (Math.abs(bounds.width - bounds.height) > 1) issues.push("AI ring must render as a true circle");
@@ -597,25 +618,22 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
             const actual = [...slide.querySelectorAll(".network-node rect")].map(node => ["x", "y", "width", "height"].map(name => Number(node.getAttribute(name))));
             if (JSON.stringify(actual) !== JSON.stringify(expected) || slide.querySelector(".network svg").getAttribute("viewBox") !== "0 0 750 580") issues.push("Original V2 role geometry must remain");
           }
-          if (reading && !slide.querySelector(".ai-layer").checkVisibility()) issues.push("Reading must describe the shared AI layer");
         }
-        if (slide.id === "slide-4") {
+        if (slide.id === "slide-3") {
           const band = slide.querySelector(".alignment-band");
           const style = getComputedStyle(band);
           const stage = document.body.classList.contains("stage-mode");
-          if (style.writingMode !== (reading ? "horizontal-tb" : "vertical-rl")) issues.push("V2 alignment-band orientation");
-          if (!reading) {
-            if (style.right !== (stage ? "240px" : "190px") || style.top !== (stage ? "-30px" : "2px")) issues.push("V2 alignment-band anchoring");
-            const edge = band.getBoundingClientRect().right;
-            for (const output of slide.querySelectorAll(".branch-outputs span")) if (edge > output.getBoundingClientRect().left) issues.push("Alignment band overlaps pattern labels");
-          }
+          if (style.writingMode !== "vertical-rl") issues.push("V2 alignment-band orientation");
+          if (style.right !== (stage ? "240px" : "190px") || style.top !== (stage ? "-30px" : "2px")) issues.push("V2 alignment-band anchoring");
+          const edge = band.getBoundingClientRect().right;
+          for (const output of slide.querySelectorAll(".branch-outputs span")) if (edge > output.getBoundingClientRect().left) issues.push("Alignment band overlaps pattern labels");
         }
-        if (slide.id === "slide-14") {
+        if (slide.id === "slide-13") {
           const heading = slide.querySelector(".metrics-heading");
           const scale = slide.getBoundingClientRect().width / slide.offsetWidth;
           const contentGap = (slide.querySelector("#metric-dashboard").getBoundingClientRect().top - heading.getBoundingClientRect().bottom) / scale + parseFloat(getComputedStyle(heading).paddingBottom);
           if (contentGap < 61) issues.push("Metric content must have at least 62px separation below the heading content");
-          if (!reading && !document.body.classList.contains("stage-mode")) {
+          if (!document.body.classList.contains("stage-mode")) {
             const title = slide.querySelector("h2").getBoundingClientRect();
             for (const button of slide.querySelectorAll(".metrics-heading button")) {
               const box = button.getBoundingClientRect();
@@ -628,17 +646,17 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
             const items = [...list.children];
             if (items.length !== 3 || getComputedStyle(list).listStyleType !== "disc") issues.push("Expected three visible bullet items");
             const listBounds = list.getBoundingClientRect();
-            const scale = reading ? 1 : bounds.width / 1600;
+            const scale = bounds.width / 1600;
             items.forEach((item, index) => {
               const rect = item.getBoundingClientRect();
               if (getComputedStyle(item).display !== "list-item") issues.push("Missing native bullet marker");
               if (rect.left - listBounds.left < 20 * scale) issues.push("No space for bullet marker");
               if (index && rect.top < items[index - 1].getBoundingClientRect().bottom - 1) issues.push("Outputs not vertically stacked");
-              if (parseFloat(getComputedStyle(item).fontSize) < (reading ? 18 : 23)) issues.push("Output list text too small");
+              if (parseFloat(getComputedStyle(item).fontSize) < 23) issues.push("Output list text too small");
             });
           }
         }
-        if (!reading && slide.id === "slide-1") {
+        if (slide.id === "slide-1") {
           const textBounds = node => {
             const range = document.createRange();
             range.selectNodeContents([...node.childNodes].find(child => child.nodeType === Node.TEXT_NODE && child.textContent.trim()));
@@ -655,19 +673,16 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
         }
         for (const node of slide.querySelectorAll("*")) {
           if (node.closest(".sr-only, svg") || !node.checkVisibility()) continue;
-          if (reading && node.closest("thead")) continue;
           const rect = node.getBoundingClientRect();
           if (!rect.width || !rect.height) continue;
           if (rect.left < bounds.left - 1 || rect.right > bounds.right + 1) issues.push(`${node.className || node.tagName}: horizontal bounds`);
-          if (!reading && !node.closest(".slide-footer") && rect.bottom > footer.top - 4) issues.push(`${node.className || node.tagName}: footer overlap`);
+          if (!node.closest(".slide-footer") && rect.bottom > footer.top - 4 * bounds.width / 1600) issues.push(`${node.className || node.tagName}: footer overlap`);
           for (const child of node.childNodes) {
             if (child.nodeType !== Node.TEXT_NODE || !child.textContent.trim()) continue;
             const range = document.createRange();
             range.selectNodeContents(child);
             for (const text of range.getClientRects()) if (text.width && (text.right > rect.right + 1 || text.left < rect.left - 1)) issues.push(`${node.className || node.tagName}: text overflows`);
           }
-          if (reading && node.matches("button:not(:disabled), input, a") && rect.height < 44) issues.push(`${node.tagName}: target under 44px`);
-          if (reading && node.matches("p:not(.kicker), li, td, input") && parseFloat(getComputedStyle(node).fontSize) < 16) issues.push(`${node.className || node.tagName}: text under 16px`);
           if (node.matches(".prototype-form, .decision-evidence")) {
             const scene = node.closest(".prototype-scene").getBoundingClientRect();
             if (rect.top < scene.top - 1 || rect.bottom > scene.bottom + 1) issues.push("Demo exceeds content surface");
@@ -675,46 +690,51 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
           if (!getComputedStyle(node).fontFamily.includes("Inter")) issues.push(`${node.className || node.tagName}: not Inter`);
         }
         for (const text of slide.querySelectorAll(".network-node text, .loop-node text")) {
-          if (!text.checkVisibility() || reading) continue;
+          if (!text.checkVisibility()) continue;
           const frame = text.parentElement.querySelector("rect").getBBox();
           const box = text.getBBox();
           if (box.x < frame.x || box.x + box.width > frame.x + frame.width || box.y < frame.y || box.y + box.height > frame.y + frame.height) issues.push(`SVG overflow: ${text.textContent}`);
           if (!getComputedStyle(text).fontFamily.includes("Inter")) issues.push("SVG not Inter");
         }
-        if (document.querySelector("#presentation").scrollWidth > document.querySelector("#presentation").clientWidth + 1 && reading) issues.push("Reading horizontal overflow");
         if (document.documentElement.scrollWidth > innerWidth) issues.push("Page horizontal overflow");
         return [...new Set(issues)];
-      }, reading);
+      });
       if (issues.length) failures.push({ label, issues });
     };
     for (const locale of ["en", "es"]) {
-      for (const [mode, width, height] of [["review", 1680, 1080], ["review", 1000, 750], ["stage", 1280, 720], ["stage", 1680, 1080], ["reading", 900, 1000], ["reading", 390, 844], ["reading", 320, 800]]) {
+      for (const [mode, width, height] of [["review", 1680, 1080], ["review", 1000, 750], ["stage", 1280, 720], ["stage", 1680, 1080], ["review", 900, 1000], ["review", 390, 844], ["review", 320, 800], ["stage", 390, 844], ["review", 844, 390]]) {
         await page.setViewportSize({ width, height });
         await page.evaluate(({ locale, mode }) => {
           setStageMode(false);
-          readingPreference = mode === "reading";
-          setReadingView(readingPreference);
           setLanguage(locale);
           if (mode === "stage") setStageMode(true);
           setClosing(true);
         }, { locale, mode });
-        for (let number = 1; number <= 24; number++) {
+        await page.waitForFunction(() => {
+          const viewport = document.querySelector("#viewport");
+          const stage = document.querySelector("#stage").getBoundingClientRect();
+          return Math.abs(stage.width - 1600 * Math.min(viewport.clientWidth / 1600, viewport.clientHeight / 900)) < 1;
+        });
+        assert.equal(await page.locator("#reading-toggle, body.reading").count(), 0, "No manual or automatic Reading view at any viewport");
+        assert.equal(await page.locator("#stage").evaluate(node => getComputedStyle(node).width), "1600px", "Small viewports keep the scaled presentation canvas");
+        for (let number = 1; number <= 23; number++) {
           await go(number);
-          await checkLayout(mode === "reading", `${locale}/${mode}/${width}/slide-${number}`);
+          await checkLayout(`${locale}/${mode}/${width}/slide-${number}`);
           if (width === 1680) await capture(`${locale}-${mode}-${String(number).padStart(2, "0")}`);
+          if (width === 390 && [3, 5, 15].includes(number)) await capture(`${locale}-${mode}-390-${number}`);
         }
-        await go(6);
+        await go(5);
         for (let i = 0; i < 6; i++) {
           await click(`#pair-tab-${i}`);
           if (i === 3) {
             await page.locator("#workspace-name").fill("W".repeat(48));
             await click("#prototype-form button");
           }
-          await checkLayout(mode === "reading", `${locale}/${mode}/${width}/demo-${i}`);
+          await checkLayout(`${locale}/${mode}/${width}/demo-${i}`);
           if (width === 1680) await capture(`${locale}-${mode}-demo-${i}`);
         }
         if (mode === "stage") {
-          await go(6);
+          await go(5);
           assert(await page.locator("#pair-tabs button").first().isVisible(), "Tabs remain visible in Stage");
           const sizes = await page.locator("#pair-tabs button, .decision-evidence dd").evaluateAll(nodes => nodes.map(node => parseFloat(getComputedStyle(node).fontSize)));
           assert(sizes.every(size => size >= 23), "Primary demo text remains projection-sized");
@@ -728,21 +748,19 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
     assert.deepEqual(duplicateIds, []);
     assert.deepEqual(errors, []);
     if (process.env.SNAPSHOT_DIR) writeFileSync(path.join(process.env.SNAPSHOT_DIR, "layout-results.json"), JSON.stringify(failures, null, 2));
-    assert.deepEqual(failures, [], "Both locales: all review/Stage/Reading layouts and all demo states");
-    console.log("PASS: 24 bilingual slides; six-tab navigation, native forms, reverse/Stage restoration, origin links, notes, Reading, toolbar, offline Inter and layouts.");
+    assert.deepEqual(failures, [], "Both locales: all review/Stage layouts and all demo states");
+    console.log("PASS: 23 bilingual slides; six-tab navigation, native forms, reverse/Stage restoration, origin links, notes, toolbar, offline Inter and layouts.");
     if (process.argv.includes("--export-pdfs")) {
       await page.setViewportSize({ width: 1600, height: 900 });
       await page.evaluate(() => {
         setStageMode(false);
-        readingPreference = false;
-        setReadingView(false);
         setStageMode(true);
-        state.cause = 3;
+        state.cause = 1;
         setAligned(true);
         setPair(5, true);
         setClosing(true);
-        appendixOrigins[21] = 14;
-        appendixOrigins[24] = 12;
+        appendixOrigins[20] = 13;
+        appendixOrigins[23] = 11;
       });
       await go(1);
       await page.addStyleTag({ content: readFileSync(path.join(__dirname, "styles.css"), "utf8").replaceAll("@media screen {", "@media all {") });

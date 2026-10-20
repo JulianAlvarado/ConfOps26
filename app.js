@@ -1,6 +1,6 @@
 "use strict";
 
-const keynoteCount = 15;
+const keynoteCount = 14;
 let notes = [
   {
     "seconds": 45,
@@ -14,23 +14,15 @@ let notes = [
     "seconds": 45,
     "takeaway": "Distributed generation moves the bottleneck toward alignment, quality, and governance.",
     "visual": "Four parallel lanes: product, research, design, and engineering.",
-    "interaction": "Review: the four roles activate automatically on slide entry, with staggered output and bullet-color transitions. No generation control or slide auto-advance. Stage, Reading, and reduced-motion views show the complete static state.",
+    "interaction": "Review: the four roles activate automatically on slide entry, with staggered output and bullet-color transitions. No generation control or slide auto-advance. Stage and reduced-motion views show the complete static state.",
     "body": "Each discipline gains production capacity. PMs generate briefs and hypotheses; researchers synthesize evidence; designers explore concepts; engineers generate components and tests. Generation is more distributed, but expertise is not interchangeable. The same language model can interpret the product differently in each lane. These are categories of assistance, not guarantees that outputs are accurate. Ask the room to imagine all four lanes producing simultaneously. The new constraint is agreeing on what to produce, what fits the system, and who evaluates it.",
-    "transition": "Before we look at that variation, a brief introduction to the person sharing this perspective."
-  },
-  {
-    "seconds": 30,
-    "takeaway": "Introduce yourself and the perspective you bring to DesignOps and AI.",
-    "visual": "Neutral photo placeholders fill the left half; concise biography bullets fill the right. Supplied photos are pending.",
-    "interaction": "No builds or controls.",
-    "body": "Julian Alvarado is a Senior Program Manager and Design Operations leader at Microsoft, helping Xbox Design scale through better systems, clearer processes, and responsible AI. He works across teams and studios to improve how designers plan, learn, and deliver—building resilient, people-centered creative organizations. Outside work, Julian is a daily CrossFit devotee and a “forever blue belt” in jiu-jitsu. A retired musician, he still loves live shows and enjoys drawing at home. Currently in rotation: Radiohead, Lenny Kravitz, Oasis, and Crosses. This is a concise English version of the speaker's supplied biography, with his supplied personal interests. Keep the spoken introduction to 30 seconds by summarizing your role and its connection to this talk rather than reading the full biography aloud. The keynote remains 1,200 seconds, the demo remains 270 seconds, closing remains 90 seconds, and Q&A remains 600 seconds.",
-    "transition": "Now return to the shared challenge: without common conditions, more output can create more variation."
+    "transition": "Now consider how distributed output can create more variation."
   },
   {
     "seconds": 60,
     "takeaway": "Shared context and evaluation govern variation without eliminating useful exploration.",
     "visual": "A causal chain sits above diverging output branches; a shared standards band aligns their treatment.",
-    "interaction": "Review and Stage start with More output. Next traces More variation, More decisions, then More inconsistency; the next press applies shared standards, and one more advances to slide 5. Previous reverses alignment, then each chain stage before leaving slide 4. Forward/reverse keys follow the same sequence, with held-key repeats ignored. No dedicated trace or alignment controls. Revisits and language switches retain progress; Stage starts a fresh rehearsal and restores review's chain and alignment on exit.",
+    "interaction": "Review and Stage start with the patterns inactive. First Next activates all patterns and the full causal chain together. Second Next applies context and evaluation together. Third Next advances to slide 4. Previous removes alignment, then deactivates all patterns before leaving slide 3. Forward/reverse keys use the same two interaction steps, with held-key repeats ignored. No local controls. Revisits and language switches retain progress; Stage starts fresh and restores review on exit.",
     "body": "Read the chain deliberately: more output, more variation, more decisions, more opportunities for inconsistency. This is a conceptual mechanism, not a statistical forecast. Variation is useful during exploration; unmanaged variation becomes expensive at system boundaries. Examples include conflicting terminology, duplicated research, inaccessible patterns, undocumented AI decisions, and design-system drift. The source's '17 versions of a pattern' is rhetorical, not a measured statistic, so we do not chart it. Apply shared context and evaluation: options can remain different while obeying common constraints. A green state is an explanatory metaphor, not a claim that standards automatically eliminate defects.",
     "transition": "Three questions help us govern that variation. Then we will apply them to one workspace-setup example."
   },
@@ -62,7 +54,7 @@ let notes = [
     "seconds": 70,
     "takeaway": "Keep the decision and its reason in shared guidance, then check the next result.",
     "visual": "The complete learning cycle is visible without interaction, including the final check and return to shared guidance.",
-    "interaction": "No cycle-progress control. Read the full cycle in review, Reading, or Stage.",
+    "interaction": "No cycle-progress control. Read the full cycle in review or Stage.",
     "body": "Return to the decision to offer invitations after setup. Do not save only the corrected form: save why the team changed it and who will review that guidance. Follow the same sequence on screen: AI proposes a design using shared guidance; the team checks it against the user's need; they save the lesson, including the decision, reason, and owner; DesignOps updates the guidance available to the next team and its AI tools; a reviewer checks the next result. The example does not prove that one field is always best or that guidance automatically prevents mistakes. It is fictional and user validation is pending. If the solo-setup assumption changes, the product lead revisits the guidance. DesignOps keeps its source, version, access, and review date current. Retire lessons that no longer apply instead of turning every observation into universal policy.",
     "transition": "That maintenance is recognizable DesignOps work—with a wider scope."
   },
@@ -78,7 +70,7 @@ let notes = [
     "seconds": 50,
     "takeaway": "DesignOps connects distributed actors through shared rules, context, and evaluation.",
     "visual": "AI-assisted work is a single shared layer around distinct actors; DesignOps remains the connective operating layer, not the AI itself.",
-    "interaction": "The original hub-and-spoke geometry is preserved, with one shared AI circle passing behind opaque role cards. Connections illuminate once on slide entry, without a button or automatic slide advancement. Stage, Reading and reduced-motion views show the complete connected state. Reading retains the shared-AI layer and accessible text summary.",
+    "interaction": "The original hub-and-spoke geometry is preserved, with one shared AI circle passing behind opaque role cards. Connections illuminate once on slide entry, without a button or automatic slide advancement. Stage and reduced-motion views show the complete connected state. An accessible text summary describes the shared-AI layer.",
     "body": "The control plane metaphor distinguishes defining the conditions of work from doing everyone's work. PM, research, design, prototyping, and engineering keep their domain responsibilities. DesignOps coordinates reusable context, risk-based guardrails, evaluation criteria, ownership, and enablement. It should not become a central approval queue. Security, Legal, IT, platform teams, and domain experts remain essential partners. Clear boundaries can allow teams to move without repeatedly asking permission for known-safe tasks.",
     "transition": "Shared guidance also changes how work moves between these people."
   },
@@ -94,7 +86,7 @@ let notes = [
     "seconds": 105,
     "takeaway": "Pilot collaborative production and use any capacity gained for customer learning.",
     "visual": "One proposed after journey: shared purpose, synchronized collaborative work, AI-assisted production, and experiments with customer feedback.",
-    "interaction": "The existing green collaboration animation runs on entry without a replay control. Stage and reduced-motion views remain fully readable without animation. The 30-day pilot reference opens appendix 24; its return link brings you here. The pilot is outside keynote timing.",
+    "interaction": "The existing green collaboration animation runs on entry without a replay control. Stage and reduced-motion views remain fully readable without animation. The 30-day pilot reference opens appendix 23; its return link brings you here. The pilot is outside keynote timing.",
     "body": "The before journey is a deliberately simplified pattern, not a claim that all pre-AI teams worked sequentially. Research informs a brief, design produces mocks, engineering builds, and customers finally respond. The proposed alternative starts with Mission, Milestones, and Metrics—the source's MMM. PM, research, design, and engineering share intent; specification, concepts, feasibility, and HTML/CSS prototypes evolve together. Releases can become experiments that inform another iteration. AI may reduce production effort, but review, integration, and dependency costs still count. Do not promise a one-week release or universal acceleration. Measure elapsed production time, person-hours, waiting time, customer validation, and experimentation cadence. The animation contrasts sequencing, not numeric speed. A prototype is not a production release; user evidence remains necessary.",
     "transition": "Shared guidance can start with documentation the team already has."
   },
@@ -110,16 +102,16 @@ let notes = [
     "seconds": 100,
     "takeaway": "Evaluate the whole workflow: speed, review cost, quality, coherence, and customer outcomes.",
     "visual": "A shared comparison table has Baseline, Pilot and Change headings once; category groups separate workflow outcomes from leading/process signals.",
-    "interaction": "All 10 measures opens the full dialog. Definitions opens appendix 21 and returns here; entering definitions from Q&A returns to Q&A instead. Closing the dialog restores its opener.",
+    "interaction": "All 10 measures opens the full dialog. Definitions opens appendix 20 and returns here; entering definitions from Q&A returns to Q&A instead. Closing the dialog restores its opener.",
     "body": "These are approximate comparison values informed by the presenter's early experimentation, not exact measurements, benchmarks, or a forecast. The presenter supplied design production-rate ranges; the other nine comparisons remain unchanged from the earlier synthetic values, reported as close to informal observations. Underlying records, sample sizes, and methods have not been supplied, so do not claim validated results or causal ROI. Baseline to pilot: median brief-to-validated-concept time 9 to 6 days; design production rate ~3–4/wk to ~1–2/wk, accepted artifacts / in a team with 8w E2E Cycle. The change ≈−2/wk is a midpoint estimate: 1.5 minus 3.5, not an independently observed change. Weekly rate and the team's eight-week end-to-end cycle are different concepts; do not divide by eight or infer an eight-week total. Production rate decreases, so do not frame it as an improvement. Production effort is 18 to 11 hours per concept; review effort 4 to 6 hours; rework 35% to 24%; applicable system checks passed 78% to 90%; open accessibility/quality defects 6 to 4 per 10 screens; design-to-code divergence 28% to 18%; experiments 1 to 2 per week; approved-context reuse 25% to 70%. Review effort rises in this comparison: faster generation does not imply less review. Leading/process measures signal behavior and readiness; outcome measures test delivered workflow results. System compliance is a leading quality signal, not proof of user benefit. Both sets of approximate values and their changes appear together, without competing bar scales. Percentage measures use percentage-point changes, not relative percentages. Match work scope, staffing, artifact definition, and evaluation criteria; include sample sizes and dispersion before presenting a validated comparison. Track customer task success separately. No customer outcome data is supplied.",
-    "transition": "Return to the central question. The proposed workflow's pilot reference remains available in appendix 24."
+    "transition": "Return to the central question. The proposed workflow's pilot reference remains available in appendix 23."
   },
   {
     "seconds": 90,
     "takeaway": "AI doesn't eliminate the need for DesignOps. It makes DesignOps infrastructure.",
     "visual": "A quiet question, a deliberate answer reveal, and three concluding statements.",
-    "interaction": "Stage moment 3: pause, press Right to reveal DesignOps, then Right for Q&A. Left hides the answer before moving back. In review, Next or a forward navigation key reveals the answer first, then advances to Q&A. Reading view keeps its native scroll keys. There is no separate reveal button.",
-    "body": "Use 90 seconds for the closing; its former 30 seconds now introduce the speaker on slide 3. Slow down. Read the question and leave space: if AI becomes part of how we design products, who designs the system in which AI operates? Reveal DesignOps. This is not a territorial claim that one function owns all AI. It is an invitation for DesignOps to connect domain expertise, governance, knowledge, workflows, and evaluation. AI creates capacity. Systems create consistency. Stewardship creates trust. DesignOps connects all three. The future is not merely managing work around design; it is designing the infrastructure through which humans and AI create products together. The practical challenge is one workflow, a baseline, a maintained context package, named human checkpoints, and evidence that quality has not been traded for speed. End on the thesis and pause rather than adding more tools.",
+    "interaction": "Stage moment 3: pause, press Right to reveal DesignOps, then Right for Q&A. Left hides the answer before moving back. In review, Next or a forward navigation key reveals the answer first, then advances to Q&A. There is no separate reveal button.",
+    "body": "Use 90 seconds for the closing. Slow down. Read the question and leave space: if AI becomes part of how we design products, who designs the system in which AI operates? Reveal DesignOps. This is not a territorial claim that one function owns all AI. It is an invitation for DesignOps to connect domain expertise, governance, knowledge, workflows, and evaluation. AI creates capacity. Systems create consistency. Stewardship creates trust. DesignOps connects all three. The future is not merely managing work around design; it is designing the infrastructure through which humans and AI create products together. The practical challenge is one workflow, a baseline, a maintained context package, named human checkpoints, and evidence that quality has not been traded for speed. End on the thesis and pause rather than adding more tools.",
     "transition": "Let's talk. Where is your team generating faster than it can maintain coherence?"
   },
   {
@@ -190,7 +182,7 @@ let notes = [
     "seconds": 0,
     "takeaway": "A 30-day pilot can begin at team, product-area, or enterprise level with clear ownership.",
     "visual": "Four verbs on a timeline, one concrete output per week, and an explicit adopt / revise / stop decision.",
-    "interaction": "The return link goes back to shared production (slide 12), or Q&A when opened from that menu. Direct entry defaults to shared production.",
+    "interaction": "The return link goes back to shared production (slide 11), or Q&A when opened from that menu. Direct entry defaults to shared production.",
     "body": "Days 1–7: map actual AI use and identify inconsistency, quality gaps, and risk. Days 8–14: select one useful, bounded workflow and package relevant organizational knowledge. Days 15–21: name decision owners, define human checkpoints and evaluation criteria, and establish a baseline before the pilot. Days 22–30: run comparable work and decide whether to adopt, revise, or stop. Avoid sensitive or high-risk first pilots unless the appropriate governance is already in place. At team level, design and engineering leads can own a single workflow with DesignOps facilitation. At product-area level, PM, research, design, engineering, and a system owner coordinate shared patterns and cross-team outcomes. At enterprise level, federated product ownership works within Security, Legal, IT, and platform guardrails. DesignOps connects the altitudes; it does not unilaterally own policy or product decisions. Calendar windows are a suggested starting plan, not promised delivery dates.",
     "transition": "Return to the central question: if AI participates in design, who designs its operating environment?"
   }
@@ -265,10 +257,8 @@ const slides = [...document.querySelectorAll(".slide")];
 const $ = (selector) => document.querySelector(selector);
 const englishData = { notes, lifecycle, metrics, pairLabels, pairEvidence };
 const state = { index: 0, cause: 0, stack: 0, pair: 0, life: 0, formResult: "idle", formName: "", fullscreen: "" };
-const appendixOrigins = { 21: 14, 24: 12 };
+const appendixOrigins = { 20: 13, 23: 11 };
 const pairTabLabels = ["User need", "AI mistake", "Team decision", "Working form", "Saved lesson", "Next review"];
-const smallScreen = matchMedia("(max-width: 900px), (max-height: 560px)");
-let readingPreference;
 let stageReview;
 
 function setLanguage(nextLanguage) {
@@ -302,25 +292,11 @@ function clock(seconds) {
 }
 
 function fitStage() {
-  if (document.body.classList.contains("reading")) {
-    $("#stage").style.transform = "none";
-    $("#stage").style.left = "0";
-    $("#stage").style.top = "0";
-    return;
-  }
   const viewport = $("#viewport");
   const scale = Math.min(viewport.clientWidth / 1600, viewport.clientHeight / 900);
   $("#stage").style.transform = `scale(${scale})`;
   $("#stage").style.left = `${(viewport.clientWidth - 1600 * scale) / 2}px`;
   $("#stage").style.top = `${(viewport.clientHeight - 900 * scale) / 2}px`;
-}
-
-function setReadingView(reading) {
-  const active = reading && !stageReview;
-  document.body.classList.toggle("reading", active);
-  $("#reading-toggle").setAttribute("aria-pressed", String(active));
-  $("#presentation").scrollTop = 0;
-  fitStage();
 }
 
 function markCurrent(selector, index) {
@@ -346,7 +322,7 @@ function renderStack() {
 function updateNotes() {
   const note = notes[state.index];
   const elapsed = notes.slice(0, Math.min(state.index, keynoteCount)).reduce((sum, item) => sum + item.seconds, 0);
-  const timing = state.index < keynoteCount ? t`${clock(elapsed)}–${clock(elapsed + note.seconds)} · ${note.seconds} seconds` : state.index === keynoteCount ? t("10-minute Q&A · outside the 20-minute keynote") : t("Optional backup · outside keynote timing");
+  const timing = state.index < keynoteCount ? t`${clock(elapsed)}–${clock(elapsed + note.seconds)} · ${note.seconds} seconds` : state.index === keynoteCount ? t("10-minute Q&A · outside the 19:30 keynote") : t("Optional backup · outside keynote timing");
   const content = $("#notes-content");
   content.replaceChildren();
   const add = (tag, text, className) => {
@@ -372,7 +348,7 @@ function renderSlide(index) {
   const focusWasInSlide = oldSlide.contains(document.activeElement);
   const destination = index + 1;
   const origin = state.index + 1;
-  if ((destination === 21 && [14, 16].includes(origin)) || (destination === 24 && [12, 16].includes(origin))) {
+  if ((destination === 20 && [13, 15].includes(origin)) || (destination === 23 && [11, 15].includes(origin))) {
     appendixOrigins[destination] = origin;
   }
   state.index = Math.max(0, Math.min(slides.length - 1, index));
@@ -405,11 +381,11 @@ function renderSlide(index) {
 }
 
 function renderReturnLinks() {
-  for (const [slide, selector] of [[21, "#definitions-return"], [24, "#pilot-return"]]) {
+  for (const [slide, selector] of [[20, "#definitions-return"], [23, "#pilot-return"]]) {
     const origin = appendixOrigins[slide];
     const link = $(selector);
     link.href = `#${origin}`;
-    link.textContent = `↖ ${origin === 16 ? t("Back to Q&A") : origin === 14 ? t("Back to dashboard") : t("Back to shared production")}`;
+    link.textContent = `↖ ${origin === 15 ? t("Back to Q&A") : origin === 13 ? t("Back to dashboard") : t("Back to shared production")}`;
   }
 }
 
@@ -476,7 +452,7 @@ function setStageMode(active) {
   $("#stage-exit").textContent = t("Exit stage · Esc");
   document.querySelectorAll("[data-life]").forEach(button => { button.disabled = active; });
   renderStack();
-  setReadingView(readingPreference ?? smallScreen.matches);
+  fitStage();
   (active ? $("#presentation") : $("#stage-toggle")).focus({ preventScroll: true });
   $("#announcement").textContent = active ? $("#stage-help").textContent : t("Review restored. Notes remain closed.");
 }
@@ -494,25 +470,24 @@ function setAligned(aligned) {
 
 function updateNext() {
   const next = $("#next");
-  const closing = state.index === 14;
+  const closing = state.index === 13;
   const revealed = !$("#closing-reveal").hidden;
-  const demoBuild = state.index === 5 && state.pair < 5;
-  const paradox = state.index === 3;
+  const demoBuild = state.index === 4 && state.pair < 5;
+  const paradox = state.index === 2;
   const aligned = $("#fragmentation").classList.contains("aligned");
-  const chain = [...document.querySelectorAll("#causal-chain li")];
   const paradoxBuild = paradox && !aligned;
-  const label = paradoxBuild ? (state.cause < chain.length - 1 ? t`Next chain stage: ${chain[state.cause + 1].textContent}` : t("Apply shared standards")) : demoBuild ? t("Next example state") : closing ? (revealed ? t("Next slide: Q&A") : t("Reveal the answer")) : t("Next slide");
+  const label = paradoxBuild ? (state.cause ? t("Apply shared standards") : t("Activate all patterns")) : demoBuild ? t("Next example state") : closing ? (revealed ? t("Next slide: Q&A") : t("Reveal the answer")) : t("Next slide");
   next.setAttribute("aria-label", label);
   next.title = label;
   next.classList.toggle("build-action", paradoxBuild || demoBuild || (closing && !revealed));
-  $("#previous").setAttribute("aria-label", paradox && aligned ? t("Remove shared standards") : paradox && state.cause > 0 ? t`Previous chain stage: ${chain[state.cause - 1].textContent}` : state.index === 5 && state.pair > 0 ? t("Previous example state") : closing && revealed ? t("Hide the answer") : t("Previous slide"));
+  $("#previous").setAttribute("aria-label", paradox && aligned ? t("Remove shared standards") : paradox && state.cause ? t("Deactivate all patterns") : state.index === 4 && state.pair > 0 ? t("Previous example state") : closing && revealed ? t("Hide the answer") : t("Previous slide"));
   if (closing) {
     next.setAttribute("aria-controls", "closing-reveal");
     next.setAttribute("aria-expanded", String(revealed));
   } else if (paradox) {
     next.setAttribute("aria-controls", "causal-chain fragmentation");
     next.removeAttribute("aria-expanded");
-  } else if (state.index === 5) {
+  } else if (state.index === 4) {
     next.setAttribute("aria-controls", "pair-panel");
     next.removeAttribute("aria-expanded");
   } else {
@@ -524,34 +499,34 @@ function updateNext() {
 function setClosing(revealed) {
   $("#closing-reveal").hidden = !revealed;
   updateNext();
-  if (state.index === 14) $("#announcement").textContent = revealed ? t("DesignOps. AI doesn't eliminate the need for DesignOps. It makes DesignOps infrastructure.") : t("Who designs the system in which AI operates?");
+  if (state.index === 13) $("#announcement").textContent = revealed ? t("DesignOps. AI doesn't eliminate the need for DesignOps. It makes DesignOps infrastructure.") : t("Who designs the system in which AI operates?");
 }
 
 function advanceReview(direction = 1) {
-  if (state.index === 3) {
+  if (state.index === 2) {
     const aligned = $("#fragmentation").classList.contains("aligned");
     if (direction < 0 && aligned) {
       setAligned(false);
       return;
     }
     if (direction > 0 && !aligned) {
-      if (state.cause < $("#causal-chain").children.length - 1) {
-        state.cause++;
+      if (!state.cause) {
+        state.cause = 1;
         renderCause();
       } else setAligned(true);
       return;
     }
     if (direction < 0 && state.cause > 0) {
-      state.cause--;
+      state.cause = 0;
       renderCause();
       return;
     }
   }
-  if (state.index === 5 && (direction > 0 ? state.pair < 5 : state.pair > 0)) {
+  if (state.index === 4 && (direction > 0 ? state.pair < 5 : state.pair > 0)) {
     setPair(state.pair + direction);
     return;
   }
-  if (state.index === 14 && $("#closing-reveal").hidden === (direction > 0)) {
+  if (state.index === 13 && $("#closing-reveal").hidden === (direction > 0)) {
     setClosing(direction > 0);
     return;
   }
@@ -725,13 +700,13 @@ function renderPair() {
 
 function renderCause() {
   const steps = [...document.querySelectorAll("#causal-chain li")];
-  const complete = state.cause === steps.length - 1;
-  steps.forEach((item, i) => item.classList.toggle("current", i <= state.cause));
+  const active = Boolean(state.cause);
+  steps.forEach(item => item.classList.toggle("current", active));
   for (const selector of [".branch-lines path", ".branch-outputs span"]) {
-    document.querySelectorAll(selector).forEach((item, i) => item.classList.toggle("lit", complete || i <= state.cause));
+    document.querySelectorAll(selector).forEach(item => item.classList.toggle("lit", active));
   }
-  markCurrent("#causal-chain li", state.cause);
-  $("#cause-status").textContent = $("#fragmentation").classList.contains("aligned") ? t("Shared standards applied. The chain is complete.") : t`Stage ${state.cause + 1} of ${steps.length}: ${steps[state.cause].textContent}.`;
+  markCurrent("#causal-chain li", active ? steps.length - 1 : -1);
+  $("#cause-status").textContent = $("#fragmentation").classList.contains("aligned") ? t("Shared standards applied. The chain is complete.") : active ? t("All patterns activated. Context and evaluation pending.") : t("Patterns ready to activate.");
   updateNext();
 }
 
@@ -817,13 +792,6 @@ $("#notes-close").addEventListener("click", () => toggleNotes(false));
 $("#fullscreen").addEventListener("click", fullscreen);
 $("#stage-toggle").addEventListener("click", () => setStageMode(true));
 $("#stage-exit").addEventListener("click", exitStage);
-$("#reading-toggle").addEventListener("click", () => {
-  readingPreference = !document.body.classList.contains("reading");
-  setReadingView(readingPreference);
-});
-smallScreen.addEventListener("change", () => {
-  if (readingPreference === undefined) setReadingView(smallScreen.matches);
-});
 $("#metrics-open").addEventListener("click", () => $("#metrics-detail").showModal());
 $("#metrics-close").addEventListener("click", () => $("#metrics-detail").close());
 $("#overview-toggle").addEventListener("click", () => $("#overview").showModal());
@@ -876,7 +844,6 @@ document.addEventListener("keydown", (event) => {
     }
     return;
   }
-  if (document.body.classList.contains("reading") && ["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "].includes(event.key)) return;
   if (event.code === "Space" && event.target.closest("button, a")) return;
   switch (event.key) {
     case "ArrowRight": case "ArrowDown": case "PageDown": case " ":
@@ -918,9 +885,9 @@ selectLife(0);
 buildMetrics();
 function renderLoopLabels() {
   document.querySelectorAll(".loop-node").forEach((node, index) => {
-    const item = $("#loop-reading").children[index] || document.createElement("li");
+    const item = $("#loop-summary").children[index] || document.createElement("li");
     item.textContent = [...node.querySelectorAll("text")].map((text) => text.textContent).join(" — ");
-    if (!item.parentElement) $("#loop-reading").append(item);
+    if (!item.parentElement) $("#loop-summary").append(item);
   });
 }
 
@@ -936,6 +903,5 @@ renderDefinitions();
 renderCause();
 renderStack();
 setPair(0, true);
-setReadingView(smallScreen.matches);
 renderSlide(readHash());
-fitStage();
+setLanguage("es");
