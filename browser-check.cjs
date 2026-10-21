@@ -95,7 +95,7 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
     }
     const roleOutputs = {
       en: [["Brief", "Requirements", "Hypotheses"], ["Synthesis", "Insights", "Questions"], ["Concepts", "Prototypes", "Patterns"], ["Components", "Code", "Tests"]],
-      es: [["Encargo", "Requisitos", "Hipótesis"], ["Síntesis", "Hallazgos", "Preguntas"], ["Conceptos", "Prototipos", "Patrones"], ["Componentes", "Código", "Pruebas"]]
+      es: [["Requerimientos", "Requisitos", "Hipótesis"], ["Síntesis", "Hallazgos", "Preguntas"], ["Conceptos", "Prototipos", "Patrones"], ["Componentes", "Código", "Pruebas"]]
     };
     await go(2);
     for (const locale of ["es", "en"]) {
@@ -501,7 +501,7 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
       await go(11);
       assert.equal(await page.locator("#journeys").evaluate(node => node.getAnimations({ subtree: true }).length), 5);
       await page.evaluate(() => setStageMode(true));
-      assert.equal(await page.locator("#journeys").evaluate(node => node.getAnimations({ subtree: true }).length), 0);
+      assert.equal(await page.locator("#journeys").evaluate(node => node.getAnimations({ subtree: true }).length), 5);
       await page.evaluate(() => setStageMode(false));
     }
     await page.emulateMedia({ reducedMotion: "reduce" });
@@ -531,7 +531,7 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
       await page.evaluate(() => setLanguage(language === "en" ? "es" : "en"));
       assert(await page.locator("#journeys-after .workflow-track span").evaluateAll(nodes => nodes.every(node => getComputedStyle(node).backgroundColor === "rgb(40, 56, 31)")), "Language switching preserves completed green animation");
       await page.evaluate(() => setStageMode(true));
-      assert(await page.locator("#journeys-after .workflow-track span").evaluateAll(nodes => nodes.every(node => getComputedStyle(node).animationName === "none")), "Stage stays static");
+      assert(await page.locator("#journeys-after .workflow-track span").evaluateAll(nodes => nodes.every(node => getComputedStyle(node).animationName === "teamwork")), "Stage plays the collaboration sequence");
       await page.evaluate(() => setStageMode(false));
     }
     await page.emulateMedia({ reducedMotion: "no-preference" });
@@ -641,6 +641,57 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
       await fullscreenFits(false);
       assert.equal(await fullscreenPage.locator("body.stage-mode").count(), 0);
       assert.equal(await fullscreenPage.evaluate(() => state.pair), 5, "Fullscreen Stage exit restores Review's demo state");
+      await fullscreenPage.emulateMedia({ reducedMotion: "no-preference" });
+      const journeyAnimations = () => fullscreenPage.locator(".slide.active .journeys").evaluate(node =>
+        node.getAnimations({ subtree: true }).map(animation => ({
+          name: animation.animationName, time: animation.currentTime, state: animation.playState
+        })));
+      for (const locale of ["en", "es"]) for (const stage of [false, true]) {
+        for (const number of [11, 12]) {
+          await fullscreenPage.evaluate(({ locale, stage, number }) => {
+            setLanguage(locale); setStageMode(stage); navigate(number - 1);
+          }, { locale, stage, number });
+          await fullscreenPage.waitForFunction(number => state.index === number - 1, number);
+          await fullscreenPage.locator(".slide.active .journeys").evaluate(node =>
+            Promise.all(node.getAnimations({ subtree: true }).map(animation => animation.finished)));
+          await fullscreenPage.locator("#presentation").focus();
+          await fullscreenPage.keyboard.press("f");
+          await fullscreenFits(true);
+          await fullscreenPage.waitForFunction(() => {
+            const animations = document.querySelector(".slide.active .journeys").getAnimations({ subtree: true });
+            return animations.length > 0 && animations.every(animation => animation.playState === "running" && animation.currentTime < 1500);
+          });
+          let animations = await journeyAnimations();
+          assert.equal(animations.length, number === 11 ? 5 : 3);
+          assert(animations.every(animation => animation.state === "running" && animation.time < 1500), "Entering actual fullscreen restarts completed journey animations");
+          await fullscreenPage.evaluate(() => navigate(9));
+          await fullscreenPage.waitForFunction(() => state.index === 9);
+          await fullscreenPage.evaluate(number => navigate(number - 1), number);
+          await fullscreenPage.waitForFunction(number => state.index === number - 1, number);
+          animations = await journeyAnimations();
+          assert(animations.every(animation => animation.state === "running"), "Navigating into journeys in native fullscreen starts animation");
+          await fullscreenPage.locator(".slide.active .journeys").evaluate(node =>
+            Promise.all(node.getAnimations({ subtree: true }).map(animation => animation.finished)));
+          assert.equal(await fullscreenPage.evaluate(() => state.index + 1), number, "Animations never change slides");
+          const color = number === 11 ? "rgb(52, 42, 38)" : "rgb(40, 56, 31)";
+          assert(await fullscreenPage.locator(".slide.active .workflow-track span").evaluateAll((nodes, color) => nodes.every(node => getComputedStyle(node).backgroundColor === color), color));
+          await fullscreenPage.keyboard.press("f");
+          await fullscreenFits(false);
+        }
+      }
+      await fullscreenPage.emulateMedia({ reducedMotion: "reduce" });
+      for (const number of [11, 12]) {
+        await fullscreenPage.evaluate(number => { setStageMode(true); navigate(number - 1); }, number);
+        await fullscreenPage.waitForFunction(number => state.index === number - 1, number);
+        await fullscreenPage.locator("#presentation").focus();
+        await fullscreenPage.keyboard.press("f");
+        await fullscreenFits(true);
+        assert.equal((await journeyAnimations()).length, 0, "Reduced motion remains static in native fullscreen");
+        await fullscreenPage.keyboard.press("f");
+        await fullscreenFits(false);
+      }
+      await fullscreenPage.emulateMedia({ media: "print", reducedMotion: "no-preference" });
+      assert(await fullscreenPage.locator(".journeys .workflow-track span").evaluateAll(nodes => nodes.every(node => node.getAnimations().length === 0)), "Printed journeys are static without relying on a reduced-motion preference");
     } finally {
       await fullscreenPage.close();
     }
@@ -775,6 +826,7 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
           if (band.top < tracks.bottom || Math.abs(band.width - flow.width) > 1) issues.push("Metrics must span and evaluate the whole flow");
         }
         if (language === "es" && /\balta\b/i.test(slide.outerHTML + document.querySelector("#notes-content").textContent)) issues.push("Spanish setup terminology regressed");
+        if (language === "es" && /\b(?:encargo|maquetas)\b/i.test(slide.outerHTML + document.querySelector("#notes-content").textContent)) issues.push("Spanish requirements/prototypes terminology regressed");
         if (slide.id === "slide-6") {
           const title = slide.querySelector("h2");
           if (language === "es" && (title.innerHTML !== "Ejemplo: <em>Conserva lo aprendido.</em> (Evals en pequeña escala)" || getComputedStyle(title).color !== "rgb(241, 240, 232)" || getComputedStyle(title.querySelector("em")).color !== "rgb(118, 227, 227)")) issues.push("Demo parenthetical must remain white and only the lesson cyan");

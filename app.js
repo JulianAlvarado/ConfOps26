@@ -87,7 +87,7 @@ let notes = [
     "seconds": 90,
     "takeaway": "Sequential handoffs can delay feedback even when each discipline does good work.",
     "visual": "One before journey: research → brief → mocks → build → release, between customer need and feedback.",
-    "interaction": "The sequential handoff animation runs once on slide entry, with no replay control or slide auto-advance. Stage and reduced-motion views remain fully visible and static; animation is not a measured duration.",
+    "interaction": "The sequential handoff animation runs once on slide entry, with no replay control or slide auto-advance. Review and Stage animate on entry, including native fullscreen; entering Stage or fullscreen replays the visible journey. Reduced motion and print show the final static state; animation is not a measured duration.",
     "body": "This before journey is a deliberately simplified explanatory pattern, not a claim that all pre-AI teams worked sequentially. Research informs a brief, design produces mocks, engineering builds, and customers respond. Each discipline can do excellent work while waiting and late feedback limit learning. Use the 90 seconds to distinguish production time from waiting time and to ask where a decision becomes shared. The next slide proposes synchronized work, not a universal history or a measured improvement. Together the two journey slides use 195 seconds: the original 60 seconds plus the 135 seconds moved out of the keynote with the pilot appendix.",
     "transition": "What changes when shared purpose connects production and learning?"
   },
@@ -95,7 +95,7 @@ let notes = [
     "seconds": 105,
     "takeaway": "Pilot collaborative production and use any capacity gained for customer learning.",
     "visual": "One proposed after journey: shared purpose, synchronized collaborative work, AI-assisted production, and experiments with customer feedback.",
-    "interaction": "The existing green collaboration animation runs on entry without a replay control. Stage and reduced-motion views remain fully readable without animation. The 30-day pilot reference opens appendix 26; its return link brings you here. The pilot is outside keynote timing.",
+    "interaction": "The existing green collaboration animation runs on entry without a replay control. Review and Stage animate on entry, including native fullscreen; entering Stage or fullscreen replays the visible journey. Reduced motion and print show the final static state. The 30-day pilot reference opens appendix 26; its return link brings you here. The pilot is outside keynote timing.",
     "body": "The before journey is a deliberately simplified pattern, not a claim that all pre-AI teams worked sequentially. Research informs a brief, design produces mocks, engineering builds, and customers finally respond. The proposed alternative starts with Mission, Milestones, and Metrics—the source's MMM. PM, research, design, and engineering share intent; specification, concepts, feasibility, and HTML/CSS prototypes evolve together. Releases can become experiments that inform another iteration. AI may reduce production effort, but review, integration, and dependency costs still count. Do not promise a one-week release or universal acceleration. Measure elapsed production time, person-hours, waiting time, customer validation, and experimentation cadence. The animation contrasts sequencing, not numeric speed. A prototype is not a production release; user evidence remains necessary.",
     "transition": "Shared guidance can start with documentation the team already has."
   },
@@ -472,6 +472,7 @@ function setStageMode(active) {
     renderFormResult();
   }
   document.body.classList.toggle("stage-mode", active);
+  if (active) replayJourney();
   $("#stage-toggle").setAttribute("aria-pressed", String(active));
   $("#stage-exit").hidden = !active;
   $("#stage-exit").textContent = t("Exit stage · Esc");
@@ -560,6 +561,15 @@ function advanceReview(direction = 1) {
     return;
   }
   navigate(state.index + direction);
+}
+
+function replayJourney() {
+  for (const item of slides[state.index].querySelectorAll(".journeys.running .workflow-track span")) {
+    for (const animation of item.getAnimations()) {
+      animation.currentTime = 0;
+      animation.play();
+    }
+  }
 }
 
 async function fullscreen() {
@@ -893,6 +903,7 @@ document.addEventListener("keydown", (event) => {
 document.addEventListener("fullscreenchange", () => {
   const active = Boolean(document.fullscreenElement);
   state.fullscreen = "";
+  if (active) replayJourney();
   if (!active && stageReview) setStageMode(false);
   renderFullscreen();
 });

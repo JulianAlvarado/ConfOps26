@@ -474,7 +474,6 @@ dialog::backdrop { background: #05090dea; }
   .stage-mode #loop-summary li::marker { color: var(--cyan); }
   .stage-mode .journeys { margin-top: 28px; gap: 20px; }
   .stage-mode .journey { padding: 18px 24px; }
-  .stage-mode .journeys.running .workflow-track span { animation: none; }
   .stage-mode .sequential .workflow-track span { border-color: var(--coral); }
   .stage-mode .collaborative .workflow-track span { border-color: var(--lime); }
   .stage-mode .workflow-track { margin: 15px 0; }
@@ -507,8 +506,8 @@ dialog::backdrop { background: #05090dea; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
-  .journeys.running .sequential .workflow-track span { border-color: var(--coral); }
-  .journeys.running .collaborative .workflow-track span { border-color: var(--lime); }
+  .journeys.running .sequential .workflow-track span { border-color: var(--coral); background: #342a26; }
+  .journeys.running .collaborative .workflow-track span { border-color: var(--lime); background: #28381f; }
 }
 @media print {
   @page { size: 16in 9in; margin: 0; }
@@ -523,6 +522,9 @@ dialog::backdrop { background: #05090dea; }
   #closing-reveal[hidden] { display: flex !important; }
   .role-output li, .stack-layer h3 { color: var(--text); }
   .network.connected .network-links { animation: none; }
+  .journeys.running .workflow-track span { animation: none !important; }
+  .journeys.running .sequential .workflow-track span { border-color: var(--coral); background: #342a26; }
+  .journeys.running .collaborative .workflow-track span { border-color: var(--lime); background: #28381f; }
 }
 
 /* V3: shared regions, structural cyan, and coral action changes. */

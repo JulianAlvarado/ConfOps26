@@ -198,7 +198,7 @@ The reference on 12 opens pilot 26 and returns to its origin. Definitions from 1
 
 **Visual concept:** One before journey: research → brief → mocks → build → release, between customer need and feedback.
 
-**Interaction:** The sequential handoff animation runs once on slide entry, with no replay control or slide auto-advance. Stage and reduced-motion views remain fully visible and static; animation is not a measured duration.
+**Interaction:** The sequential handoff animation runs once on slide entry, with no replay control or slide auto-advance. Review and Stage animate on entry, including native fullscreen; entering Stage or fullscreen replays the visible journey. Reduced motion and print show the final static state; animation is not a measured duration.
 
 **Speaker notes:** This before journey is a deliberately simplified explanatory pattern, not a claim that all pre-AI teams worked sequentially. Research informs a brief, design produces mocks, engineering builds, and customers respond. Each discipline can do excellent work while waiting and late feedback limit learning. Use the 90 seconds to distinguish production time from waiting time and to ask where a decision becomes shared. The next slide proposes synchronized work, not a universal history or a measured improvement. Together the two journey slides use 195 seconds: the original 60 seconds plus the 135 seconds moved out of the keynote with the pilot appendix.
 
@@ -214,7 +214,7 @@ The reference on 12 opens pilot 26 and returns to its origin. Definitions from 1
 
 **Visual concept:** One proposed after journey: shared purpose, synchronized collaborative work, AI-assisted production, and experiments with customer feedback.
 
-**Interaction:** The existing green collaboration animation runs on entry without a replay control. Stage and reduced-motion views remain fully readable without animation. The 30-day pilot reference opens appendix 26; its return link brings you here. The pilot is outside keynote timing.
+**Interaction:** The existing green collaboration animation runs on entry without a replay control. Review and Stage animate on entry, including native fullscreen; entering Stage or fullscreen replays the visible journey. Reduced motion and print show the final static state. The 30-day pilot reference opens appendix 26; its return link brings you here. The pilot is outside keynote timing.
 
 **Speaker notes:** The before journey is a deliberately simplified pattern, not a claim that all pre-AI teams worked sequentially. Research informs a brief, design produces mocks, engineering builds, and customers finally respond. The proposed alternative starts with Mission, Milestones, and Metrics—the source's MMM. PM, research, design, and engineering share intent; specification, concepts, feasibility, and HTML/CSS prototypes evolve together. Releases can become experiments that inform another iteration. AI may reduce production effort, but review, integration, and dependency costs still count. Do not promise a one-week release or universal acceleration. Measure elapsed production time, person-hours, waiting time, customer validation, and experimentation cadence. The animation contrasts sequencing, not numeric speed. A prototype is not a production release; user evidence remains necessary.
 
