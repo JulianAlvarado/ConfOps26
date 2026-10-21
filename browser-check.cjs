@@ -622,6 +622,12 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
         const bounds = slide.getBoundingClientRect();
         const footer = slide.querySelector(".slide-footer").getBoundingClientRect();
         const issues = [];
+        if (slide.id === "slide-16") {
+          const left = slide.querySelector(".eyebrow").getBoundingClientRect().left;
+          for (const node of slide.querySelectorAll(".qa-layout, .kicker, h2, .contact-links")) {
+            if (Math.abs(node.getBoundingClientRect().left - left) > 1 || getComputedStyle(node).textAlign !== "start") issues.push("Hablemos content must align to the standard left margin");
+          }
+        }
         if (slide.id === "slide-13") {
           const summary = slide.querySelector(".context-destination");
           const expected = language === "es" ? "Contexto avanzado para sprint de producción" : "Advanced context for a production sprint";

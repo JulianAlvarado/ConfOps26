@@ -306,7 +306,7 @@ main { flex: 1; min-height: 0; display: flex; align-items: center; justify-conte
 .closing-thesis strong { color: var(--text); }
 .closing-triad { display: flex; justify-content: space-between; position: absolute; bottom: 157px; left: 76px; right: 76px; border-top: 1px solid var(--line); padding-top: 30px; font-size: 25px; color: var(--muted); }
 .closing-triad strong { color: var(--text); }
-.qa-layout { max-width: 1040px; margin: 90px auto 0; }
+.qa-layout { max-width: 1040px; margin: 90px 0 0; }
 .qa h2 { font-size: 145px; letter-spacing: -6px; line-height: .95; }
 .qa-links { max-width: 1180px; margin-top: 28px; }
 .qa-links a { display: flex; align-items: center; gap: 22px; padding: 17px 0; border-bottom: 1px solid var(--line); color: var(--cyan); font: 17px var(--mono); }
