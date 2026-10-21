@@ -215,7 +215,7 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
             assert.equal(await page.evaluate(() => state.formResult), "success");
             await page.evaluate(locale => setLanguage(locale), locale);
           }
-          if (i === 4) assert.match(await page.locator("#evidence-verdict").innerText(), locale === "es" ? /validación con usuarios pendiente/ : /user validation pending/);
+          if (i === 4) assert.equal(await page.locator("#evidence-verdict").innerText(), locale === "es" ? "Design Ops gestiona la guía operacional (Evals)" : "Saved by DesignOps · user validation pending.");
           if (i === 5) assert.match(await page.locator("#evidence-verdict").innerText(), locale === "es" ? /revisión continúa/ : /review is not over/);
         }
         if (stage) {
@@ -332,7 +332,9 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
       }
     }
     await page.evaluate(() => { setStageMode(false); setLanguage("es"); });
-    assert.equal((await page.locator("#title-5").textContent()).trim(), "Ejemplo: Corrige el formulario. Conserva lo aprendido.");
+    assert.equal(await page.locator("#title-5").innerHTML(), "Ejemplo: <em>Conserva lo aprendido. (Evals en pequeña escala)</em>");
+    assert.equal(await page.locator("#slide-5").getAttribute("data-title"), "Conserva lo aprendido. (Evals en pequeña escala)");
+    assert((await page.locator('#slide-index a[href="#5"]').textContent()).includes("Conserva lo aprendido. (Evals en pequeña escala)"));
     assert.equal(await page.locator("#title-7").textContent(), "No te enfoquesen el output,Aceleras el aprendizaje.");
     assert.equal(await page.locator("#title-8").textContent(), "Las mismas bases,un alcance actualizado.");
     assert.equal(await page.locator("#title-6 em").textContent(), "Una decisión informada");
@@ -561,6 +563,16 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
         const footer = slide.querySelector(".slide-footer").getBoundingClientRect();
         const issues = [];
         if (language === "es" && /\balta\b/i.test(slide.outerHTML + document.querySelector("#notes-content").textContent)) issues.push("Spanish setup terminology regressed");
+        if (slide.id === "slide-5") {
+          const heading = slide.querySelector("#evidence-title");
+          const emphasis = heading.querySelector("em");
+          if (language === "es" && state.pair === 0) {
+            if (heading.textContent !== "Registro de lecciones aprendidas durante el proceso de diseño.") issues.push("Initial evidence heading changed");
+            if (heading.children.length !== 1 || emphasis?.textContent !== "Registro" || getComputedStyle(emphasis).color !== "rgb(118, 227, 227)") issues.push("Only Registro must have cyan emphasis");
+            if (getComputedStyle(heading).color !== "rgb(241, 240, 232)") issues.push("Remaining heading text must keep its normal color");
+          } else if (state.pair !== 3 && emphasis) issues.push("Initial heading emphasis leaked to another state or locale");
+          if (language === "en" && state.pair === 0 && heading.textContent !== "Let me start on my own.") issues.push("English initial heading changed");
+        }
         if (slide.id === "slide-5" && state.pair === 0) {
           const entries = language === "es"
             ? ["La situación", "Empiezo a vibe codear un formulario sin claridad", "Requerimiento:", "Crear un workspace y empezar a trabajar"]
@@ -568,6 +580,8 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
           if (JSON.stringify([...slide.querySelector("#evidence-details").children].map(node => node.textContent)) !== JSON.stringify(entries)) issues.push("Initial situation evidence changed");
         }
         if (slide.id === "slide-5" && state.pair === 2) {
+          const collaborationTitle = language === "es" ? "La Colaboración" : "Create first. Invite later.";
+          if (slide.querySelector("#evidence-title").textContent !== collaborationTitle) issues.push("Collaboration heading changed");
           const decisionLabel = language === "es" ? "Diseño + ingeniería deciden en pair programming" : "Designer + engineer decide";
           if (![...slide.querySelectorAll("#evidence-details dt")].some(node => node.textContent === decisionLabel)) issues.push("Team-decision evidence label changed");
           const decision = language === "es" ? "Quitar la invitación obligatoria del setup de mi workspace." : "Remove the required invitation from setup.";
@@ -576,6 +590,12 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
         if (slide.id === "slide-5" && state.pair === 4) {
           const lessonTitle = language === "es" ? "No te repitas (DRY: Don't repeat yourself)" : "Do not fix this twice.";
           if (slide.querySelector("#evidence-title").textContent !== lessonTitle) issues.push("Saved-lesson heading changed");
+          const requirement = language === "es" ? "Requerimiento detallado" : "Shared guidance · version 1";
+          if (slide.querySelector("#evidence-details dt").textContent !== requirement) issues.push("Saved-lesson requirement label changed");
+        }
+        if (slide.id === "slide-5" && state.pair === 5) {
+          const nextTitle = language === "es" ? "Siguiente diseñador haciendo Vibe coding:" : "Can the next person start alone?";
+          if (slide.querySelector("#evidence-title").textContent !== nextTitle) issues.push("Next-review heading changed");
         }
         const viewport = document.querySelector("#viewport").getBoundingClientRect();
         if (bounds.left < viewport.left - 1 || bounds.right > viewport.right + 1 || bounds.top < viewport.top - 1 || bounds.bottom > viewport.bottom + 1) issues.push("Scaled slide exceeds viewport");

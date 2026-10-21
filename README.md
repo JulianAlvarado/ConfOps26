@@ -36,7 +36,7 @@ Inter is used for both primary and secondary typography, including diagrams and 
 | 16–22 | Existing backup content retained, with Inter and related consistency adjustments |
 | 23 | Original 30-day pilot moved intact to appendix; separated stages and return to the originating slide |
 
-The recent Spanish headings are retained, including **“Ejemplo: Corrige el formulario. Conserva lo aprendido.”**, **“Una decisión informada”**, **“No te enfoques en el output, Aceleras el aprendizaje.”**, and **“Las mismas bases, un alcance actualizado.”** The after-journey heading retains the speaker's latest Spanish wording.
+The recent Spanish headings are retained, including **“Ejemplo: Conserva lo aprendido. (Evals en pequeña escala)”**, **“Una decisión informada”**, **“No te enfoques en el output, Aceleras el aprendizaje.”**, and **“Las mismas bases, un alcance actualizado.”** The after-journey heading retains the speaker's latest Spanish wording.
 
 ## Pacing and mapping
 

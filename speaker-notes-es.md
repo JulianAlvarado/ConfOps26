@@ -93,7 +93,7 @@ La referencia en la 11 abre el piloto 23 y vuelve a su origen. Definiciones desd
 
 ---
 
-## 5. Corrige el formulario. Conserva lo aprendido.
+## 5. Conserva lo aprendido. (Evals en pequeña escala)
 
 **Tiempo:** 3:30–8:00 (270 segundos)
 

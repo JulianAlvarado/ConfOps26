@@ -676,6 +676,11 @@ function renderPair() {
   const evidence = pairEvidence[step];
   if (evidence) {
     $("#evidence-title").textContent = evidence.title;
+    if (language === "es" && step === 0) {
+      const emphasis = document.createElement("em");
+      emphasis.textContent = "Registro";
+      $("#evidence-title").replaceChildren(emphasis, evidence.title.slice("Registro".length));
+    }
     $("#evidence-details").replaceChildren();
     for (const [label, text] of evidence.entries) {
       const term = document.createElement("dt");
