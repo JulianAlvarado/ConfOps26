@@ -3,7 +3,7 @@
 **Presentación bilingüe aprobada (V3), versión principal que sustituye a V2.**
 
 Basada en V2 bilingüe congelada `e39ef62f1729553773fa4a4f097f5c8cdf33d138`.
-16 diapositivas principales numeradas (15 de conferencia + Hablemos) + FAQ + 8 apéndices = 25. Hablemos cierra la numeración con 16/16, sin aumentar el tiempo de conferencia. Inter local, bajo licencia OFL. Biografía en la posición 3 con cinco fotos proporcionadas por el ponente.
+17 diapositivas principales numeradas (16 de conferencia + Hablemos) + FAQ + 8 apéndices = 26. Hablemos cierra la numeración con 17/17, sin aumentar el tiempo de conferencia. Inter local, bajo licencia OFL. Biografía en la posición 3 con cinco fotos proporcionadas por el ponente.
 
 Generado desde app.js y spanish.js mediante `node check.mjs --write-notes`.
 
@@ -17,17 +17,18 @@ Generado desde app.js y spanish.js mediante `node check.mjs --write-notes`.
 | 11 (antes) | 12:20–13:50 |
 | 12 (después) | 13:50–15:35 |
 | 13–14 | 15:35–18:30 |
-| 15 | 18:30–20:00 |
-| 16–17 | 20:00–30:00 (compartidos) |
-| 18–25 | Opcionales |
+| 15 | 18:30–19:30 |
+| 16 | 19:30–20:00 |
+| 17–18 | 20:00–30:00 (compartidos) |
+| 19–26 | Opcionales |
 
-La demo conserva 270 segundos; cierre, 90; preguntas, 600. El piloto está en el apéndice 25. El recorrido dividido conserva 90 segundos antes + 105 después. La biografía recupera sus 30 segundos: total de conferencia, 1.200 segundos.
+La demo conserva 270 segundos; cierre, 60; resumen, 30; preguntas, 600. El piloto está en el apéndice 26. El recorrido dividido conserva 90 segundos antes + 105 después. La biografía recupera sus 30 segundos: total de conferencia, 1.200 segundos.
 
 ## Escenario y revisión
 
 S abre Escenario; F activa pantalla completa opcional; Escape o S restaura revisión. Las flechas avanzan o retroceden la cadena y la alineación de la diapositiva 4, la demo y el cierre antes de cambiar de diapositiva, tanto en revisión como en Escenario. Las seis pestañas muestran el recorrido completo; no hay Reiniciar ni Siguiente duplicado. Las teclas nativas del formulario no navegan. Inicio/Fin y flechas dentro de las pestañas seleccionan estados. El botón principal Siguiente recorre la demo. Cambiar de idioma con L conserva el estado y los datos locales; L no intercepta escritura, notas ni diálogos. Al salir de Escenario se restaura el estado de revisión. La presentación se escala en pantallas pequeñas. Nada se guarda ni envía.
 
-La referencia en la 12 abre el piloto 25 y vuelve a su origen. Definiciones desde la 14 vuelve al panel; las ocho respuestas abiertas desde FAQ vuelven a FAQ (17). Hablemos y FAQ comparten los mismos 600 segundos, sin duplicar tiempo. El ciclo completo no requiere clics. Se conserva el icono de evaluación ◎.
+La referencia en la 12 abre el piloto 26 y vuelve a su origen. Definiciones desde la 14 vuelve al panel; las ocho respuestas abiertas desde FAQ vuelven a FAQ (18). Hablemos y FAQ comparten los mismos 600 segundos, sin duplicar tiempo. El ciclo completo no requiere clics. Se conserva el icono de evaluación ◎.
 
 ## 1. La IA nos acelera. ¿Quién mantiene la coherencia?
 
@@ -71,7 +72,7 @@ La referencia en la 12 abre el piloto 25 y vuelve a su origen. Definiciones desd
 
 **Interacción:** Las fotos caen una vez al entrar en la diapositiva en revisión y Escenario; luego quedan estáticas. Cambiar de idioma o modo no reinicia la secuencia. Siguiente avanza directamente, sin pasos ni controles adicionales.
 
-**Notas del ponente:** Biografía facilitada por el ponente: Design Operations en Xbox / Microsoft. Sr. Creative Operations Manager para Prime Video. 18 años de experiencia gestionando proyectos en compañías como P&G, Publicis, Critical Mass y Automattic (WordPress). CrossFit diario. «Eterno cinturón azul» de jiu-jitsu. Músico retirado y mucho dibujo en casa. No se especifica una cronología laboral; no deduzcas qué puestos son actuales o anteriores. Mantén la presentación personal en 30 segundos. La conferencia conserva 1.200 segundos; la demo, 270; el cierre, 90; y la conversación compartida, 600.
+**Notas del ponente:** Biografía facilitada por el ponente: Design Operations en Xbox / Microsoft. Sr. Creative Operations Manager para Prime Video. 18 años de experiencia gestionando proyectos en compañías como P&G, Publicis, Critical Mass y Automattic (WordPress). CrossFit diario. «Eterno cinturón azul» de jiu-jitsu. Músico retirado y mucho dibujo en casa. No se especifica una cronología laboral; no deduzcas qué puestos son actuales o anteriores. Mantén la presentación personal en 30 segundos. La conferencia conserva 1.200 segundos; la demo, 270; el cierre, 60; el resumen, 30; y la conversación compartida, 600.
 
 **Transición:** Volvamos al reto común: sin condiciones compartidas, producir más puede generar más variación.
 
@@ -97,7 +98,7 @@ La referencia en la 12 abre el piloto 25 y vuelve a su origen. Definiciones desd
 
 **Tiempo:** 3:00–4:00 (60 segundos)
 
-**Idea clave:** GESTIONAR: ¿Qué debemos usar y cómo debemos usarlo? CONTEXTO: La capa de inteligencia para tomar las decisiones correctas. EVALUAR: ¿Qué lo hace suficientemente bueno?
+**Idea clave:** GESTIONAR: ¿Qué debemos usar y cómo debemos usarlo? CONTEXTO: ¿Cómo debe ser la capa de inteligencia para mejores decisiones? EVALUAR: ¿Qué lo hace suficientemente bueno?
 
 **Concepto visual:** Tres encabezados en coral con texto de apoyo, con espacio para asimilar cada diferencia.
 
@@ -213,7 +214,7 @@ La referencia en la 12 abre el piloto 25 y vuelve a su origen. Definiciones desd
 
 **Concepto visual:** Un recorrido posterior propuesto: propósito común, trabajo colaborativo sincronizado, producción con IA y experimentos con opinión del cliente.
 
-**Interacción:** La animación verde de colaboración se inicia al entrar, sin control de repetición. Escenario y movimiento reducido mantienen todo legible sin animación. La referencia al piloto de 30 días abre el apéndice 25; su enlace de regreso vuelve aquí. El piloto queda fuera del tiempo de conferencia.
+**Interacción:** La animación verde de colaboración se inicia al entrar, sin control de repetición. Escenario y movimiento reducido mantienen todo legible sin animación. La referencia al piloto de 30 días abre el apéndice 26; su enlace de regreso vuelve aquí. El piloto queda fuera del tiempo de conferencia.
 
 **Notas del ponente:** El recorrido anterior es una simplificación deliberada, no una afirmación de que todos los equipos trabajaban secuencialmente antes de la IA. La investigación informa el encargo, diseño crea propuestas, ingeniería construye y el cliente responde al final. La alternativa propuesta parte de Misión, Metas y Métricas: las MMM de la fuente, donde Metas recoge los hitos. PM, investigación, diseño e ingeniería comparten propósito; especificación, conceptos, viabilidad y prototipos HTML/CSS evolucionan juntos. Los lanzamientos pueden convertirse en experimentos que informan otra iteración. La IA puede reducir producción, pero siguen contando revisión, integración y dependencias. No prometas lanzamientos en una semana ni aceleración universal. Mide tiempo transcurrido, horas-persona, esperas, validación con clientes y ritmo experimental. La animación compara secuencias, no velocidades numéricas. Un prototipo no es un lanzamiento de producción; la evidencia de usuarios sigue siendo necesaria.
 
@@ -245,31 +246,47 @@ La referencia en la 12 abre el piloto 25 y vuelve a su origen. Definiciones desd
 
 **Concepto visual:** Una tabla compartida muestra una sola vez Base, Piloto y Cambio; los grupos separan resultados del flujo de indicadores anticipados y de proceso.
 
-**Interacción:** Las 10 medidas abre el diálogo completo. Definiciones abre el apéndice 22 y regresa aquí; al entrar desde FAQ regresa a FAQ. Cerrar el diálogo devuelve el foco al control que lo abrió.
+**Interacción:** Las 10 medidas abre el diálogo completo. Definiciones abre el apéndice 23 y regresa aquí; al entrar desde FAQ regresa a FAQ. Cerrar el diálogo devuelve el foco al control que lo abrió.
 
 **Notas del ponente:** Son valores aproximados orientados por la experimentación inicial del ponente, no mediciones exactas, referencias de rendimiento ni previsiones. El ponente facilitó los rangos de producción de diseño; las otras nueve comparaciones conservan los valores sintéticos anteriores, que considera próximos a observaciones informales. No se han facilitado registros, tamaños de muestra ni métodos: no afirmes resultados validados ni retorno causal de la inversión. De referencia a piloto: mediana del encargo al concepto validado, 9 a 6 días; producción de diseño, ~3–4/sem a ~1–2/sem, entregables aceptados en un equipo con ciclo integral de 8 semanas. El cambio ≈−2/sem es una estimación por puntos medios: 1,5 menos 3,5, no un cambio observado de forma independiente. La tasa semanal y el ciclo integral de ocho semanas son conceptos distintos: no dividas por ocho ni infieras un total de ocho semanas. La producción disminuye: no la presentes como mejora. Esfuerzo de producción, 18 a 11 horas por concepto; revisión, 4 a 6 horas; retrabajo, 35% a 24%; comprobaciones aplicables superadas, 78% a 90%; defectos abiertos de accesibilidad/calidad, 6 a 4 por 10 pantallas; divergencia diseño-código, 28% a 18%; experimentos, 1 a 2 por semana; reutilización de contexto aprobado, 25% a 70%. La revisión aumenta: generar más rápido no implica revisar menos. Los indicadores anticipados y de proceso reflejan comportamiento y preparación; los de resultado comprueban lo que entrega el flujo. El cumplimiento es una señal anticipada de calidad, no prueba de beneficio para el usuario. Se muestran ambos valores aproximados y sus cambios, sin escalas de barras que compitan. Los porcentajes cambian en puntos porcentuales, no en porcentajes relativos. Iguala alcance, dotación, definición de entregable y criterios; incluye muestra y dispersión antes de presentar una comparación validada. Registra por separado el éxito del cliente en sus tareas. No se aportan datos de resultados de clientes.
 
-**Transición:** Vuelve a la pregunta central. La referencia al piloto del flujo propuesto sigue disponible en el apéndice 25.
+**Transición:** Vuelve a la pregunta central. La referencia al piloto del flujo propuesto sigue disponible en el apéndice 26.
 
 ---
 
 ## 15. ¿Quién diseña el sistema?
 
-**Tiempo:** 18:30–20:00 (90 segundos)
+**Tiempo:** 18:30–19:30 (60 segundos)
 
 **Idea clave:** La IA no elimina la necesidad de DesignOps. Lo convierte en infraestructura.
 
 **Concepto visual:** Una pregunta con espacio, una respuesta que se revela con intención y tres afirmaciones finales.
 
-**Interacción:** Momento de Escenario 3: pausa, Derecha revela DesignOps y otra Derecha abre Hablemos. Izquierda oculta la respuesta antes de retroceder. En revisión, Siguiente o una tecla de avance revela primero y luego abre Hablemos. No hay botón aparte para revelar.
+**Interacción:** Pausa, Derecha revela DesignOps y otra Derecha abre las tres ideas clave. Izquierda oculta la respuesta antes de retroceder. Revisión y Escenario comparten este comportamiento; no hay botón aparte para revelar.
 
-**Notas del ponente:** Dedica 90 segundos al cierre. Baja el ritmo. Lee la pregunta y deja espacio: si la IA forma parte de cómo diseñamos productos, ¿quién diseña el sistema en el que opera? Revela DesignOps. No es una reivindicación de control de toda la IA por una función. Es una invitación a conectar experiencia, gobernanza, conocimiento, flujos y evaluación. La IA crea capacidad. Los sistemas crean coherencia. La gestión responsable crea confianza. DesignOps conecta las tres. El futuro no consiste solo en gestionar trabajo alrededor del diseño, sino en diseñar la infraestructura con la que personas e IA crean productos juntas. El reto práctico es un flujo, una referencia, un paquete de contexto mantenido, controles humanos con responsable y evidencia de que no se ha cambiado calidad por rapidez. Termina con la tesis y una pausa, no con más herramientas.
+**Notas del ponente:** Dedica 60 segundos al cierre. Baja el ritmo. Lee la pregunta y deja espacio: si la IA forma parte de cómo diseñamos productos, ¿quién diseña el sistema en el que opera? Revela DesignOps. No es una reivindicación de control de toda la IA por una función. Es una invitación a conectar experiencia, gobernanza, conocimiento, flujos y evaluación. La IA crea capacidad. Los sistemas crean coherencia. La gestión responsable crea confianza. DesignOps conecta las tres. El futuro no consiste solo en gestionar trabajo alrededor del diseño, sino en diseñar la infraestructura con la que personas e IA crean productos juntas. El reto práctico es un flujo, una referencia, un paquete de contexto mantenido, controles humanos con responsable y evidencia de que no se ha cambiado calidad por rapidez. Termina con la tesis y una pausa, no con más herramientas.
 
-**Transición:** Conversemos. ¿Dónde genera tu equipo más rápido de lo que puede mantener la coherencia?
+**Transición:** Antes de conversar, recuerda tres ideas: gestionar el sistema, conservar el contexto y evaluar para aprender.
 
 ---
 
-## 16. Hablemos
+## 16. Tres ideas para llevarte
+
+**Tiempo:** 19:30–20:00 (30 segundos)
+
+**Idea clave:** Gestionar el sistema. Conservar el contexto. Evaluar para aprender.
+
+**Concepto visual:** Tres ideas con la misma importancia y explicaciones breves, separadas con espacio y líneas cian.
+
+**Interacción:** Las tres ideas se ven desde el inicio. Siguiente abre Hablemos; Anterior vuelve al cierre. Sin pasos ni controles adicionales.
+
+**Notas del ponente:** Usa treinta segundos para reforzar lo aprendido, no para introducir otro modelo. Gestionar el sistema: acordar responsabilidades, reglas, criterios, stacks, etc., para trabajar con IA. Conservar el contexto: convertir decisiones y aprendizajes en guías y evaluaciones (Evals) reutilizables. Evaluar para aprender: medir calidad y resultados, no solo velocidad o volumen. Son responsabilidades complementarias, no pasos secuenciales. El cierre usa sesenta segundos y este resumen treinta, manteniendo los veinte minutos de conferencia.
+
+**Transición:** Hablemos. ¿Cuál de estas tres responsabilidades necesita más atención en tu equipo?
+
+---
+
+## 17. Hablemos
 
 **Tiempo:** 10 minutos compartidos entre Hablemos y FAQ, fuera de la conferencia
 
@@ -285,7 +302,7 @@ La referencia en la 12 abre el piloto 25 y vuelve a su origen. Definiciones desd
 
 ---
 
-## 17. FAQ
+## 18. FAQ
 
 **Tiempo:** 10 minutos compartidos entre Hablemos y FAQ, fuera de la conferencia
 
@@ -301,7 +318,7 @@ La referencia en la 12 abre el piloto 25 y vuelve a su origen. Definiciones desd
 
 ---
 
-## 18. Apoyo: responsabilidad compartida de gobernanza
+## 19. Apoyo: responsabilidad compartida de gobernanza
 
 **Tiempo:** Apéndice opcional, fuera de la conferencia
 
@@ -317,7 +334,7 @@ La referencia en la 12 abre el piloto 25 y vuelve a su origen. Definiciones desd
 
 ---
 
-## 19. Apoyo: diseñar el entorno, no ser una fábrica de IA
+## 20. Apoyo: diseñar el entorno, no ser una fábrica de IA
 
 **Tiempo:** Apéndice opcional, fuera de la conferencia
 
@@ -333,7 +350,7 @@ La referencia en la 12 abre el piloto 25 y vuelve a su origen. Definiciones desd
 
 ---
 
-## 20. Apoyo: un sistema de diseño preparado para IA
+## 21. Apoyo: un sistema de diseño preparado para IA
 
 **Tiempo:** Apéndice opcional, fuera de la conferencia
 
@@ -349,7 +366,7 @@ La referencia en la 12 abre el piloto 25 y vuelve a su origen. Definiciones desd
 
 ---
 
-## 21. Apoyo: flujos independientes del modelo y prompts canónicos
+## 22. Apoyo: flujos independientes del modelo y prompts canónicos
 
 **Tiempo:** Apéndice opcional, fuera de la conferencia
 
@@ -365,7 +382,7 @@ La referencia en la 12 abre el piloto 25 y vuelve a su origen. Definiciones desd
 
 ---
 
-## 22. Apoyo: definiciones de métricas y plan de medición
+## 23. Apoyo: definiciones de métricas y plan de medición
 
 **Tiempo:** Apéndice opcional, fuera de la conferencia
 
@@ -381,7 +398,7 @@ La referencia en la 12 abre el piloto 25 y vuelve a su origen. Definiciones desd
 
 ---
 
-## 23. Apoyo: la ventaja es la memoria de la organización
+## 24. Apoyo: la ventaja es la memoria de la organización
 
 **Tiempo:** Apéndice opcional, fuera de la conferencia
 
@@ -397,7 +414,7 @@ La referencia en la 12 abre el piloto 25 y vuelve a su origen. Definiciones desd
 
 ---
 
-## 24. Apoyo: DesignOps en el ciclo de vida del producto
+## 25. Apoyo: DesignOps en el ciclo de vida del producto
 
 **Tiempo:** Apéndice opcional, fuera de la conferencia
 
@@ -413,7 +430,7 @@ La referencia en la 12 abre el piloto 25 y vuelve a su origen. Definiciones desd
 
 ---
 
-## 25. Apoyo: tus primeros 30 días
+## 26. Apoyo: tus primeros 30 días
 
 **Tiempo:** Apéndice opcional, fuera de la conferencia
 
@@ -444,4 +461,4 @@ No son mediciones validadas, referencias del sector ni evidencia causal. No se h
 | Defectos de accesibilidad / calidad | 6/10 | 4/10 | −2 /10 | defectos abiertos / 10 pantallas revisadas |
 | Divergencia entre diseño y código | 28% | 18% | −10 pp | % de instancias de interfaz auditadas divergentes |
 
-Las definiciones y métodos de recogida están en el apéndice 22. Igualar alcance, personal y criterios; registrar tamaño de muestra y dispersión; acordar adoptar/revisar/detener antes de ver resultados. El ejemplo del formulario es ficticio, preparado y pendiente de validación con usuarios. El contexto no se aplica por sí solo: requiere integración, permisos, validación y revisión humana.
+Las definiciones y métodos de recogida están en el apéndice 23. Igualar alcance, personal y criterios; registrar tamaño de muestra y dispersión; acordar adoptar/revisar/detener antes de ver resultados. El ejemplo del formulario es ficticio, preparado y pendiente de validación con usuarios. El contexto no se aplica por sí solo: requiere integración, permisos, validación y revisión humana.

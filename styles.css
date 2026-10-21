@@ -59,7 +59,7 @@ main { flex: 1; min-height: 0; display: flex; align-items: center; justify-conte
 .slide h2.compact-title { font-size: 59px; }
 .slide h3 { font-weight: 550; }
 .slide button { font-size: 19px; padding: 14px 22px; }
-#slide-23 button[data-action="stack"] { font-size: 16px; padding: 9px 14px; }
+#slide-24 button[data-action="stack"] { font-size: 16px; padding: 9px 14px; }
 .slide-footer { position: absolute; bottom: 35px; left: 76px; right: 76px; border-top: 1px solid var(--line); padding-top: 20px; display: flex; align-items: center; justify-content: space-between; color: var(--muted); font: 12px var(--mono); letter-spacing: 1.4px; }
 .kicker { font: 14px var(--mono); color: var(--muted); letter-spacing: 2px; margin-bottom: 25px; }
 .lead { color: var(--muted); font-size: 26px; line-height: 1.5; margin-top: 30px; }
@@ -173,7 +173,7 @@ main { flex: 1; min-height: 0; display: flex; align-items: center; justify-conte
 .framework h3 { font: 62px var(--mono); letter-spacing: -2px; }
 .framework article:last-child h3 { color: var(--lime); }
 .framework p { font-size: 34px; line-height: 1.4; margin-top: 28px; max-width: 390px; color: var(--muted); }
-.framework-slide .slide-footer, #slide-6 .slide-footer, #slide-25 .slide-footer { justify-content: flex-end; }
+.framework-slide .slide-footer, #slide-6 .slide-footer, #slide-26 .slide-footer { justify-content: flex-end; }
 .stack-layout { display: grid; grid-template-columns: 1fr 1.3fr; gap: 50px; margin-top: 65px; }
 .stack-layout h2 { font-size: 74px; }
 .stack { display: flex; flex-direction: column; gap: 9px; }
@@ -345,8 +345,8 @@ main { flex: 1; min-height: 0; display: flex; align-items: center; justify-conte
 .definitions td { padding: 6px 10px; border-bottom: 1px solid #303a3d; color: var(--muted); }
 .definitions td:first-child { color: var(--text); width: 26%; }
 .measurement-note { font-size: 21px; line-height: 1.4; color: var(--muted); margin-top: 16px; }
-#slide-22 > .eyebrow { margin-bottom: 25px; }
-#slide-22 h2.compact-title { font-size: 48px; }
+#slide-23 > .eyebrow { margin-bottom: 25px; }
+#slide-23 h2.compact-title { font-size: 48px; }
 .navigation { height: 66px; flex-shrink: 0; padding: 0 28px; display: flex; align-items: center; justify-content: space-between; gap: 20px; position: relative; border-top: 1px solid #252d30; }
 .nav-context { display: flex; align-items: center; gap: 20px; min-width: 0; flex: 1; }
 #act-label { color: var(--cyan); font: 10px var(--mono); white-space: nowrap; }
@@ -639,6 +639,10 @@ svg text, code, .lifecycle button > span, .qa-links a span,
   .slide .pair-tabs button { display: block !important; }
 }
 
+.recap-points { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; list-style: none; padding: 0; margin: 100px 0 0; }
+.recap-points li { border-top: 3px solid var(--cyan); padding-top: 30px; }
+.recap-points h3 { font-size: 38px; line-height: 1.2; color: var(--coral); margin: 0 0 28px; }
+.recap-points p { font-size: 30px; line-height: 1.5; color: var(--text); margin: 0; }
 .about-slide .slide-footer { justify-content: flex-end; }
 .about-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; max-width: none; margin-top: 0; }
 .about-copy h2 { font-size: 54px; color: var(--cyan); overflow-wrap: anywhere; }

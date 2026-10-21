@@ -39,15 +39,15 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
       assert.equal(await page.locator("html").getAttribute("lang"), "es", "Reload returns to Spanish without storing preferences");
     }
     await page.evaluate(() => setLanguage("en"));
-    assert.equal(await page.locator(".slide").count(), 25);
+    assert.equal(await page.locator(".slide").count(), 26);
     assert.equal(await page.locator("[role=tab]").count(), 6);
     assert.equal(await page.locator('[data-action="pair-reset"], [data-action="pair"], [data-action="loop"]').count(), 0);
     assert.deepEqual(await page.evaluate(() => ({
-      total: notes.slice(0, 15).reduce((sum, note) => sum + note.seconds, 0),
+      total: notes.slice(0, 16).reduce((sum, note) => sum + note.seconds, 0),
       demo: notes[5].seconds, before: notes[10].seconds,
-      after: notes[11].seconds, closing: notes[14].seconds, qa: notes[15].seconds,
-      faq: notes[16].seconds, backups: notes.slice(17).map(note => note.seconds)
-    })), { total: 1200, demo: 270, before: 90, after: 105, closing: 90, qa: 600, faq: 0, backups: [0, 0, 0, 0, 0, 0, 0, 0] });
+      after: notes[11].seconds, closing: notes[14].seconds, recap: notes[15].seconds, qa: notes[16].seconds,
+      faq: notes[17].seconds, backups: notes.slice(18).map(note => note.seconds)
+    })), { total: 1200, demo: 270, before: 90, after: 105, closing: 60, recap: 30, qa: 600, faq: 0, backups: [0, 0, 0, 0, 0, 0, 0, 0] });
     assert.equal(await page.locator(".human-symbol").textContent(), "◎");
     assert.equal(await page.locator("#slide-3 .photo-placeholder, .output-pile > p").count(), 0);
     assert.equal(await page.locator("#slide-3 img").count(), 5);
@@ -61,14 +61,16 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
     assert.equal(await page.locator("#metric-dashboard thead th").count(), 4);
     assert.equal(await page.locator("#metric-dashboard .metric-category").count(), 2);
     assert.equal(await page.locator("#metric-tables tbody tr").count(), 10);
-    assert.equal(await page.locator("#slide-16 .qa-links, #slide-17 .contact-links").count(), 0);
-    assert.equal(await page.locator("#slide-16 .contact-links a").count(), 2);
-    assert.deepEqual(await page.locator("#slide-17 .qa-links a").evaluateAll(links => links.map(link => link.getAttribute("href"))), Array.from({ length: 8 }, (_, i) => `#${i + 18}`));
+    assert.equal(await page.locator("#slide-17 .qa-links, #slide-18 .contact-links").count(), 0);
+    assert.equal(await page.locator("#slide-17 .contact-links a").count(), 2);
+    assert.deepEqual(await page.locator("#slide-18 .qa-links a").evaluateAll(links => links.map(link => link.getAttribute("href"))), Array.from({ length: 8 }, (_, i) => `#${i + 19}`));
     for (const [locale, copy] of [
-      ["es", ["¿Qué debemos usar y cómo debemos usarlo?", "La capa de inteligencia para tomar las decisiones correctas.", "¿Qué lo hace suficientemente bueno?"]],
+      ["es", ["¿Qué debemos usar y cómo debemos usarlo?", "¿Cómo debe ser la capa de inteligencia para mejores decisiones?", "¿Qué lo hace suficientemente bueno?"]],
       ["en", ["What should we use and how should we use it?", "The intelligence layer for the right choices.", "What makes it good enough?"]]
     ]) {
       await page.evaluate(locale => setLanguage(locale), locale);
+      assert.equal(await page.locator("#slide-9 .shift-group:last-child .shift-rows > div:last-child > span").textContent(), locale === "es" ? "Escalar sistemas de diseño" : "Scale design systems");
+      assert.equal(await page.locator("#slide-10 .hub-subtitle").textContent(), locale === "es" ? "GESTIONAR · CONTEXTO · EVALUAR" : "GOVERN · CONTEXT · EVALUATE");
       assert.equal(await page.locator("#slide-1 p.subtitle").innerHTML(), locale === "es"
         ? "Gestión, sistemas y el nuevo papel<br>de DesignOps en los equipos de producto"
         : "Governance, systems, and the new role<br>of DesignOps in product teams");
@@ -333,41 +335,41 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
       await page.evaluate(({ locale, stage }) => { setStageMode(stage); setLanguage(locale); }, { locale, stage });
       await go(15);
       await page.evaluate(() => setClosing(true));
-      for (const number of [16, 17]) {
+      for (const number of [16, 17, 18]) {
         await page.locator("#presentation").focus();
         await page.keyboard.press("ArrowRight");
         await page.waitForFunction(number => state.index === number - 1, number);
-        const title = number === 17 ? "FAQ" : locale === "es" ? "Hablemos" : "Let's talk";
+        const title = number === 16 ? locale === "es" ? "Tres ideas para llevarte" : "Three ideas to take away" : number === 18 ? "FAQ" : locale === "es" ? "Hablemos" : "Let's talk";
         assert.equal(await page.locator(`#title-${number}`).textContent(), title);
-        assert.equal(await page.locator("#counter").textContent(), number === 16 ? "16/16" : title);
-        if (number === 16) {
-          assert.equal(await page.locator("#slide-16 .slide-footer > span:last-child").textContent(), "16/16");
-          assert.equal(await page.locator("#announcement").textContent(), `16/16: ${title}`);
+        assert.equal(await page.locator("#counter").textContent(), number === 16 ? "16 / 17" : number === 17 ? "17/17" : title);
+        if (number === 17) {
+          assert.equal(await page.locator("#slide-17 .slide-footer > span:last-child").textContent(), "17/17");
+          assert.equal(await page.locator("#announcement").textContent(), `17/17: ${title}`);
         }
-        assert((await page.locator("#notes-content .note-time").textContent()).includes(locale === "es" ? "10 minutos compartidos" : "Shared 10-minute"));
+        assert((await page.locator("#notes-content .note-time").textContent()).includes(number === 16 ? "19:30–20:00" : locale === "es" ? "10 minutos compartidos" : "Shared 10-minute"));
       }
       const questions = locale === "es"
         ? ["¿Quién asume la gobernanza?", "¿Nos convertimos en un equipo de IA?", "¿Cómo es un sistema de diseño preparado para IA?", "¿Qué ocurre cuando cambian los modelos?", "¿Cómo demostramos el valor?", "¿Cómo encajan las capas de contexto?", "¿Cómo encaja en el ciclo de vida?", "¿Cómo empezamos un piloto?"]
         : ["Who owns governance?", "Do we become an AI team?", "What is an AI-ready design system?", "What happens when models change?", "How do we prove value?", "How does the context stack fit?", "Where does this fit in the lifecycle?", "How do we start a pilot?"];
-      assert.deepEqual(await page.locator("#slide-17 .qa-links a span").allTextContents(), questions);
-      for (let target = 18; target <= 25; target++) {
-        await click(`#slide-17 .qa-links a[href="#${target}"]`);
+      assert.deepEqual(await page.locator("#slide-18 .qa-links a span").allTextContents(), questions);
+      for (let target = 19; target <= 26; target++) {
+        await click(`#slide-18 .qa-links a[href="#${target}"]`);
         await page.waitForFunction(target => state.index === target - 1, target);
-        assert.equal(await page.locator("#counter").textContent(), `B${target - 17} / 8`);
+        assert.equal(await page.locator("#counter").textContent(), `B${target - 18} / 8`);
         const back = `#slide-${target} .eyebrow a`;
-        assert.equal(await page.locator(back).getAttribute("href"), "#17");
+        assert.equal(await page.locator(back).getAttribute("href"), "#18");
         await page.evaluate(() => setLanguage(language === "es" ? "en" : "es"));
-        assert.equal(await page.locator(back).getAttribute("href"), "#17", "Language switching preserves FAQ origin");
+        assert.equal(await page.locator(back).getAttribute("href"), "#18", "Language switching preserves FAQ origin");
         await click(back);
-        await page.waitForFunction(() => state.index === 16);
+        await page.waitForFunction(() => state.index === 17);
         await page.evaluate(locale => setLanguage(locale), locale);
-        await click(`#slide-17 .qa-links a[href="#${target}"]`);
+        await click(`#slide-18 .qa-links a[href="#${target}"]`);
         await page.waitForFunction(target => state.index === target - 1, target);
         await page.locator("#presentation").focus();
         await page.keyboard.press("ArrowLeft");
-        await page.waitForFunction(() => state.index === 16);
+        await page.waitForFunction(() => state.index === 17);
       }
-      for (const [origin, target, link, back] of [[12, 25, "#pilot-reference", "#pilot-return"], [17, 25, '.qa-links a[href="#25"]', "#pilot-return"], [17, 22, '.qa-links a[href="#22"]', "#definitions-return"]]) {
+      for (const [origin, target, link, back] of [[12, 26, "#pilot-reference", "#pilot-return"], [18, 26, '.qa-links a[href="#26"]', "#pilot-return"], [18, 23, '.qa-links a[href="#23"]', "#definitions-return"]]) {
         await go(origin);
         await click(link);
         await page.waitForFunction(target => state.index === target - 1, target);
@@ -379,7 +381,7 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
       if (!stage) {
         await go(14);
         await click('[data-action="metric-definitions"]');
-        await page.waitForFunction(() => state.index === 21);
+        await page.waitForFunction(() => state.index === 22);
         assert.equal(await page.locator("#definitions-return").getAttribute("href"), "#14");
         await click("#previous");
         await page.waitForFunction(() => state.index === 13);
@@ -544,10 +546,10 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
     }
     await page.emulateMedia({ reducedMotion: "reduce" });
     assert.equal(await page.locator(".network-links").evaluate(node => node.getAnimations().length), 0);
-    await go(23);
+    await go(24);
     for (let i = 0; i < 4; i++) await click('[data-action="stack"]');
     assert.equal(await page.locator(".stack-layer.revealed").count(), 5);
-    await go(24);
+    await go(25);
     for (let i = 0; i < 5; i++) {
       await click(`[data-life="${i}"]`);
       assert.equal(await page.locator("#life-detail > div").count(), 3);
@@ -564,7 +566,7 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
     }
     await page.keyboard.press("Escape");
     await click("#overview-toggle");
-    assert.equal(await page.locator("#slide-index a").count(), 25);
+    assert.equal(await page.locator("#slide-index a").count(), 26);
     await page.keyboard.press("l");
     assert.equal(await page.locator("html").getAttribute("lang"), notesLanguage, "Dialogs retain native keys");
     await page.keyboard.press("Escape");
@@ -697,6 +699,29 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
           }
         }
         if (slide.id === "slide-16") {
+          const expected = language === "es" ? [
+            ["Gestionar el sistema", "Acordar responsabilidades, reglas, criterios, stacks, etc., para trabajar con IA."],
+            ["Conservar el contexto", "Convertir decisiones y aprendizajes en guías y evaluaciones (Evals) reutilizables."],
+            ["Evaluar para aprender", "Medir calidad y resultados, no solo velocidad o volumen."]
+          ] : [
+            ["Govern the system", "Agree on responsibilities, rules, criteria, stacks, etc., for working with AI."],
+            ["Preserve context", "Turn decisions and lessons into reusable guides and evaluations (Evals)."],
+            ["Evaluate to learn", "Measure quality and outcomes, not just speed or volume."]
+          ];
+          if (JSON.stringify([...slide.querySelectorAll(".recap-points li")].map(item => [item.querySelector("h3").textContent, item.querySelector("p").textContent])) !== JSON.stringify(expected)) issues.push("Recap must retain all three approved bilingual takeaways");
+          for (const item of slide.querySelectorAll(".recap-points li")) {
+            const box = item.getBoundingClientRect();
+            if (box.bottom >= footer.top) issues.push("Recap must stay clear of footer");
+            for (const node of item.children) if (parseFloat(getComputedStyle(node).fontSize) < 30 || node.scrollWidth > node.clientWidth + 1) issues.push("Recap text must remain readable without horizontal overflow");
+          }
+          if (slide.querySelector("button, a, img")) issues.push("Recap requires no controls or extra imagery");
+        }
+        if (slide.id === "slide-10") {
+          const subtitle = slide.querySelector(".hub-subtitle").getBBox();
+          const hub = slide.querySelector(".network-hub").getBBox();
+          if (subtitle.x < hub.x || subtitle.x + subtitle.width > hub.x + hub.width) issues.push("Control-plane subtitle must fit inside the hub");
+        }
+        if (slide.id === "slide-17") {
           const left = slide.querySelector(".eyebrow").getBoundingClientRect().left;
           for (const node of slide.querySelectorAll(".qa-layout, .kicker, h2, .contact-links")) {
             if (Math.abs(node.getBoundingClientRect().left - left) > 1 || getComputedStyle(node).textAlign !== "start") issues.push("Hablemos content must align to the standard left margin");
@@ -954,13 +979,13 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
         });
         assert.equal(await page.locator("#reading-toggle, body.reading").count(), 0, "No manual or automatic Reading view at any viewport");
         assert.equal(await page.locator("#stage").evaluate(node => getComputedStyle(node).width), "1600px", "Small viewports keep the scaled presentation canvas");
-        for (let number = 1; number <= 25; number++) {
+        for (let number = 1; number <= 26; number++) {
           await go(number);
-          if (number <= 16) {
-            const indicator = number === 16 ? "16/16" : `${String(number).padStart(2, "0")} / 16`;
+          if (number <= 17) {
+            const indicator = number === 17 ? "17/17" : `${String(number).padStart(2, "0")} / 17`;
             assert.equal(await page.locator("#counter").textContent(), indicator);
             assert((await page.locator(`#slide-${number} .slide-footer > span:last-child`).textContent()).startsWith(indicator));
-            assert.equal(await page.locator("#progress").getAttribute("max"), "16");
+            assert.equal(await page.locator("#progress").getAttribute("max"), "17");
             assert.equal(await page.locator("#progress").evaluate(node => node.hidden), false);
             assert.equal(await page.locator("#progress").evaluate(node => node.value), number);
           } else {
@@ -968,8 +993,8 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
           }
           await checkLayout(`${locale}/${mode}/${width}/slide-${number}`);
           if (width === 1680) await capture(`${locale}-${mode}-${String(number).padStart(2, "0")}`);
-          if ([854, 1280].includes(width) && [3, 13, 14, 16, 17].includes(number)) await capture(`${locale}-${mode}-${width}-${number}`);
-          if (width === 390 && [3, 4, 6, 16, 17].includes(number)) await capture(`${locale}-${mode}-390-${number}`);
+          if ([854, 1280].includes(width) && [3, 13, 14, 16, 17, 18].includes(number)) await capture(`${locale}-${mode}-${width}-${number}`);
+          if (width === 390 && [3, 4, 6, 16, 17, 18].includes(number)) await capture(`${locale}-${mode}-390-${number}`);
         }
         await go(6);
         for (let i = 0; i < 6; i++) {
@@ -997,7 +1022,7 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
     assert.deepEqual(errors, []);
     if (process.env.SNAPSHOT_DIR) writeFileSync(path.join(process.env.SNAPSHOT_DIR, "layout-results.json"), JSON.stringify(failures, null, 2));
     assert.deepEqual(failures, [], "Both locales: all review/Stage layouts and all demo states");
-    console.log("PASS: 25 bilingual slides; six-tab navigation, native forms, reverse/Stage restoration, origin links, notes, toolbar, offline Inter and layouts.");
+    console.log("PASS: 26 bilingual slides; six-tab navigation, native forms, reverse/Stage restoration, origin links, notes, toolbar, offline Inter and layouts.");
     if (process.argv.includes("--export-pdfs")) {
       await page.emulateMedia({ media: "print", reducedMotion: "reduce" });
       await page.setViewportSize({ width: 1600, height: 900 });
@@ -1008,8 +1033,8 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
         setAligned(true);
         setPair(5, true);
         setClosing(true);
-        appendixOrigins[22] = 14;
-        appendixOrigins[25] = 12;
+        appendixOrigins[23] = 14;
+        appendixOrigins[26] = 12;
       });
       await go(1);
       await page.addStyleTag({ content: readFileSync(path.join(__dirname, "styles.css"), "utf8").replaceAll("@media screen {", "@media all {") });

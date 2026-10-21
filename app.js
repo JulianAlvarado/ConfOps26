@@ -1,7 +1,7 @@
 "use strict";
 
-const keynoteCount = 15;
-const mainSlideCount = 16;
+const keynoteCount = 16;
+const mainSlideCount = 17;
 let notes = [
   {
     "seconds": 45,
@@ -24,7 +24,7 @@ let notes = [
     "takeaway": "Introduce yourself and the perspective you bring to DesignOps and AI.",
     "visual": "Five supplied photos fall into a stack on the left over 2.9 seconds, in the supplied order with the cafe portrait on top. Earlier edges remain visible; the biography stays unobstructed. Reduced motion and print show the final stack.",
     "interaction": "Photos drop once per slide entry in Review and Stage, then remain still. Language and mode switches do not restart the sequence. Next advances immediately; no builds or extra controls.",
-    "body": "Speaker-supplied biography: Design Operations at Xbox / Microsoft. Sr. Creative Operations Manager for Prime Video. 18 years of experience managing projects at companies including P&G, Publicis, Critical Mass and Automattic (WordPress). Daily CrossFit. Jiu-jitsu “forever blue belt.” Retired musician and lots of drawing at home. No employment chronology is specified; do not infer current or former roles. Keep the spoken introduction to 30 seconds. The keynote remains 1,200 seconds; the demo, 270; closing, 90; and the shared discussion, 600.",
+    "body": "Speaker-supplied biography: Design Operations at Xbox / Microsoft. Sr. Creative Operations Manager for Prime Video. 18 years of experience managing projects at companies including P&G, Publicis, Critical Mass and Automattic (WordPress). Daily CrossFit. Jiu-jitsu “forever blue belt.” Retired musician and lots of drawing at home. No employment chronology is specified; do not infer current or former roles. Keep the spoken introduction to 30 seconds. The keynote remains 1,200 seconds; the demo, 270; closing, 60; recap, 30; and the shared discussion, 600.",
     "transition": "Now return to the shared challenge: without common conditions, more output can create more variation."
   },
   {
@@ -95,7 +95,7 @@ let notes = [
     "seconds": 105,
     "takeaway": "Pilot collaborative production and use any capacity gained for customer learning.",
     "visual": "One proposed after journey: shared purpose, synchronized collaborative work, AI-assisted production, and experiments with customer feedback.",
-    "interaction": "The existing green collaboration animation runs on entry without a replay control. Stage and reduced-motion views remain fully readable without animation. The 30-day pilot reference opens appendix 25; its return link brings you here. The pilot is outside keynote timing.",
+    "interaction": "The existing green collaboration animation runs on entry without a replay control. Stage and reduced-motion views remain fully readable without animation. The 30-day pilot reference opens appendix 26; its return link brings you here. The pilot is outside keynote timing.",
     "body": "The before journey is a deliberately simplified pattern, not a claim that all pre-AI teams worked sequentially. Research informs a brief, design produces mocks, engineering builds, and customers finally respond. The proposed alternative starts with Mission, Milestones, and Metrics—the source's MMM. PM, research, design, and engineering share intent; specification, concepts, feasibility, and HTML/CSS prototypes evolve together. Releases can become experiments that inform another iteration. AI may reduce production effort, but review, integration, and dependency costs still count. Do not promise a one-week release or universal acceleration. Measure elapsed production time, person-hours, waiting time, customer validation, and experimentation cadence. The animation contrasts sequencing, not numeric speed. A prototype is not a production release; user evidence remains necessary.",
     "transition": "Shared guidance can start with documentation the team already has."
   },
@@ -111,17 +111,25 @@ let notes = [
     "seconds": 100,
     "takeaway": "Evaluate the whole workflow: speed, review cost, quality, coherence, and customer outcomes.",
     "visual": "A shared comparison table has Baseline, Pilot and Change headings once; category groups separate workflow outcomes from leading/process signals.",
-    "interaction": "All 10 measures opens the full dialog. Definitions opens appendix 22 and returns here; entering definitions from FAQ returns to FAQ instead. Closing the dialog restores its opener.",
+    "interaction": "All 10 measures opens the full dialog. Definitions opens appendix 23 and returns here; entering definitions from FAQ returns to FAQ instead. Closing the dialog restores its opener.",
     "body": "These are approximate comparison values informed by the presenter's early experimentation, not exact measurements, benchmarks, or a forecast. The presenter supplied design production-rate ranges; the other nine comparisons remain unchanged from the earlier synthetic values, reported as close to informal observations. Underlying records, sample sizes, and methods have not been supplied, so do not claim validated results or causal ROI. Baseline to pilot: median brief-to-validated-concept time 9 to 6 days; design production rate ~3–4/wk to ~1–2/wk, accepted artifacts / in a team with 8w E2E Cycle. The change ≈−2/wk is a midpoint estimate: 1.5 minus 3.5, not an independently observed change. Weekly rate and the team's eight-week end-to-end cycle are different concepts; do not divide by eight or infer an eight-week total. Production rate decreases, so do not frame it as an improvement. Production effort is 18 to 11 hours per concept; review effort 4 to 6 hours; rework 35% to 24%; applicable system checks passed 78% to 90%; open accessibility/quality defects 6 to 4 per 10 screens; design-to-code divergence 28% to 18%; experiments 1 to 2 per week; approved-context reuse 25% to 70%. Review effort rises in this comparison: faster generation does not imply less review. Leading/process measures signal behavior and readiness; outcome measures test delivered workflow results. System compliance is a leading quality signal, not proof of user benefit. Both sets of approximate values and their changes appear together, without competing bar scales. Percentage measures use percentage-point changes, not relative percentages. Match work scope, staffing, artifact definition, and evaluation criteria; include sample sizes and dispersion before presenting a validated comparison. Track customer task success separately. No customer outcome data is supplied.",
-    "transition": "Return to the central question. The proposed workflow's pilot reference remains available in appendix 25."
+    "transition": "Return to the central question. The proposed workflow's pilot reference remains available in appendix 26."
   },
   {
-    "seconds": 90,
+    "seconds": 60,
     "takeaway": "AI doesn't eliminate the need for DesignOps. It makes DesignOps infrastructure.",
     "visual": "A quiet question, a deliberate answer reveal, and three concluding statements.",
-    "interaction": "Stage moment 3: pause, press Right to reveal DesignOps, then Right for FAQ. Left hides the answer before moving back. In review, Next or a forward navigation key reveals the answer first, then advances to Let's talk. There is no separate reveal button.",
-    "body": "Use 90 seconds for the closing. Slow down. Read the question and leave space: if AI becomes part of how we design products, who designs the system in which AI operates? Reveal DesignOps. This is not a territorial claim that one function owns all AI. It is an invitation for DesignOps to connect domain expertise, governance, knowledge, workflows, and evaluation. AI creates capacity. Systems create consistency. Stewardship creates trust. DesignOps connects all three. The future is not merely managing work around design; it is designing the infrastructure through which humans and AI create products together. The practical challenge is one workflow, a baseline, a maintained context package, named human checkpoints, and evidence that quality has not been traded for speed. End on the thesis and pause rather than adding more tools.",
-    "transition": "Let's talk. Where is your team generating faster than it can maintain coherence?"
+    "interaction": "Pause, press Right to reveal DesignOps, then Right for the three takeaways. Left hides the answer before moving back. Review and Stage share this behavior; there is no separate reveal button.",
+    "body": "Use 60 seconds for the closing. Slow down. Read the question and leave space: if AI becomes part of how we design products, who designs the system in which AI operates? Reveal DesignOps. This is not a territorial claim that one function owns all AI. It is an invitation for DesignOps to connect domain expertise, governance, knowledge, workflows, and evaluation. AI creates capacity. Systems create consistency. Stewardship creates trust. DesignOps connects all three. The future is not merely managing work around design; it is designing the infrastructure through which humans and AI create products together. The practical challenge is one workflow, a baseline, a maintained context package, named human checkpoints, and evidence that quality has not been traded for speed. End on the thesis and pause rather than adding more tools.",
+    "transition": "Before we talk, hold on to three ideas: govern the system, preserve context, and evaluate to learn."
+  },
+  {
+    "seconds": 30,
+    "takeaway": "Govern the system. Preserve context. Evaluate to learn.",
+    "visual": "Three equally weighted takeaways with concise explanations, separated by space and cyan rules.",
+    "interaction": "All three points are visible immediately. Next opens Let's talk; Previous returns to the closing. No builds or extra controls.",
+    "body": "Use thirty seconds to reinforce what the audience has learned, not to introduce another framework. Govern the system: agree on responsibilities, rules, criteria, stacks, etc., for working with AI. Preserve context: turn decisions and lessons into reusable guides and evaluations (Evals). Evaluate to learn: measure quality and outcomes, not just speed or volume. These are complementary responsibilities, not sequential steps. The closing uses sixty seconds and this recap thirty, preserving the twenty-minute keynote.",
+    "transition": "Let's talk. Which of these three responsibilities needs the most attention in your team?"
   },
   {
     "seconds": 600,
@@ -274,7 +282,7 @@ const slides = [...document.querySelectorAll(".slide")];
 const $ = (selector) => document.querySelector(selector);
 const englishData = { notes, lifecycle, metrics, pairLabels, pairEvidence };
 const state = { index: 0, cause: 0, stack: 0, pair: 0, life: 0, formResult: "idle", formName: "", fullscreen: "" };
-const appendixOrigins = { 18: 17, 19: 17, 20: 17, 21: 17, 22: 14, 23: 17, 24: 17, 25: 12 };
+const appendixOrigins = { 19: 18, 20: 18, 21: 18, 22: 18, 23: 14, 24: 18, 25: 18, 26: 12 };
 const pairTabLabels = ["User need", "AI mistake", "Team decision", "Working form", "Saved lesson", "Next review"];
 let stageReview;
 
@@ -365,7 +373,7 @@ function renderSlide(index) {
   const focusWasInSlide = oldSlide.contains(document.activeElement);
   const destination = index + 1;
   const origin = state.index + 1;
-  if ((destination === 22 && [14, 17].includes(origin)) || (destination === 25 && [12, 17].includes(origin))) {
+  if ((destination === 23 && [14, 18].includes(origin)) || (destination === 26 && [12, 18].includes(origin))) {
     appendixOrigins[destination] = origin;
   }
   state.index = Math.max(0, Math.min(slides.length - 1, index));
@@ -398,11 +406,11 @@ function renderSlide(index) {
 }
 
 function renderReturnLinks() {
-  for (const [slide, selector] of [[22, "#definitions-return"], [25, "#pilot-return"]]) {
+  for (const [slide, selector] of [[23, "#definitions-return"], [26, "#pilot-return"]]) {
     const origin = appendixOrigins[slide];
     const link = $(selector);
     link.href = `#${origin}`;
-    link.textContent = `↖ ${origin === 17 ? t("Back to FAQ") : origin === 14 ? t("Back to dashboard") : t("Back to shared production")}`;
+    link.textContent = `↖ ${origin === 18 ? t("Back to FAQ") : origin === 14 ? t("Back to dashboard") : t("Back to shared production")}`;
   }
 }
 
