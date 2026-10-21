@@ -647,8 +647,5 @@ svg text, code, .lifecycle button > span, .qa-links a span,
 .about-bio ul { padding-left: 22px; margin: 0; }
 .about-bio li { font-size: 24px; line-height: 1.4; color: var(--muted); padding-left: 6px; margin: 0 0 18px; }
 .about-bio li::marker { color: var(--cyan); }
-.about-collage { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1.2fr 1fr; gap: 18px; height: 588px; }
-.photo-placeholder { display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; padding: 26px; background: #1b2224; border: 1px dashed var(--control-line); }
-.photo-1 { grid-column: 1 / -1; }
-.photo-caption { font-size: 26px; color: var(--text); }
-.photo-placeholder small { font-size: 23px; }
+.about-photo { height: 588px; min-width: 0; overflow: hidden; }
+.about-photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; }

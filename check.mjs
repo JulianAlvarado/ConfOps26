@@ -38,7 +38,7 @@ function notesDocument(data, titles, es) {
 **${es ? "Presentación bilingüe aprobada (V3), versión principal que sustituye a V2." : "Approved bilingual presentation (V3), the canonical version replacing V2."}**
 
 ${es ? "Basada en V2 bilingüe congelada" : "Based on frozen bilingual V2"} \`e39ef62f1729553773fa4a4f097f5c8cdf33d138\`.
-${es ? "16 diapositivas principales numeradas (15 de conferencia + Hablemos) + FAQ + 8 apéndices = 25. Hablemos cierra la numeración con 16/16, sin aumentar el tiempo de conferencia. Inter local, bajo licencia OFL. Biografía restaurada en la posición 3 con placeholders neutrales." : "16 numbered main slides (15 keynote + Let's talk) + FAQ + 8 appendices = 25. Let's talk ends the numbering at 16/16 without increasing keynote time. Local Inter under OFL. About me restored at position 3 with neutral placeholders."}
+${es ? "16 diapositivas principales numeradas (15 de conferencia + Hablemos) + FAQ + 8 apéndices = 25. Hablemos cierra la numeración con 16/16, sin aumentar el tiempo de conferencia. Inter local, bajo licencia OFL. Biografía en la posición 3 con una única foto proporcionada por el ponente." : "16 numbered main slides (15 keynote + Let's talk) + FAQ + 8 appendices = 25. Let's talk ends the numbering at 16/16 without increasing keynote time. Local Inter under OFL. About me at position 3 with one speaker-supplied photo."}
 
 ${es ? "Generado desde app.js y spanish.js mediante" : "Generated from app.js and spanish.js with"} \`node check.mjs --write-notes\`.
 
@@ -122,9 +122,12 @@ assert(html.includes('id="pilot-return" href="#12"'));
 assert(html.includes('id="definitions-return" href="#14"'));
 assert(/<progress\b[^>]*max="16"/.test(html));
 assert(!/data-action="(?:pair|pair-reset|loop|closing)"/.test(html));
-assert(!/presentation-qr|<img\b|reading-toggle/.test(html), "No restored photos, QR or Reading control");
+assert(!/presentation-qr|reading-toggle/.test(html), "No QR or Reading control");
 assert.match(html, /class="slide about-slide" id="slide-3"/);
-assert.equal((html.match(/class="photo-placeholder /g) || []).length, 3);
+assert.equal((html.match(/<img\b/g) || []).length, 1);
+assert.match(html, /src="images\/julian-beach-handstand\.jpeg"/);
+assert(!/photo-placeholder|about-collage/.test(html));
+assert(readFileSync(new URL("images/julian-beach-handstand.jpeg", import.meta.url)).length > 0);
 assert(!html.includes("Possibility is abundant."), "Removed only the evaluation-pile caption");
 assert(!/setReadingView|readingPreference|smallScreen/.test(js), "No Reading preference or automatic activation");
 assert.match(html, /class="human-symbol" aria-hidden="true">◎/);

@@ -3,7 +3,7 @@
 **Approved bilingual presentation (V3), the canonical version replacing V2.**
 
 Based on frozen bilingual V2 `e39ef62f1729553773fa4a4f097f5c8cdf33d138`.
-16 numbered main slides (15 keynote + Let's talk) + FAQ + 8 appendices = 25. Let's talk ends the numbering at 16/16 without increasing keynote time. Local Inter under OFL. About me restored at position 3 with neutral placeholders.
+16 numbered main slides (15 keynote + Let's talk) + FAQ + 8 appendices = 25. Let's talk ends the numbering at 16/16 without increasing keynote time. Local Inter under OFL. About me at position 3 with one speaker-supplied photo.
 
 Generated from app.js and spanish.js with `node check.mjs --write-notes`.
 
@@ -67,7 +67,7 @@ The reference on 12 opens pilot 25 and returns to its origin. Definitions from 1
 
 **Takeaway:** Introduce yourself and the perspective you bring to DesignOps and AI.
 
-**Visual concept:** Neutral photo placeholders fill the left half; concise biography bullets fill the right. Supplied photos are pending.
+**Visual concept:** One supplied beach handstand photo fills the left half, preserving the complete pose; concise biography bullets fill the right.
 
 **Interaction:** No builds or controls.
 

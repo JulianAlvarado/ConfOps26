@@ -3,7 +3,7 @@
 **Presentación bilingüe aprobada (V3), versión principal que sustituye a V2.**
 
 Basada en V2 bilingüe congelada `e39ef62f1729553773fa4a4f097f5c8cdf33d138`.
-16 diapositivas principales numeradas (15 de conferencia + Hablemos) + FAQ + 8 apéndices = 25. Hablemos cierra la numeración con 16/16, sin aumentar el tiempo de conferencia. Inter local, bajo licencia OFL. Biografía restaurada en la posición 3 con placeholders neutrales.
+16 diapositivas principales numeradas (15 de conferencia + Hablemos) + FAQ + 8 apéndices = 25. Hablemos cierra la numeración con 16/16, sin aumentar el tiempo de conferencia. Inter local, bajo licencia OFL. Biografía en la posición 3 con una única foto proporcionada por el ponente.
 
 Generado desde app.js y spanish.js mediante `node check.mjs --write-notes`.
 
@@ -67,7 +67,7 @@ La referencia en la 12 abre el piloto 25 y vuelve a su origen. Definiciones desd
 
 **Idea clave:** Preséntate y explica la perspectiva que aportas sobre DesignOps e IA.
 
-**Concepto visual:** Espacios neutros para fotos en la mitad izquierda; biografía breve en la derecha. Las fotos del ponente están pendientes.
+**Concepto visual:** Una foto proporcionada del ponente haciendo una parada de manos en la playa ocupa la mitad izquierda, con la postura completa visible; biografía breve en la derecha.
 
 **Interacción:** Sin pasos ni controles.
 

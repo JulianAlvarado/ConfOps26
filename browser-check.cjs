@@ -49,8 +49,8 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
       faq: notes[16].seconds, backups: notes.slice(17).map(note => note.seconds)
     })), { total: 1200, demo: 270, before: 90, after: 105, closing: 90, qa: 600, faq: 0, backups: [0, 0, 0, 0, 0, 0, 0, 0] });
     assert.equal(await page.locator(".human-symbol").textContent(), "◎");
-    assert.equal(await page.locator("#slide-3 .photo-placeholder").count(), 3);
-    assert.equal(await page.locator("#slide-3 img, .output-pile > p").count(), 0);
+    assert.equal(await page.locator("#slide-3 .photo-placeholder, .output-pile > p").count(), 0);
+    assert.equal(await page.locator("#slide-3 img").count(), 1);
     assert.equal(await page.locator(".network-node").count(), 5);
     assert(!(await page.locator(".network-node").allTextContents()).some(text => text.includes("+ AI")));
     assert.equal(await page.locator(".shift-group").count(), 3);
@@ -636,7 +636,17 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
           ];
           if (JSON.stringify([...slide.querySelectorAll(".about-bio li")].map(node => node.textContent)) !== JSON.stringify(expected)) issues.push("Speaker-supplied biography must retain all four exact bullets");
           if (slide.querySelector("h2").textContent !== "Julian Alvarado" || slide.querySelector(".about-role").textContent !== "Xbox Design Ops") issues.push("Biography name/title changed");
-          if (slide.querySelectorAll(".photo-placeholder").length !== 3 || slide.querySelector("img, svg")) issues.push("Biography must retain neutral placeholders without new imagery");
+          const photo = slide.querySelector(".about-photo img");
+          if (slide.querySelectorAll("img").length !== 1 || slide.querySelector(".photo-placeholder, .about-collage, svg")) issues.push("Biography must contain only the supplied single photo");
+          if (!photo || !photo.complete || photo.naturalWidth !== 768 || photo.naturalHeight !== 1024 || photo.getAttribute("src") !== "images/julian-beach-handstand.jpeg") issues.push("Supplied beach photo failed to load");
+          if (photo) {
+            const alt = language === "es" ? "Julian haciendo una parada de manos en la playa, con las olas del mar detrás." : "Julian doing a handstand on the beach, with ocean waves behind him.";
+            if (photo.alt !== alt) issues.push("Biography photo alt text must match the selected language");
+            const style = getComputedStyle(photo);
+            const scale = Math.max(photo.clientWidth / 768, photo.clientHeight / 1024);
+            const cropTop = (1024 * scale - photo.clientHeight) * 0.6;
+            if (style.objectFit !== "cover" || style.objectPosition !== "50% 60%" || 334 * scale - cropTop < 0 || 653 * scale - cropTop > photo.clientHeight) issues.push("Photo crop must retain the complete handstand without stretching");
+          }
         }
         if (slide.id === "slide-16") {
           const left = slide.querySelector(".eyebrow").getBoundingClientRect().left;
