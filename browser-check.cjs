@@ -64,6 +64,9 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
       ["en", ["What should we use and how should we use it?", "The intelligence layer for the right choices.", "What makes it good enough?"]]
     ]) {
       await page.evaluate(locale => setLanguage(locale), locale);
+      assert.equal(await page.locator("#slide-1 p.subtitle").innerHTML(), locale === "es"
+        ? "Gestión, sistemas y el nuevo papel<br>de DesignOps en los equipos de producto"
+        : "Governance, systems, and the new role<br>of DesignOps in product teams");
       assert.deepEqual(await page.locator("#slide-4 .framework p").allTextContents(), copy);
       assert.equal(await page.locator("#slide-4 .framework h3").first().textContent(), locale === "es" ? "GESTIONAR" : "GOVERN");
       const frameworkTitle = locale === "es" ? "Gestionar. Contexto. Evaluar." : "Govern. Context. Evaluate.";

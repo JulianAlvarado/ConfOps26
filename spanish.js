@@ -13,7 +13,7 @@ const spanish = {
     {"selector":"#slide-1 > div:nth-child(1)","text":{"0":["DESIGNOPS AS AI INFRASTRUCTURE ","DESIGNOPS COMO INFRAESTRUCTURA DE IA "]},"attributes":{}},
     {"selector":"#title-1 > em:nth-child(3)","text":{"0":["Who keeps","¿Quién nos da"],"2":["us coherent?","coherencia?"]},"attributes":{}},
     {"selector":"#title-1","text":{"0":["AI makes","La IA nos"],"2":["us faster.","acelera."]},"attributes":{}},
-    {"selector":"#slide-1 > div:nth-child(2) > div:nth-child(1) > p:nth-child(2)","text":{"0":["Governance, systems, and the new role","Gobernanza, sistemas y el nuevo papel"],"2":["of DesignOps in product teams","de DesignOps en los equipos de producto"]},"attributes":{}},
+    {"selector":"#slide-1 > div:nth-child(2) > div:nth-child(1) > p:nth-child(2)","text":{"0":["Governance, systems, and the new role","Gestión, sistemas y el nuevo papel"],"2":["of DesignOps in product teams","de DesignOps en los equipos de producto"]},"attributes":{}},
     {"selector":"#slide-1 > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > span:nth-child(1)","text":{"0":["CAPACITY ↑","CAPACIDAD ↑"]},"attributes":{}},
     {"selector":"#slide-1 > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > span:nth-child(2)","text":{"0":["COHERENCE ?","COHERENCIA ?"]},"attributes":{}},
     {"selector":"#slide-1 > div:nth-child(2) > div:nth-child(2) > svg:nth-child(2)","text":{},"attributes":{"aria-label":["One source branches into many different outputs; a shared system is needed for coherence.","Una fuente se ramifica en resultados diversos; hace falta un sistema compartido para mantener la coherencia."]}},
