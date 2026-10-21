@@ -561,9 +561,17 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
         const footer = slide.querySelector(".slide-footer").getBoundingClientRect();
         const issues = [];
         if (language === "es" && /\balta\b/i.test(slide.outerHTML + document.querySelector("#notes-content").textContent)) issues.push("Spanish setup terminology regressed");
+        if (slide.id === "slide-5" && state.pair === 0) {
+          const entries = language === "es"
+            ? ["La situación", "Empiezo a vibe codear un formulario sin claridad", "Requerimiento:", "Crear un workspace y empezar a trabajar"]
+            : ["The situation", "I do not have a teammate to invite yet.", "What I need", "Name my workspace and start working."];
+          if (JSON.stringify([...slide.querySelector("#evidence-details").children].map(node => node.textContent)) !== JSON.stringify(entries)) issues.push("Initial situation evidence changed");
+        }
         if (slide.id === "slide-5" && state.pair === 2) {
           const decisionLabel = language === "es" ? "Diseño + ingeniería deciden en pair programming" : "Designer + engineer decide";
           if (![...slide.querySelectorAll("#evidence-details dt")].some(node => node.textContent === decisionLabel)) issues.push("Team-decision evidence label changed");
+          const decision = language === "es" ? "Quitar la invitación obligatoria del setup de mi workspace." : "Remove the required invitation from setup.";
+          if (slide.querySelector("#evidence-details dd").textContent !== decision) issues.push("Team-decision evidence value changed");
         }
         if (slide.id === "slide-5" && state.pair === 4) {
           const lessonTitle = language === "es" ? "No te repitas (DRY: Don't repeat yourself)" : "Do not fix this twice.";
