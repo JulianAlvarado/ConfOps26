@@ -171,7 +171,6 @@ const spanish = {
     {"selector":"#title-11 > em:nth-child(2)","text":{"0":["More learning, together.","Aprendizaje sincronizado con el usuario."]},"attributes":{}},
     {"selector":"#title-11","text":{"0":["Less waiting.","Menos tiempo de espera y menos dependencias."]},"attributes":{}},
     {"selector":"#journeys > article:nth-child(1) > div:nth-child(1) > h3:nth-child(1)","text":{"0":["Sequential handoffs","Traspasos secuenciales"]},"attributes":{}},
-    {"selector":"#journeys > article:nth-child(1) > div:nth-child(1) > span:nth-child(2)","text":{"0":["SIMPLIFIED BEFORE","ANTES, SIMPLIFICADO"]},"attributes":{}},
     {"selector":"#journeys > article:nth-child(1) > div:nth-child(2) > span:nth-child(1)","text":{"0":["Research","Investigación"]},"attributes":{}},
     {"selector":"#journeys > article:nth-child(1) > div:nth-child(2) > span:nth-child(3)","text":{"0":["Brief","Encargo"]},"attributes":{}},
     {"selector":"#journeys > article:nth-child(1) > div:nth-child(2) > span:nth-child(5)","text":{"0":["Mocks","Maquetas"]},"attributes":{}},

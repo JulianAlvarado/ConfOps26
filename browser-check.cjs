@@ -55,6 +55,7 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
     assert.equal(await page.locator(".shift-group").count(), 3);
     assert.equal(await page.locator(".shift-rows > div").count(), 6);
     assert.equal(await page.locator("#slide-10 .journey").count(), 1);
+    assert.equal(await page.locator("#journeys .journey-label .tag").count(), 0);
     assert.equal(await page.locator("#slide-11 .journey").count(), 1);
     assert.equal(await page.locator("#metric-dashboard thead th").count(), 4);
     assert.equal(await page.locator("#metric-dashboard .metric-category").count(), 2);
