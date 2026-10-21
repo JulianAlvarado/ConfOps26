@@ -3,7 +3,7 @@
 **Presentación bilingüe aprobada (V3), versión principal que sustituye a V2.**
 
 Basada en V2 bilingüe congelada `e39ef62f1729553773fa4a4f097f5c8cdf33d138`.
-15 diapositivas principales + Preguntas + 8 apéndices = 24. Inter local, bajo licencia OFL. Biografía restaurada en la posición 3 con placeholders neutrales.
+15 diapositivas principales + Hablemos + FAQ + 8 apéndices = 25. Inter local, bajo licencia OFL. Biografía restaurada en la posición 3 con placeholders neutrales.
 
 Generado desde app.js y spanish.js mediante `node check.mjs --write-notes`.
 
@@ -18,16 +18,16 @@ Generado desde app.js y spanish.js mediante `node check.mjs --write-notes`.
 | 12 (después) | 13:50–15:35 |
 | 13–14 | 15:35–18:30 |
 | 15 | 18:30–20:00 |
-| 16 | 20:00–30:00 |
-| 17–24 | Opcionales |
+| 16–17 | 20:00–30:00 (compartidos) |
+| 18–25 | Opcionales |
 
-La demo conserva 270 segundos; cierre, 90; preguntas, 600. El piloto está en el apéndice 24. El recorrido dividido conserva 90 segundos antes + 105 después. La biografía recupera sus 30 segundos: total de conferencia, 1.200 segundos.
+La demo conserva 270 segundos; cierre, 90; preguntas, 600. El piloto está en el apéndice 25. El recorrido dividido conserva 90 segundos antes + 105 después. La biografía recupera sus 30 segundos: total de conferencia, 1.200 segundos.
 
 ## Escenario y revisión
 
 S abre Escenario; F activa pantalla completa opcional; Escape o S restaura revisión. Las flechas avanzan o retroceden la cadena y la alineación de la diapositiva 4, la demo y el cierre antes de cambiar de diapositiva, tanto en revisión como en Escenario. Las seis pestañas muestran el recorrido completo; no hay Reiniciar ni Siguiente duplicado. Las teclas nativas del formulario no navegan. Inicio/Fin y flechas dentro de las pestañas seleccionan estados. El botón principal Siguiente recorre la demo. Cambiar de idioma con L conserva el estado y los datos locales; L no intercepta escritura, notas ni diálogos. Al salir de Escenario se restaura el estado de revisión. La presentación se escala en pantallas pequeñas. Nada se guarda ni envía.
 
-La referencia en la 12 abre el piloto 24 y vuelve a su origen. Definiciones desde la 14 vuelve al panel; desde Preguntas vuelve a Preguntas. El ciclo completo no requiere clics. Se conserva el icono de evaluación ◎.
+La referencia en la 12 abre el piloto 25 y vuelve a su origen. Definiciones desde la 14 vuelve al panel; las ocho respuestas abiertas desde FAQ vuelven a FAQ (17). Hablemos y FAQ comparten los mismos 600 segundos, sin duplicar tiempo. El ciclo completo no requiere clics. Se conserva el icono de evaluación ◎.
 
 ## 1. La IA nos acelera. ¿Quién mantiene la coherencia?
 
@@ -213,7 +213,7 @@ La referencia en la 12 abre el piloto 24 y vuelve a su origen. Definiciones desd
 
 **Concepto visual:** Un recorrido posterior propuesto: propósito común, trabajo colaborativo sincronizado, producción con IA y experimentos con opinión del cliente.
 
-**Interacción:** La animación verde de colaboración se inicia al entrar, sin control de repetición. Escenario y movimiento reducido mantienen todo legible sin animación. La referencia al piloto de 30 días abre el apéndice 24; su enlace de regreso vuelve aquí. El piloto queda fuera del tiempo de conferencia.
+**Interacción:** La animación verde de colaboración se inicia al entrar, sin control de repetición. Escenario y movimiento reducido mantienen todo legible sin animación. La referencia al piloto de 30 días abre el apéndice 25; su enlace de regreso vuelve aquí. El piloto queda fuera del tiempo de conferencia.
 
 **Notas del ponente:** El recorrido anterior es una simplificación deliberada, no una afirmación de que todos los equipos trabajaban secuencialmente antes de la IA. La investigación informa el encargo, diseño crea propuestas, ingeniería construye y el cliente responde al final. La alternativa propuesta parte de Misión, Metas y Métricas: las MMM de la fuente, donde Metas recoge los hitos. PM, investigación, diseño e ingeniería comparten propósito; especificación, conceptos, viabilidad y prototipos HTML/CSS evolucionan juntos. Los lanzamientos pueden convertirse en experimentos que informan otra iteración. La IA puede reducir producción, pero siguen contando revisión, integración y dependencias. No prometas lanzamientos en una semana ni aceleración universal. Mide tiempo transcurrido, horas-persona, esperas, validación con clientes y ritmo experimental. La animación compara secuencias, no velocidades numéricas. Un prototipo no es un lanzamiento de producción; la evidencia de usuarios sigue siendo necesaria.
 
@@ -245,11 +245,11 @@ La referencia en la 12 abre el piloto 24 y vuelve a su origen. Definiciones desd
 
 **Concepto visual:** Una tabla compartida muestra una sola vez Base, Piloto y Cambio; los grupos separan resultados del flujo de indicadores anticipados y de proceso.
 
-**Interacción:** Las 10 medidas abre el diálogo completo. Definiciones abre el apéndice 21 y regresa aquí; al entrar desde Preguntas regresa a Preguntas. Cerrar el diálogo devuelve el foco al control que lo abrió.
+**Interacción:** Las 10 medidas abre el diálogo completo. Definiciones abre el apéndice 22 y regresa aquí; al entrar desde FAQ regresa a FAQ. Cerrar el diálogo devuelve el foco al control que lo abrió.
 
 **Notas del ponente:** Son valores aproximados orientados por la experimentación inicial del ponente, no mediciones exactas, referencias de rendimiento ni previsiones. El ponente facilitó los rangos de producción de diseño; las otras nueve comparaciones conservan los valores sintéticos anteriores, que considera próximos a observaciones informales. No se han facilitado registros, tamaños de muestra ni métodos: no afirmes resultados validados ni retorno causal de la inversión. De referencia a piloto: mediana del encargo al concepto validado, 9 a 6 días; producción de diseño, ~3–4/sem a ~1–2/sem, entregables aceptados en un equipo con ciclo integral de 8 semanas. El cambio ≈−2/sem es una estimación por puntos medios: 1,5 menos 3,5, no un cambio observado de forma independiente. La tasa semanal y el ciclo integral de ocho semanas son conceptos distintos: no dividas por ocho ni infieras un total de ocho semanas. La producción disminuye: no la presentes como mejora. Esfuerzo de producción, 18 a 11 horas por concepto; revisión, 4 a 6 horas; retrabajo, 35% a 24%; comprobaciones aplicables superadas, 78% a 90%; defectos abiertos de accesibilidad/calidad, 6 a 4 por 10 pantallas; divergencia diseño-código, 28% a 18%; experimentos, 1 a 2 por semana; reutilización de contexto aprobado, 25% a 70%. La revisión aumenta: generar más rápido no implica revisar menos. Los indicadores anticipados y de proceso reflejan comportamiento y preparación; los de resultado comprueban lo que entrega el flujo. El cumplimiento es una señal anticipada de calidad, no prueba de beneficio para el usuario. Se muestran ambos valores aproximados y sus cambios, sin escalas de barras que compitan. Los porcentajes cambian en puntos porcentuales, no en porcentajes relativos. Iguala alcance, dotación, definición de entregable y criterios; incluye muestra y dispersión antes de presentar una comparación validada. Registra por separado el éxito del cliente en sus tareas. No se aportan datos de resultados de clientes.
 
-**Transición:** Vuelve a la pregunta central. La referencia al piloto del flujo propuesto sigue disponible en el apéndice 24.
+**Transición:** Vuelve a la pregunta central. La referencia al piloto del flujo propuesto sigue disponible en el apéndice 25.
 
 ---
 
@@ -261,7 +261,7 @@ La referencia en la 12 abre el piloto 24 y vuelve a su origen. Definiciones desd
 
 **Concepto visual:** Una pregunta con espacio, una respuesta que se revela con intención y tres afirmaciones finales.
 
-**Interacción:** Momento de Escenario 3: pausa, Derecha revela DesignOps y otra Derecha abre Preguntas. Izquierda oculta la respuesta antes de retroceder. En revisión, Siguiente o una tecla de avance revela primero y luego avanza. No hay botón aparte para revelar.
+**Interacción:** Momento de Escenario 3: pausa, Derecha revela DesignOps y otra Derecha abre Hablemos. Izquierda oculta la respuesta antes de retroceder. En revisión, Siguiente o una tecla de avance revela primero y luego abre Hablemos. No hay botón aparte para revelar.
 
 **Notas del ponente:** Dedica 90 segundos al cierre. Baja el ritmo. Lee la pregunta y deja espacio: si la IA forma parte de cómo diseñamos productos, ¿quién diseña el sistema en el que opera? Revela DesignOps. No es una reivindicación de control de toda la IA por una función. Es una invitación a conectar experiencia, gobernanza, conocimiento, flujos y evaluación. La IA crea capacidad. Los sistemas crean coherencia. La gestión responsable crea confianza. DesignOps conecta las tres. El futuro no consiste solo en gestionar trabajo alrededor del diseño, sino en diseñar la infraestructura con la que personas e IA crean productos juntas. El reto práctico es un flujo, una referencia, un paquete de contexto mantenido, controles humanos con responsable y evidencia de que no se ha cambiado calidad por rapidez. Termina con la tesis y una pausa, no con más herramientas.
 
@@ -269,23 +269,39 @@ La referencia en la 12 abre el piloto 24 y vuelve a su origen. Definiciones desd
 
 ---
 
-## 16. Conversemos — Preguntas
+## 16. Hablemos
 
-**Tiempo:** 10 minutos de preguntas, fuera de la conferencia
+**Tiempo:** 10 minutos compartidos entre Hablemos y FAQ, fuera de la conferencia
 
 **Idea clave:** Usa la conversación para relacionar el modelo operativo con las limitaciones del público.
 
-**Concepto visual:** Siete temas de apoyo y enlaces a LinkedIn y GitHub junto a la invitación a conversar.
+**Concepto visual:** Una invitación a conversar con enlaces de contacto de LinkedIn y GitHub; las preguntas están en la siguiente diapositiva.
 
-**Interacción:** Selecciona un tema para abrir su apoyo; todos permiten volver a Preguntas.
+**Interacción:** Siguiente abre FAQ. Los enlaces de contacto solo se abren externamente al seleccionarlos. Sin código QR.
 
-**Notas del ponente:** Reserva diez minutos para conversar. Invita a compartir flujos concretos, no predicciones abstractas. Los siete apoyos cubren responsables de gobernanza, evolución del papel, sistemas preparados para IA, flujos independientes del modelo, medición, capas de contexto y ciclo de vida. Las capas y el ciclo son perspectivas complementarias, no nuevos modelos que memorizar durante la charla. Si preguntan si esto es solo gobernanza de IA, vuelve a la decisión: la gobernanza es una parte; contexto, flujos, evaluación y habilitación la hacen útil en el ecosistema de producto. Si preguntan qué hacer mañana: mapear, identificar, codificar, estandarizar y medir.
+**Notas del ponente:** Reserva diez minutos en total entre Hablemos y FAQ, no diez minutos por diapositiva. Invita a compartir ejemplos concretos de flujos de trabajo, no predicciones abstractas. Mantén los contactos visibles al iniciar la conversación; avanza a FAQ cuando una pregunta necesite una respuesta de apoyo. Los 600 segundos de conversación se contabilizan aquí una sola vez; FAQ no añade tiempo.
 
-**Transición:** Abre un apoyo solo si ayuda a responder una pregunta.
+**Transición:** Continúa a FAQ para consultar las ocho preguntas de apoyo.
 
 ---
 
-## 17. Apoyo: responsabilidad compartida de gobernanza
+## 17. FAQ
+
+**Tiempo:** 10 minutos compartidos entre Hablemos y FAQ, fuera de la conferencia
+
+**Idea clave:** Usa las ocho preguntas para conectar la conversación con la evidencia de apoyo pertinente.
+
+**Concepto visual:** Ocho enlaces de preguntas accesibles, cada uno dirigido a su respuesta en el apéndice.
+
+**Interacción:** Selecciona una pregunta para abrir su respuesta; la respuesta vuelve a FAQ. Las definiciones abiertas desde el panel y el piloto abierto desde producción compartida mantienen sus destinos de regreso originales.
+
+**Notas del ponente:** Continúa los mismos diez minutos de conversación iniciados en Hablemos; no reinicies el reloj. Las ocho respuestas cubren responsabilidades de gobernanza, evolución del rol, sistemas de diseño preparados para IA, cambios de modelo, medición, capas de contexto, ciclo de vida del producto e inicio de un piloto. Las capas y el ciclo de vida son perspectivas de apoyo, no modelos adicionales que memorizar. Si preguntan si esto es solo gobernanza de IA, vuelve al recorrido de decisiones: la gobernanza es un componente; contexto, flujos, evaluación y habilitación lo hacen útil. Si preguntan qué hacer mañana: mapear, identificar, codificar, estandarizar y medir.
+
+**Transición:** Vuelve a FAQ después de cada respuesta, o a Hablemos para consultar los contactos.
+
+---
+
+## 18. Apoyo: responsabilidad compartida de gobernanza
 
 **Tiempo:** Apéndice opcional, fuera de la conferencia
 
@@ -293,15 +309,15 @@ La referencia en la 12 abre el piloto 24 y vuelve a su origen. Definiciones desd
 
 **Concepto visual:** Cuatro ámbitos de responsabilidad; ninguno reclama todo el modelo operativo de IA.
 
-**Interacción:** Volver a Preguntas regresa al menú de temas.
+**Interacción:** Volver a FAQ regresa al menú de temas.
 
 **Notas del ponente:** Seguridad y Legal fijan los límites de riesgo; TI y plataformas gestionan tecnología y acceso. DesignOps traduce políticas en condiciones útiles de trabajo con los expertos. Producto, investigación, diseño e ingeniería responden por sus decisiones y la calidad del lanzamiento. Una buena gobernanza elimina ambigüedades repetitivas mediante rutas aprobadas, controles humanos según el riesgo, escalado y excepciones documentadas. Una mala gobernanza crea una cola innecesaria de aprobaciones. Las responsabilidades concretas se acuerdan localmente: la diapositiva es un modelo de conversación, no una matriz RACI universal.
 
-**Transición:** Volver a Preguntas.
+**Transición:** Volver a FAQ.
 
 ---
 
-## 18. Apoyo: diseñar el entorno, no ser una fábrica de IA
+## 19. Apoyo: diseñar el entorno, no ser una fábrica de IA
 
 **Tiempo:** Apéndice opcional, fuera de la conferencia
 
@@ -309,15 +325,15 @@ La referencia en la 12 abre el piloto 24 y vuelve a su origen. Definiciones desd
 
 **Concepto visual:** Seis responsabilidades y cinco tipos de trabajo de producto.
 
-**Interacción:** Volver a Preguntas regresa al menú de temas.
+**Interacción:** Volver a FAQ regresa al menú de temas.
 
 **Notas del ponente:** El papel emergente incluye gobernanza, inteligencia de diseño, arquitectura de flujos con expertos, sistemas de calidad, habilitación y medición. «Arquitecto de sistemas operativos de IA» es una posible dirección, no un cargo prescrito. Los arquetipos de la fuente se conservan como tipos de trabajo: prototipar, construir, simplificar o mejorar, crecer y mantener. Sus riesgos y necesidades de evaluación son distintos. La fuente incluye una atribución externa no verificada; esta edición no atribuye autoría a esos arquetipos. No conviertas el modelo en la obligación de que DesignOps sea un equipo de ingeniería de IA.
 
-**Transición:** Volver a Preguntas.
+**Transición:** Volver a FAQ.
 
 ---
 
-## 19. Apoyo: un sistema de diseño preparado para IA
+## 20. Apoyo: un sistema de diseño preparado para IA
 
 **Tiempo:** Apéndice opcional, fuera de la conferencia
 
@@ -325,15 +341,15 @@ La referencia en la 12 abre el piloto 24 y vuelve a su origen. Definiciones desd
 
 **Concepto visual:** Las bases más razones utilizables por máquinas, con responsabilidad sobre el contexto común.
 
-**Interacción:** Volver a Preguntas regresa al menú de temas.
+**Interacción:** Volver a FAQ regresa al menú de temas.
 
 **Notas del ponente:** Conserva tokens, componentes, patrones y guías. Añade metadatos semánticos, reglas de uso, ejemplos, límites, requisitos de accesibilidad, relaciones, equivalentes de código y criterios. Empieza por un patrón, no por toda la biblioteca. Incluye ejemplos válidos e inválidos, acceso permitido a datos, origen, versión, vigencia y responsable. Legible para IA no significa público, recuperable sin restricciones ni automáticamente correcto. La investigación y las experiencias existentes siguen siendo contexto importante más allá de la biblioteca.
 
-**Transición:** Volver a Preguntas.
+**Transición:** Volver a FAQ.
 
 ---
 
-## 20. Apoyo: flujos independientes del modelo y prompts canónicos
+## 21. Apoyo: flujos independientes del modelo y prompts canónicos
 
 **Tiempo:** Apéndice opcional, fuera de la conferencia
 
@@ -341,15 +357,15 @@ La referencia en la 12 abre el piloto 24 y vuelve a su origen. Definiciones desd
 
 **Concepto visual:** Conocimiento, reglas, flujos y evaluación compartidos permanecen mientras cambian los modelos.
 
-**Interacción:** Volver a Preguntas regresa al menú de temas.
+**Interacción:** Volver a FAQ regresa al menú de temas.
 
 **Notas del ponente:** Modelos y herramientas cambiarán. Conserva conocimiento institucional, permisos, flujos, ejemplos y criterios de aceptación. Independencia del modelo no significa adaptación cero: capacidades, límites de contexto, privacidad y comportamiento varían. Repite una evaluación representativa antes de cambiar de modelo. Los expertos crean juntos los prompts canónicos y los gestionan como conocimiento versionado; DesignOps no los elige en solitario. Estandarizar ofrece un punto de partida informado, no prohíbe explorar.
 
-**Transición:** Volver a Preguntas.
+**Transición:** Volver a FAQ.
 
 ---
 
-## 21. Apoyo: definiciones de métricas y plan de medición
+## 22. Apoyo: definiciones de métricas y plan de medición
 
 **Tiempo:** Apéndice opcional, fuera de la conferencia
 
@@ -357,15 +373,15 @@ La referencia en la 12 abre el piloto 24 y vuelve a su origen. Definiciones desd
 
 **Concepto visual:** Definiciones, unidades y métodos junto a un protocolo breve de piloto.
 
-**Interacción:** Volver regresa al panel o a Preguntas según el origen, también en Escenario. La entrada directa vuelve al panel por defecto.
+**Interacción:** Volver regresa al panel o a FAQ según el origen, también en Escenario. La entrada directa vuelve al panel por defecto.
 
 **Notas del ponente:** Define «concepto validado» antes de medir tiempo: aceptación del revisor más el umbral acordado de evidencia de usuarios. Cuenta entregables aceptados, no generaciones en bruto. Separa días transcurridos de horas-persona, producción de revisión, y número de defectos de gravedad. Define denominadores de cumplimiento, retrabajo, reutilización y divergencia. Un experimento completo registra aprendizaje y decisión, no solo un lanzamiento. Compara tareas y dotaciones similares; documenta muestra, dispersión, exclusiones y complejidad. Usa recogida de datos aprobada con controles de privacidad. La revisión puede aumentar aunque baje el esfuerzo total, pero un pequeño piloto observacional no establece causalidad. Fija umbrales de decisión antes de ver resultados y mide éxito en tareas u otros resultados relevantes. Los valores del panel son aproximaciones preliminares de experimentación inicial, no mediciones validadas.
 
-**Transición:** Volver al panel o a Preguntas.
+**Transición:** Volver al panel o a FAQ.
 
 ---
 
-## 22. Apoyo: la ventaja es la memoria de la organización
+## 23. Apoyo: la ventaja es la memoria de la organización
 
 **Tiempo:** Apéndice opcional, fuera de la conferencia
 
@@ -377,11 +393,11 @@ La referencia en la 12 abre el piloto 24 y vuelve a su origen. Definiciones desd
 
 **Notas del ponente:** Los modelos aportan capacidades. Agentes y herramientas las conectan con tareas. El contexto aporta lo que el modelo no sabe por sí mismo: tokens, componentes, investigación, producto, marca, accesibilidad, terminología, flujos, repositorios, solicitudes de cambios, experiencias y decisiones previas. La gestión responsable añade límites, exclusiones, evaluación y controles humanos. DesignOps conecta las capas. Es un modelo de responsabilidades, no una arquitectura de software obligatoria. No introduzcas todos los datos de la organización en un modelo: permisos, privacidad, origen, calidad de fuentes, vigencia y responsables determinan qué contexto puede usarse. El sistema de diseño es parte de la memoria, no toda ella.
 
-**Transición:** Volver a Preguntas o usar el apoyo del ciclo de vida para situar las responsabilidades.
+**Transición:** Volver a FAQ o usar el apoyo del ciclo de vida para situar las responsabilidades.
 
 ---
 
-## 23. Apoyo: DesignOps en el ciclo de vida del producto
+## 24. Apoyo: DesignOps en el ciclo de vida del producto
 
 **Tiempo:** Apéndice opcional, fuera de la conferencia
 
@@ -393,11 +409,11 @@ La referencia en la 12 abre el piloto 24 y vuelve a su origen. Definiciones desd
 
 **Notas del ponente:** Descubrir: la IA puede agrupar y recuperar investigación; DesignOps apoya consentimiento, trazabilidad, calidad de fuentes y reutilización. Definir: la IA redacta encargos e identifica carencias; estructura, vocabulario y fuentes compartidas fundamentan el problema. Diseñar: alternativas y prototipos se apoyan en reglas, prompts, accesibilidad y crítica. Construir: el código generado necesita metadatos de componentes, patrones admitidos, tokens, validación y revisión conjunta. Medir: la IA resume observaciones, pero las personas interpretan resultados, registran límites y deciden qué cambiar. No lo conviertas en un catálogo de herramientas. Comenta una o dos fases con la banda persistente; usa revisión solo si necesitas el detalle.
 
-**Transición:** Volver a Preguntas. La decisión de setup de la charla ejemplifica la conexión entre diseño y construcción.
+**Transición:** Volver a FAQ. La decisión de setup de la charla ejemplifica la conexión entre diseño y construcción.
 
 ---
 
-## 24. Apoyo: tus primeros 30 días
+## 25. Apoyo: tus primeros 30 días
 
 **Tiempo:** Apéndice opcional, fuera de la conferencia
 
@@ -405,7 +421,7 @@ La referencia en la 12 abre el piloto 24 y vuelve a su origen. Definiciones desd
 
 **Concepto visual:** Cuatro verbos en una línea temporal, un resultado por semana y una decisión explícita: adoptar, revisar o detener.
 
-**Interacción:** El enlace de regreso vuelve a producción compartida (diapositiva 12), o a Preguntas si se abrió desde ese menú. La entrada directa vuelve a producción compartida por defecto.
+**Interacción:** El enlace de regreso vuelve a producción compartida (diapositiva 12), o a FAQ si se abrió desde ese menú. La entrada directa vuelve a producción compartida por defecto.
 
 **Notas del ponente:** Días 1–7: mapea el uso real de IA e identifica incoherencias, carencias de calidad y riesgos. Días 8–14: elige un flujo útil y acotado y reúne conocimiento pertinente. Días 15–21: nombra responsables, define controles humanos y criterios de evaluación, y establece la referencia antes del piloto. Días 22–30: realiza trabajo comparable y decide adoptar, revisar o detener. Evita empezar con datos sensibles o alto riesgo salvo que exista la gobernanza adecuada. En el equipo, los líderes de diseño e ingeniería pueden asumir un flujo con facilitación de DesignOps. En el área de producto, PM, investigación, diseño, ingeniería y un responsable del sistema coordinan patrones y resultados entre equipos. En la empresa, la responsabilidad federada de producto opera dentro de los límites de Seguridad, Legal, TI y plataformas. DesignOps conecta esos ámbitos; no decide unilateralmente políticas ni producto. Las ventanas de calendario son una propuesta inicial, no fechas de entrega prometidas.
 
@@ -428,4 +444,4 @@ No son mediciones validadas, referencias del sector ni evidencia causal. No se h
 | Defectos de accesibilidad / calidad | 6/10 | 4/10 | −2 /10 | defectos abiertos / 10 pantallas revisadas |
 | Divergencia entre diseño y código | 28% | 18% | −10 pp | % de instancias de interfaz auditadas divergentes |
 
-Las definiciones y métodos de recogida están en el apéndice 21. Igualar alcance, personal y criterios; registrar tamaño de muestra y dispersión; acordar adoptar/revisar/detener antes de ver resultados. El ejemplo del formulario es ficticio, preparado y pendiente de validación con usuarios. El contexto no se aplica por sí solo: requiere integración, permisos, validación y revisión humana.
+Las definiciones y métodos de recogida están en el apéndice 22. Igualar alcance, personal y criterios; registrar tamaño de muestra y dispersión; acordar adoptar/revisar/detener antes de ver resultados. El ejemplo del formulario es ficticio, preparado y pendiente de validación con usuarios. El contexto no se aplica por sí solo: requiere integración, permisos, validación y revisión humana.

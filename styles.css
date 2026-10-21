@@ -59,7 +59,7 @@ main { flex: 1; min-height: 0; display: flex; align-items: center; justify-conte
 .slide h2.compact-title { font-size: 59px; }
 .slide h3 { font-weight: 550; }
 .slide button { font-size: 19px; padding: 14px 22px; }
-#slide-22 button[data-action="stack"] { font-size: 16px; padding: 9px 14px; }
+#slide-23 button[data-action="stack"] { font-size: 16px; padding: 9px 14px; }
 .slide-footer { position: absolute; bottom: 35px; left: 76px; right: 76px; border-top: 1px solid var(--line); padding-top: 20px; display: flex; align-items: center; justify-content: space-between; color: var(--muted); font: 12px var(--mono); letter-spacing: 1.4px; }
 .kicker { font: 14px var(--mono); color: var(--muted); letter-spacing: 2px; margin-bottom: 25px; }
 .lead { color: var(--muted); font-size: 26px; line-height: 1.5; margin-top: 30px; }
@@ -173,7 +173,7 @@ main { flex: 1; min-height: 0; display: flex; align-items: center; justify-conte
 .framework h3 { font: 62px var(--mono); letter-spacing: -2px; }
 .framework article:last-child h3 { color: var(--lime); }
 .framework p { font-size: 34px; line-height: 1.4; margin-top: 28px; max-width: 390px; color: var(--muted); }
-.framework-slide .slide-footer, #slide-6 .slide-footer, #slide-24 .slide-footer { justify-content: flex-end; }
+.framework-slide .slide-footer, #slide-6 .slide-footer, #slide-25 .slide-footer { justify-content: flex-end; }
 .stack-layout { display: grid; grid-template-columns: 1fr 1.3fr; gap: 50px; margin-top: 65px; }
 .stack-layout h2 { font-size: 74px; }
 .stack { display: flex; flex-direction: column; gap: 9px; }
@@ -306,11 +306,11 @@ main { flex: 1; min-height: 0; display: flex; align-items: center; justify-conte
 .closing-thesis strong { color: var(--text); }
 .closing-triad { display: flex; justify-content: space-between; position: absolute; bottom: 157px; left: 76px; right: 76px; border-top: 1px solid var(--line); padding-top: 30px; font-size: 25px; color: var(--muted); }
 .closing-triad strong { color: var(--text); }
-.qa-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 90px; margin-top: 90px; }
+.qa-layout { max-width: 1040px; margin: 90px auto 0; }
 .qa h2 { font-size: 145px; letter-spacing: -6px; line-height: .95; }
-.qa-links { padding-top: 20px; }
+.qa-links { max-width: 1180px; margin-top: 28px; }
 .qa-links a { display: flex; align-items: center; gap: 22px; padding: 17px 0; border-bottom: 1px solid var(--line); color: var(--cyan); font: 17px var(--mono); }
-.qa-links a span { flex: 1; font: 24px sans-serif; color: var(--text); }
+.qa-links a span { flex: 1; font: 28px sans-serif; color: var(--text); }
 .qa-links a:hover span { color: var(--cyan); }
 .contact-links { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; margin-top: 28px; }
 .contact-links a { display: inline-flex; align-items: center; gap: 14px; min-height: 44px; color: var(--cyan); font-size: 22px; }
@@ -345,8 +345,8 @@ main { flex: 1; min-height: 0; display: flex; align-items: center; justify-conte
 .definitions td { padding: 6px 10px; border-bottom: 1px solid #303a3d; color: var(--muted); }
 .definitions td:first-child { color: var(--text); width: 26%; }
 .measurement-note { font-size: 21px; line-height: 1.4; color: var(--muted); margin-top: 16px; }
-#slide-21 > .eyebrow { margin-bottom: 25px; }
-#slide-21 h2.compact-title { font-size: 48px; }
+#slide-22 > .eyebrow { margin-bottom: 25px; }
+#slide-22 h2.compact-title { font-size: 48px; }
 .navigation { height: 66px; flex-shrink: 0; padding: 0 28px; display: flex; align-items: center; justify-content: space-between; gap: 20px; position: relative; border-top: 1px solid #252d30; }
 .nav-context { display: flex; align-items: center; gap: 20px; min-width: 0; flex: 1; }
 #act-label { color: var(--cyan); font: 10px var(--mono); white-space: nowrap; }
@@ -625,9 +625,7 @@ svg text, code, .lifecycle button > span, .qa-links a span,
 .thirty-days article > span { color: var(--coral); }
 .contact-links { border-left: 3px solid var(--coral); padding-left: 22px; }
 .contact-links a { color: var(--coral); font-size: 25px; }
-.qa-layout { margin-top: 45px; }
-.qa-links a { padding: 14px 0; }
-.qa-links a span { font-size: 24px; }
+.qa-links a { padding: 12px 0; }
 .definitions td { padding-top: 4px; padding-bottom: 4px; }
 .stage-mode .big-arrow { font-size: 42px; }
 

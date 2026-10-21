@@ -2,7 +2,7 @@
 
 **Approved bilingual presentation (V3).** User-approved to replace V2 as the canonical presentation. Open `index.html`; use the English and Spanish PDFs linked below. Based on frozen bilingual V2 commit `e39ef62f1729553773fa4a4f097f5c8cdf33d138`, with its history and historical exports preserved.
 
-The local, offline vanilla HTML/CSS/JavaScript presentation contains **24 slides: 15 keynote + Q&A + 8 appendices**. The keynote is 20 minutes, including the restored 30-second About me slide; Q&A remains 10 minutes. V1 and both inherited V2 PDFs are preserved unchanged. The frozen V2 and standalone Spanish branches are not edited.
+The local, offline vanilla HTML/CSS/JavaScript presentation contains **25 slides: 15 keynote + Let's talk + FAQ + 8 appendices**. The keynote is 20 minutes, including the restored 30-second About me slide; Let's talk and FAQ share one 10-minute discussion segment. V1 and both inherited V2 PDFs are preserved unchanged. The frozen V2 and standalone Spanish branches are not edited.
 
 ## Open the presentation
 
@@ -29,19 +29,20 @@ Inter is used for both primary and secondary typography, including diagrams and 
 | 9 | People / Process / Systems explicitly connect current responsibilities with expanded AI scope |
 | 10 | V2's original hub/spoke geometry and role-card positions, with one true AI/IA circle passing behind opaque role cards; accessible shared-layer summary |
 | 11 | Before: simplified sequential handoffs, animated once on entry without a replay control |
-| 12 | After: proposed shared purpose, synchronized collaboration and AI-assisted production; existing green animation starts on entry, without a replay control or pilot badge; link to pilot appendix 24 |
+| 12 | After: proposed shared purpose, synchronized collaboration and AI-assisted production; existing green animation starts on entry, without a replay control or pilot badge; link to pilot appendix 25 |
 | 13 | Three documentation-to-guidance tracks converge on advanced sprint context; a shared metrics band evaluates the whole flow, with the seven detailed relationships and evidence caveats retained in notes |
 | 14 | Semantic table with stronger metric/unit hierarchy, right-aligned tabular values, readable group labels and balanced midpoint annotation; controls remain top-aligned beside the title; approximate values and evidence caveats retained |
-| 15 | Main Next reveals the answer; next advance opens Q&A; reverse hides before moving back |
-| 16 | Topic hierarchy, eight appendix links and coral contact actions; removed lead question stays removed |
-| 17–23 | Existing backup content retained, with Inter and related consistency adjustments |
-| 24 | Original 30-day pilot moved intact to appendix; separated stages and return to the originating slide |
+| 15 | Main Next reveals the answer; next advance opens Let's talk; reverse hides before moving back |
+| 16 | Let's talk / Hablemos: conversation invitation and coral LinkedIn/GitHub contact actions, without questions or QR |
+| 17 | FAQ: all eight original question links, leading to appendix answers that return here |
+| 18–24 | Existing backup content retained, with Inter and related consistency adjustments |
+| 25 | Original 30-day pilot moved intact to appendix; separated stages and return to the originating slide |
 
 The recent Spanish headings are retained, including **“Ejemplo: Conserva lo aprendido. (Evals en pequeña escala)”**, **“Una decisión informada”**, **“No te enfoques en el output, Aceleras el aprendizaje.”**, and **“Las mismas bases, un alcance actualizado.”** The after-journey heading retains the speaker's latest Spanish wording.
 
 ## Pacing and mapping
 
-About me is restored in position 3: paradox 4, demo 6, control plane 10, journeys 11/12, documentation 13, metrics 14, closing 15, Q&A 16 and appendices 17–24. Menus, notes, hashes and return links use this mapping; old numeric bookmarks now refer to the newly numbered slides.
+About me is restored in position 3: paradox 4, demo 6, control plane 10, journeys 11/12, documentation 13, metrics 14, closing 15, Let's talk / Hablemos 16, FAQ 17 and appendices 18–25. Menus, notes, hashes and return links use this mapping; old numeric bookmarks now refer to the newly numbered slides.
 
 | Slides | Narrative | Window |
 | --- | --- | --- |
@@ -52,8 +53,8 @@ About me is restored in position 3: paradox 4, demo 6, control plane 10, journey
 | 12 | After: synchronized production — 105 seconds | 13:50–15:35 |
 | 13–14 | Reusable guidance and measurement | 15:35–18:30 |
 | 15 | Closing — 90 seconds | 18:30–20:00 |
-| 16 | Q&A — 600 seconds | 20:00–30:00 |
-| 17–24 | Optional appendices | Outside keynote |
+| 16–17 | Let's talk + FAQ — 600 seconds shared | 20:00–30:00 |
+| 18–25 | Optional appendices | Outside keynote |
 
 The demo retains **270 seconds**, closing **90**, and the split journey **195**. About me restores its **30 seconds**; keynote total is **1,200 seconds**. These are rehearsal allocations, not automatic advancement.
 
@@ -69,7 +70,7 @@ The demo retains **270 seconds**, closing **90**, and the split journey **195**.
 | Escape / S / Exit stage | Restore review input, feedback, selected state, reveal and diagram state |
 | F | Native fullscreen when supported; denied/unavailable requests are announced |
 | N / Notes | Read notes on the same display; close before audience screen sharing |
-| G / Slides | Open the 24-slide index |
+| G / Slides | Open the 25-slide index |
 | L | In-place language switching |
 
 Review and Stage share slide 4's exact progression: **inactive → all patterns and causal-chain stages active → context and evaluation applied → slide 5**. This takes exactly two interaction clicks; the third advances the slide. Previous reverses alignment, then deactivates the patterns before leaving; revisits and language switches retain progress. Stage resets both chain and alignment for rehearsal and restores both on exit. There are no dedicated slide 4 controls. Other diagrams are complete without extra clicks. Slide 2's generation sequence and slide 12's green collaboration animation start on entry, without controls or automatic slide advancement. Slide 2 uses native CSS animations, with no timers/listeners to accumulate on revisits; Stage and reduced-motion views show all four outputs complete. Slide 10's control-plane connections illuminate once on entry without a button; Stage, print and reduced-motion views show the connected final state. Slide 11's sequential handoffs also animate once on entry, without a replay control. Animations are finite and respect reduced-motion preferences. Slide 4's context/evaluation band retains its V2 vertical placement in review/Stage and unchanged Stage placement.
@@ -80,13 +81,13 @@ For reliable fullscreen, open the presentation in a standalone browser. An embed
 
 The form's native input, validation and submit keys never advance the presentation. Tab outside the form to resume presentation keys. Revisiting the first demo tab does not erase entered input. Reload resets the demo; entering Stage starts its own clean rehearsal, and exiting restores review. Use fictional input only.
 
-The pilot reference on 12 returns from 24 to 12; entering from Q&A returns to Q&A. Definitions from 14 returns to 14, not prematurely to Q&A; Q&A entry returns to Q&A. Direct appendix entry defaults to the related keynote slide. The previous control also respects these appendix origins. Closing the ten-metric dialog restores the opener and stays on the dashboard.
+The pilot reference on 12 returns from 25 to 12; entering from FAQ returns to FAQ (17). Definitions from 14 returns from 22 to 14; FAQ entry returns to FAQ. All eight FAQ answers have return links to FAQ, and Previous respects those origins. Direct definitions/pilot entry defaults to the related keynote slide; other answers default to FAQ. Closing the ten-metric dialog restores the opener and stays on the dashboard. Let's talk records the shared discussion's 600 seconds once; FAQ adds no extra allocation.
 
 ## Evidence boundaries
 
 The form, six states, saved lesson and proposed workflow are pre-authored illustrations, not live AI, research findings or universal organizational history. Source, reason, scope, owner, version and review trigger remain visible; **user validation is pending**. A context package still requires integration, permissions, validation and human review.
 
-All ten approximate comparisons remain unchanged. Design production rate is **~3–4/wk → ~1–2/wk**, a decline; **≈−2/wk** is a midpoint estimate, not an observed delta. The eight-week E2E cycle is team context, not the weekly denominator. Review effort increases **4h → 6h**. Neither is colored as an improvement. Records, sample sizes and methods have not been supplied; these are not validated outcomes, benchmarks or causal ROI. Definitions and collection caveats are in appendix 21 and the bilingual notes.
+All ten approximate comparisons remain unchanged. Design production rate is **~3–4/wk → ~1–2/wk**, a decline; **≈−2/wk** is a midpoint estimate, not an observed delta. The eight-week E2E cycle is team context, not the weekly denominator. Review effort increases **4h → 6h**. Neither is colored as an improvement. Records, sample sizes and methods have not been supplied; these are not validated outcomes, benchmarks or causal ROI. Definitions and collection caveats are in appendix 22 and the bilingual notes.
 
 ## Local font and license
 
@@ -115,7 +116,7 @@ The presentation has no package dependencies. Playwright is optional validation/
 
 ## Canonical PDFs
 
-Separate resolved-state exports, **24 widescreen pages each**:
+Separate resolved-state exports, **25 widescreen pages each**:
 
 - [English PDF](ConfOps26_Julian-Alvarado_DesignOps-as-AI-Infrastructure_en.pdf)
 - [Spanish PDF](ConfOps26_Julian-Alvarado_DesignOps-as-AI-Infrastructure_es.pdf)
@@ -130,6 +131,6 @@ The exporter reuses the established Stage print recipe, waits for local fonts, r
 
 Chromium may output a 675.12pt height rather than 675pt. The delivered files normalize that fractional page edge to exact **1200×675pt (16:9)** without scaling/rasterizing content. PDFKit on macOS can apply `.mediaBox` and `.cropBox` = `CGRect(x: 0, y: 0, width: 1200, height: 675)` to each page. Inspect rendered output after export or normalization, including embedded font weights, Spanish accents, dense definitions and all disclaimers.
 
-The delivered exports contain 48 pages in total and 17 internal links per locale. Chromium embeds Inter's variable-font instances as Type 3 glyph subsets with Unicode mappings; their glyph programs are included, so the PDFs do not require Inter to be installed. The retained evaluation symbol also has an embedded fallback glyph. These are static presentation PDFs, not an interactive replacement for the HTML demo.
+The delivered exports contain 50 pages in total and 17 internal links per locale. Chromium embeds Inter's variable-font instances as Type 3 glyph subsets with Unicode mappings; their glyph programs are included, so the PDFs do not require Inter to be installed. The retained evaluation symbol also has an embedded fallback glyph. These are static presentation PDFs, not an interactive replacement for the HTML demo.
 
 **Approved promotion:** V3 is the current presentation, not a pending review candidate. V1/V2 PDFs remain historical references; previous V3 review exports remain in Git history. Local promotion does not authorize a push or PR.

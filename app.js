@@ -94,7 +94,7 @@ let notes = [
     "seconds": 105,
     "takeaway": "Pilot collaborative production and use any capacity gained for customer learning.",
     "visual": "One proposed after journey: shared purpose, synchronized collaborative work, AI-assisted production, and experiments with customer feedback.",
-    "interaction": "The existing green collaboration animation runs on entry without a replay control. Stage and reduced-motion views remain fully readable without animation. The 30-day pilot reference opens appendix 24; its return link brings you here. The pilot is outside keynote timing.",
+    "interaction": "The existing green collaboration animation runs on entry without a replay control. Stage and reduced-motion views remain fully readable without animation. The 30-day pilot reference opens appendix 25; its return link brings you here. The pilot is outside keynote timing.",
     "body": "The before journey is a deliberately simplified pattern, not a claim that all pre-AI teams worked sequentially. Research informs a brief, design produces mocks, engineering builds, and customers finally respond. The proposed alternative starts with Mission, Milestones, and Metrics—the source's MMM. PM, research, design, and engineering share intent; specification, concepts, feasibility, and HTML/CSS prototypes evolve together. Releases can become experiments that inform another iteration. AI may reduce production effort, but review, integration, and dependency costs still count. Do not promise a one-week release or universal acceleration. Measure elapsed production time, person-hours, waiting time, customer validation, and experimentation cadence. The animation contrasts sequencing, not numeric speed. A prototype is not a production release; user evidence remains necessary.",
     "transition": "Shared guidance can start with documentation the team already has."
   },
@@ -110,65 +110,73 @@ let notes = [
     "seconds": 100,
     "takeaway": "Evaluate the whole workflow: speed, review cost, quality, coherence, and customer outcomes.",
     "visual": "A shared comparison table has Baseline, Pilot and Change headings once; category groups separate workflow outcomes from leading/process signals.",
-    "interaction": "All 10 measures opens the full dialog. Definitions opens appendix 21 and returns here; entering definitions from Q&A returns to Q&A instead. Closing the dialog restores its opener.",
+    "interaction": "All 10 measures opens the full dialog. Definitions opens appendix 22 and returns here; entering definitions from FAQ returns to FAQ instead. Closing the dialog restores its opener.",
     "body": "These are approximate comparison values informed by the presenter's early experimentation, not exact measurements, benchmarks, or a forecast. The presenter supplied design production-rate ranges; the other nine comparisons remain unchanged from the earlier synthetic values, reported as close to informal observations. Underlying records, sample sizes, and methods have not been supplied, so do not claim validated results or causal ROI. Baseline to pilot: median brief-to-validated-concept time 9 to 6 days; design production rate ~3–4/wk to ~1–2/wk, accepted artifacts / in a team with 8w E2E Cycle. The change ≈−2/wk is a midpoint estimate: 1.5 minus 3.5, not an independently observed change. Weekly rate and the team's eight-week end-to-end cycle are different concepts; do not divide by eight or infer an eight-week total. Production rate decreases, so do not frame it as an improvement. Production effort is 18 to 11 hours per concept; review effort 4 to 6 hours; rework 35% to 24%; applicable system checks passed 78% to 90%; open accessibility/quality defects 6 to 4 per 10 screens; design-to-code divergence 28% to 18%; experiments 1 to 2 per week; approved-context reuse 25% to 70%. Review effort rises in this comparison: faster generation does not imply less review. Leading/process measures signal behavior and readiness; outcome measures test delivered workflow results. System compliance is a leading quality signal, not proof of user benefit. Both sets of approximate values and their changes appear together, without competing bar scales. Percentage measures use percentage-point changes, not relative percentages. Match work scope, staffing, artifact definition, and evaluation criteria; include sample sizes and dispersion before presenting a validated comparison. Track customer task success separately. No customer outcome data is supplied.",
-    "transition": "Return to the central question. The proposed workflow's pilot reference remains available in appendix 24."
+    "transition": "Return to the central question. The proposed workflow's pilot reference remains available in appendix 25."
   },
   {
     "seconds": 90,
     "takeaway": "AI doesn't eliminate the need for DesignOps. It makes DesignOps infrastructure.",
     "visual": "A quiet question, a deliberate answer reveal, and three concluding statements.",
-    "interaction": "Stage moment 3: pause, press Right to reveal DesignOps, then Right for Q&A. Left hides the answer before moving back. In review, Next or a forward navigation key reveals the answer first, then advances to Q&A. There is no separate reveal button.",
+    "interaction": "Stage moment 3: pause, press Right to reveal DesignOps, then Right for FAQ. Left hides the answer before moving back. In review, Next or a forward navigation key reveals the answer first, then advances to Let's talk. There is no separate reveal button.",
     "body": "Use 90 seconds for the closing. Slow down. Read the question and leave space: if AI becomes part of how we design products, who designs the system in which AI operates? Reveal DesignOps. This is not a territorial claim that one function owns all AI. It is an invitation for DesignOps to connect domain expertise, governance, knowledge, workflows, and evaluation. AI creates capacity. Systems create consistency. Stewardship creates trust. DesignOps connects all three. The future is not merely managing work around design; it is designing the infrastructure through which humans and AI create products together. The practical challenge is one workflow, a baseline, a maintained context package, named human checkpoints, and evidence that quality has not been traded for speed. End on the thesis and pause rather than adding more tools.",
     "transition": "Let's talk. Where is your team generating faster than it can maintain coherence?"
   },
   {
     "seconds": 600,
     "takeaway": "Use the conversation to connect the operating model to the audience's constraints.",
-    "visual": "Seven backup topics and LinkedIn/GitHub contact links beside the Q&A invitation.",
-    "interaction": "Select a topic to open a backup; each backup links back to Q&A.",
-    "body": "Reserve ten minutes for discussion. Invite specific workflow examples rather than abstract predictions. Seven backups cover governance ownership, the evolving role, AI-ready design systems, model-agnostic workflows, measurement, the full context stack, and the product lifecycle. The stack and lifecycle are supporting lenses, not new models the audience needs to memorize during the keynote. If asked whether this is just AI governance, return to the decision trail: governance is one component; context, workflows, evaluation, and enablement make it useful in the product ecosystem. If asked what to do tomorrow: map, identify, codify, standardize, and measure.",
-    "transition": "Choose a backup only when it helps answer a question."
+    "visual": "A conversation invitation with LinkedIn and GitHub contact links; the questions are on the next slide.",
+    "interaction": "Next opens FAQ. Contact links open externally only when selected. No QR code.",
+    "body": "Reserve ten minutes total across Let's talk and FAQ, not ten minutes per slide. Invite specific workflow examples rather than abstract predictions. Keep the contact slide visible while opening the conversation; advance to FAQ when a question benefits from a supporting answer. The 600-second discussion allocation is recorded here once; FAQ adds no extra time.",
+    "transition": "Continue to FAQ for the eight supporting questions."
+  },
+  {
+    "seconds": 0,
+    "takeaway": "Use the eight questions to connect discussion to the relevant supporting evidence.",
+    "visual": "Eight accessible question links, each leading to its corresponding appendix answer.",
+    "interaction": "Select a question to open its answer; the answer returns to FAQ. Definitions opened from the dashboard and the pilot opened from shared production keep their original return destinations.",
+    "body": "Continue the same ten-minute discussion started on Let's talk; do not restart the clock. The eight answers cover governance ownership, the evolving role, AI-ready design systems, model changes, measurement, the context stack, the product lifecycle, and starting a pilot. The stack and lifecycle are supporting lenses, not additional models to memorize. If asked whether this is just AI governance, return to the decision trail: governance is one component; context, workflows, evaluation, and enablement make it useful. If asked what to do tomorrow: map, identify, codify, standardize, and measure.",
+    "transition": "Return to FAQ after each answer, or back to Let's talk for contact details."
   },
   {
     "seconds": 0,
     "takeaway": "Risk boundaries, access, operating-model design, and product judgment need explicit owners.",
     "visual": "Four ownership domains; none claims the entire AI operating model.",
-    "interaction": "Back to Q&A returns to the topic menu.",
+    "interaction": "Back to FAQ returns to the topic menu.",
     "body": "Security and Legal establish organizational risk boundaries; IT and platform teams manage technology and access. DesignOps translates policy into useful workflow conditions with domain experts. Product, research, design, and engineering own their decisions and release quality. Good governance removes repetitive ambiguity through approved paths, risk-based human checkpoints, escalation, and documented exceptions. Bad governance creates an unnecessary approval queue. Specific accountabilities must be agreed locally; the slide is a discussion model, not a universal RACI.",
-    "transition": "Return to Q&A."
+    "transition": "Return to FAQ."
   },
   {
     "seconds": 0,
     "takeaway": "DesignOps architects the operating environment rather than building everyone's AI tools.",
     "visual": "Six responsibilities and five kinds of product work.",
-    "interaction": "Back to Q&A returns to the topic menu.",
+    "interaction": "Back to FAQ returns to the topic menu.",
     "body": "The emerging role includes governance, design intelligence, workflow architecture with subject-matter experts, quality systems, enablement, and measurement. 'AI Ops Systems Architect' is a possible direction, not a prescribed title. The source's prototyper, builder, sweeper, grower, and maintainer archetypes are retained as kinds of work: prototype, build, simplify/improve, grow, and maintain. Their risk and evaluation needs differ. The source includes an unverified external attribution; this deck makes no authorship claim for the archetypes. Do not turn this model into a requirement for DesignOps to become an AI engineering team.",
-    "transition": "Return to Q&A."
+    "transition": "Return to FAQ."
   },
   {
     "seconds": 0,
     "takeaway": "AI readiness adds meaning, constraints, examples, and evaluation to an existing design system.",
     "visual": "Foundation plus machine-consumable reasoning, with shared-context ownership underneath.",
-    "interaction": "Back to Q&A returns to the topic menu.",
+    "interaction": "Back to FAQ returns to the topic menu.",
     "body": "Keep tokens, components, patterns, and guidelines. Add semantic metadata, usage rules, examples, constraints, accessibility requirements, relationships, code equivalents, and evaluation criteria. Start with one pattern rather than translating the whole library. Include valid and invalid examples, allowed data access, provenance, version, freshness, and a named owner. AI-readable does not mean publicly accessible, indiscriminately retrievable, or automatically correct. Research and existing product experiences remain important context beyond the component library.",
-    "transition": "Return to Q&A."
+    "transition": "Return to FAQ."
   },
   {
     "seconds": 0,
     "takeaway": "Build durable knowledge, rules, workflows, and evaluation around replaceable models.",
     "visual": "Shared knowledge, rules, workflows, and evaluation remain as models change.",
-    "interaction": "Back to Q&A returns to the topic menu.",
+    "interaction": "Back to FAQ returns to the topic menu.",
     "body": "Models and tools will change. Preserve the institutional knowledge, permissions, workflows, examples, and acceptance criteria that define how the organization operates. Model-agnostic does not mean zero adaptation: tool capabilities, context limits, privacy controls, and behavior differ. Re-run a representative evaluation set before a model switch. Canonical prompts are co-authored by domain experts and governed as versioned knowledge artifacts, not selected by DesignOps alone. Standardization creates an informed starting point, not a ban on exploration.",
-    "transition": "Return to Q&A."
+    "transition": "Return to FAQ."
   },
   {
     "seconds": 0,
     "takeaway": "Operational definitions, comparable work, and evidence qualifications matter more than dashboard polish.",
     "visual": "Definitions, units, and collection methods beside a concise pilot protocol.",
-    "interaction": "Back returns to the originating dashboard or Q&A, including in Stage. Direct entry defaults to the dashboard.",
+    "interaction": "Back returns to the originating dashboard or FAQ, including in Stage. Direct entry defaults to the dashboard.",
     "body": "Define 'validated concept' before collecting time: reviewer acceptance plus the agreed user-evidence threshold. Count accepted artifacts, not raw generations. Separate elapsed days from person-hours, production from review, and quality defects from severity. Define denominators for compliance, rework, reuse, and divergence. Complete experiments include a recorded learning decision, not just a release. Compare similar tasks and staffing; document sample size, spread, exclusions, and complexity. Use approved data collection with appropriate privacy controls. Review effort may increase while total effort falls, but a small observational pilot cannot establish causality. Set decision thresholds in advance and track customer task success or other relevant product outcomes. Dashboard values are preliminary approximations informed by the presenter's early experimentation, not validated measurements.",
-    "transition": "Return to the dashboard or Q&A."
+    "transition": "Return to the dashboard or FAQ."
   },
   {
     "seconds": 0,
@@ -176,7 +184,7 @@ let notes = [
     "visual": "A five-layer AI design stack, built from models to connecting DesignOps infrastructure.",
     "interaction": "Stage: all five layers are resolved. Review: Build the context stack adds one highlighted layer per click; after all layers it resets to the foundation.",
     "body": "Models provide capabilities. Agents and tools connect capabilities to tasks. Organizational context provides what models do not inherently know: tokens, components, research, product knowledge, brand, accessibility, terminology, workflows, repositories, PRs, existing experiences, and past decisions. Stewardship adds guardrails, exclusions, evaluation, and human checkpoints. DesignOps connects the layers. The diagram is a responsibility model, not a mandatory software architecture. Do not feed all organizational data into a model: permissions, privacy, provenance, source quality, freshness, and ownership determine what context may be used. A design system is one part of organizational memory, not the whole memory.",
-    "transition": "Return to Q&A, or use the lifecycle backup to locate these responsibilities in the work."
+    "transition": "Return to FAQ, or use the lifecycle backup to locate these responsibilities in the work."
   },
   {
     "seconds": 0,
@@ -184,13 +192,13 @@ let notes = [
     "visual": "Five lifecycle phases above a persistent shared-infrastructure rail; detailed per-phase panels remain in review.",
     "interaction": "Stage: a static five-phase overview. Review: select a phase to reveal AI assistance, DesignOps infrastructure, and the human checkpoint.",
     "body": "Discover: AI can cluster and retrieve research; DesignOps supports consent, traceability, source quality, and reusable knowledge. Define: AI can draft briefs and identify gaps; shared brief structure, product vocabulary, and source context keep framing grounded. Design: alternatives and prototypes rely on system rules, prompts, accessibility constraints, and critique. Build: generated code needs component metadata, supported patterns, tokens, validation, and paired review. Measure: AI can summarize observations, but people interpret outcomes, record caveats, and decide what should change. Do not turn this into a tool catalog. Discuss one or two phases with the persistent rail; use review mode only when the detailed panels are needed.",
-    "transition": "Return to Q&A. The keynote's onboarding decision is one example at the design-to-build boundary."
+    "transition": "Return to FAQ. The keynote's onboarding decision is one example at the design-to-build boundary."
   },
   {
     "seconds": 0,
     "takeaway": "A 30-day pilot can begin at team, product-area, or enterprise level with clear ownership.",
     "visual": "Four verbs on a timeline, one concrete output per week, and an explicit adopt / revise / stop decision.",
-    "interaction": "The return link goes back to shared production (slide 12), or Q&A when opened from that menu. Direct entry defaults to shared production.",
+    "interaction": "The return link goes back to shared production (slide 12), or FAQ when opened from that menu. Direct entry defaults to shared production.",
     "body": "Days 1–7: map actual AI use and identify inconsistency, quality gaps, and risk. Days 8–14: select one useful, bounded workflow and package relevant organizational knowledge. Days 15–21: name decision owners, define human checkpoints and evaluation criteria, and establish a baseline before the pilot. Days 22–30: run comparable work and decide whether to adopt, revise, or stop. Avoid sensitive or high-risk first pilots unless the appropriate governance is already in place. At team level, design and engineering leads can own a single workflow with DesignOps facilitation. At product-area level, PM, research, design, engineering, and a system owner coordinate shared patterns and cross-team outcomes. At enterprise level, federated product ownership works within Security, Legal, IT, and platform guardrails. DesignOps connects the altitudes; it does not unilaterally own policy or product decisions. Calendar windows are a suggested starting plan, not promised delivery dates.",
     "transition": "Return to the central question: if AI participates in design, who designs its operating environment?"
   }
@@ -265,7 +273,7 @@ const slides = [...document.querySelectorAll(".slide")];
 const $ = (selector) => document.querySelector(selector);
 const englishData = { notes, lifecycle, metrics, pairLabels, pairEvidence };
 const state = { index: 0, cause: 0, stack: 0, pair: 0, life: 0, formResult: "idle", formName: "", fullscreen: "" };
-const appendixOrigins = { 21: 14, 24: 12 };
+const appendixOrigins = { 18: 17, 19: 17, 20: 17, 21: 17, 22: 14, 23: 17, 24: 17, 25: 12 };
 const pairTabLabels = ["User need", "AI mistake", "Team decision", "Working form", "Saved lesson", "Next review"];
 let stageReview;
 
@@ -330,7 +338,7 @@ function renderStack() {
 function updateNotes() {
   const note = notes[state.index];
   const elapsed = notes.slice(0, Math.min(state.index, keynoteCount)).reduce((sum, item) => sum + item.seconds, 0);
-  const timing = state.index < keynoteCount ? t`${clock(elapsed)}–${clock(elapsed + note.seconds)} · ${note.seconds} seconds` : state.index === keynoteCount ? t("10-minute Q&A · outside the 20-minute keynote") : t("Optional backup · outside keynote timing");
+  const timing = state.index < keynoteCount ? t`${clock(elapsed)}–${clock(elapsed + note.seconds)} · ${note.seconds} seconds` : state.index <= keynoteCount + 1 ? t("Shared 10-minute discussion · Let's talk + FAQ · outside keynote timing") : t("Optional backup · outside keynote timing");
   const content = $("#notes-content");
   content.replaceChildren();
   const add = (tag, text, className) => {
@@ -356,7 +364,7 @@ function renderSlide(index) {
   const focusWasInSlide = oldSlide.contains(document.activeElement);
   const destination = index + 1;
   const origin = state.index + 1;
-  if ((destination === 21 && [14, 16].includes(origin)) || (destination === 24 && [12, 16].includes(origin))) {
+  if ((destination === 22 && [14, 17].includes(origin)) || (destination === 25 && [12, 17].includes(origin))) {
     appendixOrigins[destination] = origin;
   }
   state.index = Math.max(0, Math.min(slides.length - 1, index));
@@ -366,7 +374,7 @@ function renderSlide(index) {
     slide.setAttribute("aria-label", t`${i + 1} of ${slides.length}: ${slide.dataset.title}`);
   });
   const slide = slides[state.index];
-  $("#counter").textContent = state.index < keynoteCount ? `${String(state.index + 1).padStart(2, "0")} / ${keynoteCount}` : state.index === keynoteCount ? t("Q&A") : `B${state.index - keynoteCount} / ${slides.length - keynoteCount - 1}`;
+  $("#counter").textContent = state.index < keynoteCount ? `${String(state.index + 1).padStart(2, "0")} / ${keynoteCount}` : state.index <= keynoteCount + 1 ? slide.dataset.title : `B${state.index - keynoteCount - 1} / ${slides.length - keynoteCount - 2}`;
   $("#slide-title").textContent = slide.dataset.title;
   $("#act-label").textContent = slide.dataset.act;
   $("#progress").value = Math.min(state.index + 1, keynoteCount);
@@ -389,11 +397,11 @@ function renderSlide(index) {
 }
 
 function renderReturnLinks() {
-  for (const [slide, selector] of [[21, "#definitions-return"], [24, "#pilot-return"]]) {
+  for (const [slide, selector] of [[22, "#definitions-return"], [25, "#pilot-return"]]) {
     const origin = appendixOrigins[slide];
     const link = $(selector);
     link.href = `#${origin}`;
-    link.textContent = `↖ ${origin === 16 ? t("Back to Q&A") : origin === 14 ? t("Back to dashboard") : t("Back to shared production")}`;
+    link.textContent = `↖ ${origin === 17 ? t("Back to FAQ") : origin === 14 ? t("Back to dashboard") : t("Back to shared production")}`;
   }
 }
 
@@ -484,7 +492,7 @@ function updateNext() {
   const paradox = state.index === 3;
   const aligned = $("#fragmentation").classList.contains("aligned");
   const paradoxBuild = paradox && !aligned;
-  const label = paradoxBuild ? (state.cause ? t("Apply shared standards") : t("Activate all patterns")) : demoBuild ? t("Next example state") : closing ? (revealed ? t("Next slide: Q&A") : t("Reveal the answer")) : t("Next slide");
+  const label = paradoxBuild ? (state.cause ? t("Apply shared standards") : t("Activate all patterns")) : demoBuild ? t("Next example state") : closing ? (revealed ? t("Next slide: Let's talk") : t("Reveal the answer")) : t("Next slide");
   next.setAttribute("aria-label", label);
   next.title = label;
   next.classList.toggle("build-action", paradoxBuild || demoBuild || (closing && !revealed));
