@@ -73,6 +73,14 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
       await page.evaluate(locale => setLanguage(locale), locale);
       assert.equal(await page.locator("#slide-9 .shift-group:last-child .shift-rows > div:last-child > span").textContent(), locale === "es" ? "Escalar sistemas de diseño" : "Scale design systems");
       assert.equal(await page.locator("#slide-10 .hub-subtitle").textContent(), locale === "es" ? "GESTIONAR · CONTEXTO · EVALUAR" : "GOVERN · CONTEXT · EVALUATE");
+      assert.equal(await page.locator("#metric-dashboard .metric-category").last().textContent(), locale === "es" ? "INDICADORES DE PROCESO" : "LEADING / PROCESS");
+      assert.equal(await page.locator("#metric-tables caption").first().textContent(), locale === "es" ? "INDICADORES DE PROCESO" : "LEADING / PROCESS SIGNALS");
+      const conceptName = locale === "es" ? "Requerimiento → concepto validado" : "Brief → validated concept";
+      for (const selector of ['#metric-dashboard [data-metric="5"] .metric-name', "#metric-tables .metric-table:last-child tbody tr:first-child > th"]) {
+        assert.equal(await page.locator(selector).evaluate(node => node.firstChild.textContent), conceptName);
+        assert.equal(await page.locator(`${selector} small`).textContent(), locale === "es" ? "mediana de días transcurridos" : "median elapsed days");
+      }
+      assert.equal(await page.locator("#slide-23 .definitions tbody tr:first-child td:first-child").textContent(), conceptName);
       assert.equal(await page.locator("#slide-1 p.subtitle").innerHTML(), locale === "es"
         ? "Gestión, sistemas y el nuevo papel<br>de DesignOps en los equipos de producto"
         : "Governance, systems, and the new role<br>of DesignOps in product teams");
