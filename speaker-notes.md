@@ -28,7 +28,7 @@ The demo retains 270 seconds; closing, 60; recap, 30; Q&A, 600. The pilot is in 
 
 S enters Stage; F optionally enters fullscreen; Escape or S restores review. Arrow keys advance or reverse slide 4's chain and alignment, demo and closing builds before changing slides, in both review and Stage. Six tabs expose the whole journey; no Reset or duplicate Next. Native form keys never navigate. Home/End and arrows inside the tabs select states. Main Next advances the demo. L switches language without losing local input or state; L does not intercept typing, notes, or dialogs. Exiting Stage restores review's snapshot. The presentation scales on small screens. Nothing is saved or sent.
 
-The reference on 12 opens pilot 26 and returns to its origin. Definitions from 14 returns to the dashboard; all eight answers opened from FAQ return to FAQ (18). Let's talk and FAQ share the same 600 seconds without doubling the allocation. The full learning cycle requires no clicks. Evaluation icon ◎ is retained.
+Pilot 26 remains accessible from FAQ and the index, without a link on slide 12. Definitions from 14 returns to the dashboard; all eight answers opened from FAQ return to FAQ (18). Let's talk and FAQ share the same 600 seconds without doubling the allocation. The full learning cycle requires no clicks. Evaluation icon ◎ is retained.
 
 ## 1. AI makes us faster. Who keeps us coherent?
 
@@ -214,7 +214,7 @@ The reference on 12 opens pilot 26 and returns to its origin. Definitions from 1
 
 **Visual concept:** One proposed after journey: shared purpose, synchronized collaborative work, AI-assisted production, and experiments with customer feedback.
 
-**Interaction:** The existing green collaboration animation runs on entry without a replay control. Review and Stage animate on entry, including native fullscreen; entering Stage or fullscreen replays the visible journey. Reduced motion and print show the final static state. The 30-day pilot reference opens appendix 26; its return link brings you here. The pilot is outside keynote timing.
+**Interaction:** The existing green collaboration animation runs on entry without a replay control. Review and Stage animate on entry, including native fullscreen; entering Stage or fullscreen replays the visible journey. Reduced motion and print show the final static state. The 30-day pilot remains in appendix 26, accessible from FAQ or the slide index, outside keynote timing.
 
 **Speaker notes:** The before journey is a deliberately simplified pattern, not a claim that all pre-AI teams worked sequentially. Research informs a brief, design produces mocks, engineering builds, and customers finally respond. The proposed alternative starts with Mission, Milestones, and Metrics—the source's MMM. PM, research, design, and engineering share intent; specification, concepts, feasibility, and HTML/CSS prototypes evolve together. Releases can become experiments that inform another iteration. AI may reduce production effort, but review, integration, and dependency costs still count. Do not promise a one-week release or universal acceleration. Measure elapsed production time, person-hours, waiting time, customer validation, and experimentation cadence. The animation contrasts sequencing, not numeric speed. A prototype is not a production release; user evidence remains necessary.
 
@@ -250,7 +250,7 @@ The reference on 12 opens pilot 26 and returns to its origin. Definitions from 1
 
 **Speaker notes:** These are approximate comparison values informed by the presenter's early experimentation, not exact measurements, benchmarks, or a forecast. The presenter supplied design production-rate ranges; the other nine comparisons remain unchanged from the earlier synthetic values, reported as close to informal observations. Underlying records, sample sizes, and methods have not been supplied, so do not claim validated results or causal ROI. Baseline to pilot: median brief-to-validated-concept time 9 to 6 days; design production rate ~3–4/wk to ~1–2/wk, accepted artifacts / in a team with 8w E2E Cycle. The change ≈−2/wk is a midpoint estimate: 1.5 minus 3.5, not an independently observed change. Weekly rate and the team's eight-week end-to-end cycle are different concepts; do not divide by eight or infer an eight-week total. Production rate decreases, so do not frame it as an improvement. Production effort is 18 to 11 hours per concept; review effort 4 to 6 hours; rework 35% to 24%; applicable system checks passed 78% to 90%; open accessibility/quality defects 6 to 4 per 10 screens; design-to-code divergence 28% to 18%; experiments 1 to 2 per week; approved-context reuse 25% to 70%. Review effort rises in this comparison: faster generation does not imply less review. Leading/process measures signal behavior and readiness; outcome measures test delivered workflow results. System compliance is a leading quality signal, not proof of user benefit. Both sets of approximate values and their changes appear together, without competing bar scales. Percentage measures use percentage-point changes, not relative percentages. Match work scope, staffing, artifact definition, and evaluation criteria; include sample sizes and dispersion before presenting a validated comparison. Track customer task success separately. No customer outcome data is supplied.
 
-**Transition:** Return to the central question. The proposed workflow's pilot reference remains available in appendix 26.
+**Transition:** Return to the central question. The proposed workflow's pilot remains available in appendix 26 via FAQ.
 
 ---
 
@@ -310,7 +310,7 @@ The reference on 12 opens pilot 26 and returns to its origin. Definitions from 1
 
 **Visual concept:** Eight accessible question links, each leading to its corresponding appendix answer.
 
-**Interaction:** Select a question to open its answer; the answer returns to FAQ. Definitions opened from the dashboard and the pilot opened from shared production keep their original return destinations.
+**Interaction:** Select a question to open its answer; the answer returns to FAQ, including the pilot. Definitions opened from the dashboard return to the dashboard.
 
 **Speaker notes:** Continue the same ten-minute discussion started on Let's talk; do not restart the clock. The eight answers cover governance ownership, the evolving role, AI-ready design systems, model changes, measurement, the context stack, the product lifecycle, and starting a pilot. The stack and lifecycle are supporting lenses, not additional models to memorize. If asked whether this is just AI governance, return to the decision trail: governance is one component; context, workflows, evaluation, and enablement make it useful. If asked what to do tomorrow: map, identify, codify, standardize, and measure.
 

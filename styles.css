@@ -46,6 +46,7 @@ strong { font-weight: 600; }
 .toolbar button[aria-pressed="true"], .toolbar button[aria-expanded="true"] { background: transparent; color: var(--cyan); text-decoration: underline; text-decoration-thickness: 2px; }
 kbd { font: 9px var(--mono); color: var(--muted); border: 1px solid var(--line); padding: 2px 4px; border-radius: 3px; margin-left: 6px; }
 .toolbar kbd { border: 0; padding: 0; font-size: 10px; }
+:fullscreen #stage-toggle, :fullscreen #notes-toggle { display: none; }
 main { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; padding: 14px 24px; }
 #viewport { position: relative; flex: 1; height: 100%; overflow: hidden; }
 #stage { position: absolute; width: 1600px; height: 900px; transform-origin: top left; background: var(--bg); box-shadow: 0 16px 100px #0008; }
@@ -530,8 +531,6 @@ dialog::backdrop { background: #05090dea; }
 /* V3: shared regions, structural cyan, and coral action changes. */
 svg text, code, .lifecycle button > span, .qa-links a span,
 .stage-mode :is(.network-node text, .hub-subtitle, .hub-detail, .network-caption, .human-gate .tag) { font-family: var(--sans); }
-.action-link { display: inline-flex; align-items: center; padding: 14px 0; color: var(--coral); font-size: 24px; border-bottom: 2px solid var(--coral); }
-.action-link:hover { text-decoration: underline; text-underline-offset: 6px; }
 #next.build-action, .prototype-form button { background: var(--coral); border-color: var(--coral); color: var(--bg); }
 .prototype-form button:hover { background: var(--text); }
 .role-grid { gap: 0; margin-top: 56px; }
@@ -604,9 +603,8 @@ svg text, code, .lifecycle button > span, .qa-links a span,
 .journey-after .workflow-track span { padding: 20px 8px; }
 .journey-after h2 { font-size: 62px; }
 .journey-after .bottom-line { align-items: flex-start; margin-top: 20px; }
-.journey-after .bottom-line p { max-width: 880px; font-size: 24px; }
+.journey-after .bottom-line p { font-size: 24px; }
 .journey-after .bottom-line small { font-size: 23px; }
-.journey-after .action-link { max-width: 330px; }
 #metric-dashboard { display: block; }
 .dashboard-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
 .dashboard-table th { text-align: left; font-weight: 500; }

@@ -60,6 +60,7 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
     assert.equal(await page.locator("#slide-11 .journey").count(), 1);
     assert.equal(await page.locator("#journeys .journey-label .tag").count(), 0);
     assert.equal(await page.locator("#slide-12 .journey").count(), 1);
+    assert.equal(await page.locator("#slide-12 a").count(), 0);
     assert.equal(await page.locator("#metric-dashboard thead th").count(), 4);
     assert.equal(await page.locator("#metric-dashboard .metric-category").count(), 2);
     assert.equal(await page.locator("#metric-tables tbody tr").count(), 10);
@@ -379,7 +380,7 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
         await page.keyboard.press("ArrowLeft");
         await page.waitForFunction(() => state.index === 17);
       }
-      for (const [origin, target, link, back] of [[12, 26, "#pilot-reference", "#pilot-return"], [18, 26, '.qa-links a[href="#26"]', "#pilot-return"], [18, 23, '.qa-links a[href="#23"]', "#definitions-return"]]) {
+      for (const [origin, target, link, back] of [[18, 26, '.qa-links a[href="#26"]', "#pilot-return"], [18, 23, '.qa-links a[href="#23"]', "#definitions-return"]]) {
         await go(origin);
         await click(link);
         await page.waitForFunction(target => state.index === target - 1, target);
@@ -596,6 +597,55 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
       await page.keyboard.press("l");
       assert.equal(await page.locator("html").getAttribute("lang"), locale === "es" ? "en" : "es", "Language shortcut works after index closes");
     }
+    await page.emulateMedia({ reducedMotion: "no-preference" });
+    const visibleJourneySequence = async (number, label) => {
+      const color = number === 11 ? "rgb(52, 42, 38)" : "rgb(40, 56, 31)";
+      const nodes = page.locator(".slide.active .workflow-track span");
+      assert.equal(await nodes.count(), number === 11 ? 5 : 3);
+      assert(await nodes.evaluateAll((nodes, color) => nodes.some(node => getComputedStyle(node).backgroundColor !== color), color), "Stage entry must visibly restart a completed journey");
+      assert(await nodes.evaluateAll(nodes => nodes.every(node => {
+        const box = node.getBoundingClientRect();
+        return box.width > 0 && box.height > 0 && box.left >= 0 && box.right <= innerWidth
+          && box.top >= 0 && box.bottom <= innerHeight
+          && node.contains(document.elementFromPoint(box.left + box.width / 2, box.top + box.height / 2));
+      })), "Check displayed Stage nodes, not hidden or covered source elements");
+      await capture(`${label}-initial`);
+      await page.waitForFunction(color => {
+        const nodes = [...document.querySelectorAll(".slide.active .workflow-track span")];
+        const complete = nodes.filter(node => getComputedStyle(node).backgroundColor === color).length;
+        return complete > 0 && complete < nodes.length;
+      }, color);
+      await capture(`${label}-mid`);
+      await page.waitForFunction(color => [...document.querySelectorAll(".slide.active .workflow-track span")].every(node => getComputedStyle(node).backgroundColor === color), color);
+      await capture(`${label}-final`);
+      assert.equal(await current(), number, "Visible animation must not advance the slide");
+    };
+    for (const locale of ["en", "es"]) {
+      await page.evaluate(locale => { setStageMode(false); setLanguage(locale); }, locale);
+      for (const number of [11, 12]) {
+        await go(number);
+        for (const entry of ["button", "key"]) {
+          await page.locator(".slide.active .journeys").evaluate(node =>
+            Promise.all(node.getAnimations({ subtree: true }).map(animation => animation.finished)));
+          if (entry === "button") await click("#stage-toggle");
+          else {
+            await page.locator("#presentation").focus();
+            await page.keyboard.press("s");
+          }
+          await visibleJourneySequence(number, `${locale}-stage-${number}-${entry}`);
+          await page.keyboard.press("s");
+          assert.equal(await page.locator("body.stage-mode").count(), 0);
+        }
+      }
+      await page.keyboard.press("s");
+      for (const [key, number] of [["ArrowLeft", 11], ["ArrowRight", 12]]) {
+        await page.keyboard.press(key);
+        await page.waitForFunction(number => state.index === number - 1, number);
+        await visibleJourneySequence(number, `${locale}-stage-${number}-navigation`);
+      }
+      await page.keyboard.press("s");
+    }
+    await page.emulateMedia({ reducedMotion: "reduce" });
     const fullscreenPage = await browser.newPage({ viewport: null, reducedMotion: "reduce" });
     try {
       await fullscreenPage.goto(`${pathToFileURL(path.join(__dirname, "index.html")).href}#6`);
@@ -613,6 +663,7 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
       };
       await fullscreenPage.click("#fullscreen");
       await fullscreenFits(true);
+      assert.deepEqual(await fullscreenPage.locator(".toolbar-actions button:visible").evaluateAll(nodes => nodes.map(node => node.id)), ["fullscreen"]);
       const fullSize = await fullscreenPage.evaluate(() => [innerWidth, innerHeight]);
       for (let i = 1; i <= 6; i++) {
         await fullscreenPage.click("#next");
@@ -626,7 +677,7 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
       await fullscreenPage.locator("#presentation").focus();
       await fullscreenPage.keyboard.press("l");
       await fullscreenFits(true);
-      await fullscreenPage.click("#stage-toggle");
+      await fullscreenPage.keyboard.press("s");
       await fullscreenFits(true);
       for (let i = 1; i <= 6; i++) {
         await fullscreenPage.keyboard.press("ArrowRight");
@@ -641,6 +692,27 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
       await fullscreenFits(false);
       assert.equal(await fullscreenPage.locator("body.stage-mode").count(), 0);
       assert.equal(await fullscreenPage.evaluate(() => state.pair), 5, "Fullscreen Stage exit restores Review's demo state");
+      for (const locale of ["en", "es"]) for (const control of ["#stage-toggle", "#notes-toggle"]) {
+        await fullscreenPage.evaluate(locale => setLanguage(locale), locale);
+        await fullscreenPage.locator(control).focus();
+        await fullscreenPage.keyboard.press("f");
+        await fullscreenFits(true);
+        await fullscreenPage.waitForFunction(() => document.activeElement.id === "presentation");
+        assert.deepEqual(await fullscreenPage.locator(".toolbar-actions button:visible").evaluateAll(nodes => nodes.map(node => node.id)), ["fullscreen"]);
+        assert(await fullscreenPage.locator("#stage-toggle, #notes-toggle").evaluateAll(nodes => nodes.every(node => node.getClientRects().length === 0)), "Hidden fullscreen buttons leave no layout remnants");
+        for (let i = 0; i < 8; i++) {
+          await fullscreenPage.keyboard.press("Tab");
+          assert(!["stage-toggle", "notes-toggle"].includes(await fullscreenPage.evaluate(() => document.activeElement.id)));
+        }
+        await fullscreenPage.locator("#presentation").focus();
+        await fullscreenPage.keyboard.press("n");
+        assert(await fullscreenPage.locator("#notes").isVisible(), "Notes shortcut survives fullscreen toolbar hiding");
+        await fullscreenPage.keyboard.press("Escape");
+        assert.equal(await fullscreenPage.evaluate(() => document.activeElement.id), "presentation", "Closing notes must not focus its hidden fullscreen trigger");
+        await fullscreenPage.locator("#fullscreen").click();
+        await fullscreenFits(false);
+        assert.deepEqual(await fullscreenPage.locator(".toolbar-actions button:visible").evaluateAll(nodes => nodes.map(node => node.id)), ["stage-toggle", "notes-toggle", "fullscreen"]);
+      }
       await fullscreenPage.emulateMedia({ reducedMotion: "no-preference" });
       const journeyAnimations = () => fullscreenPage.locator(".slide.active .journeys").evaluate(node =>
         node.getAnimations({ subtree: true }).map(animation => ({

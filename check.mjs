@@ -20,6 +20,8 @@ language = "es";
 translateData({ keynoteCount, notes, metrics, lifecycle, pairLabels, pairEvidence, metricValue, metricDelta, metricChange });`);
 const titles = [...html.matchAll(/<section class="slide[^"]*" id="slide-(\d+)"[^>]*data-title="([^"]+)"/g)].map(match => match[2].replaceAll("&amp;", "&").replaceAll("&quot;", '"'));
 const spanishTitles = titles.map((_, index) => catalog.copy.find(item => item.selector === `#slide-${index + 1}`).attributes["data-title"][1]);
+assert.equal(catalog.copy.find(item => item.selector === "#slide-22 > p:nth-child(6)").text["0"][1], "Créalos con PM, investigadores, diseñadores e ingenieros.");
+assert(spanishData.notes[12].body.includes("Siguen siendo necesarios integración, permisos, validación y revisión humana."));
 const clock = seconds => `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, "0")}`;
 
 function notesDocument(data, titles, es) {
@@ -64,7 +66,7 @@ ${es ? "La demo conserva 270 segundos; cierre, 60; resumen, 30; preguntas, 600. 
 
 ${es ? "S abre Escenario; F activa pantalla completa opcional; Escape o S restaura revisión. Las flechas avanzan o retroceden la cadena y la alineación de la diapositiva 4, la demo y el cierre antes de cambiar de diapositiva, tanto en revisión como en Escenario. Las seis pestañas muestran el recorrido completo; no hay Reiniciar ni Siguiente duplicado. Las teclas nativas del formulario no navegan. Inicio/Fin y flechas dentro de las pestañas seleccionan estados. El botón principal Siguiente recorre la demo. Cambiar de idioma con L conserva el estado y los datos locales; L no intercepta escritura, notas ni diálogos. Al salir de Escenario se restaura el estado de revisión. La presentación se escala en pantallas pequeñas. Nada se guarda ni envía." : "S enters Stage; F optionally enters fullscreen; Escape or S restores review. Arrow keys advance or reverse slide 4's chain and alignment, demo and closing builds before changing slides, in both review and Stage. Six tabs expose the whole journey; no Reset or duplicate Next. Native form keys never navigate. Home/End and arrows inside the tabs select states. Main Next advances the demo. L switches language without losing local input or state; L does not intercept typing, notes, or dialogs. Exiting Stage restores review's snapshot. The presentation scales on small screens. Nothing is saved or sent."}
 
-${es ? "La referencia en la 12 abre el piloto 26 y vuelve a su origen. Definiciones desde la 14 vuelve al panel; las ocho respuestas abiertas desde FAQ vuelven a FAQ (18). Hablemos y FAQ comparten los mismos 600 segundos, sin duplicar tiempo. El ciclo completo no requiere clics. Se conserva el icono de evaluación ◎." : "The reference on 12 opens pilot 26 and returns to its origin. Definitions from 14 returns to the dashboard; all eight answers opened from FAQ return to FAQ (18). Let's talk and FAQ share the same 600 seconds without doubling the allocation. The full learning cycle requires no clicks. Evaluation icon ◎ is retained."}
+${es ? "El piloto 26 sigue accesible desde FAQ y el índice, sin enlace en la diapositiva 12. Definiciones desde la 14 vuelve al panel; las ocho respuestas abiertas desde FAQ vuelven a FAQ (18). Hablemos y FAQ comparten los mismos 600 segundos, sin duplicar tiempo. El ciclo completo no requiere clics. Se conserva el icono de evaluación ◎." : "Pilot 26 remains accessible from FAQ and the index, without a link on slide 12. Definitions from 14 returns to the dashboard; all eight answers opened from FAQ return to FAQ (18). Let's talk and FAQ share the same 600 seconds without doubling the allocation. The full learning cycle requires no clicks. Evaluation icon ◎ is retained."}
 
 ${sections.join("\n\n---\n\n")}
 
@@ -121,7 +123,7 @@ const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
 assert.equal(new Set(ids).size, ids.length);
 for (const match of html.matchAll(/\baria-(?:controls|labelledby|describedby)="([^"]+)"/g)) for (const id of match[1].split(/\s+/)) assert(ids.includes(id), `ARIA target ${id}`);
 for (const match of html.matchAll(/href="#([^"]+)"/g)) assert(+match[1] >= 1 && +match[1] <= 26, `Slide link ${match[1]}`);
-assert(html.includes('id="pilot-reference" href="#26"'));
+assert(!html.includes('id="pilot-reference"'));
 assert(html.includes('id="pilot-return" href="#12"'));
 assert(html.includes('id="definitions-return" href="#14"'));
 assert(/<progress\b[^>]*max="17"/.test(html));
