@@ -2,7 +2,7 @@
 
 **Approved bilingual presentation (V3).** User-approved to replace V2 as the canonical presentation. Open `index.html`; use the English and Spanish PDFs linked below. Based on frozen bilingual V2 commit `e39ef62f1729553773fa4a4f097f5c8cdf33d138`, with its history and historical exports preserved.
 
-The local, offline vanilla HTML/CSS/JavaScript presentation contains **25 slides: 15 keynote + Let's talk + FAQ + 8 appendices**. The keynote is 20 minutes, including the restored 30-second About me slide; Let's talk and FAQ share one 10-minute discussion segment. V1 and both inherited V2 PDFs are preserved unchanged. The frozen V2 and standalone Spanish branches are not edited.
+The local, offline vanilla HTML/CSS/JavaScript presentation contains **25 slides: 16 numbered main slides (15 keynote + Let's talk), FAQ + 8 appendices**. Main-slide indicators use a denominator of 16, ending with **16/16** on Hablemos / Let's talk; FAQ and appendix answers remain outside that count. The keynote is 20 minutes, including the restored 30-second About me slide; Let's talk and FAQ share one 10-minute discussion segment. V1 and both inherited V2 PDFs are preserved unchanged. The frozen V2 and standalone Spanish branches are not edited.
 
 ## Open the presentation
 

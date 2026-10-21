@@ -1,6 +1,7 @@
 "use strict";
 
 const keynoteCount = 15;
+const mainSlideCount = 16;
 let notes = [
   {
     "seconds": 45,
@@ -374,12 +375,12 @@ function renderSlide(index) {
     slide.setAttribute("aria-label", t`${i + 1} of ${slides.length}: ${slide.dataset.title}`);
   });
   const slide = slides[state.index];
-  $("#counter").textContent = state.index < keynoteCount ? `${String(state.index + 1).padStart(2, "0")} / ${keynoteCount}` : state.index <= keynoteCount + 1 ? slide.dataset.title : `B${state.index - keynoteCount - 1} / ${slides.length - keynoteCount - 2}`;
+  $("#counter").textContent = state.index < keynoteCount ? `${String(state.index + 1).padStart(2, "0")} / ${mainSlideCount}` : state.index === keynoteCount ? `${mainSlideCount}/${mainSlideCount}` : state.index === mainSlideCount ? slide.dataset.title : `B${state.index - mainSlideCount} / ${slides.length - mainSlideCount - 1}`;
   $("#slide-title").textContent = slide.dataset.title;
   $("#act-label").textContent = slide.dataset.act;
-  $("#progress").value = Math.min(state.index + 1, keynoteCount);
-  $("#progress").hidden = state.index >= keynoteCount;
-  $("#progress").setAttribute("aria-valuetext", t`Keynote slide ${Math.min(state.index + 1, keynoteCount)} of ${keynoteCount}`);
+  $("#progress").value = Math.min(state.index + 1, mainSlideCount);
+  $("#progress").hidden = state.index >= mainSlideCount;
+  $("#progress").setAttribute("aria-valuetext", t`Presentation slide ${Math.min(state.index + 1, mainSlideCount)} of ${mainSlideCount}`);
   $("#previous").disabled = state.index === 0;
   $("#next").disabled = state.index === slides.length - 1;
   updateNext();

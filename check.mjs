@@ -10,7 +10,7 @@ const catalogSource = read("spanish.js");
 assert(!/\balta\b/i.test(catalogSource), "Spanish slide and runtime terminology uses setup");
 const languageSource = read("language.js");
 const prefix = js.slice(0, js.indexOf("const slides ="));
-const data = vm.runInNewContext(`${prefix}; ({ keynoteCount, notes, metrics, lifecycle, pairLabels, pairEvidence, metricValue, metricDelta, metricChange });`);
+const data = vm.runInNewContext(`${prefix}; ({ keynoteCount, mainSlideCount, notes, metrics, lifecycle, pairLabels, pairEvidence, metricValue, metricDelta, metricChange });`);
 const catalog = vm.runInNewContext(`${catalogSource}; spanish;`);
 const spanishData = vm.runInNewContext(`${catalogSource}
 ${languageSource.slice(0, languageSource.indexOf("const translatedElements"))}
@@ -38,7 +38,7 @@ function notesDocument(data, titles, es) {
 **${es ? "Presentación bilingüe aprobada (V3), versión principal que sustituye a V2." : "Approved bilingual presentation (V3), the canonical version replacing V2."}**
 
 ${es ? "Basada en V2 bilingüe congelada" : "Based on frozen bilingual V2"} \`e39ef62f1729553773fa4a4f097f5c8cdf33d138\`.
-${es ? "15 diapositivas principales + Hablemos + FAQ + 8 apéndices = 25. Inter local, bajo licencia OFL. Biografía restaurada en la posición 3 con placeholders neutrales." : "15 keynote slides + Let's talk + FAQ + 8 appendices = 25. Local Inter under OFL. About me restored at position 3 with neutral placeholders."}
+${es ? "16 diapositivas principales numeradas (15 de conferencia + Hablemos) + FAQ + 8 apéndices = 25. Hablemos cierra la numeración con 16/16, sin aumentar el tiempo de conferencia. Inter local, bajo licencia OFL. Biografía restaurada en la posición 3 con placeholders neutrales." : "16 numbered main slides (15 keynote + Let's talk) + FAQ + 8 appendices = 25. Let's talk ends the numbering at 16/16 without increasing keynote time. Local Inter under OFL. About me restored at position 3 with neutral placeholders."}
 
 ${es ? "Generado desde app.js y spanish.js mediante" : "Generated from app.js and spanish.js with"} \`node check.mjs --write-notes\`.
 
@@ -88,6 +88,7 @@ assert.equal(titles.length, 25);
 assert.deepEqual([...html.matchAll(/<section[^>]+id="slide-(\d+)"/g)].map(match => +match[1]), Array.from({ length: 25 }, (_, i) => i + 1));
 assert.equal((html.match(/class="slide backup/g) || []).length, 8);
 assert.equal(data.keynoteCount, 15);
+assert.equal(data.mainSlideCount, 16);
 assert.equal(data.notes.length, 25);
 assert.equal(data.notes.slice(0, 15).reduce((total, note) => total + note.seconds, 0), 1200);
 for (const [index, seconds] of [[2, 30], [5, 270], [10, 90], [11, 105], [14, 90], [15, 600], [16, 0], [24, 0]]) assert.equal(data.notes[index].seconds, seconds);
@@ -119,7 +120,7 @@ for (const match of html.matchAll(/href="#([^"]+)"/g)) assert(+match[1] >= 1 && 
 assert(html.includes('id="pilot-reference" href="#25"'));
 assert(html.includes('id="pilot-return" href="#12"'));
 assert(html.includes('id="definitions-return" href="#14"'));
-assert(/<progress\b[^>]*max="15"/.test(html));
+assert(/<progress\b[^>]*max="16"/.test(html));
 assert(!/data-action="(?:pair|pair-reset|loop|closing)"/.test(html));
 assert(!/presentation-qr|<img\b|reading-toggle/.test(html), "No restored photos, QR or Reading control");
 assert.match(html, /class="slide about-slide" id="slide-3"/);

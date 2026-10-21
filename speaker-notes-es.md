@@ -3,7 +3,7 @@
 **Presentación bilingüe aprobada (V3), versión principal que sustituye a V2.**
 
 Basada en V2 bilingüe congelada `e39ef62f1729553773fa4a4f097f5c8cdf33d138`.
-15 diapositivas principales + Hablemos + FAQ + 8 apéndices = 25. Inter local, bajo licencia OFL. Biografía restaurada en la posición 3 con placeholders neutrales.
+16 diapositivas principales numeradas (15 de conferencia + Hablemos) + FAQ + 8 apéndices = 25. Hablemos cierra la numeración con 16/16, sin aumentar el tiempo de conferencia. Inter local, bajo licencia OFL. Biografía restaurada en la posición 3 con placeholders neutrales.
 
 Generado desde app.js y spanish.js mediante `node check.mjs --write-notes`.
 

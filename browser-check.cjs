@@ -339,7 +339,11 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
         await page.waitForFunction(number => state.index === number - 1, number);
         const title = number === 17 ? "FAQ" : locale === "es" ? "Hablemos" : "Let's talk";
         assert.equal(await page.locator(`#title-${number}`).textContent(), title);
-        assert.equal(await page.locator("#counter").textContent(), title);
+        assert.equal(await page.locator("#counter").textContent(), number === 16 ? "16/16" : title);
+        if (number === 16) {
+          assert.equal(await page.locator("#slide-16 .slide-footer > span:last-child").textContent(), "16/16");
+          assert.equal(await page.locator("#announcement").textContent(), `16/16: ${title}`);
+        }
         assert((await page.locator("#notes-content .note-time").textContent()).includes(locale === "es" ? "10 minutos compartidos" : "Shared 10-minute"));
       }
       const questions = locale === "es"
@@ -872,6 +876,16 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
         assert.equal(await page.locator("#stage").evaluate(node => getComputedStyle(node).width), "1600px", "Small viewports keep the scaled presentation canvas");
         for (let number = 1; number <= 25; number++) {
           await go(number);
+          if (number <= 16) {
+            const indicator = number === 16 ? "16/16" : `${String(number).padStart(2, "0")} / 16`;
+            assert.equal(await page.locator("#counter").textContent(), indicator);
+            assert((await page.locator(`#slide-${number} .slide-footer > span:last-child`).textContent()).startsWith(indicator));
+            assert.equal(await page.locator("#progress").getAttribute("max"), "16");
+            assert.equal(await page.locator("#progress").evaluate(node => node.hidden), false);
+            assert.equal(await page.locator("#progress").evaluate(node => node.value), number);
+          } else {
+            assert.equal(await page.locator("#progress").evaluate(node => node.hidden), true);
+          }
           await checkLayout(`${locale}/${mode}/${width}/slide-${number}`);
           if (width === 1680) await capture(`${locale}-${mode}-${String(number).padStart(2, "0")}`);
           if ([854, 1280].includes(width) && [3, 13, 14, 16, 17].includes(number)) await capture(`${locale}-${mode}-${width}-${number}`);
