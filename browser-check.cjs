@@ -622,6 +622,22 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
         const bounds = slide.getBoundingClientRect();
         const footer = slide.querySelector(".slide-footer").getBoundingClientRect();
         const issues = [];
+        if (slide.id === "slide-3") {
+          const expected = language === "es" ? [
+            "Sr. Program Manager de operaciones de diseño de producción en Xbox / Microsoft.",
+            "Sr. Creative Operations Manager para Prime Video.",
+            "18 años de experiencia gestionando proyectos en compañías como P&G, Publicis, Critical Mass y Automattic (WordPress).",
+            "CrossFit diario. «Eterno cinturón azul» de jiu-jitsu. Músico retirado y mucho dibujo en casa."
+          ] : [
+            "Sr. Program Manager for design production operations at Xbox / Microsoft.",
+            "Sr. Creative Operations Manager for Prime Video.",
+            "18 years of experience managing projects at companies including P&G, Publicis, Critical Mass and Automattic (WordPress).",
+            "Daily CrossFit. Jiu-jitsu “forever blue belt.” Retired musician and lots of drawing at home."
+          ];
+          if (JSON.stringify([...slide.querySelectorAll(".about-bio li")].map(node => node.textContent)) !== JSON.stringify(expected)) issues.push("Speaker-supplied biography must retain all four exact bullets");
+          if (slide.querySelector("h2").textContent !== "Julian Alvarado" || slide.querySelector(".about-role").textContent !== "Xbox Design Ops") issues.push("Biography name/title changed");
+          if (slide.querySelectorAll(".photo-placeholder").length !== 3 || slide.querySelector("img, svg")) issues.push("Biography must retain neutral placeholders without new imagery");
+        }
         if (slide.id === "slide-16") {
           const left = slide.querySelector(".eyebrow").getBoundingClientRect().left;
           for (const node of slide.querySelectorAll(".qa-layout, .kicker, h2, .contact-links")) {
