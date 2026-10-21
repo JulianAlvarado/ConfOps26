@@ -38,7 +38,7 @@ function notesDocument(data, titles, es) {
 **${es ? "Presentación bilingüe aprobada (V3), versión principal que sustituye a V2." : "Approved bilingual presentation (V3), the canonical version replacing V2."}**
 
 ${es ? "Basada en V2 bilingüe congelada" : "Based on frozen bilingual V2"} \`e39ef62f1729553773fa4a4f097f5c8cdf33d138\`.
-${es ? "14 diapositivas principales + Preguntas + 8 apéndices = 23. Inter local, bajo licencia OFL. Se ha eliminado la diapositiva de biografía." : "14 keynote slides + Q&A + 8 appendices = 23. Local Inter under OFL. The About me slide has been removed."}
+${es ? "15 diapositivas principales + Preguntas + 8 apéndices = 24. Inter local, bajo licencia OFL. Biografía restaurada en la posición 3 con placeholders neutrales." : "15 keynote slides + Q&A + 8 appendices = 24. Local Inter under OFL. About me restored at position 3 with neutral placeholders."}
 
 ${es ? "Generado desde app.js y spanish.js mediante" : "Generated from app.js and spanish.js with"} \`node check.mjs --write-notes\`.
 
@@ -46,23 +46,23 @@ ${es ? "Generado desde app.js y spanish.js mediante" : "Generated from app.js an
 
 | ${es ? "Diapositivas" : "Slides"} | ${es ? "Intervalo" : "Window"} |
 | --- | --- |
-| 1–3 | 0:00–2:30 |
-| 4–7 | 2:30–10:10 |
-| 8–9 | 10:10–11:50 |
-| 10 (${es ? "antes" : "before"}) | 11:50–13:20 |
-| 11 (${es ? "después" : "after"}) | 13:20–15:05 |
-| 12–13 | 15:05–18:00 |
-| 14 | 18:00–19:30 |
-| 15 | 19:30–29:30 |
-| 16–23 | ${es ? "Opcionales" : "Optional"} |
+| 1–4 | 0:00–3:00 |
+| 5–8 | 3:00–10:40 |
+| 9–10 | 10:40–12:20 |
+| 11 (${es ? "antes" : "before"}) | 12:20–13:50 |
+| 12 (${es ? "después" : "after"}) | 13:50–15:35 |
+| 13–14 | 15:35–18:30 |
+| 15 | 18:30–20:00 |
+| 16 | 20:00–30:00 |
+| 17–24 | ${es ? "Opcionales" : "Optional"} |
 
-${es ? "La demo conserva 270 segundos; cierre, 90; preguntas, 600. El piloto está en el apéndice 23. El recorrido dividido conserva 90 segundos antes + 105 después. Eliminar la biografía resta 30 segundos, sin reasignarlos: total de conferencia, 1.170 segundos." : "The demo retains 270 seconds; closing, 90; Q&A, 600. The pilot is in appendix 23. The split journey retains 90 seconds before + 105 after. Removing the biography subtracts 30 seconds without reallocating them: total keynote, 1,170 seconds."}
+${es ? "La demo conserva 270 segundos; cierre, 90; preguntas, 600. El piloto está en el apéndice 24. El recorrido dividido conserva 90 segundos antes + 105 después. La biografía recupera sus 30 segundos: total de conferencia, 1.200 segundos." : "The demo retains 270 seconds; closing, 90; Q&A, 600. The pilot is in appendix 24. The split journey retains 90 seconds before + 105 after. The biography restores its 30 seconds: total keynote, 1,200 seconds."}
 
 ## ${es ? "Escenario y revisión" : "Stage delivery and rehearsal"}
 
-${es ? "S abre Escenario; F activa pantalla completa opcional; Escape o S restaura revisión. Las flechas avanzan o retroceden la cadena y la alineación de la diapositiva 3, la demo y el cierre antes de cambiar de diapositiva, tanto en revisión como en Escenario. Las seis pestañas muestran el recorrido completo; no hay Reiniciar ni Siguiente duplicado. Las teclas nativas del formulario no navegan. Inicio/Fin y flechas dentro de las pestañas seleccionan estados. El botón principal Siguiente recorre la demo. Cambiar de idioma con ES/EN o L conserva el estado y los datos locales; L no intercepta escritura, notas ni diálogos. Al salir de Escenario se restaura el estado de revisión. La presentación se escala en pantallas pequeñas. Nada se guarda ni envía." : "S enters Stage; F optionally enters fullscreen; Escape or S restores review. Arrow keys advance or reverse slide 3's chain and alignment, demo and closing builds before changing slides, in both review and Stage. Six tabs expose the whole journey; no Reset or duplicate Next. Native form keys never navigate. Home/End and arrows inside the tabs select states. Main Next advances the demo. ES/EN or L switches language without losing local input or state; L does not intercept typing, notes, or dialogs. Exiting Stage restores review's snapshot. The presentation scales on small screens. Nothing is saved or sent."}
+${es ? "S abre Escenario; F activa pantalla completa opcional; Escape o S restaura revisión. Las flechas avanzan o retroceden la cadena y la alineación de la diapositiva 4, la demo y el cierre antes de cambiar de diapositiva, tanto en revisión como en Escenario. Las seis pestañas muestran el recorrido completo; no hay Reiniciar ni Siguiente duplicado. Las teclas nativas del formulario no navegan. Inicio/Fin y flechas dentro de las pestañas seleccionan estados. El botón principal Siguiente recorre la demo. Cambiar de idioma con ES/EN o L conserva el estado y los datos locales; L no intercepta escritura, notas ni diálogos. Al salir de Escenario se restaura el estado de revisión. La presentación se escala en pantallas pequeñas. Nada se guarda ni envía." : "S enters Stage; F optionally enters fullscreen; Escape or S restores review. Arrow keys advance or reverse slide 4's chain and alignment, demo and closing builds before changing slides, in both review and Stage. Six tabs expose the whole journey; no Reset or duplicate Next. Native form keys never navigate. Home/End and arrows inside the tabs select states. Main Next advances the demo. ES/EN or L switches language without losing local input or state; L does not intercept typing, notes, or dialogs. Exiting Stage restores review's snapshot. The presentation scales on small screens. Nothing is saved or sent."}
 
-${es ? "La referencia en la 11 abre el piloto 23 y vuelve a su origen. Definiciones desde la 13 vuelve al panel; desde Preguntas vuelve a Preguntas. El ciclo completo no requiere clics. Se conserva el icono de evaluación ◎." : "The reference on 11 opens pilot 23 and returns to its origin. Definitions from 13 returns to the dashboard; from Q&A it returns to Q&A. The full learning cycle requires no clicks. Evaluation icon ◎ is retained."}
+${es ? "La referencia en la 12 abre el piloto 24 y vuelve a su origen. Definiciones desde la 14 vuelve al panel; desde Preguntas vuelve a Preguntas. El ciclo completo no requiere clics. Se conserva el icono de evaluación ◎." : "The reference on 12 opens pilot 24 and returns to its origin. Definitions from 14 returns to the dashboard; from Q&A it returns to Q&A. The full learning cycle requires no clicks. Evaluation icon ◎ is retained."}
 
 ${sections.join("\n\n---\n\n")}
 
@@ -74,7 +74,7 @@ ${es ? "No son mediciones validadas, referencias del sector ni evidencia causal.
 | --- | --- | --- | --- | --- |
 ${metricTable}
 
-${es ? "Las definiciones y métodos de recogida están en el apéndice 20. Igualar alcance, personal y criterios; registrar tamaño de muestra y dispersión; acordar adoptar/revisar/detener antes de ver resultados. El ejemplo del formulario es ficticio, preparado y pendiente de validación con usuarios. El contexto no se aplica por sí solo: requiere integración, permisos, validación y revisión humana." : "Definitions and collection methods are in appendix 20. Match scope, staffing and criteria; record sample size and spread; agree adopt/revise/stop thresholds before seeing results. The form example is fictional, pre-authored, and pending user validation. Context does not enforce itself: integration, permissions, validation and human review are required."}
+${es ? "Las definiciones y métodos de recogida están en el apéndice 21. Igualar alcance, personal y criterios; registrar tamaño de muestra y dispersión; acordar adoptar/revisar/detener antes de ver resultados. El ejemplo del formulario es ficticio, preparado y pendiente de validación con usuarios. El contexto no se aplica por sí solo: requiere integración, permisos, validación y revisión humana." : "Definitions and collection methods are in appendix 21. Match scope, staffing and criteria; record sample size and spread; agree adopt/revise/stop thresholds before seeing results. The form example is fictional, pre-authored, and pending user validation. Context does not enforce itself: integration, permissions, validation and human review are required."}
 `;
 }
 
@@ -84,23 +84,24 @@ for (const [locale, localizedData, localizedTitles] of [["en", data, titles], ["
   if (process.argv.includes("--write-notes")) writeFileSync(new URL(file, import.meta.url), expected);
   assert.equal(read(file), expected, `${locale} generated notes match all source fields and timings`);
 }
-assert.equal(titles.length, 23);
-assert.deepEqual([...html.matchAll(/<section[^>]+id="slide-(\d+)"/g)].map(match => +match[1]), Array.from({ length: 23 }, (_, i) => i + 1));
+assert.equal(titles.length, 24);
+assert.deepEqual([...html.matchAll(/<section[^>]+id="slide-(\d+)"/g)].map(match => +match[1]), Array.from({ length: 24 }, (_, i) => i + 1));
 assert.equal((html.match(/class="slide backup/g) || []).length, 8);
-assert.equal(data.keynoteCount, 14);
-assert.equal(data.notes.length, 23);
-assert.equal(data.notes.slice(0, 14).reduce((total, note) => total + note.seconds, 0), 1170);
-for (const [index, seconds] of [[4, 270], [9, 90], [10, 105], [13, 90], [14, 600], [22, 0]]) assert.equal(data.notes[index].seconds, seconds);
-assert(data.notes.slice(15).every(note => note.seconds === 0));
-assert.match(titles[2], /acceleration paradox/);
-assert.match(titles[9], /Before AI/);
-assert.match(titles[10], /With AI/);
-assert.match(titles[11], /documentation/);
-assert.match(titles[12], /Measure/);
-assert.match(titles[13], /Who designs/);
-assert.match(titles[14], /Q&A/);
-assert.match(titles[22], /30 days/);
-for (let i = 0; i < 23; i++) for (const key of ["takeaway", "visual", "interaction", "body", "transition"]) {
+assert.equal(data.keynoteCount, 15);
+assert.equal(data.notes.length, 24);
+assert.equal(data.notes.slice(0, 15).reduce((total, note) => total + note.seconds, 0), 1200);
+for (const [index, seconds] of [[2, 30], [5, 270], [10, 90], [11, 105], [14, 90], [15, 600], [23, 0]]) assert.equal(data.notes[index].seconds, seconds);
+assert(data.notes.slice(16).every(note => note.seconds === 0));
+assert.match(titles[2], /About me/);
+assert.match(titles[3], /acceleration paradox/);
+assert.match(titles[10], /Before AI/);
+assert.match(titles[11], /With AI/);
+assert.match(titles[12], /documentation/);
+assert.match(titles[13], /Measure/);
+assert.match(titles[14], /Who designs/);
+assert.match(titles[15], /Q&A/);
+assert.match(titles[23], /30 days/);
+for (let i = 0; i < 24; i++) for (const key of ["takeaway", "visual", "interaction", "body", "transition"]) {
   assert(data.notes[i][key].length > 10);
   assert(Object.hasOwn(catalog.messages, data.notes[i][key]), `Spanish note ${i + 1}/${key}`);
 }
@@ -110,13 +111,16 @@ for (const match of js.matchAll(/\bt\(("(?:[^"\\]|\\.)*")\)/g)) assert(Object.ha
 const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
 assert.equal(new Set(ids).size, ids.length);
 for (const match of html.matchAll(/\baria-(?:controls|labelledby|describedby)="([^"]+)"/g)) for (const id of match[1].split(/\s+/)) assert(ids.includes(id), `ARIA target ${id}`);
-for (const match of html.matchAll(/href="#([^"]+)"/g)) assert(+match[1] >= 1 && +match[1] <= 23, `Slide link ${match[1]}`);
-assert(html.includes('id="pilot-reference" href="#23"'));
-assert(html.includes('id="pilot-return" href="#11"'));
-assert(html.includes('id="definitions-return" href="#13"'));
-assert(/<progress\b[^>]*max="14"/.test(html));
+for (const match of html.matchAll(/href="#([^"]+)"/g)) assert(+match[1] >= 1 && +match[1] <= 24, `Slide link ${match[1]}`);
+assert(html.includes('id="pilot-reference" href="#24"'));
+assert(html.includes('id="pilot-return" href="#12"'));
+assert(html.includes('id="definitions-return" href="#14"'));
+assert(/<progress\b[^>]*max="15"/.test(html));
 assert(!/data-action="(?:pair|pair-reset|loop|closing)"/.test(html));
-assert(!/about-slide|presentation-qr|<img\b|reading-toggle/.test(html), "Removed biography, QR and Reading control");
+assert(!/presentation-qr|<img\b|reading-toggle/.test(html), "No restored photos, QR or Reading control");
+assert.match(html, /class="slide about-slide" id="slide-3"/);
+assert.equal((html.match(/class="photo-placeholder /g) || []).length, 3);
+assert(!html.includes("Possibility is abundant."), "Removed only the evaluation-pile caption");
 assert(!/setReadingView|readingPreference|smallScreen/.test(js), "No Reading preference or automatic activation");
 assert.match(html, /class="human-symbol" aria-hidden="true">◎/);
 assert.match(catalogSource, /No te enfoques<br>en el output,<br><em>Aceleras el aprendizaje\.<\/em>/);
@@ -142,7 +146,7 @@ assert.deepEqual(roleLists.map(match => [...match[1].matchAll(/<li>([^<]+)<\/li>
   [["Brief", "Requirements", "Hypotheses"], ["Synthesis", "Insights", "Questions"], ["Concepts", "Prototypes", "Patterns"], ["Components", "Code", "Tests"]]);
 assert(!html.includes('<div class="role-output">') && !css.includes(".role-output span"), "No obsolete output-tag markup or selectors");
 for (const stage of data.lifecycle) assert.equal(stage.length, 6);
-for (const phrase of ["At team level", "At product-area level", "At enterprise level"]) assert(data.notes[22].body.includes(phrase));
+for (const phrase of ["At team level", "At product-area level", "At enterprise level"]) assert(data.notes[23].body.includes(phrase));
 assert(css.includes('font-family: "Inter"') && css.includes("font-weight: 100 900") && css.includes("prefers-reduced-motion"));
 assert(read("fonts/LICENSE.txt").includes("SIL OPEN FONT LICENSE Version 1.1"));
 assert.equal(readFileSync(new URL("fonts/InterVariable.woff2", import.meta.url)).subarray(0, 4).toString(), "wOF2");
@@ -153,4 +157,4 @@ for (const source of [catalogSource, languageSource, js]) {
   new vm.Script(source);
 }
 assert(html.indexOf('src="spanish.js"') < html.indexOf('src="language.js"') && html.indexOf('src="language.js"') < html.indexOf('src="app.js"'));
-console.log("PASS: V3 23-slide mapping, bilingual notes, exact timing, frozen metric values, six-state evidence, local Inter/OFL, offline and accessible source contracts.");
+console.log("PASS: V3 24-slide mapping, bilingual notes, exact timing, frozen metric values, six-state evidence, local Inter/OFL, offline and accessible source contracts.");

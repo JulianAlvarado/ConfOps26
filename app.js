@@ -1,6 +1,6 @@
 "use strict";
 
-const keynoteCount = 14;
+const keynoteCount = 15;
 let notes = [
   {
     "seconds": 45,
@@ -19,10 +19,18 @@ let notes = [
     "transition": "Now consider how distributed output can create more variation."
   },
   {
+    "seconds": 30,
+    "takeaway": "Introduce yourself and the perspective you bring to DesignOps and AI.",
+    "visual": "Neutral photo placeholders fill the left half; concise biography bullets fill the right. Supplied photos are pending.",
+    "interaction": "No builds or controls.",
+    "body": "Julian Alvarado is a Senior Program Manager and Design Operations leader at Microsoft, helping Xbox Design scale through better systems, clearer processes, and responsible AI. He works across teams and studios to improve how designers plan, learn, and deliver—building resilient, people-centered creative organizations. Outside work, Julian is a daily CrossFit devotee and a “forever blue belt” in jiu-jitsu. A retired musician, he still loves live shows and enjoys drawing at home. Currently in rotation: Radiohead, Lenny Kravitz, Oasis, and Crosses. This is a concise English version of the speaker's supplied biography, with his supplied personal interests. Keep the spoken introduction to 30 seconds by summarizing your role and its connection to this talk rather than reading the full biography aloud. The keynote remains 1,200 seconds, the demo remains 270 seconds, closing remains 90 seconds, and Q&A remains 600 seconds.",
+    "transition": "Now return to the shared challenge: without common conditions, more output can create more variation."
+  },
+  {
     "seconds": 60,
     "takeaway": "Shared context and evaluation govern variation without eliminating useful exploration.",
     "visual": "A causal chain sits above diverging output branches; a shared standards band aligns their treatment.",
-    "interaction": "Review and Stage start with the patterns inactive. First Next activates all patterns and the full causal chain together. Second Next applies context and evaluation together. Third Next advances to slide 4. Previous removes alignment, then deactivates all patterns before leaving slide 3. Forward/reverse keys use the same two interaction steps, with held-key repeats ignored. No local controls. Revisits and language switches retain progress; Stage starts fresh and restores review on exit.",
+    "interaction": "Review and Stage start with the patterns inactive. First Next activates all patterns and the full causal chain together. Second Next applies context and evaluation together. Third Next advances to slide 5. Previous removes alignment, then deactivates all patterns before leaving slide 4. Forward/reverse keys use the same two interaction steps, with held-key repeats ignored. No local controls. Revisits and language switches retain progress; Stage starts fresh and restores review on exit.",
     "body": "Read the chain deliberately: more output, more variation, more decisions, more opportunities for inconsistency. This is a conceptual mechanism, not a statistical forecast. Variation is useful during exploration; unmanaged variation becomes expensive at system boundaries. Examples include conflicting terminology, duplicated research, inaccessible patterns, undocumented AI decisions, and design-system drift. The source's '17 versions of a pattern' is rhetorical, not a measured statistic, so we do not chart it. Apply shared context and evaluation: options can remain different while obeying common constraints. A green state is an explanatory metaphor, not a claim that standards automatically eliminate defects.",
     "transition": "Three questions help us govern that variation. Then we will apply them to one workspace-setup example."
   },
@@ -86,25 +94,25 @@ let notes = [
     "seconds": 105,
     "takeaway": "Pilot collaborative production and use any capacity gained for customer learning.",
     "visual": "One proposed after journey: shared purpose, synchronized collaborative work, AI-assisted production, and experiments with customer feedback.",
-    "interaction": "The existing green collaboration animation runs on entry without a replay control. Stage and reduced-motion views remain fully readable without animation. The 30-day pilot reference opens appendix 23; its return link brings you here. The pilot is outside keynote timing.",
+    "interaction": "The existing green collaboration animation runs on entry without a replay control. Stage and reduced-motion views remain fully readable without animation. The 30-day pilot reference opens appendix 24; its return link brings you here. The pilot is outside keynote timing.",
     "body": "The before journey is a deliberately simplified pattern, not a claim that all pre-AI teams worked sequentially. Research informs a brief, design produces mocks, engineering builds, and customers finally respond. The proposed alternative starts with Mission, Milestones, and Metrics—the source's MMM. PM, research, design, and engineering share intent; specification, concepts, feasibility, and HTML/CSS prototypes evolve together. Releases can become experiments that inform another iteration. AI may reduce production effort, but review, integration, and dependency costs still count. Do not promise a one-week release or universal acceleration. Measure elapsed production time, person-hours, waiting time, customer validation, and experimentation cadence. The animation contrasts sequencing, not numeric speed. A prototype is not a production release; user evidence remains necessary.",
     "transition": "Shared guidance can start with documentation the team already has."
   },
   {
     "seconds": 75,
     "takeaway": "Turn domain knowledge into versioned, reusable context and verifiable standards.",
-    "visual": "Existing documentation flows into reusable guidance, then a packaged context for AI. The saved lesson retains provenance and pending user validation.",
-    "interaction": "Static transformation. Stage emphasizes lesson, reason, owner/version, review date, and pending user evidence; review and notes retain the full detail.",
-    "body": "Use the saved solo-setup lesson as the concrete artifact rather than narrating seven new frameworks. Its source is explicitly assumed, the requirement and decision are readable, its scope is solo setup, and its owner and review trigger are visible. User evidence remains pending. The seven transformations preserve the broader source material: guidelines to machine-readable rules, design systems to consumable systems, templates to canonical prompts, documentation to context packages, critique to rubrics, SOPs to human–AI workflows, efficiency measures to speed plus quality and outcomes. A YAML-like package does not enforce itself. Integration, permissions, validation, and human review are still required. DesignOps maintains the package; domain experts author, approve, and revisit its validity.",
+    "visual": "Three documentation-to-guidance tracks converge into advanced context for a production sprint. A shared metrics band evaluates speed, quality and outcomes across the whole flow.",
+    "interaction": "Static convergence flow in Review, Stage and print. Explain the seven detailed relationships, example provenance and pending user validation from these notes; the destination summarizes context, not executable code.",
+    "body": "Use the saved solo-setup lesson as the concrete artifact rather than narrating seven new frameworks. Explain its assumed source, solo-setup requirement and invitation decision, product lead owner, version 1, and review after the pilot or a brief change. User evidence remains pending. The seven transformations preserve the broader source material: guidelines to machine-readable rules, design systems to consumable systems, templates to canonical prompts, documentation to context packages, critique to rubrics, SOPs to human–AI workflows, efficiency measures to speed plus quality and outcomes. A YAML-like package does not enforce itself. Integration, permissions, validation, and human review are still required. DesignOps maintains the package; domain experts author, approve, and revisit its validity.",
     "transition": "Maintaining this guidance costs time. How would we know the workflow is worth adopting?"
   },
   {
     "seconds": 100,
     "takeaway": "Evaluate the whole workflow: speed, review cost, quality, coherence, and customer outcomes.",
     "visual": "A shared comparison table has Baseline, Pilot and Change headings once; category groups separate workflow outcomes from leading/process signals.",
-    "interaction": "All 10 measures opens the full dialog. Definitions opens appendix 20 and returns here; entering definitions from Q&A returns to Q&A instead. Closing the dialog restores its opener.",
+    "interaction": "All 10 measures opens the full dialog. Definitions opens appendix 21 and returns here; entering definitions from Q&A returns to Q&A instead. Closing the dialog restores its opener.",
     "body": "These are approximate comparison values informed by the presenter's early experimentation, not exact measurements, benchmarks, or a forecast. The presenter supplied design production-rate ranges; the other nine comparisons remain unchanged from the earlier synthetic values, reported as close to informal observations. Underlying records, sample sizes, and methods have not been supplied, so do not claim validated results or causal ROI. Baseline to pilot: median brief-to-validated-concept time 9 to 6 days; design production rate ~3–4/wk to ~1–2/wk, accepted artifacts / in a team with 8w E2E Cycle. The change ≈−2/wk is a midpoint estimate: 1.5 minus 3.5, not an independently observed change. Weekly rate and the team's eight-week end-to-end cycle are different concepts; do not divide by eight or infer an eight-week total. Production rate decreases, so do not frame it as an improvement. Production effort is 18 to 11 hours per concept; review effort 4 to 6 hours; rework 35% to 24%; applicable system checks passed 78% to 90%; open accessibility/quality defects 6 to 4 per 10 screens; design-to-code divergence 28% to 18%; experiments 1 to 2 per week; approved-context reuse 25% to 70%. Review effort rises in this comparison: faster generation does not imply less review. Leading/process measures signal behavior and readiness; outcome measures test delivered workflow results. System compliance is a leading quality signal, not proof of user benefit. Both sets of approximate values and their changes appear together, without competing bar scales. Percentage measures use percentage-point changes, not relative percentages. Match work scope, staffing, artifact definition, and evaluation criteria; include sample sizes and dispersion before presenting a validated comparison. Track customer task success separately. No customer outcome data is supplied.",
-    "transition": "Return to the central question. The proposed workflow's pilot reference remains available in appendix 23."
+    "transition": "Return to the central question. The proposed workflow's pilot reference remains available in appendix 24."
   },
   {
     "seconds": 90,
@@ -182,7 +190,7 @@ let notes = [
     "seconds": 0,
     "takeaway": "A 30-day pilot can begin at team, product-area, or enterprise level with clear ownership.",
     "visual": "Four verbs on a timeline, one concrete output per week, and an explicit adopt / revise / stop decision.",
-    "interaction": "The return link goes back to shared production (slide 11), or Q&A when opened from that menu. Direct entry defaults to shared production.",
+    "interaction": "The return link goes back to shared production (slide 12), or Q&A when opened from that menu. Direct entry defaults to shared production.",
     "body": "Days 1–7: map actual AI use and identify inconsistency, quality gaps, and risk. Days 8–14: select one useful, bounded workflow and package relevant organizational knowledge. Days 15–21: name decision owners, define human checkpoints and evaluation criteria, and establish a baseline before the pilot. Days 22–30: run comparable work and decide whether to adopt, revise, or stop. Avoid sensitive or high-risk first pilots unless the appropriate governance is already in place. At team level, design and engineering leads can own a single workflow with DesignOps facilitation. At product-area level, PM, research, design, engineering, and a system owner coordinate shared patterns and cross-team outcomes. At enterprise level, federated product ownership works within Security, Legal, IT, and platform guardrails. DesignOps connects the altitudes; it does not unilaterally own policy or product decisions. Calendar windows are a suggested starting plan, not promised delivery dates.",
     "transition": "Return to the central question: if AI participates in design, who designs its operating environment?"
   }
@@ -257,7 +265,7 @@ const slides = [...document.querySelectorAll(".slide")];
 const $ = (selector) => document.querySelector(selector);
 const englishData = { notes, lifecycle, metrics, pairLabels, pairEvidence };
 const state = { index: 0, cause: 0, stack: 0, pair: 0, life: 0, formResult: "idle", formName: "", fullscreen: "" };
-const appendixOrigins = { 20: 13, 23: 11 };
+const appendixOrigins = { 21: 14, 24: 12 };
 const pairTabLabels = ["User need", "AI mistake", "Team decision", "Working form", "Saved lesson", "Next review"];
 let stageReview;
 
@@ -322,7 +330,7 @@ function renderStack() {
 function updateNotes() {
   const note = notes[state.index];
   const elapsed = notes.slice(0, Math.min(state.index, keynoteCount)).reduce((sum, item) => sum + item.seconds, 0);
-  const timing = state.index < keynoteCount ? t`${clock(elapsed)}–${clock(elapsed + note.seconds)} · ${note.seconds} seconds` : state.index === keynoteCount ? t("10-minute Q&A · outside the 19:30 keynote") : t("Optional backup · outside keynote timing");
+  const timing = state.index < keynoteCount ? t`${clock(elapsed)}–${clock(elapsed + note.seconds)} · ${note.seconds} seconds` : state.index === keynoteCount ? t("10-minute Q&A · outside the 20-minute keynote") : t("Optional backup · outside keynote timing");
   const content = $("#notes-content");
   content.replaceChildren();
   const add = (tag, text, className) => {
@@ -348,7 +356,7 @@ function renderSlide(index) {
   const focusWasInSlide = oldSlide.contains(document.activeElement);
   const destination = index + 1;
   const origin = state.index + 1;
-  if ((destination === 20 && [13, 15].includes(origin)) || (destination === 23 && [11, 15].includes(origin))) {
+  if ((destination === 21 && [14, 16].includes(origin)) || (destination === 24 && [12, 16].includes(origin))) {
     appendixOrigins[destination] = origin;
   }
   state.index = Math.max(0, Math.min(slides.length - 1, index));
@@ -381,11 +389,11 @@ function renderSlide(index) {
 }
 
 function renderReturnLinks() {
-  for (const [slide, selector] of [[20, "#definitions-return"], [23, "#pilot-return"]]) {
+  for (const [slide, selector] of [[21, "#definitions-return"], [24, "#pilot-return"]]) {
     const origin = appendixOrigins[slide];
     const link = $(selector);
     link.href = `#${origin}`;
-    link.textContent = `↖ ${origin === 15 ? t("Back to Q&A") : origin === 13 ? t("Back to dashboard") : t("Back to shared production")}`;
+    link.textContent = `↖ ${origin === 16 ? t("Back to Q&A") : origin === 14 ? t("Back to dashboard") : t("Back to shared production")}`;
   }
 }
 
@@ -470,24 +478,24 @@ function setAligned(aligned) {
 
 function updateNext() {
   const next = $("#next");
-  const closing = state.index === 13;
+  const closing = state.index === 14;
   const revealed = !$("#closing-reveal").hidden;
-  const demoBuild = state.index === 4 && state.pair < 5;
-  const paradox = state.index === 2;
+  const demoBuild = state.index === 5 && state.pair < 5;
+  const paradox = state.index === 3;
   const aligned = $("#fragmentation").classList.contains("aligned");
   const paradoxBuild = paradox && !aligned;
   const label = paradoxBuild ? (state.cause ? t("Apply shared standards") : t("Activate all patterns")) : demoBuild ? t("Next example state") : closing ? (revealed ? t("Next slide: Q&A") : t("Reveal the answer")) : t("Next slide");
   next.setAttribute("aria-label", label);
   next.title = label;
   next.classList.toggle("build-action", paradoxBuild || demoBuild || (closing && !revealed));
-  $("#previous").setAttribute("aria-label", paradox && aligned ? t("Remove shared standards") : paradox && state.cause ? t("Deactivate all patterns") : state.index === 4 && state.pair > 0 ? t("Previous example state") : closing && revealed ? t("Hide the answer") : t("Previous slide"));
+  $("#previous").setAttribute("aria-label", paradox && aligned ? t("Remove shared standards") : paradox && state.cause ? t("Deactivate all patterns") : state.index === 5 && state.pair > 0 ? t("Previous example state") : closing && revealed ? t("Hide the answer") : t("Previous slide"));
   if (closing) {
     next.setAttribute("aria-controls", "closing-reveal");
     next.setAttribute("aria-expanded", String(revealed));
   } else if (paradox) {
     next.setAttribute("aria-controls", "causal-chain fragmentation");
     next.removeAttribute("aria-expanded");
-  } else if (state.index === 4) {
+  } else if (state.index === 5) {
     next.setAttribute("aria-controls", "pair-panel");
     next.removeAttribute("aria-expanded");
   } else {
@@ -499,11 +507,11 @@ function updateNext() {
 function setClosing(revealed) {
   $("#closing-reveal").hidden = !revealed;
   updateNext();
-  if (state.index === 13) $("#announcement").textContent = revealed ? t("DesignOps. AI doesn't eliminate the need for DesignOps. It makes DesignOps infrastructure.") : t("Who designs the system in which AI operates?");
+  if (state.index === 14) $("#announcement").textContent = revealed ? t("DesignOps. AI doesn't eliminate the need for DesignOps. It makes DesignOps infrastructure.") : t("Who designs the system in which AI operates?");
 }
 
 function advanceReview(direction = 1) {
-  if (state.index === 2) {
+  if (state.index === 3) {
     const aligned = $("#fragmentation").classList.contains("aligned");
     if (direction < 0 && aligned) {
       setAligned(false);
@@ -522,11 +530,11 @@ function advanceReview(direction = 1) {
       return;
     }
   }
-  if (state.index === 4 && (direction > 0 ? state.pair < 5 : state.pair > 0)) {
+  if (state.index === 5 && (direction > 0 ? state.pair < 5 : state.pair > 0)) {
     setPair(state.pair + direction);
     return;
   }
-  if (state.index === 13 && $("#closing-reveal").hidden === (direction > 0)) {
+  if (state.index === 14 && $("#closing-reveal").hidden === (direction > 0)) {
     setClosing(direction > 0);
     return;
   }
