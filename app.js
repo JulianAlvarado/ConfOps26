@@ -759,7 +759,7 @@ function renderFormResult() {
   result.className = `prototype-result${state.formResult === "idle" ? "" : ` ${state.formResult}`}`;
   result.textContent = state.formResult === "error" ? t("Enter a workspace name with 2–48 non-padding characters.")
     : state.formResult === "success" ? t`“${value}” is ready in this local demo. Nothing was saved or sent.`
-    : t("Prototype only. No account or network request.");
+    : "";
 }
 
 $("#prototype-form").addEventListener("submit", (event) => {

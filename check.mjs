@@ -7,6 +7,7 @@ const html = read("index.html");
 const css = read("styles.css");
 const js = read("app.js");
 const catalogSource = read("spanish.js");
+assert(!/\balta\b/i.test(catalogSource), "Spanish slide and runtime terminology uses setup");
 const languageSource = read("language.js");
 const prefix = js.slice(0, js.indexOf("const slides ="));
 const data = vm.runInNewContext(`${prefix}; ({ keynoteCount, notes, metrics, lifecycle, pairLabels, pairEvidence, metricValue, metricDelta, metricChange });`);

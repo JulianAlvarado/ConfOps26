@@ -178,12 +178,20 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
           assert.equal(await page.locator("#pair-label").innerText(), await page.evaluate(i => pairLabels[i], i));
           assert.equal(await page.locator("#prototype-form").isVisible(), i === 3);
           if (i === 3) {
+            await page.evaluate(() => setPair(3, true));
+            assert.equal(await page.locator("#prototype-result").textContent(), "");
+            assert.equal(await page.locator("#prototype-result").getAttribute("role"), "status");
+            assert.deepEqual(await page.locator("#prototype-result").evaluate(node => [node.getBoundingClientRect().height, getComputedStyle(node).marginTop]), [0, "0px"], "Idle status must not reserve blank space");
+            await page.evaluate(() => setLanguage(language === "es" ? "en" : "es"));
+            assert.equal(await page.locator("#prototype-result").textContent(), "", "Language switching preserves an empty idle status");
+            await page.evaluate(locale => setLanguage(locale), locale);
             await page.locator("#workspace-name").fill("");
             await click("#prototype-form button");
             assert(await page.locator("#workspace-name").evaluate(input => !input.checkValidity()));
             await page.locator("#workspace-name").fill(" ");
             await click("#prototype-form button");
             assert.equal(await page.locator("#workspace-name").getAttribute("aria-invalid"), "true");
+            assert((await page.locator("#prototype-result").textContent()).length > 0, "Invalid input retains visible status feedback");
             await page.locator("#workspace-name").fill("<b>Diseño ñ</b>");
             await page.keyboard.press("Enter");
             assert.equal(await page.locator("#prototype-result b").count(), 0);
@@ -552,6 +560,15 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
         const bounds = slide.getBoundingClientRect();
         const footer = slide.querySelector(".slide-footer").getBoundingClientRect();
         const issues = [];
+        if (language === "es" && /\balta\b/i.test(slide.outerHTML + document.querySelector("#notes-content").textContent)) issues.push("Spanish setup terminology regressed");
+        if (slide.id === "slide-5" && state.pair === 2) {
+          const decisionLabel = language === "es" ? "Diseño + ingeniería deciden en pair programming" : "Designer + engineer decide";
+          if (![...slide.querySelectorAll("#evidence-details dt")].some(node => node.textContent === decisionLabel)) issues.push("Team-decision evidence label changed");
+        }
+        if (slide.id === "slide-5" && state.pair === 4) {
+          const lessonTitle = language === "es" ? "No te repitas (DRY: Don't repeat yourself)" : "Do not fix this twice.";
+          if (slide.querySelector("#evidence-title").textContent !== lessonTitle) issues.push("Saved-lesson heading changed");
+        }
         const viewport = document.querySelector("#viewport").getBoundingClientRect();
         if (bounds.left < viewport.left - 1 || bounds.right > viewport.right + 1 || bounds.top < viewport.top - 1 || bounds.bottom > viewport.bottom + 1) issues.push("Scaled slide exceeds viewport");
         const eyebrowNumber = slide.querySelector(".eyebrow > span")?.textContent.match(/^(\d\d) —/);
