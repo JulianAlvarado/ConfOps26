@@ -797,7 +797,6 @@ $("#workspace-name").addEventListener("invalid", event => {
 });
 $("#workspace-name").addEventListener("input", event => event.target.setCustomValidity(""));
 
-$("#language-toggle").addEventListener("click", () => setLanguage(language === "en" ? "es" : "en"));
 $("#previous").addEventListener("click", () => advanceReview(-1));
 $("#next").addEventListener("click", () => advanceReview(1));
 $("#notes-toggle").addEventListener("click", () => toggleNotes());

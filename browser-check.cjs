@@ -30,8 +30,7 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
     for (const hash of ["", "#3", "#4", "#6"]) {
       await page.goto(`${pathToFileURL(path.join(__dirname, "index.html")).href}${hash}`);
       assert.equal(await page.locator("html").getAttribute("lang"), "es");
-      assert.equal(await page.locator("#language-toggle").textContent(), "EN");
-      assert.equal(await page.locator("#language-toggle").getAttribute("aria-label"), "Idioma: español. Cambiar a inglés");
+      assert.equal(await page.locator("#language-toggle").count(), 0);
       assert.equal(await page.locator("#notes-toggle").textContent(), "Notas N");
       assert((await page.locator("#notes-content").textContent()).includes("IDEA CLAVE"));
       assert.equal(await step(), "0");
@@ -85,7 +84,8 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
     };
     await go(2);
     for (const locale of ["es", "en"]) {
-      await click("#language-toggle");
+      await page.locator("#presentation").focus();
+      await page.keyboard.press("l");
       assert.equal(await page.locator("html").getAttribute("lang"), locale);
       assert.equal(await page.locator("#roles > article.role > ul.role-output").count(), 4);
       assert.deepEqual(await page.locator("#roles .role-output").evaluateAll(lists => lists.map(list => [...list.children].map(item => {
@@ -154,7 +154,7 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
             if (text.some(r => r.left < box.left - 1 || r.right > box.right + 1)) issues.push("Clipped text");
             if (text.length && Math.max(...text.map(r => r.top)) >= Math.min(...text.map(r => r.bottom))) issues.push("Wrapped label/shortcut");
           }
-          if (buttons.length !== 5 || document.querySelector(".version")) issues.push("Toolbar shape");
+          if (buttons.length !== 4 || document.querySelector(".version")) issues.push("Toolbar shape");
           if (innerWidth > 700 && Math.max(...centers) - Math.min(...centers) > 1) issues.push("Multiple toolbar rows");
           if (document.documentElement.scrollWidth > innerWidth) issues.push("Horizontal overflow");
           return issues;
@@ -172,11 +172,10 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
         assert.equal(await page.locator('[role=tab][tabindex="0"]').count(), 1);
         assert.equal(await page.locator("#pair-panel").getAttribute("aria-labelledby"), `pair-tab-${i}`);
         for (const locale of ["es", "en"]) {
-          if (stage) {
-            await page.locator("#presentation").focus();
-            const lang = await page.locator("html").getAttribute("lang");
-            if (lang !== locale) await page.keyboard.press("l");
-          } else if (await page.locator("html").getAttribute("lang") !== locale) await click("#language-toggle");
+          await page.locator("#presentation").focus();
+          const lang = await page.locator("html").getAttribute("lang");
+          if (lang !== locale) await page.keyboard.press("l");
+          assert.equal(await page.locator("html").getAttribute("lang"), locale);
           assert.equal(await step(), String(i), "Language preserves every state");
           assert.equal(await page.locator("#pair-label").innerText(), await page.evaluate(i => pairLabels[i], i));
           assert.equal(await page.locator("#prototype-form").isVisible(), i === 3);
@@ -205,6 +204,10 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
               assert.equal(await current(), 6);
               assert.equal(await step(), "3");
             }
+            await page.locator("#workspace-name").fill("Diseño de ejemplo");
+            await page.keyboard.press("l");
+            assert.equal(await page.locator("html").getAttribute("lang"), locale, "Typing L never switches language");
+            assert.equal(await page.locator("#workspace-name").inputValue(), "Diseño de ejemplol");
             await page.locator("#workspace-name").fill("Diseño de ejemplo");
             await click("#prototype-form button");
             for (const key of ["ArrowRight", "ArrowLeft", " ", "Enter"]) {
@@ -275,6 +278,15 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
     await click("#pair-tab-3");
     await page.locator("#workspace-name").fill("Stage input");
     await click("#prototype-form button");
+    await page.locator("#presentation").focus();
+    const stageLanguage = await page.locator("html").getAttribute("lang");
+    for (let i = 0; i < 2; i++) {
+      await page.keyboard.press("l");
+      assert.equal(await page.locator("html").getAttribute("lang"), i === 0 ? (stageLanguage === "es" ? "en" : "es") : stageLanguage);
+      assert.equal(await step(), "3");
+      assert.equal(await page.locator("#workspace-name").inputValue(), "Stage input");
+      assert.equal(await page.evaluate(() => state.formResult), "success");
+    }
     await page.locator("#workspace-name").focus();
     await page.keyboard.press("Escape");
     assert.equal(await step(), "4");
@@ -504,6 +516,9 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
     await go(6);
     await click("#notes-toggle");
     await page.locator("#notes").focus();
+    const notesLanguage = await page.locator("html").getAttribute("lang");
+    await page.keyboard.press("l");
+    assert.equal(await page.locator("html").getAttribute("lang"), notesLanguage, "Notes retain native keys");
     for (const key of ["ArrowRight", "ArrowDown", "PageDown", " ", "Home", "End"]) {
       await page.keyboard.press(key);
       assert.equal(await current(), 6);
@@ -511,6 +526,8 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
     await page.keyboard.press("Escape");
     await click("#overview-toggle");
     assert.equal(await page.locator("#slide-index a").count(), 24);
+    await page.keyboard.press("l");
+    assert.equal(await page.locator("html").getAttribute("lang"), notesLanguage, "Dialogs retain native keys");
     await page.keyboard.press("Escape");
     const fullscreenPage = await browser.newPage({ viewport: null, reducedMotion: "reduce" });
     try {
@@ -539,7 +556,8 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
       await fullscreenPage.click("#previous");
       await fullscreenPage.waitForFunction(() => state.index === 5);
       await fullscreenFits(true);
-      await fullscreenPage.click("#language-toggle");
+      await fullscreenPage.locator("#presentation").focus();
+      await fullscreenPage.keyboard.press("l");
       await fullscreenFits(true);
       await fullscreenPage.click("#stage-toggle");
       await fullscreenFits(true);

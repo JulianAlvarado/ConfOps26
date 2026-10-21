@@ -25,7 +25,7 @@ The demo retains 270 seconds; closing, 90; Q&A, 600. The pilot is in appendix 24
 
 ## Stage delivery and rehearsal
 
-S enters Stage; F optionally enters fullscreen; Escape or S restores review. Arrow keys advance or reverse slide 4's chain and alignment, demo and closing builds before changing slides, in both review and Stage. Six tabs expose the whole journey; no Reset or duplicate Next. Native form keys never navigate. Home/End and arrows inside the tabs select states. Main Next advances the demo. ES/EN or L switches language without losing local input or state; L does not intercept typing, notes, or dialogs. Exiting Stage restores review's snapshot. The presentation scales on small screens. Nothing is saved or sent.
+S enters Stage; F optionally enters fullscreen; Escape or S restores review. Arrow keys advance or reverse slide 4's chain and alignment, demo and closing builds before changing slides, in both review and Stage. Six tabs expose the whole journey; no Reset or duplicate Next. Native form keys never navigate. Home/End and arrows inside the tabs select states. Main Next advances the demo. L switches language without losing local input or state; L does not intercept typing, notes, or dialogs. Exiting Stage restores review's snapshot. The presentation scales on small screens. Nothing is saved or sent.
 
 The reference on 12 opens pilot 24 and returns to its origin. Definitions from 14 returns to the dashboard; from Q&A it returns to Q&A. The full learning cycle requires no clicks. Evaluation icon ◎ is retained.
 

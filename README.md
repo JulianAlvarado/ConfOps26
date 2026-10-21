@@ -8,13 +8,13 @@ The local, offline vanilla HTML/CSS/JavaScript presentation contains **24 slides
 
 Open `index.html` directly in a modern desktop browser. No build, package installation, CDN, API key, AI service, or network connection is needed. Alternatively, run `python3 -m http.server 8080 --bind 127.0.0.1` here and open `http://127.0.0.1:8080`.
 
-Spanish starts on fresh load and reload, including direct slide hashes. The single **ES / EN** toolbar button displays the target language; **L** also switches languages outside form fields, notes and dialogs, including in Stage. All slides, notes, menus, evidence, form feedback and accessible labels switch in place. Input, selected tabs, diagram states, the closing reveal and the Stage review snapshot survive switching. No language preference or user data is stored or sent.
+Spanish starts on fresh load and reload, including direct slide hashes. **L** switches languages outside form fields, notes and dialogs, including in Stage; there is no language toolbar button. All slides, notes, menus, evidence, form feedback and accessible labels switch in place. Input, selected tabs, diagram states, the closing reveal and the Stage review snapshot survive switching. No language preference or user data is stored or sent.
 
 Outbound LinkedIn and GitHub contact links are the only intended network use, when explicitly followed. About me is restored with the approved bilingual biography and neutral collage placeholders, without retrieving deleted photo assets. The Q&A QR stays removed.
 
 ## Approved V3 changes
 
-Inter is used for both primary and secondary typography, including diagrams and context labels. Existing **coral/orange** highlights action changes and the selected demo tab; **cyan** carries shared structure. Existing green success/acceptance states retain their meaning. There is no toolbar version badge; all five toolbar controls remain on one row at 1000px in both languages.
+Inter is used for both primary and secondary typography, including diagrams and context labels. Existing **coral/orange** highlights action changes and the selected demo tab; **cyan** carries shared structure. Existing green success/acceptance states retain their meaning. There is no toolbar version badge; all four toolbar controls remain on one row at 1000px in both languages.
 
 | Slide | V3 treatment |
 | --- | --- |
@@ -70,7 +70,7 @@ The demo retains **270 seconds**, closing **90**, and the split journey **195**.
 | F | Native fullscreen when supported; denied/unavailable requests are announced |
 | N / Notes | Read notes on the same display; close before audience screen sharing |
 | G / Slides | Open the 24-slide index |
-| ES / EN, or L | In-place language switching |
+| L | In-place language switching |
 
 Review and Stage share slide 4's exact progression: **inactive → all patterns and causal-chain stages active → context and evaluation applied → slide 5**. This takes exactly two interaction clicks; the third advances the slide. Previous reverses alignment, then deactivates the patterns before leaving; revisits and language switches retain progress. Stage resets both chain and alignment for rehearsal and restores both on exit. There are no dedicated slide 4 controls. Other diagrams are complete without extra clicks. Slide 2's generation sequence and slide 12's green collaboration animation start on entry, without controls or automatic slide advancement. Slide 2 uses native CSS animations, with no timers/listeners to accumulate on revisits; Stage and reduced-motion views show all four outputs complete. Slide 10's control-plane connections illuminate once on entry without a button; Stage, print and reduced-motion views show the connected final state. Slide 11's sequential handoffs also animate once on entry, without a replay control. Animations are finite and respect reduced-motion preferences. Slide 4's context/evaluation band retains its V2 vertical placement in review/Stage and unchanged Stage placement.
 

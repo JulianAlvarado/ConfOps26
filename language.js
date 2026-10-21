@@ -31,8 +31,4 @@ function translateMarkup() {
     for (const [index, values] of Object.entries(text)) element.childNodes[index].textContent = values[variant];
     for (const [name, values] of Object.entries(attributes)) element.setAttribute(name, values[variant]);
   }
-  const button = document.getElementById("language-toggle");
-  button.textContent = language === "en" ? "ES" : "EN";
-  button.lang = language === "en" ? "es" : "en";
-  button.setAttribute("aria-label", language === "en" ? "Language: English. Switch to Spanish" : "Idioma: español. Cambiar a inglés");
 }
