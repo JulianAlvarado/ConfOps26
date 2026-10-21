@@ -31,7 +31,6 @@ const spanish = {
     {"selector":"html > body:nth-child(2) > header:nth-child(1) > a:nth-child(1) > span:nth-child(2)","text":{"0":["/ AI INFRASTRUCTURE","/ INFRAESTRUCTURA DE IA"]},"attributes":{}},
     {"selector":"html > body:nth-child(2) > header:nth-child(1) > a:nth-child(1)","text":{},"attributes":{"aria-label":["Go to opening slide","Ir a la primera diapositiva"]}},
     {"selector":"#stage-toggle","text":{"0":["Stage ","Escenario "]},"attributes":{}},
-    {"selector":"#overview-toggle","text":{"0":["Slides ","Diapositivas "]},"attributes":{}},
     {"selector":"#notes-toggle","text":{"0":["Notes ","Notas "]},"attributes":{}},
     {"selector":"#fullscreen","text":{"0":["Fullscreen ","Pantalla completa "]},"attributes":{"aria-label":["Enter fullscreen","Activar pantalla completa"]}},
     {"selector":"#stage-help","text":{"0":["Stage hides review tools. Right arrow advances a build, then the slide. Left arrow reverses it. F toggles fullscreen. Escape or S returns to review. Tab operates the demo form; focus outside it to resume slide keys.","Escenario oculta las herramientas de revisión. La flecha derecha avanza un paso y después la diapositiva; la izquierda retrocede. F activa o desactiva la pantalla completa. Escape o S vuelve a revisión. Tab permite usar el formulario; sal de él para volver a navegar."]},"attributes":{}},

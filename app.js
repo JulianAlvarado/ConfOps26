@@ -823,8 +823,8 @@ $("#stage-toggle").addEventListener("click", () => setStageMode(true));
 $("#stage-exit").addEventListener("click", exitStage);
 $("#metrics-open").addEventListener("click", () => $("#metrics-detail").showModal());
 $("#metrics-close").addEventListener("click", () => $("#metrics-detail").close());
-$("#overview-toggle").addEventListener("click", () => $("#overview").showModal());
 $("#overview-close").addEventListener("click", () => $("#overview").close());
+$("#overview").addEventListener("close", () => $("#presentation").focus({ preventScroll: true }));
 $("#slide-index").addEventListener("click", (event) => {
   if (event.target.closest("a")) $("#overview").close();
 });

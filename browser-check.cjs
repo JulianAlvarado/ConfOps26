@@ -31,6 +31,8 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
       await page.goto(`${pathToFileURL(path.join(__dirname, "index.html")).href}${hash}`);
       assert.equal(await page.locator("html").getAttribute("lang"), "es");
       assert.equal(await page.locator("#language-toggle").count(), 0);
+      assert.equal(await page.locator("#overview-toggle").count(), 0);
+      assert.deepEqual(await page.locator(".toolbar-actions button").evaluateAll(nodes => nodes.map(node => node.id)), ["stage-toggle", "notes-toggle", "fullscreen"]);
       assert.equal(await page.locator("#notes-toggle").textContent(), "Notas N");
       assert((await page.locator("#notes-content").textContent()).includes("IDEA CLAVE"));
       assert.equal(await step(), "0");
@@ -159,7 +161,7 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
             if (text.some(r => r.left < box.left - 1 || r.right > box.right + 1)) issues.push("Clipped text");
             if (text.length && Math.max(...text.map(r => r.top)) >= Math.min(...text.map(r => r.bottom))) issues.push("Wrapped label/shortcut");
           }
-          if (buttons.length !== 4 || document.querySelector(".version")) issues.push("Toolbar shape");
+          if (buttons.length !== 3 || document.querySelector(".version")) issues.push("Toolbar shape");
           if (innerWidth > 700 && Math.max(...centers) - Math.min(...centers) > 1) issues.push("Multiple toolbar rows");
           if (document.documentElement.scrollWidth > innerWidth) issues.push("Horizontal overflow");
           return issues;
@@ -565,11 +567,27 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
       assert.equal(await current(), 6);
     }
     await page.keyboard.press("Escape");
-    await click("#overview-toggle");
-    assert.equal(await page.locator("#slide-index a").count(), 26);
-    await page.keyboard.press("l");
-    assert.equal(await page.locator("html").getAttribute("lang"), notesLanguage, "Dialogs retain native keys");
-    await page.keyboard.press("Escape");
+    for (const locale of ["en", "es"]) {
+      await page.evaluate(locale => setLanguage(locale), locale);
+      await go(6);
+      for (const exit of ["Escape", "close", "select"]) {
+        await page.locator("#presentation").focus();
+        await page.keyboard.press("g");
+        assert(await page.locator("#overview").isVisible());
+        assert.equal(await page.locator("#slide-index a").count(), 26);
+        assert.equal(await page.locator("#overview-title").textContent(), locale === "es" ? "La historia de un vistazo" : "The story at a glance");
+        assert(await page.locator("#overview").evaluate(node => node.contains(document.activeElement)), "Opening index moves focus inside the dialog");
+        await page.keyboard.press("l");
+        assert.equal(await page.locator("html").getAttribute("lang"), locale, "Dialogs retain native keys");
+        if (exit === "Escape") await page.keyboard.press("Escape");
+        else if (exit === "close") await click("#overview-close");
+        else await click('#slide-index a[href="#9"]');
+        await page.waitForFunction(() => !document.querySelector("#overview").open && document.activeElement.id === "presentation");
+        if (exit === "select") await page.waitForFunction(() => state.index === 8);
+      }
+      await page.keyboard.press("l");
+      assert.equal(await page.locator("html").getAttribute("lang"), locale === "es" ? "en" : "es", "Language shortcut works after index closes");
+    }
     const fullscreenPage = await browser.newPage({ viewport: null, reducedMotion: "reduce" });
     try {
       await fullscreenPage.goto(`${pathToFileURL(path.join(__dirname, "index.html")).href}#6`);

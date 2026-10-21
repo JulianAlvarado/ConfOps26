@@ -14,7 +14,7 @@ Outbound LinkedIn and GitHub contact links are the only intended network use, wh
 
 ## Approved V3 changes
 
-Inter is used for both primary and secondary typography, including diagrams and context labels. Existing **coral/orange** highlights action changes and the selected demo tab; **cyan** carries shared structure. Existing green success/acceptance states retain their meaning. There is no toolbar version badge; all four toolbar controls remain on one row at 1000px in both languages.
+Inter is used for both primary and secondary typography, including diagrams and context labels. Existing **coral/orange** highlights action changes and the selected demo tab; **cyan** carries shared structure. Existing green success/acceptance states retain their meaning. There is no toolbar version badge; the three toolbar controls (Stage, Notes and Fullscreen) remain on one row at 1000px in both languages. The slide index has no toolbar button; **G** still opens it in Review, and closing it returns keyboard focus to the presentation.
 
 | Slide | V3 treatment |
 | --- | --- |
@@ -72,7 +72,7 @@ The demo retains **270 seconds** and the split journey **195**. The closing's fo
 | Escape / S / Exit stage | Restore review input, feedback, selected state, reveal and diagram state |
 | F | Native fullscreen when supported; denied/unavailable requests are announced |
 | N / Notes | Read notes on the same display; close before audience screen sharing |
-| G / Slides | Open the 26-slide index |
+| G | Open the 26-slide index in Review; Escape or Close returns focus to the presentation |
 | L | In-place language switching |
 
 Review and Stage share slide 4's exact progression: **inactive → all patterns and causal-chain stages active → context and evaluation applied → slide 5**. This takes exactly two interaction clicks; the third advances the slide. Previous reverses alignment, then deactivates the patterns before leaving; revisits and language switches retain progress. Stage resets both chain and alignment for rehearsal and restores both on exit. There are no dedicated slide 4 controls. Other diagrams are complete without extra clicks. Slide 2's generation sequence and slide 12's green collaboration animation start on entry, without controls or automatic slide advancement. Slide 2 uses native CSS animations, with no timers/listeners to accumulate on revisits; Stage and reduced-motion views show all four outputs complete. Slide 10's control-plane connections illuminate once on entry without a button; Stage, print and reduced-motion views show the connected final state. Slide 11's sequential handoffs also animate once on entry, without a replay control. Animations are finite and respect reduced-motion preferences. Slide 4's context/evaluation band retains its V2 vertical placement in review/Stage and unchanged Stage placement.
