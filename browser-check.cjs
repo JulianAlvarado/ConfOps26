@@ -50,7 +50,7 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
     })), { total: 1200, demo: 270, before: 90, after: 105, closing: 90, qa: 600, faq: 0, backups: [0, 0, 0, 0, 0, 0, 0, 0] });
     assert.equal(await page.locator(".human-symbol").textContent(), "◎");
     assert.equal(await page.locator("#slide-3 .photo-placeholder, .output-pile > p").count(), 0);
-    assert.equal(await page.locator("#slide-3 img").count(), 1);
+    assert.equal(await page.locator("#slide-3 img").count(), 5);
     assert.equal(await page.locator(".network-node").count(), 5);
     assert(!(await page.locator(".network-node").allTextContents()).some(text => text.includes("+ AI")));
     assert.equal(await page.locator(".shift-group").count(), 3);
@@ -616,6 +616,53 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
     } finally {
       await fullscreenPage.close();
     }
+    await page.emulateMedia({ reducedMotion: "no-preference" });
+    for (const locale of ["en", "es"]) {
+      for (const stage of [false, true]) {
+        await go(2);
+        await page.evaluate(({ locale, stage }) => { setLanguage(locale); setStageMode(stage); }, { locale, stage });
+        await go(3);
+        const photos = page.locator(".photo-stack img");
+        await photos.evaluateAll(items => Promise.all(items.map(item => item.decode())));
+        await photos.evaluateAll(items => Promise.all(items.flatMap(item => item.getAnimations().map(animation => animation.ready))));
+        assert.deepEqual(await photos.evaluateAll(items => items.map(item => {
+          const animation = item.getAnimations()[0];
+          const timing = animation.effect.getTiming();
+          animation.pause();
+          animation.currentTime = 0;
+          return [timing.delay, timing.duration, timing.iterations];
+        })), [0, 500, 1000, 1500, 2000].map(delay => [delay, 900, 1]));
+        assert(await photos.evaluateAll(items => items.every(item => getComputedStyle(item).opacity === "0")), "Photos wait for their individual drop");
+        for (const [name, time] of [["initial", 120], ["mid", 1400], ["final", 3000]]) {
+          await photos.evaluateAll((items, time) => items.forEach(item => { item.getAnimations()[0].currentTime = time; }), time);
+          await capture(`${locale}-${stage ? "stage" : "review"}-photo-${name}`);
+        }
+        assert(await photos.evaluateAll(items => items.every(item => getComputedStyle(item).opacity === "1")));
+        assert(await page.evaluate(() => {
+          const photos = [...document.querySelectorAll(".photo-stack img")];
+          const animations = photos.map(photo => photo.getAnimations()[0]);
+          setLanguage(language === "es" ? "en" : "es");
+          setStageMode(!document.body.classList.contains("stage-mode"));
+          return photos.every((photo, index) => photo.getAnimations()[0] === animations[index] && getComputedStyle(photo).opacity === "1");
+        }), "Language/mode switches preserve the same visible animation, not a new hidden stack");
+        await go(2);
+        await go(3);
+        assert(await photos.evaluateAll(items => items.every(item => item.getAnimations()[0].currentTime < 900)), "Re-entry restarts the sequential drops");
+        await photos.evaluateAll(items => Promise.all(items.flatMap(item => item.getAnimations().map(animation => animation.finished))));
+        assert.equal(await current(), 3, "Photo animation never advances the slide");
+        assert(await photos.evaluateAll(items => items.every(item => item.getAnimations()[0].playState === "finished")));
+        await page.locator("#presentation").focus();
+        await page.keyboard.press("ArrowRight");
+        await page.waitForFunction(() => state.index === 3);
+        assert.equal(await current(), 4, "Photo animation does not consume navigation clicks");
+      }
+    }
+    await go(3);
+    await page.emulateMedia({ media: "print" });
+    assert(await page.locator(".photo-stack img").evaluateAll(items => items.every(item => !item.getAnimations().length && getComputedStyle(item).opacity === "1")), "Print resolves the stack immediately even during entry");
+    await page.emulateMedia({ media: null, reducedMotion: "reduce" });
+    await page.evaluate(() => setStageMode(false));
+    assert(await page.locator(".photo-stack img").evaluateAll(items => items.every(item => !item.getAnimations().length && getComputedStyle(item).opacity === "1")), "Reduced motion shows the complete final stack");
     const checkLayout = async (label) => {
       const issues = await page.evaluate(() => {
         const slide = document.querySelector(".slide:not([hidden])");
@@ -624,28 +671,29 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
         const issues = [];
         if (slide.id === "slide-3") {
           const expected = language === "es" ? [
-            "Sr. Program Manager de operaciones de diseño de producción en Xbox / Microsoft.",
+            "Design Operations en Xbox / Microsoft.",
             "Sr. Creative Operations Manager para Prime Video.",
             "18 años de experiencia gestionando proyectos en compañías como P&G, Publicis, Critical Mass y Automattic (WordPress).",
             "CrossFit diario. «Eterno cinturón azul» de jiu-jitsu. Músico retirado y mucho dibujo en casa."
           ] : [
-            "Sr. Program Manager for design production operations at Xbox / Microsoft.",
+            "Design Operations at Xbox / Microsoft.",
             "Sr. Creative Operations Manager for Prime Video.",
             "18 years of experience managing projects at companies including P&G, Publicis, Critical Mass and Automattic (WordPress).",
             "Daily CrossFit. Jiu-jitsu “forever blue belt.” Retired musician and lots of drawing at home."
           ];
           if (JSON.stringify([...slide.querySelectorAll(".about-bio li")].map(node => node.textContent)) !== JSON.stringify(expected)) issues.push("Speaker-supplied biography must retain all four exact bullets");
           if (slide.querySelector("h2").textContent !== "Julian Alvarado" || slide.querySelector(".about-role").textContent !== "Xbox Design Ops") issues.push("Biography name/title changed");
-          const photo = slide.querySelector(".about-photo img");
-          if (slide.querySelectorAll("img").length !== 1 || slide.querySelector(".photo-placeholder, .about-collage, svg")) issues.push("Biography must contain only the supplied single photo");
-          if (!photo || !photo.complete || photo.naturalWidth !== 768 || photo.naturalHeight !== 1024 || photo.getAttribute("src") !== "images/julian-beach-handstand.jpeg") issues.push("Supplied beach photo failed to load");
-          if (photo) {
-            const alt = language === "es" ? "Julian haciendo una parada de manos en la playa, con las olas del mar detrás." : "Julian doing a handstand on the beach, with ocean waves behind him.";
+          const photos = [...slide.querySelectorAll(".photo-stack img")];
+          const files = ["julian-beach-handstand", "julian-gym-barbell", "microsoft-campus", "julian-live-performance", "julian-cafe-portrait"];
+          if (photos.length !== 5 || slide.querySelector(".photo-placeholder, .about-collage, svg")) issues.push("Biography must contain exactly the five supplied photos");
+          for (const [index, photo] of photos.entries()) {
+            if (!photo.complete || !photo.naturalWidth || photo.getAttribute("src") !== `images/${files[index]}.jpeg`) issues.push("Supplied photo missing or out of order");
+            const alt = spanish.copy.find(item => item.selector === `#slide-3 .photo-stack img:nth-child(${index + 1})`).attributes.alt[language === "es" ? 1 : 0];
             if (photo.alt !== alt) issues.push("Biography photo alt text must match the selected language");
-            const style = getComputedStyle(photo);
-            const scale = Math.max(photo.clientWidth / 768, photo.clientHeight / 1024);
-            const cropTop = (1024 * scale - photo.clientHeight) * 0.6;
-            if (style.objectFit !== "cover" || style.objectPosition !== "50% 60%" || 334 * scale - cropTop < 0 || 653 * scale - cropTop > photo.clientHeight) issues.push("Photo crop must retain the complete handstand without stretching");
+            if (Math.abs(photo.clientWidth / photo.clientHeight - photo.naturalWidth / photo.naturalHeight) > .005) issues.push("Photo must preserve natural proportions");
+            const rect = photo.getBoundingClientRect();
+            if (rect.right >= slide.querySelector(".about-copy").getBoundingClientRect().left || rect.left < bounds.left || rect.bottom >= footer.top) issues.push("Photo stack must stay clear of biography and footer");
+            if (getComputedStyle(photo).opacity !== "1") issues.push("Reduced-motion stack must show every photo");
           }
         }
         if (slide.id === "slide-16") {
@@ -951,6 +999,7 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
     assert.deepEqual(failures, [], "Both locales: all review/Stage layouts and all demo states");
     console.log("PASS: 25 bilingual slides; six-tab navigation, native forms, reverse/Stage restoration, origin links, notes, toolbar, offline Inter and layouts.");
     if (process.argv.includes("--export-pdfs")) {
+      await page.emulateMedia({ media: "print", reducedMotion: "reduce" });
       await page.setViewportSize({ width: 1600, height: 900 });
       await page.evaluate(() => {
         setStageMode(false);
@@ -975,6 +1024,7 @@ const { mkdirSync, readFileSync, writeFileSync } = require("node:fs");
           });
         }, locale);
         await page.evaluate(() => document.fonts.ready);
+        await page.locator(".photo-stack img").evaluateAll(items => Promise.all(items.map(item => item.decode())));
         const file = `ConfOps26_Julian-Alvarado_DesignOps-as-AI-Infrastructure_${locale}.pdf`;
         await page.pdf({ path: path.join(__dirname, file), preferCSSPageSize: true, printBackground: true, displayHeaderFooter: false });
         console.log(`Exported ${file}`);

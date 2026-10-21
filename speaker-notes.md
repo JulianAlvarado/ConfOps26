@@ -3,7 +3,7 @@
 **Approved bilingual presentation (V3), the canonical version replacing V2.**
 
 Based on frozen bilingual V2 `e39ef62f1729553773fa4a4f097f5c8cdf33d138`.
-16 numbered main slides (15 keynote + Let's talk) + FAQ + 8 appendices = 25. Let's talk ends the numbering at 16/16 without increasing keynote time. Local Inter under OFL. About me at position 3 with one speaker-supplied photo.
+16 numbered main slides (15 keynote + Let's talk) + FAQ + 8 appendices = 25. Let's talk ends the numbering at 16/16 without increasing keynote time. Local Inter under OFL. About me at position 3 with five speaker-supplied photos.
 
 Generated from app.js and spanish.js with `node check.mjs --write-notes`.
 
@@ -67,11 +67,11 @@ The reference on 12 opens pilot 25 and returns to its origin. Definitions from 1
 
 **Takeaway:** Introduce yourself and the perspective you bring to DesignOps and AI.
 
-**Visual concept:** One supplied beach handstand photo fills the left half, preserving the complete pose; concise biography bullets fill the right.
+**Visual concept:** Five supplied photos fall into a stack on the left over 2.9 seconds, in the supplied order with the cafe portrait on top. Earlier edges remain visible; the biography stays unobstructed. Reduced motion and print show the final stack.
 
-**Interaction:** No builds or controls.
+**Interaction:** Photos drop once per slide entry in Review and Stage, then remain still. Language and mode switches do not restart the sequence. Next advances immediately; no builds or extra controls.
 
-**Speaker notes:** Speaker-supplied biography: Sr. Program Manager for design production operations at Xbox / Microsoft. Sr. Creative Operations Manager for Prime Video. 18 years of experience managing projects at companies including P&G, Publicis, Critical Mass and Automattic (WordPress). Daily CrossFit. Jiu-jitsu “forever blue belt.” Retired musician and lots of drawing at home. No employment chronology is specified; do not infer current or former roles. Keep the spoken introduction to 30 seconds. The keynote remains 1,200 seconds; the demo, 270; closing, 90; and the shared discussion, 600.
+**Speaker notes:** Speaker-supplied biography: Design Operations at Xbox / Microsoft. Sr. Creative Operations Manager for Prime Video. 18 years of experience managing projects at companies including P&G, Publicis, Critical Mass and Automattic (WordPress). Daily CrossFit. Jiu-jitsu “forever blue belt.” Retired musician and lots of drawing at home. No employment chronology is specified; do not infer current or former roles. Keep the spoken introduction to 30 seconds. The keynote remains 1,200 seconds; the demo, 270; closing, 90; and the shared discussion, 600.
 
 **Transition:** Now return to the shared challenge: without common conditions, more output can create more variation.
 

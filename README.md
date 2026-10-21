@@ -10,7 +10,7 @@ Open `index.html` directly in a modern desktop browser. No build, package instal
 
 Spanish starts on fresh load and reload, including direct slide hashes. **L** switches languages outside form fields, notes and dialogs, including in Stage; there is no language toolbar button. All slides, notes, menus, evidence, form feedback and accessible labels switch in place. Input, selected tabs, diagram states, the closing reveal and the Stage review snapshot survive switching. No language preference or user data is stored or sent.
 
-Outbound LinkedIn and GitHub contact links are the only intended network use, when explicitly followed. About me uses the approved bilingual biography and one newly supplied beach handstand photo, bundled locally in `images/julian-beach-handstand.jpeg`, without retrieving deleted photo assets. The complete pose remains visible, with localized alt text and no captions or placeholder slots. The Q&A QR stays removed.
+Outbound LinkedIn and GitHub contact links are the only intended network use, when explicitly followed. About me uses five newly supplied photos bundled locally in `images/`, without retrieving deleted photo assets: beach handstand, gym/barbell, Microsoft campus, live performance, then cafe portrait on top. The photos fall sequentially into a slightly rotated stack over 2.9 seconds once per slide entry in Review and Stage, without consuming navigation clicks. Language and mode switches preserve the animation; reduced motion and print show the deterministic final stack. Natural image proportions, localized alt text and unobstructed biography copy are preserved, without captions or placeholder slots. The Q&A QR stays removed.
 
 ## Approved V3 changes
 
@@ -20,7 +20,7 @@ Inter is used for both primary and secondary typography, including diagrams and 
 | --- | --- |
 | 1 | Inter and existing palette; aligned capacity/coherence labels, matching captions and opening animation retained |
 | 2 | Four disciplines separated by vertical rules, meaningful line icons and vertical semantic bullet lists; generation activates automatically on entry without a button |
-| 3 | 50/50 single supplied beach handstand photo and concise approved bilingual biography |
+| 3 | 50/50 five-photo falling stack and concise approved bilingual biography |
 | 4 | Cleaner branching diagram with V2's vertical context/evaluation band placement restored; fragmentation and alignment remain distinct |
 | 5 | Three equal coral headings: what to use and how, context as the intelligence layer for right choices, and what is good enough; separated rather than boxed, not a sequential dependency model |
 | 6 | Six persistent, accessible tabs, one content surface, and main Next progression; top-aligned headings, roomier vertical rhythm and a smaller neutral-grey counter across every tab; no Reset or duplicate Next |

@@ -647,5 +647,23 @@ svg text, code, .lifecycle button > span, .qa-links a span,
 .about-bio ul { padding-left: 22px; margin: 0; }
 .about-bio li { font-size: 24px; line-height: 1.4; color: var(--muted); padding-left: 6px; margin: 0 0 18px; }
 .about-bio li::marker { color: var(--cyan); }
-.about-photo { height: 588px; min-width: 0; overflow: hidden; }
-.about-photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; }
+.photo-stack { position: relative; height: 588px; min-width: 0; isolation: isolate; }
+.photo-stack img { position: absolute; display: block; width: 380px; height: auto; border: 6px solid var(--text); box-shadow: 0 12px 22px #0005; transform: rotate(var(--tilt)); opacity: 1; }
+.photo-stack img:nth-child(1) { left: 42px; top: 30px; --tilt: -8deg; --drop-delay: 0s; }
+.photo-stack img:nth-child(2) { left: 200px; top: 24px; --tilt: 6deg; --drop-delay: .5s; }
+.photo-stack img:nth-child(3) { left: 90px; top: 48px; --tilt: -4deg; --drop-delay: 1s; }
+.photo-stack img:nth-child(4) { left: 145px; top: 100px; width: 440px; --tilt: 7deg; --drop-delay: 1.5s; }
+.photo-stack img:nth-child(5) { left: 180px; top: 52px; --tilt: -2deg; --drop-delay: 2s; }
+@media screen {
+  .about-slide.active .photo-stack img { animation: photo-drop .9s both; animation-delay: var(--drop-delay); }
+}
+@keyframes photo-drop {
+  0% { opacity: 0; transform: translateY(-130px) rotate(calc(var(--tilt) - 9deg)); animation-timing-function: ease-in; }
+  15% { opacity: 1; }
+  72% { opacity: 1; transform: translateY(6px) rotate(calc(var(--tilt) + 1deg)); animation-timing-function: ease-out; }
+  88% { transform: translateY(-3px) rotate(var(--tilt)); animation-timing-function: ease-in-out; }
+  100% { opacity: 1; transform: translateY(0) rotate(var(--tilt)); }
+}
+@media print {
+  .photo-stack img { animation: none !important; }
+}

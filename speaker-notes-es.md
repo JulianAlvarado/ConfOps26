@@ -3,7 +3,7 @@
 **Presentación bilingüe aprobada (V3), versión principal que sustituye a V2.**
 
 Basada en V2 bilingüe congelada `e39ef62f1729553773fa4a4f097f5c8cdf33d138`.
-16 diapositivas principales numeradas (15 de conferencia + Hablemos) + FAQ + 8 apéndices = 25. Hablemos cierra la numeración con 16/16, sin aumentar el tiempo de conferencia. Inter local, bajo licencia OFL. Biografía en la posición 3 con una única foto proporcionada por el ponente.
+16 diapositivas principales numeradas (15 de conferencia + Hablemos) + FAQ + 8 apéndices = 25. Hablemos cierra la numeración con 16/16, sin aumentar el tiempo de conferencia. Inter local, bajo licencia OFL. Biografía en la posición 3 con cinco fotos proporcionadas por el ponente.
 
 Generado desde app.js y spanish.js mediante `node check.mjs --write-notes`.
 
@@ -67,11 +67,11 @@ La referencia en la 12 abre el piloto 25 y vuelve a su origen. Definiciones desd
 
 **Idea clave:** Preséntate y explica la perspectiva que aportas sobre DesignOps e IA.
 
-**Concepto visual:** Una foto proporcionada del ponente haciendo una parada de manos en la playa ocupa la mitad izquierda, con la postura completa visible; biografía breve en la derecha.
+**Concepto visual:** Cinco fotos proporcionadas caen formando una pila a la izquierda durante 2,9 segundos, en el orden recibido y con el retrato de la cafetería arriba. Se ven los bordes anteriores y la biografía queda despejada. Con movimiento reducido y en impresión se muestra la pila final.
 
-**Interacción:** Sin pasos ni controles.
+**Interacción:** Las fotos caen una vez al entrar en la diapositiva en revisión y Escenario; luego quedan estáticas. Cambiar de idioma o modo no reinicia la secuencia. Siguiente avanza directamente, sin pasos ni controles adicionales.
 
-**Notas del ponente:** Biografía facilitada por el ponente: Sr. Program Manager de operaciones de diseño de producción en Xbox / Microsoft. Sr. Creative Operations Manager para Prime Video. 18 años de experiencia gestionando proyectos en compañías como P&G, Publicis, Critical Mass y Automattic (WordPress). CrossFit diario. «Eterno cinturón azul» de jiu-jitsu. Músico retirado y mucho dibujo en casa. No se especifica una cronología laboral; no deduzcas qué puestos son actuales o anteriores. Mantén la presentación personal en 30 segundos. La conferencia conserva 1.200 segundos; la demo, 270; el cierre, 90; y la conversación compartida, 600.
+**Notas del ponente:** Biografía facilitada por el ponente: Design Operations en Xbox / Microsoft. Sr. Creative Operations Manager para Prime Video. 18 años de experiencia gestionando proyectos en compañías como P&G, Publicis, Critical Mass y Automattic (WordPress). CrossFit diario. «Eterno cinturón azul» de jiu-jitsu. Músico retirado y mucho dibujo en casa. No se especifica una cronología laboral; no deduzcas qué puestos son actuales o anteriores. Mantén la presentación personal en 30 segundos. La conferencia conserva 1.200 segundos; la demo, 270; el cierre, 90; y la conversación compartida, 600.
 
 **Transición:** Volvamos al reto común: sin condiciones compartidas, producir más puede generar más variación.
 
